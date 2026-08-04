@@ -193,94 +193,6 @@ left:135%;
 }
 
 /*=============================
-SLOGAN
-=============================*/
-
-.slogan{
-
-position:absolute;
-
-bottom:100px;
-
-width:100%;
-
-text-align:center;
-
-font-size:42px;
-
-font-weight:800;
-
-color:white;
-
-letter-spacing:2px;
-
-text-shadow:
-
-0 0 10px #1d8cff,
-
-0 0 30px #1d8cff;
-
-animation:sloganPulse 3s infinite;
-
-transition:opacity 0.5s ease;
-
-}
-
-@keyframes sloganPulse{
-
-50%{
-
-transform:scale(1.02);
-
-}
-
-}
-
-/*=============================
-HEART
-=============================*/
-
-.heart{
-
-position:absolute;
-
-left:50%;
-
-top:70%;
-
-transform:translateX(-50%);
-
-font-size:65px;
-
-filter:drop-shadow(0 0 15px red);
-
-animation:heartbeat 1s infinite;
-
-}
-
-@keyframes heartbeat{
-
-0%{
-
-transform:translateX(-50%) scale(1);
-
-}
-
-30%{
-
-transform:translateX(-50%) scale(1.2);
-
-}
-
-50%{
-
-transform:translateX(-50%) scale(1);
-
-}
-
-}
-
-/*=============================
 TICKER
 =============================*/
 
@@ -495,18 +407,6 @@ Preparing Event...
 
 <div class="wave"></div>
 
-<div class="heart">
-
-❤️
-
-</div>
-
-<div class="slogan" id="slogan">
-
-PEDULI • TANGGAP • KUAT BERSAMA
-
-</div>
-
 <div class="ticker">
 
 <span id="tickerText">
@@ -540,51 +440,6 @@ document.getElementById("loading").style.display="none";
 },2000);
 
 });
-
-
-/*=========================================
-SLOGAN ROTATE
-=========================================*/
-
-const slogans=[
-
-"PEDULI • TANGGAP • KUAT BERSAMA",
-
-"MENJADI PENDENGAR YANG BAIK",
-
-"PERTOLONGAN PERTAMA PADA LUKA PSIKOLOGIS",
-
-"FIRST AIDER (PFA)",
-
-"SMP NEGERI 1 MOGA",
-
-"BEKERJASAMA DENGAN PUSKESMAS BANYUMUDAL",
-
-"BERSAMA KITA SALING MENGUATKAN"
-
-];
-
-let sloganIndex=0;
-
-const slogan=document.getElementById("slogan");
-
-setInterval(()=>{
-
-slogan.style.opacity=0;
-
-setTimeout(()=>{
-
-sloganIndex++;
-
-slogan.innerHTML=
-
-slogans[sloganIndex%slogans.length];
-
-slogan.style.opacity=1;
-
-},500);
-
-},5000);
 
 
 /*=========================================
@@ -723,7 +578,7 @@ const ticker=document.getElementById("tickerText");
 
 ticker.innerHTML=
 
-"📢 Kegiatan FIRST AIDER - Psychological First Aid (PFA) • SMP Negeri 1 Moga Bekerjasama dengan Puskesmas Banyumudal • Peduli • Tanggap • Kuat Bersama • Menjadi Pendengar yang Baik • Pertolongan Pertama Pada Luka Psikologis •";
+"Kegiatan FIRST AIDER - Psychological First Aid (PFA) • SMP Negeri 1 Moga Bekerjasama dengan Puskesmas Banyumudal • Peduli • Tanggap • Kuat Bersama • Menjadi Pendengar yang Baik • Pertolongan Pertama Pada Luka Psikologis •";
 
 </script>
 

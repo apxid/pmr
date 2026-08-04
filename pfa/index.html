@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FIRST AIDER - PFA</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Arial,sans-serif;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:#001a46;
+}
+
+body{
+
+background-image:url("https://apxid.github.io/pmr/pfa/backdrop.png");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+animation:zoom 40s ease-in-out infinite alternate;
+
+}
+
+/* zoom background */
+
+@keyframes zoom{
+
+0%{
+
+transform:scale(1);
+
+}
+
+100%{
+
+transform:scale(1.05);
+
+}
+
+}
+
+/* overlay */
+
+.overlay{
+
+position:absolute;
+inset:0;
+
+background:linear-gradient(
+
+180deg,
+
+rgba(0,0,0,.10),
+
+rgba(0,0,0,.05),
+
+rgba(0,0,0,.20)
+
+);
+
+}
+
+/* particle */
+
+.particle{
+
+position:absolute;
+
+width:6px;
+height:6px;
+
+border-radius:50%;
+
+background:white;
+
+opacity:.5;
+
+animation:float linear infinite;
+
+}
+
+@keyframes float{
+
+from{
+
+transform:translateY(100vh);
+
+opacity:0;
+
+}
+
+30%{
+
+opacity:.6;
+
+}
+
+to{
+
+transform:translateY(-120px);
+
+opacity:0;
+
+}
+
+}
+
+/* clock */
+
+.clock{
+
+position:absolute;
+
+top:25px;
+
+right:35px;
+
+text-align:right;
+
+color:white;
+
+text-shadow:0 0 10px #000;
+
+}
+
+#time{
+
+font-size:42px;
+
+font-weight:bold;
+
+}
+
+#date{
+
+font-size:18px;
+
+}
+
+/* slogan */
+
+.slogan{
+
+position:absolute;
+
+bottom:90px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:42px;
+
+font-weight:bold;
+
+color:#fff;
+
+text-shadow:0 0 15px #003e8a;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+
+transform:translateX(-50%) scale(1.05);
+
+}
+
+}
+
+/* ticker */
+
+.ticker{
+
+position:absolute;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:55px;
+
+background:rgba(0,36,92,.92);
+
+overflow:hidden;
+
+display:flex;
+
+align-items:center;
+
+border-top:3px solid #ffca28;
+
+}
+
+.ticker span{
+
+white-space:nowrap;
+
+padding-left:100%;
+
+font-size:26px;
+
+font-weight:bold;
+
+color:white;
+
+animation:marquee 35s linear infinite;
+
+}
+
+@keyframes marquee{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+100%{
+
+transform:translateX(-100%);
+
+}
+
+}
+
+/* heart */
+
+.heart{
+
+position:absolute;
+
+left:40px;
+
+top:40px;
+
+font-size:55px;
+
+animation:beat .9s infinite;
+
+}
+
+@keyframes beat{
+
+50%{
+
+transform:scale(1.25);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="heart">❤️</div>
+
+<div class="clock">
+
+<div id="time"></div>
+
+<div id="date"></div>
+
+</div>
+
+<div class="slogan" id="slogan">
+
+PEDULI • TANGGAP • KUAT BERSAMA
+
+</div>
+
+<div class="ticker">
+
+<span>
+
+📢 Selamat Datang Peserta Kegiatan FIRST AIDER (PFA) • Peduli Psikologis • Kuat Bersama • Menjadi Pendengar yang Baik • PMR SMP Negeri 1 Moga • Kerja Sama Puskesmas Banyumudal • Semoga kegiatan berjalan lancar • Terima kasih atas partisipasinya •
+
+</span>
+
+</div>
+
+<script>
+
+/////////////////////////////
+// DIGITAL CLOCK
+/////////////////////////////
+
+function updateClock(){
+
+const now=new Date();
+
+document.getElementById("time").innerHTML=
+now.toLocaleTimeString('id-ID');
+
+document.getElementById("date").innerHTML=
+now.toLocaleDateString('id-ID',
+{
+weekday:'long',
+day:'numeric',
+month:'long',
+year:'numeric'
+});
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+/////////////////////////////
+// SLOGAN ROTATE
+/////////////////////////////
+
+const slogans=[
+
+"PEDULI • TANGGAP • KUAT BERSAMA",
+
+"MENJADI PENDENGAR YANG BAIK",
+
+"BERSAMA MENJAGA KESEHATAN MENTAL",
+
+"FIRST AIDER (PFA)",
+
+"SMP NEGERI 1 MOGA"
+
+];
+
+let i=0;
+
+setInterval(()=>{
+
+i++;
+
+document.getElementById("slogan").innerHTML=slogans[i%slogans.length];
+
+},5000);
+
+/////////////////////////////
+// PARTICLE
+/////////////////////////////
+
+for(let i=0;i<45;i++){
+
+let p=document.createElement("div");
+
+p.className="particle";
+
+p.style.left=Math.random()*100+"vw";
+
+p.style.animationDuration=15+Math.random()*20+"s";
+
+p.style.animationDelay=Math.random()*20+"s";
+
+document.body.appendChild(p);
+
+}
+
+/////////////////////////////
+// FULLSCREEN
+/////////////////////////////
+
+document.body.onclick=()=>{
+
+if(!document.fullscreenElement){
+
+document.documentElement.requestFullscreen();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

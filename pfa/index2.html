@@ -193,74 +193,6 @@ left:135%;
 }
 
 /*=============================
-CLOCK
-=============================*/
-
-.clock{
-
-position:absolute;
-
-right:35px;
-top:25px;
-
-text-align:right;
-
-color:white;
-
-text-shadow:0 0 12px black;
-
-z-index:20;
-
-}
-
-#clock{
-
-font-size:46px;
-font-weight:700;
-
-}
-
-#date{
-
-font-size:18px;
-
-opacity:.95;
-
-}
-
-/*=============================
-STATUS
-=============================*/
-
-.status{
-
-position:absolute;
-
-top:30px;
-
-left:35px;
-
-background:rgba(0,0,0,.35);
-
-backdrop-filter:blur(8px);
-
-padding:14px 22px;
-
-border-radius:14px;
-
-border:1px solid rgba(255,255,255,.2);
-
-color:white;
-
-font-size:22px;
-
-font-weight:600;
-
-box-shadow:0 0 20px rgba(0,0,0,.2);
-
-}
-
-/*=============================
 SLOGAN
 =============================*/
 
@@ -289,6 +221,8 @@ text-shadow:
 0 0 30px #1d8cff;
 
 animation:sloganPulse 3s infinite;
+
+transition:opacity 0.5s ease;
 
 }
 
@@ -561,20 +495,6 @@ Preparing Event...
 
 <div class="wave"></div>
 
-<div class="clock">
-
-<div id="clock"></div>
-
-<div id="date"></div>
-
-</div>
-
-<div class="status" id="status">
-
-Memuat...
-
-</div>
-
 <div class="heart">
 
 ❤️
@@ -596,6 +516,7 @@ PEDULI • TANGGAP • KUAT BERSAMA
 </span>
 
 </div>
+
 <script>
 
 /*=========================================
@@ -619,94 +540,6 @@ document.getElementById("loading").style.display="none";
 },2000);
 
 });
-
-
-/*=========================================
-CLOCK
-=========================================*/
-
-function updateClock(){
-
-const now=new Date();
-
-document.getElementById("clock").innerHTML=
-now.toLocaleTimeString("id-ID");
-
-document.getElementById("date").innerHTML=
-now.toLocaleDateString("id-ID",{
-
-weekday:"long",
-
-day:"numeric",
-
-month:"long",
-
-year:"numeric"
-
-});
-
-}
-
-updateClock();
-
-setInterval(updateClock,1000);
-
-
-/*=========================================
-COUNTDOWN
-=========================================*/
-
-function updateStatus(){
-
-const now=new Date();
-
-let target=new Date();
-
-target.setHours(8);
-target.setMinutes(0);
-target.setSeconds(0);
-
-const status=document.getElementById("status");
-
-if(now<target){
-
-let diff=target-now;
-
-let h=Math.floor(diff/1000/60/60);
-
-let m=Math.floor(diff/1000/60)%60;
-
-let s=Math.floor(diff/1000)%60;
-
-status.innerHTML=
-
-"⏳ Acara dimulai dalam "
-
-+
-
-String(h).padStart(2,"0")+":"
-
-+
-
-String(m).padStart(2,"0")+":"
-
-+
-
-String(s).padStart(2,"0");
-
-}else{
-
-status.innerHTML=
-
-"🟢 KEGIATAN SEDANG BERLANGSUNG";
-
-}
-
-}
-
-updateStatus();
-
-setInterval(updateStatus,1000);
 
 
 /*=========================================
@@ -891,7 +724,6 @@ const ticker=document.getElementById("tickerText");
 ticker.innerHTML=
 
 "Selamat Datang Peserta Kegiatan FIRST AIDER (PFA) • PMR SMP Negeri 1 Moga • Bersama Puskesmas Banyumudal • Peduli • Tanggap • Kuat Bersama • Menjadi Pendengar yang Baik • Terima kasih atas kehadiran seluruh peserta • Semoga kegiatan berjalan lancar •";
-
 
 </script>
 

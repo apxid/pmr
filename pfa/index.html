@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FIRST AIDER - PFA</title>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>FIRST AIDER - Psychological First Aid</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -12,31 +16,35 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI,Arial,sans-serif;
 }
 
 html,body{
+
 width:100%;
 height:100%;
 overflow:hidden;
-background:#001a46;
+font-family:'Poppins',sans-serif;
+background:#001b4d;
+
 }
+
+/*=============================
+BACKGROUND
+=============================*/
 
 body{
 
-background-image:url("https://apxid.github.io/pmr/pfa/backdrop.png");
+background:url("https://apxid.github.io/pmr/pfa/backdrop.png");
 
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
 
-animation:zoom 40s ease-in-out infinite alternate;
+animation:bgZoom 40s ease-in-out infinite alternate;
 
 }
 
-/* zoom background */
-
-@keyframes zoom{
+@keyframes bgZoom{
 
 0%{
 
@@ -52,139 +60,229 @@ transform:scale(1.05);
 
 }
 
-/* overlay */
+/*=============================
+OVERLAY
+=============================*/
 
 .overlay{
 
 position:absolute;
-inset:0;
+left:0;
+top:0;
+right:0;
+bottom:0;
 
-background:linear-gradient(
+background:
 
+linear-gradient(
 180deg,
-
-rgba(0,0,0,.10),
-
-rgba(0,0,0,.05),
-
-rgba(0,0,0,.20)
-
+rgba(0,0,0,.15),
+rgba(0,0,0,.02),
+rgba(0,0,0,.25)
 );
+
+pointer-events:none;
 
 }
 
-/* particle */
+/*=============================
+LIGHT EFFECT
+=============================*/
 
-.particle{
+.light{
 
 position:absolute;
 
-width:6px;
-height:6px;
+width:800px;
+height:800px;
 
 border-radius:50%;
 
-background:white;
+filter:blur(150px);
 
-opacity:.5;
+opacity:.18;
 
-animation:float linear infinite;
-
-}
-
-@keyframes float{
-
-from{
-
-transform:translateY(100vh);
-
-opacity:0;
+animation:lightMove 20s infinite alternate;
 
 }
 
-30%{
+.light.left{
 
-opacity:.6;
+left:-250px;
+top:-250px;
 
-}
-
-to{
-
-transform:translateY(-120px);
-
-opacity:0;
+background:#00bfff;
 
 }
 
+.light.right{
+
+right:-250px;
+bottom:-250px;
+
+background:#00ffe0;
+
+animation-delay:8s;
+
 }
 
-/* clock */
+@keyframes lightMove{
 
-.clock{
+0%{
+
+transform:translate(0,0);
+
+}
+
+100%{
+
+transform:translate(120px,-80px);
+
+}
+
+}
+
+/*=============================
+SHIMMER
+=============================*/
+
+.shimmer{
 
 position:absolute;
 
-top:25px;
+left:-30%;
+top:0;
 
-right:35px;
+width:30%;
+height:100%;
 
-text-align:right;
+background:
 
-color:white;
+linear-gradient(
 
-text-shadow:0 0 10px #000;
+90deg,
+
+transparent,
+
+rgba(255,255,255,.20),
+
+transparent
+
+);
+
+transform:skewX(-20deg);
+
+animation:shimmer 10s infinite;
 
 }
 
-#time{
+@keyframes shimmer{
 
-font-size:42px;
+0%{
 
-font-weight:bold;
-
-}
-
-#date{
-
-font-size:18px;
+left:-35%;
 
 }
 
-/* slogan */
+100%{
+
+left:135%;
+
+}
+
+}
+
+/*=============================
+SLOGAN
+=============================*/
 
 .slogan{
 
 position:absolute;
 
-bottom:90px;
+bottom:100px;
 
-left:50%;
+width:100%;
 
-transform:translateX(-50%);
+text-align:center;
 
 font-size:42px;
 
-font-weight:bold;
+font-weight:800;
 
-color:#fff;
+color:white;
 
-text-shadow:0 0 15px #003e8a;
+letter-spacing:2px;
 
-animation:pulse 2s infinite;
+text-shadow:
+
+0 0 10px #1d8cff,
+
+0 0 30px #1d8cff;
+
+animation:sloganPulse 3s infinite;
+
+transition:opacity 0.5s ease;
 
 }
 
-@keyframes pulse{
+@keyframes sloganPulse{
 
 50%{
 
-transform:translateX(-50%) scale(1.05);
+transform:scale(1.02);
 
 }
 
 }
 
-/* ticker */
+/*=============================
+HEART
+=============================*/
+
+.heart{
+
+position:absolute;
+
+left:50%;
+
+top:70%;
+
+transform:translateX(-50%);
+
+font-size:65px;
+
+filter:drop-shadow(0 0 15px red);
+
+animation:heartbeat 1s infinite;
+
+}
+
+@keyframes heartbeat{
+
+0%{
+
+transform:translateX(-50%) scale(1);
+
+}
+
+30%{
+
+transform:translateX(-50%) scale(1.2);
+
+}
+
+50%{
+
+transform:translateX(-50%) scale(1);
+
+}
+
+}
+
+/*=============================
+TICKER
+=============================*/
 
 .ticker{
 
@@ -196,9 +294,15 @@ left:0;
 
 width:100%;
 
-height:55px;
+height:60px;
 
-background:rgba(0,36,92,.92);
+background:
+
+rgba(0,36,92,.93);
+
+border-top:
+
+3px solid #ffd54f;
 
 overflow:hidden;
 
@@ -206,7 +310,7 @@ display:flex;
 
 align-items:center;
 
-border-top:3px solid #ffca28;
+z-index:50;
 
 }
 
@@ -216,13 +320,13 @@ white-space:nowrap;
 
 padding-left:100%;
 
-font-size:26px;
+font-size:28px;
 
-font-weight:bold;
+font-weight:700;
 
 color:white;
 
-animation:marquee 35s linear infinite;
+animation:marquee 40s linear infinite;
 
 }
 
@@ -242,27 +346,126 @@ transform:translateX(-100%);
 
 }
 
-/* heart */
+/*=============================
+WAVE
+=============================*/
 
-.heart{
+.wave{
 
 position:absolute;
 
-left:40px;
+left:0;
 
-top:40px;
+bottom:60px;
 
-font-size:55px;
+width:200%;
 
-animation:beat .9s infinite;
+height:180px;
+
+opacity:.18;
+
+background:url("https://svgshare.com/i/15eG.svg");
+
+background-size:50% 100%;
+
+animation:waveMove 35s linear infinite;
 
 }
 
-@keyframes beat{
+@keyframes waveMove{
 
-50%{
+from{
 
-transform:scale(1.25);
+transform:translateX(0);
+
+}
+
+to{
+
+transform:translateX(-50%);
+
+}
+
+}
+
+/*=============================
+PARTICLE
+=============================*/
+
+.particle{
+
+position:absolute;
+
+width:6px;
+
+height:6px;
+
+border-radius:50%;
+
+background:white;
+
+opacity:.4;
+
+filter:blur(1px);
+
+}
+
+/*=============================
+LOADING
+=============================*/
+
+#loading{
+
+position:absolute;
+
+left:0;
+top:0;
+right:0;
+bottom:0;
+
+background:#001d55;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+z-index:999;
+
+color:white;
+
+font-size:28px;
+
+font-weight:700;
+
+}
+
+.loader{
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+border:6px solid rgba(255,255,255,.2);
+
+border-top:6px solid white;
+
+animation:spin 1s linear infinite;
+
+margin-bottom:25px;
+
+}
+
+@keyframes spin{
+
+to{
+
+transform:rotate(360deg);
 
 }
 
@@ -274,15 +477,27 @@ transform:scale(1.25);
 
 <body>
 
+<div id="loading">
+
+<div class="loader"></div>
+
+Preparing Event...
+
+</div>
+
 <div class="overlay"></div>
 
-<div class="heart">❤️</div>
+<div class="light left"></div>
 
-<div class="clock">
+<div class="light right"></div>
 
-<div id="time"></div>
+<div class="shimmer"></div>
 
-<div id="date"></div>
+<div class="wave"></div>
+
+<div class="heart">
+
+❤️
 
 </div>
 
@@ -294,9 +509,9 @@ PEDULI • TANGGAP • KUAT BERSAMA
 
 <div class="ticker">
 
-<span>
+<span id="tickerText">
 
-📢 Selamat Datang Peserta Kegiatan FIRST AIDER (PFA) • Peduli Psikologis • Kuat Bersama • Menjadi Pendengar yang Baik • PMR SMP Negeri 1 Moga • Kerja Sama Puskesmas Banyumudal • Semoga kegiatan berjalan lancar • Terima kasih atas partisipasinya •
+📢 Kegiatan FIRST AIDER - Psychological First Aid (PFA) • SMP Negeri 1 Moga Bekerjasama dengan Puskesmas Banyumudal • Peduli • Tanggap • Kuat Bersama • Menjadi Pendengar yang Baik • Pertolongan Pertama Pada Luka Psikologis •
 
 </span>
 
@@ -304,35 +519,32 @@ PEDULI • TANGGAP • KUAT BERSAMA
 
 <script>
 
-/////////////////////////////
-// DIGITAL CLOCK
-/////////////////////////////
+/*=========================================
+LOADING SCREEN
+=========================================*/
 
-function updateClock(){
+window.addEventListener("load",()=>{
 
-const now=new Date();
+setTimeout(()=>{
 
-document.getElementById("time").innerHTML=
-now.toLocaleTimeString('id-ID');
+document.getElementById("loading").style.opacity="0";
 
-document.getElementById("date").innerHTML=
-now.toLocaleDateString('id-ID',
-{
-weekday:'long',
-day:'numeric',
-month:'long',
-year:'numeric'
+document.getElementById("loading").style.transition="1s";
+
+setTimeout(()=>{
+
+document.getElementById("loading").style.display="none";
+
+},1000);
+
+},2000);
+
 });
 
-}
 
-setInterval(updateClock,1000);
-
-updateClock();
-
-/////////////////////////////
-// SLOGAN ROTATE
-/////////////////////////////
+/*=========================================
+SLOGAN ROTATE
+=========================================*/
 
 const slogans=[
 
@@ -340,49 +552,136 @@ const slogans=[
 
 "MENJADI PENDENGAR YANG BAIK",
 
-"BERSAMA MENJAGA KESEHATAN MENTAL",
+"PERTOLONGAN PERTAMA PADA LUKA PSIKOLOGIS",
 
 "FIRST AIDER (PFA)",
 
-"SMP NEGERI 1 MOGA"
+"SMP NEGERI 1 MOGA",
+
+"BEKERJASAMA DENGAN PUSKESMAS BANYUMUDAL",
+
+"BERSAMA KITA SALING MENGUATKAN"
 
 ];
 
-let i=0;
+let sloganIndex=0;
+
+const slogan=document.getElementById("slogan");
 
 setInterval(()=>{
 
-i++;
+slogan.style.opacity=0;
 
-document.getElementById("slogan").innerHTML=slogans[i%slogans.length];
+setTimeout(()=>{
+
+sloganIndex++;
+
+slogan.innerHTML=
+
+slogans[sloganIndex%slogans.length];
+
+slogan.style.opacity=1;
+
+},500);
 
 },5000);
 
-/////////////////////////////
-// PARTICLE
-/////////////////////////////
 
-for(let i=0;i<45;i++){
+/*=========================================
+PARTICLES
+=========================================*/
+
+for(let i=0;i<80;i++){
 
 let p=document.createElement("div");
 
 p.className="particle";
 
+let size=Math.random()*7+2;
+
+p.style.width=size+"px";
+
+p.style.height=size+"px";
+
 p.style.left=Math.random()*100+"vw";
 
-p.style.animationDuration=15+Math.random()*20+"s";
+p.style.top=Math.random()*100+"vh";
 
-p.style.animationDelay=Math.random()*20+"s";
+p.style.opacity=Math.random()*.5+.2;
 
 document.body.appendChild(p);
 
+animateParticle(p);
+
 }
 
-/////////////////////////////
-// FULLSCREEN
-/////////////////////////////
+function animateParticle(el){
 
-document.body.onclick=()=>{
+let x=parseFloat(el.style.left);
+
+let y=parseFloat(el.style.top);
+
+let speed=Math.random()*0.15+0.03;
+
+function frame(){
+
+y-=speed;
+
+x+=Math.sin(y/30)*0.02;
+
+if(y<-5){
+
+y=105;
+
+x=Math.random()*100;
+
+}
+
+el.style.left=x+"vw";
+
+el.style.top=y+"vh";
+
+requestAnimationFrame(frame);
+
+}
+
+frame();
+
+}
+
+
+/*=========================================
+AUTO HIDE CURSOR
+=========================================*/
+
+let cursorTimer;
+
+function hideCursor(){
+
+document.body.style.cursor="none";
+
+}
+
+function resetCursor(){
+
+document.body.style.cursor="default";
+
+clearTimeout(cursorTimer);
+
+cursorTimer=setTimeout(hideCursor,5000);
+
+}
+
+document.addEventListener("mousemove",resetCursor);
+
+resetCursor();
+
+
+/*=========================================
+FULLSCREEN
+=========================================*/
+
+function openFullscreen(){
 
 if(!document.fullscreenElement){
 
@@ -391,6 +690,40 @@ document.documentElement.requestFullscreen();
 }
 
 }
+
+document.body.addEventListener("click",openFullscreen);
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="f" || e.key==="F"){
+
+openFullscreen();
+
+}
+
+});
+
+
+/*=========================================
+DISABLE RIGHT CLICK
+=========================================*/
+
+document.addEventListener("contextmenu",e=>{
+
+e.preventDefault();
+
+});
+
+
+/*=========================================
+TICKER
+=========================================*/
+
+const ticker=document.getElementById("tickerText");
+
+ticker.innerHTML=
+
+"📢 Kegiatan FIRST AIDER - Psychological First Aid (PFA) • SMP Negeri 1 Moga Bekerjasama dengan Puskesmas Banyumudal • Peduli • Tanggap • Kuat Bersama • Menjadi Pendengar yang Baik • Pertolongan Pertama Pada Luka Psikologis •";
 
 </script>
 

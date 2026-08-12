@@ -1,0 +1,685 @@
+
+Percakapan dengan Gemini
+saya ingin membuat template kartu tanda anggota pmr siswa SMP Negeri 1 Moga
+
+berbasis html, data siwanya nanti ambil dari data di spreadsheet
+
+dan tampilan htmlnya nanti berupa desain kartu dengan ukuran kartu sbb :
+
+mode kartu nanti potrait dengan ukuran
+
+tinggi desain kartu = 8,993 cm
+
+lebar desain kartu = 5,679 cm 
+
+dari lebar dan desain akrtu itu nanti terdapat garis putih dengan rounded corner yang merupakan ukuran potong untuk pvc id card, ukuran garis potongnya sbb :
+
+tinggi= 8,72 cm
+
+lebar = 5,513 cm
+
+
+
+desain kartu pmr anntinya memuat logo pmr, foto anak, identitas anggota (nomor anggota, nama, alamat,
+
+contoh desain kartu terlampir .
+
+Berikut adalah template HTML profesional untuk Kartu Tanda Anggota (KTA) PMR Madya SMP Negeri 1 Moga yang dirancang sesuai dengan spesifikasi ukuran presisi dan tata letak sampel gambar yang Anda berikan.
+
+Ikon HTML
+template_kta_pmr
+ HTML 
+Buka
+📏 Spesifikasi & Ukuran Desain
+Ukuran Canvas Desain (Termasuk Bleed): 5,679 cm x 8,993 cm (Portrait)
+
+Ukuran Garis Potong PVC ID Card (cut-line): 5,513 cm x 8,72 cm (dengan rounded corner / sudut melengkung 0.35 cm).
+
+Sistem Tag Mail Merge / Google Sheets:
+
+{{NAMA_LENGKAP}} : Nama siswa / anggota PMR.
+
+{{NOMOR_ANGGOTA}} : Nomor Induk / NIA PMR.
+
+{{FOTO_URL}} : Link/URL foto siswa dari Spreadsheet.
+
+{{ALAMAT_SEKOLAH}} : Alamat atau detail sekolah.
+
+💻 Kode HTML & CSS Template (template_kta_pmr.html)
+Anda dapat menyalin (copy-paste) kode di bawah ini ke dalam editor HTML, Google Apps Script, atau Mail Merge generator Anda:
+
+HTML
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Kartu Tanda Anggota PMR - SMP Negeri 1 Moga</title>
+    <style>
+        /* Reset & Base Setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Canvas Desain Utama (Ukuran Bleed)
+           Lebar: 5.679 cm | Tinggi: 8.993 cm */
+        .card-canvas {
+            width: 5.679cm;
+            height: 8.993cm;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Garis Potong PVC ID Card (Cutting Guide / Inner Border)
+           Ukuran: 5.513 cm x 8.72 cm dengan rounded corner */
+        .cut-line {
+            position: absolute;
+            top: calc((8.993cm - 8.72cm) / 2);
+            left: calc((5.679cm - 5.513cm) / 2);
+            width: 5.513cm;
+            height: 8.72cm;
+            border: 1.5px dashed rgba(255, 255, 255, 0.85);
+            border-radius: 0.35cm;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* Top Header Red Accent Pattern */
+        .header-bar {
+            height: 0.35cm;
+            width: 100%;
+            display: flex;
+        }
+        .header-bar div { flex: 1; }
+        .bg-red-1 { background-color: #bd081c; }
+        .bg-red-2 { background-color: #d92534; }
+        .bg-red-3 { background-color: #e6525e; }
+        .bg-red-4 { background-color: #f28b94; }
+        .bg-red-5 { background-color: #fcc2c7; }
+
+        /* Section Logo PMI & PMR */
+        .logo-section {
+            padding: 0.2cm 0.3cm 0.1cm 0.3cm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2cm;
+            background-color: #ffffff;
+        }
+
+        .logo-pmi {
+            width: 0.85cm;
+            height: 0.85cm;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.05;
+        }
+
+        .logo-text .title {
+            font-size: 7.5pt;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: -0.2px;
+            text-transform: uppercase;
+        }
+
+        .logo-text .subtitle {
+            font-size: 5.5pt;
+            font-weight: 700;
+            color: #bd081c;
+            letter-spacing: 0.2px;
+        }
+
+        /* Container Foto & Background Merah Tengah */
+        .middle-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            background: linear-gradient(135deg, #8a0513 0%, #bd081c 50%, #6e000b 100%);
+            overflow: hidden;
+        }
+
+        /* Texture / Grid Overlay Transparan */
+        .middle-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 4px 4px;
+            opacity: 0.6;
+        }
+
+        /* Foto Anggota */
+        .photo-box {
+            position: absolute;
+            top: 0.15cm;
+            width: 2.8cm;
+            height: 3.6cm;
+            border: 2.5px solid #bd081c;
+            background-color: #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 5;
+            object-fit: cover;
+        }
+
+        /* Block Info Nama & Nomor Anggota */
+        .member-info {
+            position: relative;
+            z-index: 6;
+            width: 100%;
+            text-align: center;
+            padding: 0.15cm 0.2cm 0.2cm 0.2cm;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(2px);
+            margin-top: 2.7cm;
+        }
+
+        .member-name {
+            color: #ffffff;
+            font-size: 8.5pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            word-wrap: break-word;
+        }
+
+        .member-id {
+            color: #ffffff;
+            font-size: 6.5pt;
+            font-weight: 600;
+            margin-top: 0.05cm;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+        }
+
+        /* Bottom Section: QR Code & Detail Sekolah/Unit */
+        .bottom-section {
+            height: 2.1cm;
+            background-color: #ffffff;
+            padding: 0.15cm 0.3cm;
+            display: flex;
+            align-items: center;
+            gap: 0.25cm;
+            z-index: 10;
+        }
+
+        .qr-box {
+            width: 1.5cm;
+            height: 1.5cm;
+            flex-shrink: 0;
+            background-color: #ffffff;
+            padding: 2px;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .detail-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.2;
+            overflow: hidden;
+        }
+
+        .role-title {
+            color: #bd081c;
+            font-size: 7.5pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .unit-name {
+            color: #222222;
+            font-size: 6.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .address-text {
+            color: #555555;
+            font-size: 5pt;
+            font-weight: 500;
+            margin-top: 0.03cm;
+            line-height: 1.1;
+        }
+
+        /* Pengaturan Cetak (Print Ready) */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                margin: 0;
+            }
+            .card-canvas {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            .cut-line {
+                border-color: #d0d0d0 !important; /* Panduan potong tipis saat di-print */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas Utama Kartu -->
+    <div class="card-canvas">
+        
+        <!-- Garis Potong PVC ID Card (5.513 cm x 8.72 cm) -->
+        <div class="cut-line"></div>
+
+        <!-- Pattern Accent Merah Atas -->
+        <div class="header-bar">
+            <div class="bg-red-1"></div>
+            <div class="bg-red-2"></div>
+            <div class="bg-red-3"></div>
+            <div class="bg-red-4"></div>
+            <div class="bg-red-5"></div>
+        </div>
+
+        <!-- Header Logo PMI & Unit PMR -->
+        <div class="logo-section">
+            <svg class="logo-pmi" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 50 10 C 55 25, 65 25, 75 15 C 75 30, 85 35, 90 50 C 75 55, 75 65, 85 75 C 70 75, 65 85, 50 90 C 45 75, 35 75, 25 85 C 25 70, 15 65, 10 50 C 25 45, 25 35, 15 25 C 30 25, 35 15, 50 10 Z" fill="none" stroke="#bd081c" stroke-width="3.5"/>
+                <rect x="41" y="25" width="18" height="50" fill="#bd081c"/>
+                <rect x="25" y="41" width="50" height="18" fill="#bd081c"/>
+            </svg>
+            <div class="logo-text">
+                <span class="title">Palang Merah</span>
+                <span class="title">Indonesia</span>
+                <span class="subtitle">PMR MADYA SMPN 1 MOGA</span>
+            </div>
+        </div>
+
+        <!-- Area Tengah (Foto & Identitas Siswa) -->
+        <div class="middle-container">
+            <img class="photo-box" src="{{FOTO_URL}}" alt="Foto Anggota" onerror="this.src='https://via.placeholder.com/150x200/cccccc/666666?text=FOTO+SISWA'">
+            
+            <div class="member-info">
+                <div class="member-name">{{NAMA_LENGKAP}}</div>
+                <div class="member-id">NI. {{NOMOR_ANGGOTA}}</div>
+            </div>
+        </div>
+
+        <!-- Area Bawah (QR Code & Informasi Unit) -->
+        <div class="bottom-section">
+            <div class="qr-box">
+                <!-- Generasi QR Code Otomatis Berdasarkan Nomor Anggota -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{NOMOR_ANGGOTA}}" alt="QR Code">
+            </div>
+            <div class="detail-text">
+                <div class="role-title">PMR MADYA</div>
+                <div class="unit-name">SMP NEGERI 1 MOGA</div>
+                <div class="address-text">Jl. Raya Moga - Pemalang, Kec. Moga</div>
+                <div class="address-text" style="color:#bd081c; font-weight:700; margin-top:2px;">KAB. PEMALANG</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+💡 Petunjuk Penggunaan dengan Spreadsheet:
+Google Apps Script / Autocrat / Mail Merge:
+
+Di Spreadsheet Anda, buat kolom: NAMA_LENGKAP, NOMOR_ANGGOTA, FOTO_URL, ALAMAT_SEKOLAH.
+
+Saat proses merge ke HTML/PDF, gantikan variabel {{NAMA_LENGKAP}} dengan nilai sel terkait dari spreadsheet.
+
+QR Code Generator:
+
+Kode di atas sudah memanfaatkan API QR gratis ([https://api.qrserver.com/](https://api.qrserver.com/)...), sehingga QR Code akan otomatis terbentuk sesuai dengan nilai {{NOMOR_ANGGOTA}} masing-masing siswa.
+
+Pencetakan PVC:
+
+Saat diprint ke kertas/PVC ID Card, garis putus-putus (cut-line) akan berfungsi sebagai garis panduan pisau/mesin potong PVC ukuran standar 5.513 x 8.72 cm.
+
+
+
+
+Gemini adalah AI dan dapat melakukan kesalahan.
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Kartu Tanda Anggota PMR - SMP Negeri 1 Moga</title>
+    <style>
+        /* Reset & Base Setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Ukuran Canvas Desain Utama (Termasuk Bleed)
+           Lebar: 5.679 cm | Tinggi: 8.993 cm */
+        .card-canvas {
+            width: 5.679cm;
+            height: 8.993cm;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            /* Memudahkan penempatan elemen presisi */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Garis Potong PVC ID Card (Cutting Guide / Border Outlines)
+           Ukuran: 5.513 cm x 8.72 cm dengan rounded corner */
+        .cut-line {
+            position: absolute;
+            top: calc((8.993cm - 8.72cm) / 2);
+            left: calc((5.679cm - 5.513cm) / 2);
+            width: 5.513cm;
+            height: 8.72cm;
+            border: 1.5px dashed rgba(255, 255, 255, 0.85);
+            border-radius: 0.35cm; /* Estimasi sudut rounded PVC card */
+            pointer-events: none;
+            z-index: 99;
+            box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.0) inset; /* Opsi overlay jika diperlukan */
+        }
+
+        /* Top Header Red Accent Pattern */
+        .header-bar {
+            height: 0.35cm;
+            width: 100%;
+            display: flex;
+        }
+        .header-bar div {
+            flex: 1;
+        }
+        .bg-red-1 { background-color: #bd081c; }
+        .bg-red-2 { background-color: #d92534; }
+        .bg-red-3 { background-color: #e6525e; }
+        .bg-red-4 { background-color: #f28b94; }
+        .bg-red-5 { background-color: #fcc2c7; }
+
+        /* Section Logo PMI & PMR */
+        .logo-section {
+            padding: 0.25cm 0.3cm 0.1cm 0.3cm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2cm;
+            background-color: #ffffff;
+        }
+
+        .logo-pmi {
+            width: 0.85cm;
+            height: 0.85cm;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.05;
+        }
+
+        .logo-text .title {
+            font-size: 7.5pt;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: -0.2px;
+            text-transform: uppercase;
+        }
+
+        .logo-text .subtitle {
+            font-size: 5.5pt;
+            font-weight: 700;
+            color: #bd081c;
+            letter-spacing: 0.2px;
+        }
+
+        /* Container Foto & Background Merah Tengah */
+        .middle-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            background: linear-gradient(135deg, #8a0513 0%, #bd081c 50%, #6e000b 100%);
+            overflow: hidden;
+        }
+
+        /* Pattern Overlay Transparan di Area Tengah */
+        .middle-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 4px 4px;
+            opacity: 0.6;
+        }
+
+        /* Foto Anggota */
+        .photo-box {
+            position: absolute;
+            top: 0.15cm;
+            width: 2.8cm;
+            height: 3.6cm;
+            border: 2.5px solid #bd081c;
+            background-color: #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 5;
+            object-fit: cover;
+        }
+
+        /* Info Nama & Nomor Anggota */
+        .member-info {
+            position: relative;
+            z-index: 6;
+            width: 100%;
+            text-align: center;
+            padding: 0.15cm 0.2cm 0.2cm 0.2cm;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(2px);
+            margin-top: 2.7cm; /* Memberi ruang untuk foto */
+        }
+
+        .member-name {
+            color: #ffffff;
+            font-size: 8.5pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            word-wrap: break-word;
+        }
+
+        .member-id {
+            color: #ffffff;
+            font-size: 6.5pt;
+            font-weight: 600;
+            margin-top: 0.05cm;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+        }
+
+        /* Bottom Section: QR Code & Detail Sekolah/Unit */
+        .bottom-section {
+            height: 2.1cm;
+            background-color: #ffffff;
+            padding: 0.15cm 0.3cm;
+            display: flex;
+            align-items: center;
+            gap: 0.25cm;
+            z-index: 10;
+        }
+
+        .qr-box {
+            width: 1.5cm;
+            height: 1.5cm;
+            flex-shrink: 0;
+            background-color: #ffffff;
+            padding: 2px;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .detail-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.2;
+            overflow: hidden;
+        }
+
+        .role-title {
+            color: #bd081c;
+            font-size: 7.5pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .unit-name {
+            color: #222222;
+            font-size: 6.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .address-text {
+            color: #555555;
+            font-size: 5pt;
+            font-weight: 500;
+            margin-top: 0.03cm;
+            line-height: 1.1;
+        }
+
+        /* Print Media Setup */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                margin: 0;
+            }
+            .card-canvas {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            .cut-line {
+                /* Garis potong tetap terlihat tipis saat dicetak sebagai panduan potong */
+                border-color: #cccccc !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas Utama Kartu -->
+    <div class="card-canvas">
+        
+        <!-- Garis Potong PVC ID Card (Standard 5.513 cm x 8.72 cm) -->
+        <div class="cut-line"></div>
+
+        <!-- Pattern Accent Atas -->
+        <div class="header-bar">
+            <div class="bg-red-1"></div>
+            <div class="bg-red-2"></div>
+            <div class="bg-red-3"></div>
+            <div class="bg-red-4"></div>
+            <div class="bg-red-5"></div>
+        </div>
+
+        <!-- Logo & Header Organisasi -->
+        <div class="logo-section">
+            <!-- Logo Palang Merah / PMR SVG -->
+            <svg class="logo-pmi" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bunga Melati / Kelopak Putih Lingkaran luar -->
+                <path d="M 50 10 C 55 25, 65 25, 75 15 C 75 30, 85 35, 90 50 C 75 55, 75 65, 85 75 C 70 75, 65 85, 50 90 C 45 75, 35 75, 25 85 C 25 70, 15 65, 10 50 C 25 45, 25 35, 15 25 C 30 25, 35 15, 50 10 Z" fill="none" stroke="#bd081c" stroke-width="3.5"/>
+                <!-- Palang Merah Tengah -->
+                <rect x="41" y="25" width="18" height="50" fill="#bd081c"/>
+                <rect x="25" y="41" width="50" height="18" fill="#bd081c"/>
+            </svg>
+            <div class="logo-text">
+                <span class="title">Palang Merah</span>
+                <span class="title">Indonesia</span>
+                <span class="subtitle">PMR MADYA SMPN 1 MOGA</span>
+            </div>
+        </div>
+
+        <!-- Area Tengah (Foto & Identitas Utama) -->
+        <div class="middle-container">
+            <!-- Foto Anggota (Placeholder Mail Merge: {{FOTO_URL}}) -->
+            <img class="photo-box" src="{{FOTO_URL}}" alt="Foto Anggota" onerror="this.src='https://via.placeholder.com/150x200/cccccc/666666?text=FOTO+SISWA'">
+            
+            <!-- Block Info Nama & NO ID -->
+            <div class="member-info">
+                <div class="member-name">{{NAMA_LENGKAP}}</div>
+                <div class="member-id">NIA. {{NOMOR_ANGGOTA}}</div>
+            </div>
+        </div>
+
+        <!-- Area Bawah (QR Code & Keterangan Unit) -->
+        <div class="bottom-section">
+            <div class="qr-box">
+                <!-- QR Code Dynamic / Placeholder (Mail Merge: {{QR_CODE_URL}} atau API) -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{NOMOR_ANGGOTA}}" alt="QR Code">
+            </div>
+            <div class="detail-text">
+                <div class="role-title">PMR MADYA</div>
+                <div class="unit-name">SMP NEGERI 1 MOGA</div>
+                <div class="address-text">{{ALAMAT_SEKOLAH}}</div>
+                <div class="address-text" style="color:#bd081c; font-weight:600; margin-top:2px;">KAB. PEMALANG</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+template_kta_pmr.html
+Menampilkan template_kta_pmr.html.

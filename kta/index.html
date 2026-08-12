@@ -1287,6 +1287,182 @@
 
 
 
+
+    /* =====================================================
+       PENDAFTARAN ANGGOTA
+    ===================================================== */
+
+    .register-section {
+      margin-top: 22px;
+    }
+
+    .register-card {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid rgba(0,0,0,.04);
+      box-shadow: 0 12px 35px rgba(35,20,25,.08);
+    }
+
+    .register-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 17px;
+    }
+
+    .register-head h3 {
+      font-size: 16px;
+      font-weight: 900;
+      color: #202124;
+    }
+
+    .register-head p {
+      margin-top: 5px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: #777;
+    }
+
+    .register-badge {
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 99px;
+      background: #fff0f1;
+      color: #bd081c;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .register-form {
+      display: grid;
+      gap: 13px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 800;
+      color: #444;
+    }
+
+    .form-group label span {
+      color: #bd081c;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 13px;
+      outline: none;
+      padding: 11px 12px;
+      font-size: 13px;
+      color: #222;
+      background: #fafafa;
+      transition: .2s ease;
+    }
+
+    .form-group textarea {
+      min-height: 82px;
+      resize: vertical;
+      line-height: 1.45;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #bd081c;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(189,8,28,.07);
+    }
+
+    .form-note {
+      padding: 11px 12px;
+      border-radius: 12px;
+      background: #f8f9fa;
+      color: #70757a;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .register-submit {
+      width: 100%;
+      min-height: 50px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg,#a40019,#d20d28);
+      color: white;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 7px 18px rgba(189,8,28,.20);
+      transition: transform .15s ease, opacity .2s ease;
+    }
+
+    .register-submit:active {
+      transform: scale(.98);
+    }
+
+    .register-submit:disabled {
+      opacity: .65;
+      cursor: not-allowed;
+    }
+
+    .register-result {
+      display: none;
+      margin-top: 13px;
+      padding: 13px;
+      border-radius: 13px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .register-result.show {
+      display: block;
+    }
+
+    .register-result.success {
+      background: #effaf3;
+      color: #217443;
+      border: 1px solid #c9efd7;
+    }
+
+    .register-result.error {
+      background: #fff0f1;
+      color: #a40019;
+      border: 1px solid #ffd5da;
+    }
+
+    @media (max-width: 520px) {
+      .register-card {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .register-badge {
+        font-size: 9px;
+      }
+    }
+
     /* =====================================================
        VERY SMALL SCREEN
     ===================================================== */
@@ -1685,6 +1861,216 @@
 
 
 
+
+      <!-- ==================================================
+           PENDAFTARAN ANGGOTA
+      =================================================== -->
+
+      <section class="register-section">
+
+        <div class="register-card">
+
+          <div class="register-head">
+            <div>
+              <h3>📝 Pendaftaran Anggota PMR</h3>
+              <p>
+                Belum memiliki KTA? Isi formulir berikut untuk
+                mendaftarkan diri sebagai anggota PMR Madya.
+              </p>
+            </div>
+
+            <span class="register-badge">
+              Anggota Baru
+            </span>
+          </div>
+
+          <form id="registerForm" class="register-form">
+
+            <div class="form-row">
+
+              <div class="form-group">
+                <label for="regNama">
+                  Nama Lengkap <span>*</span>
+                </label>
+                <input
+                  id="regNama"
+                  name="nama"
+                  type="text"
+                  autocomplete="name"
+                  maxlength="100"
+                  placeholder="Masukkan nama lengkap"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="regNisn">
+                  NISN <span>*</span>
+                </label>
+                <input
+                  id="regNisn"
+                  name="nisn"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="20"
+                  placeholder="Masukkan NISN"
+                  required
+                >
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group">
+                <label for="regKelas">
+                  Kelas <span>*</span>
+                </label>
+                <select id="regKelas" name="kelas" required>
+                  <option value="">Pilih kelas</option>
+                  <option value="7A">7A</option>
+                  <option value="7B">7B</option>
+                  <option value="7C">7C</option>
+                  <option value="7D">7D</option>
+                  <option value="7E">7E</option>
+                  <option value="7F">7F</option>
+                  <option value="7G">7G</option>
+                  <option value="7H">7H</option>
+                  <option value="7I">7I</option>
+                  <option value="8A">8A</option>
+                  <option value="8B">8B</option>
+                  <option value="8C">8C</option>
+                  <option value="8D">8D</option>
+                  <option value="8E">8E</option>
+                  <option value="8F">8F</option>
+                  <option value="8G">8G</option>
+                  <option value="8H">8H</option>
+                  <option value="8I">8I</option>
+                  <option value="9A">9A</option>
+                  <option value="9B">9B</option>
+                  <option value="9C">9C</option>
+                  <option value="9D">9D</option>
+                  <option value="9E">9E</option>
+                  <option value="9F">9F</option>
+                  <option value="9G">9G</option>
+                  <option value="9H">9H</option>
+                  <option value="9I">9I</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="regJK">
+                  Jenis Kelamin <span>*</span>
+                </label>
+                <select id="regJK" name="jenisKelamin" required>
+                  <option value="">Pilih</option>
+                  <option value="L">Laki-laki</option>
+                  <option value="P">Perempuan</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group">
+                <label for="regTempatLahir">
+                  Tempat Lahir <span>*</span>
+                </label>
+                <input
+                  id="regTempatLahir"
+                  name="tempatLahir"
+                  type="text"
+                  maxlength="60"
+                  placeholder="Contoh: Pemalang"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="regTanggalLahir">
+                  Tanggal Lahir <span>*</span>
+                </label>
+                <input
+                  id="regTanggalLahir"
+                  name="tanggalLahir"
+                  type="date"
+                  required
+                >
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label for="regAlamat">
+                Alamat <span>*</span>
+              </label>
+              <textarea
+                id="regAlamat"
+                name="alamat"
+                maxlength="250"
+                placeholder="Masukkan alamat lengkap"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group">
+                <label for="regNoHP">
+                  No. HP / WhatsApp
+                </label>
+                <input
+                  id="regNoHP"
+                  name="noHP"
+                  type="tel"
+                  inputmode="tel"
+                  maxlength="20"
+                  placeholder="Contoh: 081234567890"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="regFoto">
+                  URL Foto
+                </label>
+                <input
+                  id="regFoto"
+                  name="foto"
+                  type="url"
+                  maxlength="500"
+                  placeholder="https://..."
+                >
+              </div>
+
+            </div>
+
+            <div class="form-note">
+              🔐 Data pendaftaran akan dikirim ke sistem PMR untuk
+              diperiksa dan divalidasi oleh admin. KTA belum dapat
+              digunakan sebelum data disetujui.
+            </div>
+
+            <button
+              id="registerBtn"
+              class="register-submit"
+              type="submit"
+            >
+              🩸 Daftar sebagai Anggota PMR
+            </button>
+
+          </form>
+
+          <div
+            id="registerResult"
+            class="register-result"
+            role="alert"
+          ></div>
+
+        </div>
+
+      </section>
+
       <!-- ==================================================
            INFO
       =================================================== -->
@@ -1840,6 +2226,22 @@
     const pdfBtn =
       document.getElementById(
         "pdfBtn"
+      );
+
+
+    const registerForm =
+      document.getElementById(
+        "registerForm"
+      );
+
+    const registerBtn =
+      document.getElementById(
+        "registerBtn"
+      );
+
+    const registerResult =
+      document.getElementById(
+        "registerResult"
       );
 
 
@@ -2324,6 +2726,202 @@
 
 
 
+
+    /* =====================================================
+       PENDAFTARAN ANGGOTA
+       Backend yang digunakan:
+       ?action=registerMember
+    ===================================================== */
+
+    function showRegisterResult(text, type = "success") {
+
+      registerResult.textContent = text;
+
+      registerResult.className =
+        "register-result show " + type;
+
+    }
+
+
+    function setRegisterLoading(status) {
+
+      registerBtn.disabled = status;
+
+      registerBtn.textContent =
+        status
+          ? "Mengirim pendaftaran..."
+          : "🩸 Daftar sebagai Anggota PMR";
+
+    }
+
+
+    async function registerMember(event) {
+
+      event.preventDefault();
+
+      showRegisterResult("", "success");
+      registerResult.className = "register-result";
+
+      const formData =
+        new FormData(registerForm);
+
+      const data = {
+        action:
+          "registerMember",
+
+        nama:
+          formData.get("nama").trim(),
+
+        nisn:
+          formData.get("nisn").trim(),
+
+        kelas:
+          formData.get("kelas"),
+
+        jenisKelamin:
+          formData.get("jenisKelamin"),
+
+        tempatLahir:
+          formData.get("tempatLahir").trim(),
+
+        tanggalLahir:
+          formData.get("tanggalLahir"),
+
+        alamat:
+          formData.get("alamat").trim(),
+
+        noHP:
+          formData.get("noHP").trim(),
+
+        foto:
+          formData.get("foto").trim()
+      };
+
+
+      if (!/^\d+$/.test(data.nisn)) {
+
+        showRegisterResult(
+          "NISN hanya boleh berisi angka.",
+          "error"
+        );
+
+        document.getElementById(
+          "regNisn"
+        ).focus();
+
+        return;
+
+      }
+
+
+      setRegisterLoading(true);
+
+
+      try {
+
+        /*
+         * Menggunakan POST JSON agar data pendaftaran
+         * tidak muncul di URL browser.
+         */
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "text/plain;charset=utf-8"
+              },
+
+              body:
+                JSON.stringify(data)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Server tidak dapat dihubungi."
+          );
+
+        }
+
+
+        const resultData =
+          await response.json();
+
+
+        if (
+          !resultData.success
+        ) {
+
+          throw new Error(
+            resultData.message ||
+            "Pendaftaran gagal diproses."
+          );
+
+        }
+
+
+        const nomor =
+          resultData.nomorAnggota
+            ? " Nomor anggota: " +
+              resultData.nomorAnggota + "."
+            : "";
+
+        showRegisterResult(
+          (
+            resultData.message ||
+            "Pendaftaran berhasil dikirim."
+          ) + nomor +
+          " Silakan menunggu validasi admin.",
+          "success"
+        );
+
+        registerForm.reset();
+
+      } catch (error) {
+
+        console.error(error);
+
+        showRegisterResult(
+          error.message ||
+          "Pendaftaran gagal. Silakan coba lagi.",
+          "error"
+        );
+
+      } finally {
+
+        setRegisterLoading(false);
+
+      }
+
+    }
+
+
+    /*
+     * Normalisasi NISN pada form pendaftaran.
+     */
+
+    document
+      .getElementById("regNisn")
+      .addEventListener(
+        "input",
+        function() {
+
+          this.value =
+            this.value.replace(
+              /\D/g,
+              ""
+            );
+
+        }
+      );
+
+
     /* =====================================================
        EVENTS
     ===================================================== */
@@ -2362,6 +2960,12 @@
     pdfBtn.addEventListener(
       "click",
       openPDF
+    );
+
+
+    registerForm.addEventListener(
+      "submit",
+      registerMember
     );
 
 

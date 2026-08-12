@@ -1390,6 +1390,45 @@
       box-shadow: 0 0 0 4px rgba(189,8,28,.07);
     }
 
+    .photo-upload {
+      border: 1.5px dashed #e0aeb4;
+      border-radius: 15px;
+      padding: 13px;
+      background: #fffafa;
+    }
+
+    .photo-upload input[type="file"] {
+      border: 0;
+      padding: 7px 0;
+      background: transparent;
+    }
+
+    .photo-preview-wrap {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .photo-preview-wrap.show {
+      display: flex;
+    }
+
+    .photo-preview {
+      width: 64px;
+      height: 82px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #bd081c;
+      background: #eee;
+    }
+
+    .photo-preview-info {
+      font-size: 10px;
+      line-height: 1.5;
+      color: #777;
+    }
+
     .form-note {
       padding: 11px 12px;
       border-radius: 12px;
@@ -1874,198 +1913,164 @@
             <div>
               <h3>📝 Pendaftaran Anggota PMR</h3>
               <p>
-                Belum memiliki KTA? Isi formulir berikut untuk
-                mendaftarkan diri sebagai anggota PMR Madya.
+                Lengkapi data sesuai format database anggota PMR.
+                Data akan masuk dengan status <strong>Menunggu</strong>
+                untuk divalidasi admin.
               </p>
             </div>
 
-            <span class="register-badge">
-              Anggota Baru
-            </span>
+            <span class="register-badge">Anggota Baru</span>
           </div>
 
           <form id="registerForm" class="register-form">
 
             <div class="form-row">
-
               <div class="form-group">
-                <label for="regNama">
-                  Nama Lengkap <span>*</span>
-                </label>
-                <input
-                  id="regNama"
-                  name="nama"
-                  type="text"
-                  autocomplete="name"
-                  maxlength="100"
-                  placeholder="Masukkan nama lengkap"
-                  required
-                >
+                <label for="regNama">Nama Lengkap <span>*</span></label>
+                <input id="regNama" name="nama" type="text"
+                  autocomplete="name" maxlength="100"
+                  placeholder="Masukkan nama lengkap" required>
               </div>
 
               <div class="form-group">
-                <label for="regNisn">
-                  NISN <span>*</span>
-                </label>
-                <input
-                  id="regNisn"
-                  name="nisn"
-                  type="text"
-                  inputmode="numeric"
-                  maxlength="20"
-                  placeholder="Masukkan NISN"
-                  required
-                >
+                <label for="regJK">Jenis Kelamin <span>*</span></label>
+                <select id="regJK" name="jenisKelamin" required>
+                  <option value="">Pilih jenis kelamin</option>
+                  <option value="L">Laki-laki</option>
+                  <option value="P">Perempuan</option>
+                </select>
               </div>
-
             </div>
 
             <div class="form-row">
+              <div class="form-group">
+                <label for="regTempatLahir">Tempat Lahir <span>*</span></label>
+                <input id="regTempatLahir" name="tempatLahir" type="text"
+                  maxlength="60" placeholder="Contoh: Pemalang" required>
+              </div>
 
               <div class="form-group">
-                <label for="regKelas">
-                  Kelas <span>*</span>
-                </label>
+                <label for="regTanggalLahir">Tanggal Lahir <span>*</span></label>
+                <input id="regTanggalLahir" name="tanggalLahir"
+                  type="date" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="regAgama">Agama <span>*</span></label>
+                <select id="regAgama" name="agama" required>
+                  <option value="">Pilih agama</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Katolik">Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghucu">Konghucu</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="regGolonganDarah">Golongan Darah <span>*</span></label>
+                <select id="regGolonganDarah" name="golonganDarah" required>
+                  <option value="">Pilih golongan darah</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="AB">AB</option>
+                  <option value="O">O</option>
+                  <option value="Tidak Tahu">Tidak Tahu</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="regAlamat">Alamat <span>*</span></label>
+              <textarea id="regAlamat" name="alamat" maxlength="250"
+                placeholder="Masukkan alamat lengkap" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="regNoHP">No. HP <span>*</span></label>
+                <input id="regNoHP" name="noHP" type="tel"
+                  inputmode="tel" maxlength="20"
+                  placeholder="Contoh: 081234567890" required>
+              </div>
+
+              <div class="form-group">
+                <label for="regHobi">Hobi <span>*</span></label>
+                <input id="regHobi" name="hobi" type="text"
+                  maxlength="100" placeholder="Contoh: Membaca, olahraga" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="regKelas">Kelas <span>*</span></label>
                 <select id="regKelas" name="kelas" required>
                   <option value="">Pilih kelas</option>
-                  <option value="7A">7A</option>
-                  <option value="7B">7B</option>
-                  <option value="7C">7C</option>
-                  <option value="7D">7D</option>
-                  <option value="7E">7E</option>
-                  <option value="7F">7F</option>
-                  <option value="7G">7G</option>
-                  <option value="7H">7H</option>
+                  <option value="7A">7A</option><option value="7B">7B</option>
+                  <option value="7C">7C</option><option value="7D">7D</option>
+                  <option value="7E">7E</option><option value="7F">7F</option>
+                  <option value="7G">7G</option><option value="7H">7H</option>
                   <option value="7I">7I</option>
-                  <option value="8A">8A</option>
-                  <option value="8B">8B</option>
-                  <option value="8C">8C</option>
-                  <option value="8D">8D</option>
-                  <option value="8E">8E</option>
-                  <option value="8F">8F</option>
-                  <option value="8G">8G</option>
-                  <option value="8H">8H</option>
+                  <option value="8A">8A</option><option value="8B">8B</option>
+                  <option value="8C">8C</option><option value="8D">8D</option>
+                  <option value="8E">8E</option><option value="8F">8F</option>
+                  <option value="8G">8G</option><option value="8H">8H</option>
                   <option value="8I">8I</option>
-                  <option value="9A">9A</option>
-                  <option value="9B">9B</option>
-                  <option value="9C">9C</option>
-                  <option value="9D">9D</option>
-                  <option value="9E">9E</option>
-                  <option value="9F">9F</option>
-                  <option value="9G">9G</option>
-                  <option value="9H">9H</option>
+                  <option value="9A">9A</option><option value="9B">9B</option>
+                  <option value="9C">9C</option><option value="9D">9D</option>
+                  <option value="9E">9E</option><option value="9F">9F</option>
+                  <option value="9G">9G</option><option value="9H">9H</option>
                   <option value="9I">9I</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="regJK">
-                  Jenis Kelamin <span>*</span>
-                </label>
-                <select id="regJK" name="jenisKelamin" required>
-                  <option value="">Pilih</option>
-                  <option value="L">Laki-laki</option>
-                  <option value="P">Perempuan</option>
-                </select>
+                <label for="regNisn">NISN <span>*</span></label>
+                <input id="regNisn" name="nisn" type="text"
+                  inputmode="numeric" maxlength="20"
+                  placeholder="Masukkan NISN" required>
               </div>
-
-            </div>
-
-            <div class="form-row">
-
-              <div class="form-group">
-                <label for="regTempatLahir">
-                  Tempat Lahir <span>*</span>
-                </label>
-                <input
-                  id="regTempatLahir"
-                  name="tempatLahir"
-                  type="text"
-                  maxlength="60"
-                  placeholder="Contoh: Pemalang"
-                  required
-                >
-              </div>
-
-              <div class="form-group">
-                <label for="regTanggalLahir">
-                  Tanggal Lahir <span>*</span>
-                </label>
-                <input
-                  id="regTanggalLahir"
-                  name="tanggalLahir"
-                  type="date"
-                  required
-                >
-              </div>
-
             </div>
 
             <div class="form-group">
-              <label for="regAlamat">
-                Alamat <span>*</span>
-              </label>
-              <textarea
-                id="regAlamat"
-                name="alamat"
-                maxlength="250"
-                placeholder="Masukkan alamat lengkap"
-                required
-              ></textarea>
-            </div>
+              <label for="regFoto">Foto Anggota <span>*</span></label>
+              <div class="photo-upload">
+                <input id="regFoto" name="foto" type="file"
+                  accept="image/jpeg,image/png,image/webp" required>
 
-            <div class="form-row">
-
-              <div class="form-group">
-                <label for="regNoHP">
-                  No. HP / WhatsApp
-                </label>
-                <input
-                  id="regNoHP"
-                  name="noHP"
-                  type="tel"
-                  inputmode="tel"
-                  maxlength="20"
-                  placeholder="Contoh: 081234567890"
-                >
+                <div id="photoPreviewWrap" class="photo-preview-wrap">
+                  <img id="photoPreview" class="photo-preview"
+                    alt="Preview foto anggota">
+                  <div id="photoPreviewInfo" class="photo-preview-info">
+                    Foto siap dikirim.
+                  </div>
+                </div>
               </div>
-
-              <div class="form-group">
-                <label for="regFoto">
-                  URL Foto
-                </label>
-                <input
-                  id="regFoto"
-                  name="foto"
-                  type="url"
-                  maxlength="500"
-                  placeholder="https://..."
-                >
-              </div>
-
             </div>
 
             <div class="form-note">
-              🔐 Data pendaftaran akan dikirim ke sistem PMR untuk
-              diperiksa dan divalidasi oleh admin. KTA belum dapat
-              digunakan sebelum data disetujui.
+              📷 Foto diunggah langsung melalui formulir. Sistem akan
+              mengirim foto ke backend untuk disimpan sebagai
+              <strong>FOTO_RAW_URL</strong> dan <strong>FOTO_URL</strong>.
+              Gunakan foto formal/terbaru dengan wajah terlihat jelas.
             </div>
 
-            <button
-              id="registerBtn"
-              class="register-submit"
-              type="submit"
-            >
+            <div class="form-note">
+              🔐 Setelah dikirim, <strong>STATUS_VALIDASI</strong> awal
+              adalah <strong>Menunggu</strong>. Nomor anggota dan KTA
+              diterbitkan setelah data disetujui admin.
+            </div>
+
+            <button id="registerBtn" class="register-submit" type="submit">
               🩸 Daftar sebagai Anggota PMR
             </button>
 
           </form>
 
-          <div
-            id="registerResult"
-            class="register-result"
-            role="alert"
-          ></div>
+          <div id="registerResult" class="register-result" role="alert"></div>
 
         </div>
 
@@ -2242,6 +2247,21 @@
     const registerResult =
       document.getElementById(
         "registerResult"
+      );
+
+    const photoPreviewWrap =
+      document.getElementById(
+        "photoPreviewWrap"
+      );
+
+    const photoPreview =
+      document.getElementById(
+        "photoPreview"
+      );
+
+    const photoPreviewInfo =
+      document.getElementById(
+        "photoPreviewInfo"
       );
 
 
@@ -2729,29 +2749,102 @@
 
     /* =====================================================
        PENDAFTARAN ANGGOTA
-       Backend yang digunakan:
-       ?action=registerMember
+       Format mengikuti sheet "Data Anggota":
+       NAMA_LENGKAP, JENIS_KELAMIN, TEMPAT_LAHIR,
+       TANGGAL_LAHIR, AGAMA, ALAMAT, NO_HP, HOBI,
+       GOLONGAN_DARAH, KELAS, NISN, FOTO
     ===================================================== */
 
     function showRegisterResult(text, type = "success") {
-
       registerResult.textContent = text;
-
-      registerResult.className =
-        "register-result show " + type;
-
+      registerResult.className = "register-result show " + type;
     }
 
-
     function setRegisterLoading(status) {
-
       registerBtn.disabled = status;
+      registerBtn.textContent = status
+        ? "Mengirim pendaftaran..."
+        : "🩸 Daftar sebagai Anggota PMR";
+    }
 
-      registerBtn.textContent =
-        status
-          ? "Mengirim pendaftaran..."
-          : "🩸 Daftar sebagai Anggota PMR";
+    function fileToCompressedBase64(file) {
+      return new Promise((resolve, reject) => {
 
+        if (!file) {
+          reject(new Error("Silakan pilih foto terlebih dahulu."));
+          return;
+        }
+
+        if (!file.type.startsWith("image/")) {
+          reject(new Error("File foto harus berupa gambar."));
+          return;
+        }
+
+        if (file.size > 8 * 1024 * 1024) {
+          reject(new Error("Ukuran foto maksimal 8 MB."));
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+
+          const img = new Image();
+
+          img.onload = function() {
+
+            const maxWidth = 900;
+            const maxHeight = 1200;
+
+            let width = img.width;
+            let height = img.height;
+
+            const scale = Math.min(
+              1,
+              maxWidth / width,
+              maxHeight / height
+            );
+
+            width = Math.round(width * scale);
+            height = Math.round(height * scale);
+
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            /*
+             * JPEG dikompresi agar POST ke Apps Script
+             * tidak membawa file mentah yang terlalu besar.
+             */
+            const base64 = canvas.toDataURL(
+              "image/jpeg",
+              0.82
+            );
+
+            resolve({
+              data: base64,
+              mimeType: "image/jpeg",
+              fileName: file.name
+            });
+
+          };
+
+          img.onerror = function() {
+            reject(new Error("Foto tidak dapat dibaca."));
+          };
+
+          img.src = event.target.result;
+        };
+
+        reader.onerror = function() {
+          reject(new Error("Foto gagal dibaca."));
+        };
+
+        reader.readAsDataURL(file);
+      });
     }
 
 
@@ -2759,58 +2852,66 @@
 
       event.preventDefault();
 
-      showRegisterResult("", "success");
       registerResult.className = "register-result";
+      registerResult.textContent = "";
 
-      const formData =
-        new FormData(registerForm);
+      const formData = new FormData(registerForm);
+      const fotoFile = formData.get("foto");
 
       const data = {
-        action:
-          "registerMember",
+        action: "registerMember",
 
-        nama:
+        NAMA_LENGKAP:
           formData.get("nama").trim(),
 
-        nisn:
-          formData.get("nisn").trim(),
-
-        kelas:
-          formData.get("kelas"),
-
-        jenisKelamin:
+        JENIS_KELAMIN:
           formData.get("jenisKelamin"),
 
-        tempatLahir:
+        TEMPAT_LAHIR:
           formData.get("tempatLahir").trim(),
 
-        tanggalLahir:
+        TANGGAL_LAHIR:
           formData.get("tanggalLahir"),
 
-        alamat:
+        AGAMA:
+          formData.get("agama"),
+
+        ALAMAT:
           formData.get("alamat").trim(),
 
-        noHP:
+        NO_HP:
           formData.get("noHP").trim(),
 
-        foto:
-          formData.get("foto").trim()
+        HOBI:
+          formData.get("hobi").trim(),
+
+        GOLONGAN_DARAH:
+          formData.get("golonganDarah"),
+
+        KELAS:
+          formData.get("kelas"),
+
+        NISN:
+          formData.get("nisn").trim()
       };
 
 
-      if (!/^\d+$/.test(data.nisn)) {
-
+      if (!/^\d+$/.test(data.NISN)) {
         showRegisterResult(
           "NISN hanya boleh berisi angka.",
           "error"
         );
-
-        document.getElementById(
-          "regNisn"
-        ).focus();
-
+        document.getElementById("regNisn").focus();
         return;
+      }
 
+
+      if (!fotoFile || !fotoFile.size) {
+        showRegisterResult(
+          "Silakan pilih foto anggota terlebih dahulu.",
+          "error"
+        );
+        return;
       }
 
 
@@ -2819,34 +2920,35 @@
 
       try {
 
+        const foto = await fileToCompressedBase64(fotoFile);
+
+        data.FOTO = foto.data;
+        data.FOTO_MIME = foto.mimeType;
+        data.FOTO_NAMA_FILE = foto.fileName;
+
+
         /*
-         * Menggunakan POST JSON agar data pendaftaran
-         * tidak muncul di URL browser.
+         * POST sebagai text/plain untuk menghindari
+         * preflight CORS pada Google Apps Script.
+         *
+         * Backend membaca JSON dari e.postData.contents.
          */
-
-        const response =
-          await fetch(
-            API_URL,
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type":
-                  "text/plain;charset=utf-8"
-              },
-
-              body:
-                JSON.stringify(data)
-            }
-          );
+        const response = await fetch(
+          API_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(data)
+          }
+        );
 
 
         if (!response.ok) {
-
           throw new Error(
             "Server tidak dapat dihubungi."
           );
-
         }
 
 
@@ -2854,15 +2956,11 @@
           await response.json();
 
 
-        if (
-          !resultData.success
-        ) {
-
+        if (!resultData.success) {
           throw new Error(
             resultData.message ||
             "Pendaftaran gagal diproses."
           );
-
         }
 
 
@@ -2872,16 +2970,25 @@
               resultData.nomorAnggota + "."
             : "";
 
+
         showRegisterResult(
           (
             resultData.message ||
             "Pendaftaran berhasil dikirim."
-          ) + nomor +
-          " Silakan menunggu validasi admin.",
+          ) +
+          nomor +
+          " Data menunggu validasi admin.",
           "success"
         );
 
+
         registerForm.reset();
+
+        photoPreviewWrap.classList.remove("show");
+        photoPreview.removeAttribute("src");
+        photoPreviewInfo.textContent =
+          "Foto siap dikirim.";
+
 
       } catch (error) {
 
@@ -2903,21 +3010,59 @@
 
 
     /*
-     * Normalisasi NISN pada form pendaftaran.
+     * Preview foto sebelum dikirim.
      */
+    document
+      .getElementById("regFoto")
+      .addEventListener(
+        "change",
+        function() {
 
+          const file = this.files[0];
+
+          if (!file) {
+            photoPreviewWrap.classList.remove("show");
+            return;
+          }
+
+          if (!file.type.startsWith("image/")) {
+            showRegisterResult(
+              "File yang dipilih harus berupa foto.",
+              "error"
+            );
+            this.value = "";
+            photoPreviewWrap.classList.remove("show");
+            return;
+          }
+
+          const url =
+            URL.createObjectURL(file);
+
+          photoPreview.src = url;
+
+          photoPreviewInfo.textContent =
+            file.name +
+            " • " +
+            Math.round(file.size / 1024) +
+            " KB";
+
+          photoPreviewWrap.classList.add("show");
+
+        }
+      );
+
+
+    /*
+     * NISN tetap disimpan sebagai teks agar
+     * angka 0 di depan tidak hilang.
+     */
     document
       .getElementById("regNisn")
       .addEventListener(
         "input",
         function() {
-
           this.value =
-            this.value.replace(
-              /\D/g,
-              ""
-            );
-
+            this.value.replace(/\D/g, "");
         }
       );
 

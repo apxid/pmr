@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>KTA PMR Madya</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: 85.6mm 53.98mm;
+      margin: 0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 85.6mm;
+      height: 53.98mm;
+      background: #ffffff;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =========================================================
+       KARTU
+    ========================================================= */
+
+    .kta-card {
+      position: relative;
+
+      width: 85.6mm;
+      height: 53.98mm;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f8fbff 100%
+        );
+
+      border: 0.35mm solid #1565c0;
+
+      border-radius: 3mm;
+
+      color: #17324d;
+
+      box-shadow:
+        0 1mm 3mm rgba(0, 0, 0, 0.15);
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .kta-top {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 10mm;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1565c0,
+          #0d47a1
+        );
+    }
+
+    /*
+      Dekorasi garis merah
+    */
+
+    .kta-top::after {
+      content: "";
+
+      position: absolute;
+
+      right: -5mm;
+      bottom: -2mm;
+
+      width: 45mm;
+      height: 5mm;
+
+      background: #d32f2f;
+
+      transform: skewX(-35deg);
+    }
+
+    /* =========================================================
+       IDENTITAS ORGANISASI
+    ========================================================= */
+
+    .kta-org {
+      position: absolute;
+
+      top: 2.2mm;
+      left: 4mm;
+
+      width: 48mm;
+
+      color: #ffffff;
+
+      z-index: 5;
+
+      line-height: 1.15;
+    }
+
+    .kta-org .pmi {
+      font-size: 3.1mm;
+      font-weight: 700;
+
+      letter-spacing: 0.15mm;
+    }
+
+    .kta-org .pmr {
+      margin-top: 0.8mm;
+
+      font-size: 2.5mm;
+      font-weight: 600;
+    }
+
+    .kta-org .school {
+      margin-top: 0.5mm;
+
+      font-size: 2.1mm;
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       LOGO / CROSS
+    ========================================================= */
+
+    .kta-cross {
+      position: absolute;
+
+      top: -0.5mm;
+      right: -30mm;
+
+      width: 8mm;
+      height: 8mm;
+
+      border-radius: 50%;
+
+      background: #ffffff;
+
+      color: #d32f2f;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 5mm;
+      font-weight: bold;
+
+      box-shadow:
+        0 0 0 0.6mm rgba(255, 255, 255, 0.35);
+    }
+
+    /* =========================================================
+       FOTO
+    ========================================================= */
+
+    .kta-photo-wrap {
+      position: absolute;
+
+      left: 4mm;
+      top: 14mm;
+
+      width: 22mm;
+      height: 28mm;
+
+      padding: 0.7mm;
+
+      background: #ffffff;
+
+      border: 0.35mm solid #1565c0;
+
+      border-radius: 1.5mm;
+
+      z-index: 3;
+    }
+
+    .kta-photo {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      border-radius: 1mm;
+    }
+
+    /* =========================================================
+       DATA ANGGOTA
+    ========================================================= */
+
+    .kta-body {
+      position: absolute;
+
+      top: 14mm;
+      left: 29mm;
+
+      width: 51mm;
+
+      padding-right: 2mm;
+    }
+
+    .data-label {
+      font-size: 1.8mm;
+
+      color: #607d8b;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.15mm;
+    }
+
+    .data-value {
+      margin-top: 0.5mm;
+
+      margin-bottom: 2.2mm;
+
+      font-size: 3.4mm;
+
+      color: #17324d;
+
+      font-weight: 700;
+
+      line-height: 1.1;
+    }
+
+    .member-number {
+      color: #1565c0;
+
+      font-size: 3.1mm;
+
+      letter-spacing: 0.15mm;
+    }
+
+    /* =========================================================
+       QR
+    ========================================================= */
+
+    .kta-qr {
+      position: absolute;
+
+      right: 4mm;
+      bottom: 5mm;
+
+      width: 13mm;
+      height: 13mm;
+
+      padding: 0.8mm;
+
+      background: #ffffff;
+
+      border: 0.25mm solid #d9e2ec;
+
+      border-radius: 1mm;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .kta-footer {
+      position: absolute;
+
+      left: 29mm;
+      bottom: 4mm;
+
+      width: 35mm;
+
+      color: #607d8b;
+
+      line-height: 1.25;
+    }
+
+    .kta-position {
+      font-size: 2.3mm;
+
+      color: #1565c0;
+
+      font-weight: 700;
+    }
+
+    .kta-school {
+      margin-top: 0.4mm;
+
+      font-size: 1.8mm;
+
+      font-weight: 600;
+    }
+
+    .kta-location {
+      margin-top: 0.3mm;
+
+      font-size: 1.7mm;
+    }
+
+    /* =========================================================
+       WATERMARK
+    ========================================================= */
+
+    .watermark {
+      position: absolute;
+
+      right: -5mm;
+      bottom: 12mm;
+
+      font-size: 15mm;
+
+      font-weight: 900;
+
+      color: rgba(21, 101, 192, 0.035);
+
+      transform: rotate(-15deg);
+
+      white-space: nowrap;
+
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       PRINT
+    ========================================================= */
+
+    @media print {
+
+      html,
+      body {
+        width: 85.6mm;
+        height: 53.98mm;
+
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: block;
+      }
+
+      .kta-card {
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="kta-card">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="kta-top"></div>
+
+    <div class="kta-org">
+
+      <div class="pmi">
+        PALANG MERAH INDONESIA
+      </div>
+
+      <div class="pmr">
+        PMR MADYA
+      </div>
+
+      <div class="school">
+        SMP NEGERI 1 MOGA
+      </div>
+
+      <div class="kta-cross">
+        ✚
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOTO ANGGOTA
+    ====================================================== -->
+
+    <div class="kta-photo-wrap">
+
+      <img
+        class="kta-photo"
+        src="{{FOTO_URL}}"
+        alt="Foto Anggota PMR"
+      >
+
+    </div>
+
+
+    <!-- =====================================================
+         DATA ANGGOTA
+    ====================================================== -->
+
+    <div class="kta-body">
+
+      <div class="data-label">
+        Nama Anggota
+      </div>
+
+      <div class="data-value">
+        {{NAMA_LENGKAP}}
+      </div>
+
+
+      <div class="data-label">
+        Nomor Anggota
+      </div>
+
+      <div class="data-value member-number">
+        {{NOMOR_ANGGOTA}}
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <div class="kta-footer">
+
+      <div class="kta-position">
+        PMR MADYA
+      </div>
+
+      <div class="kta-school">
+        SMP NEGERI 1 MOGA
+      </div>
+
+      <div class="kta-location">
+        Kab. Pemalang
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         QR CODE
+    ====================================================== -->
+
+    <img
+      class="kta-qr"
+      src="{{QR_URL}}"
+      alt="QR Code KTA"
+    >
+
+
+    <!-- =====================================================
+         WATERMARK
+    ====================================================== -->
+
+    <div class="watermark">
+      PMR
+    </div>
+
+  </div>
+
+</body>
+</html>

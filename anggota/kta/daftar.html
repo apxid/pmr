@@ -208,8 +208,13 @@
           <label for="statusKeanggotaan">Status Keanggotaan *</label>
           <select id="statusKeanggotaan" required>
             <option value="">-- Pilih Status --</option>
-            <option value="Anggota Baru">Anggota Baru</option>
-            <option value="Anggota Lama">Anggota Lama</option>
+            <option value="ANGGOTA">ANGGOTA</option>
+            <option value="KETUA">KETUA</option>
+            <option value="WAKIL KETUA">WAKIL KETUA</option>
+            <option value="SEKRETARIS">SEKRETARIS</option>
+            <option value="BENDAHARA">BENDAHARA</option>
+            <option value="SEKSI DOKUMENTASI">SEKSI DOKUMENTASI</option>
+            <option value="SEKSI PERALATAN">SEKSI PERALATAN</option>
           </select>
         </div>
 
@@ -246,7 +251,6 @@
               <option value="B">B</option>
               <option value="AB">AB</option>
               <option value="O">O</option>
-              <option value="-">Tidak Tahu</option>
             </select>
           </div>
         </div>
@@ -282,8 +286,8 @@
         </div>
 
         <div class="form-group">
-          <label for="hobi">Hobi</label>
-          <input type="text" id="hobi" placeholder="Hobi Anda">
+          <label for="hobi">Hobi *</label>
+          <input type="text" id="hobi" placeholder="Hobi Anda" required>
         </div>
 
         <div class="form-group">
@@ -329,7 +333,6 @@
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
 
-          // Menentukan lebar maksimal foto untuk memperkecil ukuran file (< 200KB)
           const maxWidth = 500;
           const scaleSize = maxWidth / img.width;
 
@@ -375,45 +378,53 @@
 
       const nisnValue = document.getElementById('nisn').value.trim();
 
-      // Menyiapkan Payload URLSearchParams
-      const payload = new URLSearchParams();
-      payload.append('statusKeanggotaan', document.getElementById('statusKeanggotaan').value);
-      payload.append('nama', document.getElementById('nama').value.trim());
-      payload.append('nisn', nisnValue);
-      payload.append('kelas', document.getElementById('kelas').value.trim());
-      payload.append('jenisKelamin', document.getElementById('jenisKelamin').value);
-      payload.append('golDarah', document.getElementById('golDarah').value);
-      payload.append('tempatLahir', document.getElementById('tempatLahir').value.trim());
-      payload.append('tanggalLahir', document.getElementById('tanggalLahir').value);
-      payload.append('agama', document.getElementById('agama').value);
-      payload.append('noHp', document.getElementById('noHp').value.trim());
-      payload.append('hobi', document.getElementById('hobi').value.trim());
-      payload.append('alamat', document.getElementById('alamat').value.trim());
-      payload.append('fotoBase64', fotoBase64);
+      // Struktur data disesuaikan persis dengan payload yang dibutuhkan kode.gs
+      const payloadData = {
+        action: 'save',
+        data: {
+          status: document.getElementById('statusKeanggotaan').value,
+          nama: document.getElementById('nama').value.trim(),
+          nisn: nisnValue,
+          gender: document.getElementById('jenisKelamin').value,
+          kelas: document.getElementById('kelas').value.trim(),
+          tempatLahir: document.getElementById('tempatLahir').value.trim(),
+          tanggalLahir: document.getElementById('tanggalLahir').value,
+          agama: document.getElementById('agama').value,
+          golDarah: document.getElementById('golDarah').value,
+          alamat: document.getElementById('alamat').value.trim(),
+          noHp: document.getElementById('noHp').value.trim(),
+          hobi: document.getElementById('hobi').value.trim(),
+          foto: fotoBase64
+        }
+      };
 
       fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'text/plain;charset=utf-8'
         },
-        body: payload.toString()
+        body: JSON.stringify(payloadData)
       })
-      .then(() => {
-        btn.disabled = false;
-        btnText.innerText = "Kirim Pendaftaran";
-        alertMsg.style.display = "block";
-        alertMsg.className = "alert alert-success";
-        alertMsg.innerText = "Pendaftaran Berhasil Dikirim! Mengalihkan ke halaman cari KTA...";
+      .then(response => response.json())
+      .then(res => {
+        if (res.success) {
+          btn.disabled = false;
+          btnText.innerText = "Kirim Pendaftaran";
+          alertMsg.style.display = "block";
+          alertMsg.className = "alert alert-success";
+          alertMsg.innerText = "Pendaftaran Berhasil Dikirim! Mengalihkan ke halaman cari KTA...";
 
-        document.getElementById('pmrForm').reset();
-        document.getElementById('imgPreview').style.display = 'none';
-        document.getElementById('previewText').style.display = 'block';
-        fotoBase64 = "";
+          document.getElementById('pmrForm').reset();
+          document.getElementById('imgPreview').style.display = 'none';
+          document.getElementById('previewText').style.display = 'block';
+          fotoBase64 = "";
 
-        setTimeout(() => {
-          window.location.href = `search.html?q=${encodeURIComponent(nisnValue)}`;
-        }, 1500);
+          setTimeout(() => {
+            window.location.href = `search.html?q=${encodeURIComponent(nisnValue)}`;
+          }, 1500);
+        } else {
+          throw new Error(res.message || 'Gagal menyimpan data.');
+        }
       })
       .catch(err => {
         console.error("Fetch Error:", err);
@@ -421,7 +432,7 @@
         btnText.innerText = "Kirim Pendaftaran";
         alertMsg.style.display = "block";
         alertMsg.className = "alert alert-error";
-        alertMsg.innerText = "Terjadi kesalahan pengiriman. Silakan periksa koneksi internet Anda dan coba lagi.";
+        alertMsg.innerText = err.message || "Terjadi kesalahan pengiriman. Silakan periksa koneksi internet Anda dan coba lagi.";
       });
     });
   </script>

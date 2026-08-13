@@ -2,18 +2,11 @@
 <html lang="id">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KTA PMR Madya - SMP Negeri 1 Moga</title>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -84,10 +77,6 @@
       line-height: 1.5;
     }
 
-    /* =====================================================
-       KTA CARD
-    ===================================================== */
-
     .kta-stage {
       width: 100%;
       display: flex;
@@ -106,10 +95,6 @@
       border: 1px solid rgba(189, 8, 28, .16);
     }
 
-    /* =====================================================
-       TOP MERAH
-    ===================================================== */
-
     .kta-top {
       position: absolute;
       left: 0;
@@ -119,10 +104,6 @@
       background: linear-gradient(135deg, #8f0016 0%, #bd081c 55%, #e1273d 100%);
       clip-path: polygon(0 0, 100% 0, 100% 77%, 50% 100%, 0 77%);
     }
-
-    /* =====================================================
-       ORGANISASI
-    ===================================================== */
 
     .kta-org {
       position: absolute;
@@ -158,10 +139,6 @@
       box-shadow: 0 3px 10px rgba(0,0,0,.10);
     }
 
-    /* =====================================================
-       FOTO
-    ===================================================== */
-
     .kta-photo-wrap {
       position: absolute;
       z-index: 4;
@@ -185,10 +162,6 @@
       border-radius: 10px;
       background: #eeeeee;
     }
-
-    /* =====================================================
-       BODY
-    ===================================================== */
 
     .kta-body {
       position: absolute;
@@ -232,10 +205,6 @@
       font-weight: 900;
       letter-spacing: .5px;
     }
-
-    /* =====================================================
-       FOOTER
-    ===================================================== */
 
     .kta-bottom {
       position: absolute;
@@ -358,9 +327,7 @@
         border: none;
       }
     }
-
   </style>
-
 </head>
 
 <body>
@@ -404,9 +371,7 @@
 
         <div class="kta-body">
           <div class="kta-label">Nama Anggota</div>
-
           <div id="ktaName" class="kta-name">-</div>
-
           <div id="ktaNumber" class="kta-number">-</div>
         </div>
 
@@ -443,7 +408,6 @@
 </div>
 
 <script>
-
   const API_URL = 'https://script.google.com/macros/s/AKfycbwlh56TBt1I1DK8M2rkdvQKFZXwWgTyTqOD9opCf8PjKTyHTsEWMKzhFwcSiK9xJ2OFWw/exec';
   const KTA_URL = 'https://apxid.github.io/pmr/kta/';
   const DEFAULT_PHOTO = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23e0e0e0"/><circle cx="150" cy="140" r="60" fill="%239e9e9e"/><path d="M 50 340 C 50 240, 250 240, 250 340 Z" fill="%239e9e9e"/></svg>';
@@ -457,7 +421,7 @@
   async function loadKTA() {
     try {
       if (!nisn && !nomor) {
-        throw new Error('NISN atau nomor anggota belum diberikan.');
+        throw new Error('NISN atau nomor anggota belum diberikan pada URL.');
       }
 
       let url;
@@ -467,13 +431,14 @@
         url = API_URL + '?action=member&nomor=' + encodeURIComponent(nomor);
       }
 
+      // Pengaturan redirect: follow untuk menangani sistem redirect Google Apps Script
       const response = await fetch(url, {
         method: 'GET',
-        cache: 'no-store'
+        redirect: 'follow'
       });
 
       if (!response.ok) {
-        throw new Error('Server API tidak dapat dihubungi.');
+        throw new Error('Server API mengembalikan status: ' + response.status);
       }
 
       const result = await response.json();
@@ -485,8 +450,8 @@
       displayKTA(result.member);
 
     } catch (error) {
-      console.error(error);
-      showError(error.message);
+      console.error('Error detail:', error);
+      showError(error.message || 'Gagal terhubung ke server API.');
     }
   }
 
@@ -517,13 +482,12 @@
   function showError(text) {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('error').style.display = 'block';
-    document.getElementById('errorText').textContent = text || 'Data anggota tidak ditemukan.';
+    document.getElementById('errorText').textContent = text;
   }
 
   function goSearch() {
-    window.location.href = 'index.html';
+    window.location.href = '../search.html';
   }
-
 </script>
 
 </body>

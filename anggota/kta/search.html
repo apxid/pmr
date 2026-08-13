@@ -180,7 +180,7 @@
   </div>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4bHbZoVqPuMYvLbGyrBOAafrg3engk6tjwbv-vz84rz7GmSgwsVPWRjHMR7qU7trq/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFqMBYcmqbXvu-MzrSbvmmBixwzWIF_t4kUVLkaxvoGx-F9vZgLjH2yy556W-sV_lD/exec";
 
     window.onload = function() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -198,7 +198,7 @@
     }
 
     function doSearch() {
-      const query = document.getElementById('searchInput').value.trim();
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
       if (!query) return;
 
       const resultsDiv = document.getElementById('results');
@@ -207,55 +207,63 @@
       resultsDiv.innerHTML = '';
       loadingDiv.style.display = 'block';
 
-      fetch(`${SCRIPT_URL}?q=${encodeURIComponent(query)}`)
+      fetch(SCRIPT_URL)
         .then(res => res.json())
         .then(res => {
           loadingDiv.style.display = 'none';
 
-          if (res.success && res.data && res.data.length > 0) {
-            res.data.forEach(item => {
-              const card = document.createElement('div');
-              card.className = 'result-item';
-
-              const photoSrc = item.fotoUrl || 'https://via.placeholder.com/65x85?text=No+Foto';
-              
-              // Formatting Tempat & Tanggal Lahir agar tidak menampilkan 'undefined'
-              const ttl = [item.tempatLahir, item.tanggalLahir].filter(Boolean).join(', ');
-
-              // Susun query parameter untuk dikirim ke card.html
-              const cardParams = new URLSearchParams({
-                nama: item.nama || '',
-                nisn: item.nisn || '',
-                kelas: item.kelas || '',
-                jk: item.jenisKelamin || '',
-                jabatan: item.statusKeanggotaan || '',
-                ttl: ttl,
-                gol: item.golDarah || '',
-                foto: item.fotoUrl || ''
-              });
-
-              const cardUrl = `card.html?${cardParams.toString()}`;
-
-              card.innerHTML = `
-                <img src="${escapeHtml(photoSrc)}" class="result-photo" alt="Foto ${escapeHtml(item.nama || '')}">
-                <div class="result-info">
-                  <h4>${escapeHtml(item.nama || '-')}</h4>
-                  <p>NISN: <strong>${escapeHtml(item.nisn || '-')}</strong> | Kelas: <strong>${escapeHtml(item.kelas || '-')}</strong></p>
-                  <p class="jabatan">Jabatan: ${escapeHtml(item.statusKeanggotaan || '-')}</p>
-                </div>
-                <a href="${cardUrl}" class="btn-cta">Cetak KTA</a>
-              `;
-              resultsDiv.appendChild(card);
+          if (res.success && Array.isArray(res.data)) {
+            // Filter berdasarkan NISN atau Nama
+            const filteredData = res.data.filter(item => {
+              const nama = (item.nama || '').toLowerCase();
+              const nisn = (item.nisn || '').toLowerCase();
+              return nama.includes(query) || nisn.includes(query);
             });
-          } else {
-            let alertClass = "alert-danger";
-            if (res.status === "pending") {
-              alertClass = "alert-pending";
-            }
 
+            if (filteredData.length > 0) {
+              filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'result-item';
+
+                const photoSrc = item.foto || 'https://via.placeholder.com/65x85?text=No+Foto';
+                const ttl = [item.tempatLahir, item.tanggalLahir].filter(Boolean).join(', ');
+
+                // Susun query parameter untuk dikirim ke card.html
+                const cardParams = new URLSearchParams({
+                  nama: item.nama || '',
+                  nisn: item.nisn || '',
+                  kelas: item.kelas || '',
+                  jk: item.gender || '',
+                  jabatan: item.status || '',
+                  ttl: ttl,
+                  gol: item.golDarah || '',
+                  foto: item.foto || ''
+                });
+
+                const cardUrl = `card.html?${cardParams.toString()}`;
+
+                card.innerHTML = `
+                  <img src="${escapeHtml(photoSrc)}" class="result-photo" alt="Foto ${escapeHtml(item.nama || '')}" onerror="this.src='https://via.placeholder.com/65x85?text=No+Foto'">
+                  <div class="result-info">
+                    <h4>${escapeHtml(item.nama || '-')}</h4>
+                    <p>NISN: <strong>${escapeHtml(item.nisn || '-')}</strong> | Kelas: <strong>${escapeHtml(item.kelas || '-')}</strong></p>
+                    <p class="jabatan">Status/Jabatan: ${escapeHtml(item.status || '-')}</p>
+                  </div>
+                  <a href="${cardUrl}" class="btn-cta">Cetak KTA</a>
+                `;
+                resultsDiv.appendChild(card);
+              });
+            } else {
+              resultsDiv.innerHTML = `
+                <div class="alert alert-danger">
+                  Data dengan NISN atau nama "${escapeHtml(query)}" tidak ditemukan.
+                </div>
+              `;
+            }
+          } else {
             resultsDiv.innerHTML = `
-              <div class="alert ${alertClass}">
-                ${escapeHtml(res.message || "Data tidak ditemukan.")}
+              <div class="alert alert-danger">
+                ${escapeHtml(res.message || "Gagal mengambil data dari server.")}
               </div>
             `;
           }
@@ -263,11 +271,10 @@
         .catch(err => {
           console.error("Fetch Error:", err);
           loadingDiv.style.display = 'none';
-          resultsDiv.innerHTML = '<div class="alert alert-danger">Terjadi kesalahan koneksi. Silakan coba lagi.</div>';
+          resultsDiv.innerHTML = '<div class="alert alert-danger">Terjadi kesalahan koneksi. Silakan periksa koneksi internet Anda.</div>';
         });
     }
 
-    // Fungsi utilitas mencegah Karakter Spesial (XSS)
     function escapeHtml(text) {
       if (!text) return '';
       return text

@@ -1,18 +1,412 @@
-function doPost(e) {
-  try {
-    var data = JSON.parse(e.postData.contents);
-    
-    // ... logika simpan ke Spreadsheet & Drive ...
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran Anggota PMR</title>
+  <style>
+    :root {
+      --primary-color: #dc2626;
+      --primary-hover: #b91c1c;
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-color: #1f2937;
+      --border-color: #d1d5db;
+    }
 
-    return ContentService.createTextOutput(JSON.stringify({
-      success: true,
-      message: "Data berhasil disimpan!"
-    })).setMimeType(ContentService.MimeType.JSON);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-  } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({
-      success: false,
-      message: error.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-}
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 650px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .header h2 {
+      color: var(--primary-color);
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .photo-preview-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      background-color: #fafafa;
+      margin-top: 5px;
+    }
+
+    .photo-preview {
+      width: 120px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    .alert {
+      padding: 12px 15px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .alert-success {
+      background-color: #def7ec;
+      color: #03543f;
+      border: 1px solid #bcf0da;
+    }
+
+    .alert-error {
+      background-color: #fde8e8;
+      color: #9b1c1c;
+      border: 1px solid #fbd5d5;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-submit:disabled {
+      background-color: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h2>Pendaftaran Anggota PMR</h2>
+      <p>Isi formulir berikut dengan data yang valid</p>
+    </div>
+
+    <div id="alertMsg" class="alert"></div>
+
+    <form id="pmrForm">
+      <div class="form-group">
+        <label for="statusKeanggotaan">Status Keanggotaan *</label>
+        <select id="statusKeanggotaan" required>
+          <option value="">-- Pilih Status --</option>
+          <option value="Anggota Baru">Anggota Baru</option>
+          <option value="Anggota Lama">Anggota Lama</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="nama">Nama Lengkap *</label>
+        <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nisn">NISN *</label>
+          <input type="number" id="nisn" placeholder="Nomor NISN" required>
+        </div>
+        <div class="form-group">
+          <label for="kelas">Kelas *</label>
+          <input type="text" id="kelas" placeholder="Contoh: VII A" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="jenisKelamin">Jenis Kelamin *</label>
+          <select id="jenisKelamin" required>
+            <option value="">-- Pilih --</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="golDarah">Golongan Darah *</label>
+          <select id="golDarah" required>
+            <option value="">-- Pilih --</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="AB">AB</option>
+            <option value="O">O</option>
+            <option value="-">Tidak Tahu</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tempatLahir">Tempat Lahir *</label>
+          <input type="text" id="tempatLahir" placeholder="Kota lahir" required>
+        </div>
+        <div class="form-group">
+          <label for="tanggalLahir">Tanggal Lahir *</label>
+          <input type="date" id="tanggalLahir" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="agama">Agama *</label>
+          <select id="agama" required>
+            <option value="">-- Pilih --</option>
+            <option value="Islam">Islam</option>
+            <option value="Kristen">Kristen</option>
+            <option value="Katolik">Katolik</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Buddha">Buddha</option>
+            <option value="Konghucu">Konghucu</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="noHp">No. WhatsApp / HP *</label>
+          <input type="tel" id="noHp" placeholder="08xxxxxxxxxx" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="hobi">Hobi</label>
+        <input type="text" id="hobi" placeholder="Hobi Anda">
+      </div>
+
+      <div class="form-group">
+        <label for="alamat">Alamat Lengkap *</label>
+        <textarea id="alamat" rows="3" placeholder="Alamat rumah lengkap" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="fotoInput">Pas Foto *</label>
+        <input type="file" id="fotoInput" accept="image/*" onchange="processImage(this)" required>
+        <div class="photo-preview-container">
+          <img id="imgPreview" class="photo-preview" alt="Preview Foto">
+          <span id="previewText" style="color: #9ca3af; font-size: 13px;">Preview foto akan muncul di sini</span>
+        </div>
+      </div>
+
+      <button type="submit" id="btnSubmit" class="btn-submit">
+        <span id="btnText">Kirim Pendaftaran</span>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4bHbZoVqPuMYvLbGyrBOAafrg3engk6tjwbv-vz84rz7GmSgwsVPWRjHMR7qU7trq/exec";
+    let fotoBase64 = "";
+
+    // Fungsi kompresi gambar otomatis
+    function processImage(input) {
+      const file = input.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          // Menentukan resolusi maksimal foto agar payload ringan (< 200KB)
+          const maxWidth = 500;
+          const scaleSize = maxWidth / img.width;
+          
+          if (img.width > maxWidth) {
+            canvas.width = maxWidth;
+            canvas.height = img.height * scaleSize;
+          } else {
+            canvas.width = img.width;
+            canvas.height = img.height;
+          }
+
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          
+          // Kompresi kualitas JPEG ke 70%
+          fotoBase64 = canvas.toDataURL('image/jpeg', 0.70);
+
+          const imgPreview = document.getElementById('imgPreview');
+          imgPreview.src = fotoBase64;
+          imgPreview.style.display = 'block';
+          document.getElementById('previewText').style.display = 'none';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Penanganan Form Submit
+    document.getElementById('pmrForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!fotoBase64) {
+        alert("Silakan pilih pas foto terlebih dahulu!");
+        return;
+      }
+
+      const btn = document.getElementById('btnSubmit');
+      const btnText = document.getElementById('btnText');
+      const alertMsg = document.getElementById('alertMsg');
+
+      btn.disabled = true;
+      btnText.innerText = "Mengirim Data...";
+      alertMsg.style.display = "none";
+
+      const formData = {
+        statusKeanggotaan: document.getElementById('statusKeanggotaan').value,
+        nama: document.getElementById('nama').value,
+        nisn: document.getElementById('nisn').value,
+        kelas: document.getElementById('kelas').value,
+        jenisKelamin: document.getElementById('jenisKelamin').value,
+        golDarah: document.getElementById('golDarah').value,
+        tempatLahir: document.getElementById('tempatLahir').value,
+        tanggalLahir: document.getElementById('tanggalLahir').value,
+        agama: document.getElementById('agama').value,
+        noHp: document.getElementById('noHp').value,
+        hobi: document.getElementById('hobi').value,
+        alamat: document.getElementById('alamat').value,
+        fotoBase64: fotoBase64
+      };
+
+      // Pengiriman data menggunakan 'text/plain' dan 'redirect: follow' untuk Google Apps Script
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'cors',
+        redirect: 'follow',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Respon jaringan tidak OK');
+        }
+        return response.json();
+      })
+      .then(res => {
+        btn.disabled = false;
+        btnText.innerText = "Kirim Pendaftaran";
+        alertMsg.style.display = "block";
+
+        if (res.success) {
+          alertMsg.className = "alert alert-success";
+          alertMsg.innerText = "Pendaftaran Berhasil! Mengalihkan...";
+          
+          document.getElementById('pmrForm').reset();
+          document.getElementById('imgPreview').style.display = 'none';
+          document.getElementById('previewText').style.display = 'block';
+          fotoBase64 = "";
+
+          setTimeout(() => {
+            window.location.href = `search.html?q=${formData.nisn}`;
+          }, 1500);
+        } else {
+          alertMsg.className = "alert alert-error";
+          alertMsg.innerText = res.message || "Gagal menyimpan data.";
+        }
+      })
+      .catch(err => {
+        console.error("Fetch Error:", err);
+        btn.disabled = false;
+        btnText.innerText = "Kirim Pendaftaran";
+        alertMsg.style.display = "block";
+        alertMsg.className = "alert alert-error";
+        alertMsg.innerText = "Terjadi kesalahan pengiriman. Pastikan deployment Google Apps Script Anda disetel ke 'Anyone'.";
+      });
+    });
+  </script>
+</body>
+</html>

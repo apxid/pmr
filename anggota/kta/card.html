@@ -104,13 +104,12 @@
       flex-shrink: 0;
     }
 
-    /* Logo Diturunkan & Diberi Jeda ke Teks */
     .pmi-logo {
       width: 90px; 
       height: 90px;
       object-fit: contain;
-      margin-top: 6px; /* Diturunkan dari batas atas */
-      margin-bottom: 12px; /* Jeda cukup luas sebelum teks */
+      margin-top: 6px;
+      margin-bottom: 12px;
     }
 
     .header-title {
@@ -121,19 +120,20 @@
       line-height: 1.1;
     }
 
+    /* Text SMP NEGERI 1 MOGA Diperbesar */
     .header-subtitle {
-      font-weight: 800;
-      font-size: 11.5px;
+      font-weight: 900;
+      font-size: 13.5px; 
       color: #222;
       text-transform: uppercase;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
-    /* Area Foto Diturunkan Sekitar 4 Row */
+    /* Foto Diturunkan Lagi 2 Row (+15px) */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 35px; /* Diturunkan signifikan sekitar 4 row */
+      margin-top: 50px; 
       margin-bottom: 8px;
     }
 
@@ -154,27 +154,30 @@
       display: block;
     }
 
-    /* Member Info Section (Mengikuti tepat di bawah foto) */
+    /* Member Info Section dengan Jeda dari Foto */
     .member-info {
       text-align: center;
       padding: 0 10px;
+      margin-top: 12px; /* Jeda antara foto dan nama */
       margin-bottom: auto;
     }
 
+    /* NAMA TEBAL */
     .member-name {
       font-size: 14.5px;
-      font-weight: bold;
+      font-weight: bold; 
       color: #111;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    /* NISN TIDAK TEBAL */
     .member-ni {
       font-size: 11px;
       color: #555;
-      font-weight: 600;
+      font-weight: normal; 
     }
 
     /* Footer Teks */
@@ -355,21 +358,21 @@
       <div id="ktaCardFront" class="kta-card">
         <div class="top-bar"></div>
 
-        <!-- HEADER: Logo & Judul dengan Jeda -->
+        <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
           <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
-        <!-- FOTO (TURUN 4 ROW) -->
+        <!-- FOTO -->
         <div class="kta-photo-section">
           <div class="photo-container">
             <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
         </div>
 
-        <!-- NAMA & NO ANGGOTA -->
+        <!-- NAMA (TEBAL) & NO ANGGOTA (TIDAK TEBAL) -->
         <div class="member-info">
           <div id="ktaName" class="member-name">-</div>
           <div id="ktaNumber" class="member-ni">NI. -</div>

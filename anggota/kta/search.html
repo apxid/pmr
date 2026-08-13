@@ -100,6 +100,7 @@
       display: flex; 
       align-items: center; 
       gap: 12px; 
+      flex-wrap: wrap;
     }
     .result-photo { 
       width: 65px; 
@@ -110,7 +111,7 @@
       background: #eee; 
       flex-shrink: 0; 
     }
-    .result-info { flex: 1; min-width: 0; }
+    .result-info { flex: 1; min-width: 200px; }
     .result-info h4 { 
       font-size: 1rem; 
       color: #111; 
@@ -122,6 +123,18 @@
     .result-info p { font-size: 0.8rem; color: #666; margin-bottom: 2px; }
     .result-info .jabatan { color: #b71c1c; font-weight: bold; }
     
+    .status-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+    .badge-approved { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    .badge-pending { background: #fff8e1; color: #b78103; border: 1px solid #ffe082; }
+    .badge-rejected { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+
     .btn-cta { 
       display: inline-block; 
       background: #2e7d32; 
@@ -136,6 +149,13 @@
       transition: background 0.2s;
     }
     .btn-cta:hover { background: #1b5e20; }
+
+    .btn-cta-disabled {
+      background: #ccc;
+      color: #666;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
 
     .alert { 
       padding: 12px; 
@@ -227,6 +247,9 @@
 
                 const photoSrc = item.foto || 'https://via.placeholder.com/65x85?text=No+Foto';
                 const ttl = [item.tempatLahir, item.tanggalLahir].filter(Boolean).join(', ');
+                const statusValidasi = (item.validasi || 'Pending').trim();
+                const isApproved = statusValidasi.toLowerCase() === 'disetujui' || statusValidasi.toLowerCase() === 'approved';
+                const isRejected = statusValidasi.toLowerCase() === 'ditolak' || statusValidasi.toLowerCase() === 'rejected';
 
                 // Susun query parameter untuk dikirim ke card.html
                 const cardParams = new URLSearchParams({
@@ -242,21 +265,36 @@
 
                 const cardUrl = `card.html?${cardParams.toString()}`;
 
+                let badgeHtml = '';
+                let actionBtnHtml = '';
+
+                if (isApproved) {
+                  badgeHtml = `<span class="status-badge badge-approved">✓ Status: Disetujui</span>`;
+                  actionBtnHtml = `<a href="${cardUrl}" class="btn-cta">Cetak KTA</a>`;
+                } else if (isRejected) {
+                  badgeHtml = `<span class="status-badge badge-rejected">✕ Status: Ditolak</span>`;
+                  actionBtnHtml = `<a href="#" class="btn-cta btn-cta-disabled">KTA Tidak Tersedia</a>`;
+                } else {
+                  badgeHtml = `<span class="status-badge badge-pending">⏳ Status: Menunggu Validasi</span>`;
+                  actionBtnHtml = `<a href="#" class="btn-cta btn-cta-disabled">Cetak KTA (Pending)</a>`;
+                }
+
                 card.innerHTML = `
                   <img src="${escapeHtml(photoSrc)}" class="result-photo" alt="Foto ${escapeHtml(item.nama || '')}" onerror="this.src='https://via.placeholder.com/65x85?text=No+Foto'">
                   <div class="result-info">
                     <h4>${escapeHtml(item.nama || '-')}</h4>
                     <p>NISN: <strong>${escapeHtml(item.nisn || '-')}</strong> | Kelas: <strong>${escapeHtml(item.kelas || '-')}</strong></p>
-                    <p class="jabatan">Status/Jabatan: ${escapeHtml(item.status || '-')}</p>
+                    <p class="jabatan">Jabatan PMR: ${escapeHtml(item.status || '-')}</p>
+                    ${badgeHtml}
                   </div>
-                  <a href="${cardUrl}" class="btn-cta">Cetak KTA</a>
+                  ${actionBtnHtml}
                 `;
                 resultsDiv.appendChild(card);
               });
             } else {
               resultsDiv.innerHTML = `
                 <div class="alert alert-danger">
-                  Data dengan NISN atau nama "${escapeHtml(query)}" tidak ditemukan.
+                  Data dengan NISN atau nama "<strong>${escapeHtml(query)}</strong>" tidak ditemukan.
                 </div>
               `;
             }

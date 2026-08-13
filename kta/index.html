@@ -33,11 +33,9 @@
       padding: 0;
     }
 
-
     html {
       scroll-behavior: smooth;
     }
-
 
     body {
       font-family:
@@ -62,52 +60,41 @@
       -webkit-font-smoothing: antialiased;
     }
 
-
     button,
-    input {
+    input,
+    select,
+    textarea {
       font-family: inherit;
     }
 
 
     /* =====================================================
-       BACKGROUND DECORATION
+       BACKGROUND
     ===================================================== */
 
     .bg-circle {
       position: fixed;
       z-index: -1;
-
       border-radius: 50%;
-
       pointer-events: none;
-
       filter: blur(2px);
     }
-
 
     .bg-circle.one {
       width: 260px;
       height: 260px;
-
       top: -120px;
       right: -100px;
-
-      background:
-        rgba(189, 8, 28, .10);
+      background: rgba(189, 8, 28, .10);
     }
-
 
     .bg-circle.two {
       width: 220px;
       height: 220px;
-
       bottom: -100px;
       left: -100px;
-
-      background:
-        rgba(189, 8, 28, .07);
+      background: rgba(189, 8, 28, .07);
     }
-
 
 
     /* =====================================================
@@ -123,14 +110,12 @@
     }
 
 
-
     /* =====================================================
        HEADER
     ===================================================== */
 
     .header {
       position: relative;
-
       overflow: hidden;
 
       background:
@@ -156,7 +141,6 @@
         rgba(130, 0, 20, .22);
     }
 
-
     .header::before {
       content: "";
 
@@ -170,10 +154,8 @@
       right: -100px;
       top: -120px;
 
-      background:
-        rgba(255,255,255,.08);
+      background: rgba(255,255,255,.08);
     }
-
 
     .header::after {
       content: "";
@@ -188,10 +170,8 @@
       left: -90px;
       bottom: -100px;
 
-      background:
-        rgba(255,255,255,.06);
+      background: rgba(255,255,255,.06);
     }
-
 
     .header-content {
       position: relative;
@@ -203,13 +183,11 @@
       margin: auto;
     }
 
-
     .brand {
       display: flex;
       align-items: center;
       gap: 13px;
     }
-
 
     .brand-logo {
       width: 48px;
@@ -217,8 +195,7 @@
 
       border-radius: 14px;
 
-      background:
-        rgba(255,255,255,.96);
+      background: rgba(255,255,255,.96);
 
       display: flex;
       align-items: center;
@@ -231,33 +208,25 @@
         rgba(0,0,0,.12);
     }
 
-
     .brand-text {
       line-height: 1.25;
     }
 
-
     .brand-title {
       font-size: 16px;
       font-weight: 800;
-
       letter-spacing: .2px;
     }
 
-
     .brand-subtitle {
       font-size: 11px;
-
       opacity: .82;
-
       margin-top: 3px;
     }
-
 
     .hero {
       margin-top: 34px;
     }
-
 
     .hero h1 {
       font-size:
@@ -274,7 +243,6 @@
       letter-spacing: -.8px;
     }
 
-
     .hero p {
       margin-top: 12px;
 
@@ -284,10 +252,8 @@
 
       line-height: 1.65;
 
-      color:
-        rgba(255,255,255,.86);
+      color: rgba(255,255,255,.86);
     }
-
 
 
     /* =====================================================
@@ -296,7 +262,6 @@
 
     .main {
       width: 100%;
-
       max-width: 720px;
 
       margin:
@@ -308,10 +273,8 @@
         40px;
 
       position: relative;
-
       z-index: 5;
     }
-
 
 
     /* =====================================================
@@ -334,35 +297,24 @@
         rgba(0,0,0,.04);
     }
 
-
     .search-label {
       font-size: 13px;
-
       font-weight: 800;
-
       color: #333;
-
       margin-bottom: 9px;
-
       display: block;
     }
 
-
     .search-box {
       display: flex;
-
       align-items: stretch;
-
       gap: 9px;
     }
 
-
     .input-wrap {
       position: relative;
-
       flex: 1;
     }
-
 
     .search-icon {
       position: absolute;
@@ -374,16 +326,12 @@
         translateY(-50%);
 
       font-size: 17px;
-
       opacity: .55;
-
       pointer-events: none;
     }
 
-
     #nisnInput {
       width: 100%;
-
       height: 52px;
 
       border:
@@ -398,21 +346,16 @@
         0 14px 0 44px;
 
       font-size: 15px;
-
       font-weight: 600;
-
       letter-spacing: .3px;
 
       background: #fafafa;
 
-      transition:
-        .2s ease;
+      transition: .2s ease;
     }
 
-
     #nisnInput:focus {
-      border-color:
-        #bd081c;
+      border-color: #bd081c;
 
       background: white;
 
@@ -421,10 +364,8 @@
         rgba(189,8,28,.08);
     }
 
-
     #searchBtn {
       height: 52px;
-
       min-width: 112px;
 
       border: 0;
@@ -441,7 +382,6 @@
       color: white;
 
       font-size: 14px;
-
       font-weight: 800;
 
       cursor: pointer;
@@ -455,38 +395,26 @@
         box-shadow .15s ease;
     }
 
-
     #searchBtn:active {
-      transform:
-        scale(.97);
+      transform: scale(.97);
     }
-
 
     #searchBtn:disabled {
       opacity: .65;
-
-      cursor:
-        not-allowed;
-
-      box-shadow:
-        none;
+      cursor: not-allowed;
+      box-shadow: none;
     }
-
 
     .search-help {
       display: flex;
-
       align-items: center;
-
       gap: 7px;
 
       margin-top: 11px;
 
       font-size: 11px;
-
       color: #777;
     }
-
 
 
     /* =====================================================
@@ -503,26 +431,20 @@
       border-radius: 15px;
 
       font-size: 13px;
-
       line-height: 1.5;
     }
-
 
     .message.show {
       display: block;
     }
 
-
     .message.info {
       background: #f3f6fa;
-
       color: #4a5560;
     }
 
-
     .message.error {
       background: #fff0f1;
-
       color: #a40019;
 
       border:
@@ -530,10 +452,8 @@
         #ffd5da;
     }
 
-
     .message.success {
       background: #effaf3;
-
       color: #217443;
 
       border:
@@ -542,24 +462,19 @@
     }
 
 
-
     /* =====================================================
        LOADING
     ===================================================== */
 
     .loading {
       display: none;
-
       margin-top: 18px;
-
       text-align: center;
     }
-
 
     .loading.show {
       display: block;
     }
-
 
     .spinner {
       width: 34px;
@@ -581,23 +496,16 @@
         spin .8s linear infinite;
     }
 
-
     @keyframes spin {
-
       to {
-        transform:
-          rotate(360deg);
+        transform: rotate(360deg);
       }
-
     }
-
 
     .loading-text {
       font-size: 12px;
-
       color: #777;
     }
-
 
 
     /* =====================================================
@@ -606,39 +514,29 @@
 
     #result {
       display: none;
-
       margin-top: 24px;
     }
-
 
     #result.show {
       display: block;
     }
 
-
     .result-title {
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
       margin-bottom: 12px;
     }
 
-
     .result-title h2 {
       font-size: 16px;
-
       font-weight: 900;
     }
 
-
     .verified {
       display: inline-flex;
-
       align-items: center;
-
       gap: 5px;
 
       padding:
@@ -646,17 +544,12 @@
 
       border-radius: 99px;
 
-      background:
-        #eaf8ef;
-
-      color:
-        #218049;
+      background: #eaf8ef;
+      color: #218049;
 
       font-size: 10px;
-
       font-weight: 800;
     }
-
 
 
     /* =====================================================
@@ -667,7 +560,6 @@
       width: 100%;
 
       display: flex;
-
       justify-content: center;
 
       padding:
@@ -675,6 +567,11 @@
     }
 
 
+    /*
+     * UKURAN KARTU
+     *
+     * Rasio dipertahankan seperti ID card vertikal.
+     */
     .kta-card {
       position: relative;
 
@@ -689,8 +586,7 @@
 
       overflow: hidden;
 
-      border-radius:
-        18px;
+      border-radius: 18px;
 
       background:
         linear-gradient(
@@ -710,7 +606,9 @@
     }
 
 
-    /* Top accent */
+    /* =====================================================
+       KTA TOP
+    ===================================================== */
 
     .kta-top {
       position: absolute;
@@ -739,7 +637,6 @@
         );
     }
 
-
     .kta-org {
       position: absolute;
 
@@ -752,19 +649,14 @@
       text-align: center;
 
       font-size: 10px;
-
       line-height: 1.25;
-
       font-weight: 800;
     }
 
-
     .kta-org strong {
       display: block;
-
       font-size: 12px;
     }
-
 
     .kta-cross {
       margin:
@@ -780,36 +672,43 @@
       color: #bd081c;
 
       display: flex;
-
       align-items: center;
-
       justify-content: center;
 
       font-size: 15px;
-
       font-weight: 900;
     }
 
 
-
-    /* Photo */
+    /* =====================================================
+       FOTO KTA
+       DIPERBAIKI
+    ===================================================== */
 
     .kta-photo-wrap {
       position: absolute;
 
-      top: 20%;
+      /*
+       * Sebelumnya 20%.
+       * Diturunkan sedikit agar tidak terlalu dekat
+       * dengan header merah.
+       */
+      top: 22%;
 
       left: 50%;
 
       transform:
         translateX(-50%);
 
-      width: 42%;
+      width: 43%;
 
+      /*
+       * Rasio foto portrait.
+       */
       aspect-ratio:
         3 / 4;
 
-      border-radius: 13px;
+      border-radius: 14px;
 
       padding: 4px;
 
@@ -821,8 +720,14 @@
         );
 
       box-shadow:
-        0 8px 18px
-        rgba(80,0,15,.18);
+        0 9px 20px
+        rgba(80,0,15,.20);
+
+      /*
+       * Memastikan gambar tidak tertutup
+       * oleh elemen lain.
+       */
+      z-index: 5;
     }
 
 
@@ -830,17 +735,41 @@
       width: 100%;
       height: 100%;
 
-      object-fit: cover;
-
       display: block;
 
-      border-radius: 9px;
+      object-fit: cover;
+      object-position: center center;
 
-      background: #eee;
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #eeeeee,
+          #dddddd
+        );
+
+      /*
+       * Menghilangkan tampilan border default
+       * jika gambar gagal.
+       */
+      border: 0;
     }
 
 
-    /* Body */
+    /*
+     * Saat gambar gagal dimuat,
+     * jangan tampilkan ikon gambar rusak.
+     */
+    .kta-photo.is-error {
+      object-fit: contain;
+      padding: 12px;
+    }
+
+
+    /* =====================================================
+       BODY KTA
+    ===================================================== */
 
     .kta-body {
       position: absolute;
@@ -848,11 +777,15 @@
       left: 8%;
       right: 8%;
 
-      top: 52%;
+      /*
+       * Diturunkan mengikuti posisi foto.
+       */
+      top: 55%;
 
       text-align: center;
-    }
 
+      z-index: 4;
+    }
 
     .kta-label {
       font-size: 8px;
@@ -861,12 +794,10 @@
 
       letter-spacing: 1.5px;
 
-      color:
-        #9c7b80;
+      color: #9c7b80;
 
       font-weight: 800;
     }
-
 
     .kta-name {
       margin-top: 5px;
@@ -880,14 +811,18 @@
 
       line-height: 1.15;
 
-      color:
-        #3b1117;
+      color: #3b1117;
 
       font-weight: 900;
 
       word-break: break-word;
-    }
 
+      /*
+       * Membatasi nama agar tidak
+       * menabrak footer.
+       */
+      max-width: 100%;
+    }
 
     .kta-number {
       display: inline-flex;
@@ -899,15 +834,13 @@
 
       border-radius: 99px;
 
-      background:
-        #fff;
+      background: #fff;
 
       border:
         1px solid
         #f0c6cb;
 
-      color:
-        #bd081c;
+      color: #bd081c;
 
       font-size: 9px;
 
@@ -917,7 +850,9 @@
     }
 
 
-    /* Bottom */
+    /* =====================================================
+       KTA BOTTOM
+    ===================================================== */
 
     .kta-bottom {
       position: absolute;
@@ -938,8 +873,9 @@
       border-top:
         1px solid
         rgba(189,8,28,.14);
-    }
 
+      z-index: 4;
+    }
 
     .kta-qr {
       width: 23%;
@@ -959,23 +895,17 @@
         #ead1d4;
     }
 
-
     .kta-footer-info {
       flex: 1;
-
       text-align: left;
     }
 
-
     .kta-position {
-      color:
-        #bd081c;
+      color: #bd081c;
 
       font-size: 10px;
-
       font-weight: 900;
     }
-
 
     .kta-school {
       margin-top: 3px;
@@ -989,7 +919,6 @@
       color: #44252a;
     }
 
-
     .kta-location {
       margin-top: 2px;
 
@@ -997,7 +926,6 @@
 
       color: #8a6d71;
     }
-
 
 
     /* =====================================================
@@ -1015,7 +943,6 @@
       margin-top: 6px;
     }
 
-
     .action-btn {
       height: 48px;
 
@@ -1024,15 +951,12 @@
       border: 0;
 
       font-size: 13px;
-
       font-weight: 800;
 
       cursor: pointer;
 
       display: flex;
-
       align-items: center;
-
       justify-content: center;
 
       gap: 7px;
@@ -1041,16 +965,12 @@
         transform .15s ease;
     }
 
-
     .action-btn:active {
-      transform:
-        scale(.97);
+      transform: scale(.97);
     }
 
-
     .btn-print {
-      background:
-        #bd081c;
+      background: #bd081c;
 
       color: white;
 
@@ -1059,18 +979,15 @@
         rgba(189,8,28,.20);
     }
 
-
     .btn-pdf {
       background: white;
 
-      color:
-        #bd081c;
+      color: #bd081c;
 
       border:
         1px solid
         #efc5ca;
     }
-
 
 
     /* =====================================================
@@ -1080,7 +997,6 @@
     .info-section {
       margin-top: 26px;
     }
-
 
     .info-card {
       background: white;
@@ -1098,20 +1014,15 @@
         rgba(0,0,0,.06);
     }
 
-
     .info-card h3 {
       font-size: 14px;
-
       font-weight: 900;
-
       margin-bottom: 12px;
     }
-
 
     .info-list {
       list-style: none;
     }
-
 
     .info-list li {
       display: flex;
@@ -1131,13 +1042,10 @@
       line-height: 1.45;
     }
 
-
     .info-list li:last-child {
       border-bottom: 0;
-
       padding-bottom: 0;
     }
-
 
     .info-icon {
       width: 25px;
@@ -1148,148 +1056,18 @@
       border-radius: 8px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: center;
 
-      background:
-        #fff0f1;
-
-      color:
-        #bd081c;
+      background: #fff0f1;
+      color: #bd081c;
 
       font-size: 12px;
     }
 
 
-
     /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    .footer {
-      text-align: center;
-
-      padding:
-        5px 20px
-        30px;
-
-      color: #999;
-
-      font-size: 10px;
-
-      line-height: 1.6;
-    }
-
-
-    .footer strong {
-      color: #777;
-    }
-
-
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (
-      max-width: 520px
-    ) {
-
-      .header {
-        padding:
-          22px
-          17px
-          66px;
-
-        border-radius:
-          0 0 27px 27px;
-      }
-
-
-      .brand-logo {
-        width: 43px;
-        height: 43px;
-
-        font-size: 24px;
-      }
-
-
-      .brand-title {
-        font-size: 14px;
-      }
-
-
-      .brand-subtitle {
-        font-size: 10px;
-      }
-
-
-      .hero {
-        margin-top: 28px;
-      }
-
-
-      .hero h1 {
-        font-size: 30px;
-      }
-
-
-      .hero p {
-        font-size: 12px;
-
-        line-height: 1.55;
-      }
-
-
-      .main {
-        padding:
-          0 12px
-          30px;
-      }
-
-
-      .search-card {
-        padding: 16px;
-
-        border-radius: 20px;
-      }
-
-
-      .search-box {
-        flex-direction: column;
-      }
-
-
-      #searchBtn {
-        width: 100%;
-      }
-
-
-      .kta-card {
-        width:
-          min(
-            100%,
-            330px
-          );
-
-        border-radius: 16px;
-      }
-
-
-      .actions {
-        grid-template-columns:
-          1fr;
-      }
-
-    }
-
-
-
-
-    /* =====================================================
-       PENDAFTARAN ANGGOTA
+       PENDAFTARAN
     ===================================================== */
 
     .register-section {
@@ -1298,17 +1076,27 @@
 
     .register-card {
       background: white;
+
       border-radius: 24px;
+
       padding: 20px;
-      border: 1px solid rgba(0,0,0,.04);
-      box-shadow: 0 12px 35px rgba(35,20,25,.08);
+
+      border:
+        1px solid
+        rgba(0,0,0,.04);
+
+      box-shadow:
+        0 12px 35px
+        rgba(35,20,25,.08);
     }
 
     .register-head {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+
       gap: 12px;
+
       margin-bottom: 17px;
     }
 
@@ -1320,17 +1108,24 @@
 
     .register-head p {
       margin-top: 5px;
+
       font-size: 11px;
       line-height: 1.5;
+
       color: #777;
     }
 
     .register-badge {
       flex: 0 0 auto;
+
       padding: 7px 10px;
+
       border-radius: 99px;
+
       background: #fff0f1;
+
       color: #bd081c;
+
       font-size: 10px;
       font-weight: 900;
     }
@@ -1342,7 +1137,10 @@
 
     .form-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 12px;
     }
 
@@ -1366,19 +1164,32 @@
     .form-group select,
     .form-group textarea {
       width: 100%;
-      border: 1.5px solid #e5e5e5;
+
+      border:
+        1.5px solid
+        #e5e5e5;
+
       border-radius: 13px;
+
       outline: none;
-      padding: 11px 12px;
+
+      padding:
+        11px 12px;
+
       font-size: 13px;
+
       color: #222;
+
       background: #fafafa;
+
       transition: .2s ease;
     }
 
     .form-group textarea {
       min-height: 82px;
+
       resize: vertical;
+
       line-height: 1.45;
     }
 
@@ -1386,14 +1197,23 @@
     .form-group select:focus,
     .form-group textarea:focus {
       border-color: #bd081c;
+
       background: white;
-      box-shadow: 0 0 0 4px rgba(189,8,28,.07);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(189,8,28,.07);
     }
 
     .photo-upload {
-      border: 1.5px dashed #e0aeb4;
+      border:
+        1.5px dashed
+        #e0aeb4;
+
       border-radius: 15px;
+
       padding: 13px;
+
       background: #fffafa;
     }
 
@@ -1405,8 +1225,11 @@
 
     .photo-preview-wrap {
       display: none;
+
       align-items: center;
+
       gap: 12px;
+
       margin-top: 8px;
     }
 
@@ -1417,39 +1240,72 @@
     .photo-preview {
       width: 64px;
       height: 82px;
+
       object-fit: cover;
+
       border-radius: 10px;
-      border: 2px solid #bd081c;
+
+      border:
+        2px solid
+        #bd081c;
+
       background: #eee;
     }
 
     .photo-preview-info {
       font-size: 10px;
+
       line-height: 1.5;
+
       color: #777;
     }
 
     .form-note {
-      padding: 11px 12px;
+      padding:
+        11px 12px;
+
       border-radius: 12px;
+
       background: #f8f9fa;
+
       color: #70757a;
+
       font-size: 10px;
+
       line-height: 1.55;
     }
 
     .register-submit {
       width: 100%;
+
       min-height: 50px;
+
       border: 0;
+
       border-radius: 14px;
-      background: linear-gradient(135deg,#a40019,#d20d28);
+
+      background:
+        linear-gradient(
+          135deg,
+          #a40019,
+          #d20d28
+        );
+
       color: white;
+
       font-size: 14px;
+
       font-weight: 900;
+
       cursor: pointer;
-      box-shadow: 0 7px 18px rgba(189,8,28,.20);
-      transition: transform .15s ease, opacity .2s ease;
+
+      box-shadow:
+        0 7px 18px
+        rgba(189,8,28,.20);
+
+      transition:
+        transform .15s ease,
+        opacity .2s ease;
     }
 
     .register-submit:active {
@@ -1463,10 +1319,15 @@
 
     .register-result {
       display: none;
+
       margin-top: 13px;
+
       padding: 13px;
+
       border-radius: 13px;
+
       font-size: 12px;
+
       line-height: 1.5;
     }
 
@@ -1476,17 +1337,125 @@
 
     .register-result.success {
       background: #effaf3;
+
       color: #217443;
-      border: 1px solid #c9efd7;
+
+      border:
+        1px solid
+        #c9efd7;
     }
 
     .register-result.error {
       background: #fff0f1;
+
       color: #a40019;
-      border: 1px solid #ffd5da;
+
+      border:
+        1px solid
+        #ffd5da;
     }
 
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer {
+      text-align: center;
+
+      padding:
+        5px 20px
+        30px;
+
+      color: #999;
+
+      font-size: 10px;
+
+      line-height: 1.6;
+    }
+
+    .footer strong {
+      color: #777;
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
     @media (max-width: 520px) {
+
+      .header {
+        padding:
+          22px
+          17px
+          66px;
+
+        border-radius:
+          0 0 27px 27px;
+      }
+
+      .brand-logo {
+        width: 43px;
+        height: 43px;
+        font-size: 24px;
+      }
+
+      .brand-title {
+        font-size: 14px;
+      }
+
+      .brand-subtitle {
+        font-size: 10px;
+      }
+
+      .hero {
+        margin-top: 28px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .main {
+        padding:
+          0 12px
+          30px;
+      }
+
+      .search-card {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      #searchBtn {
+        width: 100%;
+      }
+
+      .kta-card {
+        width:
+          min(
+            100%,
+            330px
+          );
+
+        border-radius: 16px;
+      }
+
+      .actions {
+        grid-template-columns:
+          1fr;
+      }
+
       .register-card {
         padding: 16px;
         border-radius: 20px;
@@ -1502,30 +1471,26 @@
       }
     }
 
+
     /* =====================================================
        VERY SMALL SCREEN
     ===================================================== */
 
-    @media (
-      max-width: 360px
-    ) {
+    @media (max-width: 360px) {
 
       .hero h1 {
         font-size: 27px;
       }
 
-
       .kta-card {
         width: 285px;
       }
-
 
       .search-card {
         padding: 14px;
       }
 
     }
-
 
 
     /* =====================================================
@@ -1536,54 +1501,41 @@
 
       body {
         background: white;
-
         margin: 0;
       }
-
 
       .header,
       .search-card,
       .info-section,
       .footer,
       .result-title,
-      .actions {
+      .actions,
+      .register-section {
         display: none !important;
       }
 
-
       .main {
         margin: 0;
-
         padding: 0;
-
         max-width: none;
       }
 
-
       #result {
         display: block !important;
-
         margin: 0;
       }
-
 
       .kta-stage {
         padding: 0;
       }
 
-
       .kta-card {
-        width:
-          5.513cm;
+        width: 5.513cm;
+        height: 8.72cm;
 
-        height:
-          8.72cm;
+        aspect-ratio: auto;
 
-        aspect-ratio:
-          auto;
-
-        border-radius:
-          .35cm;
+        border-radius: .35cm;
 
         box-shadow: none;
 
@@ -1660,7 +1612,6 @@
       </div>
 
     </header>
-
 
 
     <!-- ==================================================
@@ -1747,14 +1698,11 @@
       </section>
 
 
-
       <!-- ==================================================
            RESULT
       =================================================== -->
 
-      <section
-        id="result"
-      >
+      <section id="result">
 
         <div class="result-title">
 
@@ -1819,14 +1767,12 @@
                 Nama Anggota
               </div>
 
-
               <div
                 id="ktaName"
                 class="kta-name"
               >
                 -
               </div>
-
 
               <div
                 id="ktaNumber"
@@ -1848,7 +1794,6 @@
                 src=""
                 alt="QR Code KTA"
               >
-
 
               <div class="kta-footer-info">
 
@@ -1899,8 +1844,6 @@
       </section>
 
 
-
-
       <!-- ==================================================
            PENDAFTARAN ANGGOTA
       =================================================== -->
@@ -1910,171 +1853,420 @@
         <div class="register-card">
 
           <div class="register-head">
+
             <div>
-              <h3>📝 Pendaftaran Anggota PMR</h3>
+
+              <h3>
+                📝 Pendaftaran Anggota PMR
+              </h3>
+
               <p>
                 Lengkapi data sesuai format database anggota PMR.
-                Data akan masuk dengan status <strong>Menunggu</strong>
+                Data akan masuk dengan status
+                <strong>Menunggu</strong>
                 untuk divalidasi admin.
               </p>
+
             </div>
 
-            <span class="register-badge">Anggota Baru</span>
+            <span class="register-badge">
+              Anggota Baru
+            </span>
+
           </div>
 
-          <form id="registerForm" class="register-form">
+
+          <form
+            id="registerForm"
+            class="register-form"
+          >
 
             <div class="form-row">
-              <div class="form-group">
-                <label for="regNama">Nama Lengkap <span>*</span></label>
-                <input id="regNama" name="nama" type="text"
-                  autocomplete="name" maxlength="100"
-                  placeholder="Masukkan nama lengkap" required>
-              </div>
 
               <div class="form-group">
-                <label for="regJK">Jenis Kelamin <span>*</span></label>
-                <select id="regJK" name="jenisKelamin" required>
-                  <option value="">Pilih jenis kelamin</option>
-                  <option value="L">Laki-laki</option>
-                  <option value="P">Perempuan</option>
-                </select>
+
+                <label for="regNama">
+                  Nama Lengkap <span>*</span>
+                </label>
+
+                <input
+                  id="regNama"
+                  name="nama"
+                  type="text"
+                  autocomplete="name"
+                  maxlength="100"
+                  placeholder="Masukkan nama lengkap"
+                  required
+                >
+
               </div>
+
+
+              <div class="form-group">
+
+                <label for="regJK">
+                  Jenis Kelamin <span>*</span>
+                </label>
+
+                <select
+                  id="regJK"
+                  name="jenisKelamin"
+                  required
+                >
+
+                  <option value="">
+                    Pilih jenis kelamin
+                  </option>
+
+                  <option value="L">
+                    Laki-laki
+                  </option>
+
+                  <option value="P">
+                    Perempuan
+                  </option>
+
+                </select>
+
+              </div>
+
             </div>
 
+
             <div class="form-row">
-              <div class="form-group">
-                <label for="regTempatLahir">Tempat Lahir <span>*</span></label>
-                <input id="regTempatLahir" name="tempatLahir" type="text"
-                  maxlength="60" placeholder="Contoh: Pemalang" required>
-              </div>
 
               <div class="form-group">
-                <label for="regTanggalLahir">Tanggal Lahir <span>*</span></label>
-                <input id="regTanggalLahir" name="tanggalLahir"
-                  type="date" required>
+
+                <label for="regTempatLahir">
+                  Tempat Lahir <span>*</span>
+                </label>
+
+                <input
+                  id="regTempatLahir"
+                  name="tempatLahir"
+                  type="text"
+                  maxlength="60"
+                  placeholder="Contoh: Pemalang"
+                  required
+                >
+
               </div>
+
+
+              <div class="form-group">
+
+                <label for="regTanggalLahir">
+                  Tanggal Lahir <span>*</span>
+                </label>
+
+                <input
+                  id="regTanggalLahir"
+                  name="tanggalLahir"
+                  type="date"
+                  required
+                >
+
+              </div>
+
             </div>
 
+
             <div class="form-row">
-              <div class="form-group">
-                <label for="regAgama">Agama <span>*</span></label>
-                <select id="regAgama" name="agama" required>
-                  <option value="">Pilih agama</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                </select>
-              </div>
 
               <div class="form-group">
-                <label for="regGolonganDarah">Golongan Darah <span>*</span></label>
-                <select id="regGolonganDarah" name="golonganDarah" required>
-                  <option value="">Pilih golongan darah</option>
+
+                <label for="regAgama">
+                  Agama <span>*</span>
+                </label>
+
+                <select
+                  id="regAgama"
+                  name="agama"
+                  required
+                >
+
+                  <option value="">
+                    Pilih agama
+                  </option>
+
+                  <option value="Islam">
+                    Islam
+                  </option>
+
+                  <option value="Kristen">
+                    Kristen
+                  </option>
+
+                  <option value="Katolik">
+                    Katolik
+                  </option>
+
+                  <option value="Hindu">
+                    Hindu
+                  </option>
+
+                  <option value="Buddha">
+                    Buddha
+                  </option>
+
+                  <option value="Konghucu">
+                    Konghucu
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="regGolonganDarah">
+                  Golongan Darah <span>*</span>
+                </label>
+
+                <select
+                  id="regGolonganDarah"
+                  name="golonganDarah"
+                  required
+                >
+
+                  <option value="">
+                    Pilih golongan darah
+                  </option>
+
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="AB">AB</option>
                   <option value="O">O</option>
-                  <option value="Tidak Tahu">Tidak Tahu</option>
+                  <option value="Tidak Tahu">
+                    Tidak Tahu
+                  </option>
+
                 </select>
+
               </div>
+
             </div>
+
 
             <div class="form-group">
-              <label for="regAlamat">Alamat <span>*</span></label>
-              <textarea id="regAlamat" name="alamat" maxlength="250"
-                placeholder="Masukkan alamat lengkap" required></textarea>
+
+              <label for="regAlamat">
+                Alamat <span>*</span>
+              </label>
+
+              <textarea
+                id="regAlamat"
+                name="alamat"
+                maxlength="250"
+                placeholder="Masukkan alamat lengkap"
+                required
+              ></textarea>
+
             </div>
 
+
             <div class="form-row">
-              <div class="form-group">
-                <label for="regNoHP">No. HP <span>*</span></label>
-                <input id="regNoHP" name="noHP" type="tel"
-                  inputmode="tel" maxlength="20"
-                  placeholder="Contoh: 081234567890" required>
-              </div>
 
               <div class="form-group">
-                <label for="regHobi">Hobi <span>*</span></label>
-                <input id="regHobi" name="hobi" type="text"
-                  maxlength="100" placeholder="Contoh: Membaca, olahraga" required>
+
+                <label for="regNoHP">
+                  No. HP <span>*</span>
+                </label>
+
+                <input
+                  id="regNoHP"
+                  name="noHP"
+                  type="tel"
+                  inputmode="tel"
+                  maxlength="20"
+                  placeholder="Contoh: 081234567890"
+                  required
+                >
+
               </div>
+
+
+              <div class="form-group">
+
+                <label for="regHobi">
+                  Hobi <span>*</span>
+                </label>
+
+                <input
+                  id="regHobi"
+                  name="hobi"
+                  type="text"
+                  maxlength="100"
+                  placeholder="Contoh: Membaca, olahraga"
+                  required
+                >
+
+              </div>
+
             </div>
 
+
             <div class="form-row">
+
               <div class="form-group">
-                <label for="regKelas">Kelas <span>*</span></label>
-                <select id="regKelas" name="kelas" required>
-                  <option value="">Pilih kelas</option>
-                  <option value="7A">7A</option><option value="7B">7B</option>
-                  <option value="7C">7C</option><option value="7D">7D</option>
-                  <option value="7E">7E</option><option value="7F">7F</option>
-                  <option value="7G">7G</option><option value="7H">7H</option>
+
+                <label for="regKelas">
+                  Kelas <span>*</span>
+                </label>
+
+                <select
+                  id="regKelas"
+                  name="kelas"
+                  required
+                >
+
+                  <option value="">
+                    Pilih kelas
+                  </option>
+
+                  <option value="7A">7A</option>
+                  <option value="7B">7B</option>
+                  <option value="7C">7C</option>
+                  <option value="7D">7D</option>
+                  <option value="7E">7E</option>
+                  <option value="7F">7F</option>
+                  <option value="7G">7G</option>
+                  <option value="7H">7H</option>
                   <option value="7I">7I</option>
-                  <option value="8A">8A</option><option value="8B">8B</option>
-                  <option value="8C">8C</option><option value="8D">8D</option>
-                  <option value="8E">8E</option><option value="8F">8F</option>
-                  <option value="8G">8G</option><option value="8H">8H</option>
+
+                  <option value="8A">8A</option>
+                  <option value="8B">8B</option>
+                  <option value="8C">8C</option>
+                  <option value="8D">8D</option>
+                  <option value="8E">8E</option>
+                  <option value="8F">8F</option>
+                  <option value="8G">8G</option>
+                  <option value="8H">8H</option>
                   <option value="8I">8I</option>
-                  <option value="9A">9A</option><option value="9B">9B</option>
-                  <option value="9C">9C</option><option value="9D">9D</option>
-                  <option value="9E">9E</option><option value="9F">9F</option>
-                  <option value="9G">9G</option><option value="9H">9H</option>
+
+                  <option value="9A">9A</option>
+                  <option value="9B">9B</option>
+                  <option value="9C">9C</option>
+                  <option value="9D">9D</option>
+                  <option value="9E">9E</option>
+                  <option value="9F">9F</option>
+                  <option value="9G">9G</option>
+                  <option value="9H">9H</option>
                   <option value="9I">9I</option>
+
                 </select>
+
               </div>
+
 
               <div class="form-group">
-                <label for="regNisn">NISN <span>*</span></label>
-                <input id="regNisn" name="nisn" type="text"
-                  inputmode="numeric" maxlength="20"
-                  placeholder="Masukkan NISN" required>
+
+                <label for="regNisn">
+                  NISN <span>*</span>
+                </label>
+
+                <input
+                  id="regNisn"
+                  name="nisn"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="20"
+                  placeholder="Masukkan NISN"
+                  required
+                >
+
               </div>
+
             </div>
 
-            <div class="form-group">
-              <label for="regFoto">Foto Anggota <span>*</span></label>
-              <div class="photo-upload">
-                <input id="regFoto" name="foto" type="file"
-                  accept="image/jpeg,image/png,image/webp" required>
 
-                <div id="photoPreviewWrap" class="photo-preview-wrap">
-                  <img id="photoPreview" class="photo-preview"
-                    alt="Preview foto anggota">
-                  <div id="photoPreviewInfo" class="photo-preview-info">
+            <div class="form-group">
+
+              <label for="regFoto">
+                Foto Anggota <span>*</span>
+              </label>
+
+              <div class="photo-upload">
+
+                <input
+                  id="regFoto"
+                  name="foto"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  required
+                >
+
+                <div
+                  id="photoPreviewWrap"
+                  class="photo-preview-wrap"
+                >
+
+                  <img
+                    id="photoPreview"
+                    class="photo-preview"
+                    alt="Preview foto anggota"
+                  >
+
+                  <div
+                    id="photoPreviewInfo"
+                    class="photo-preview-info"
+                  >
                     Foto siap dikirim.
                   </div>
+
                 </div>
+
               </div>
+
             </div>
 
+
             <div class="form-note">
-              📷 Foto diunggah langsung melalui formulir. Sistem akan
-              mengirim foto ke backend untuk disimpan sebagai
-              <strong>FOTO_RAW_URL</strong> dan <strong>FOTO_URL</strong>.
+
+              📷 Foto diunggah langsung melalui formulir.
+              Sistem akan mengirim foto ke backend untuk disimpan
+              sebagai <strong>FOTO_RAW_URL</strong> dan
+              <strong>FOTO_URL</strong>.
+
               Gunakan foto formal/terbaru dengan wajah terlihat jelas.
+
             </div>
+
 
             <div class="form-note">
-              🔐 Setelah dikirim, <strong>STATUS_VALIDASI</strong> awal
-              adalah <strong>Menunggu</strong>. Nomor anggota dan KTA
-              diterbitkan setelah data disetujui admin.
+
+              🔐 Setelah dikirim,
+              <strong>STATUS_VALIDASI</strong> awal adalah
+              <strong>Menunggu</strong>.
+
+              Nomor anggota dan KTA diterbitkan setelah data
+              disetujui admin.
+
             </div>
 
-            <button id="registerBtn" class="register-submit" type="submit">
+
+            <button
+              id="registerBtn"
+              class="register-submit"
+              type="submit"
+            >
               🩸 Daftar sebagai Anggota PMR
             </button>
 
           </form>
 
-          <div id="registerResult" class="register-result" role="alert"></div>
+
+          <div
+            id="registerResult"
+            class="register-result"
+            role="alert"
+          ></div>
 
         </div>
 
       </section>
+
 
       <!-- ==================================================
            INFO
@@ -2143,7 +2335,6 @@
     </main>
 
 
-
     <!-- ==================================================
          FOOTER
     =================================================== -->
@@ -2163,7 +2354,6 @@
   </div>
 
 
-
   <script>
 
     /* =====================================================
@@ -2179,91 +2369,55 @@
     ===================================================== */
 
     const nisnInput =
-      document.getElementById(
-        "nisnInput"
-      );
+      document.getElementById("nisnInput");
 
     const searchBtn =
-      document.getElementById(
-        "searchBtn"
-      );
+      document.getElementById("searchBtn");
 
     const message =
-      document.getElementById(
-        "message"
-      );
+      document.getElementById("message");
 
     const loading =
-      document.getElementById(
-        "loading"
-      );
+      document.getElementById("loading");
 
     const result =
-      document.getElementById(
-        "result"
-      );
+      document.getElementById("result");
 
     const ktaPhoto =
-      document.getElementById(
-        "ktaPhoto"
-      );
+      document.getElementById("ktaPhoto");
 
     const ktaName =
-      document.getElementById(
-        "ktaName"
-      );
+      document.getElementById("ktaName");
 
     const ktaNumber =
-      document.getElementById(
-        "ktaNumber"
-      );
+      document.getElementById("ktaNumber");
 
     const ktaQR =
-      document.getElementById(
-        "ktaQR"
-      );
+      document.getElementById("ktaQR");
 
     const printBtn =
-      document.getElementById(
-        "printBtn"
-      );
+      document.getElementById("printBtn");
 
     const pdfBtn =
-      document.getElementById(
-        "pdfBtn"
-      );
-
+      document.getElementById("pdfBtn");
 
     const registerForm =
-      document.getElementById(
-        "registerForm"
-      );
+      document.getElementById("registerForm");
 
     const registerBtn =
-      document.getElementById(
-        "registerBtn"
-      );
+      document.getElementById("registerBtn");
 
     const registerResult =
-      document.getElementById(
-        "registerResult"
-      );
+      document.getElementById("registerResult");
 
     const photoPreviewWrap =
-      document.getElementById(
-        "photoPreviewWrap"
-      );
+      document.getElementById("photoPreviewWrap");
 
     const photoPreview =
-      document.getElementById(
-        "photoPreview"
-      );
+      document.getElementById("photoPreview");
 
     const photoPreviewInfo =
-      document.getElementById(
-        "photoPreviewInfo"
-      );
-
+      document.getElementById("photoPreviewInfo");
 
 
     /* =====================================================
@@ -2275,13 +2429,11 @@
       type = "info"
     ) {
 
-      message.textContent =
-        text;
+      message.textContent = text;
 
       message.className =
         "message show " +
         type;
-
     }
 
 
@@ -2292,47 +2444,34 @@
 
       message.textContent =
         "";
-
     }
-
 
 
     /* =====================================================
        LOADING
     ===================================================== */
 
-    function setLoading(
-      status
-    ) {
+    function setLoading(status) {
 
       if (status) {
 
-        loading.classList.add(
-          "show"
-        );
+        loading.classList.add("show");
 
-        searchBtn.disabled =
-          true;
+        searchBtn.disabled = true;
 
         searchBtn.textContent =
           "Mencari...";
 
       } else {
 
-        loading.classList.remove(
-          "show"
-        );
+        loading.classList.remove("show");
 
-        searchBtn.disabled =
-          false;
+        searchBtn.disabled = false;
 
         searchBtn.textContent =
           "Cari KTA";
-
       }
-
     }
-
 
 
     /* =====================================================
@@ -2341,29 +2480,329 @@
 
     function resetResult() {
 
-      result.classList.remove(
-        "show"
-      );
+      result.classList.remove("show");
 
-      ktaName.textContent =
-        "-";
+      ktaName.textContent = "-";
 
-      ktaNumber.textContent =
-        "-";
+      ktaNumber.textContent = "-";
 
-      ktaPhoto.removeAttribute(
-        "src"
-      );
+      ktaPhoto.removeAttribute("src");
 
-      ktaQR.removeAttribute(
-        "src"
-      );
+      ktaPhoto.classList.remove("is-error");
 
-      pdfBtn.dataset.url =
-        "";
+      ktaQR.removeAttribute("src");
 
+      pdfBtn.dataset.url = "";
+
+      pdfBtn.disabled = false;
     }
 
+
+    /* =====================================================
+       NORMALISASI URL FOTO
+       SUPPORT GOOGLE DRIVE
+    ===================================================== */
+
+    function normalizePhotoUrl(value) {
+
+      if (!value) {
+        return "";
+      }
+
+      let url =
+        String(value).trim();
+
+      if (!url) {
+        return "";
+      }
+
+
+      /*
+       * Jika sudah berupa data URL/base64
+       */
+      if (
+        url.startsWith("data:image/")
+      ) {
+
+        return url;
+      }
+
+
+      /*
+       * Jika backend hanya mengirim
+       * File ID Google Drive.
+       *
+       * File ID Google Drive biasanya
+       * panjang dan tidak mengandung slash.
+       */
+      if (
+        !url.startsWith("http://") &&
+        !url.startsWith("https://") &&
+        !url.includes("/")
+      ) {
+
+        return (
+          "https://drive.google.com/thumbnail?id=" +
+          encodeURIComponent(url) +
+          "&sz=w800"
+        );
+      }
+
+
+      /*
+       * Format:
+       * https://drive.google.com/file/d/FILE_ID/view
+       */
+      const fileMatch =
+        url.match(
+          /drive\.google\.com\/file\/d\/([^/]+)/
+        );
+
+      if (fileMatch) {
+
+        const fileId =
+          fileMatch[1];
+
+        return (
+          "https://drive.google.com/thumbnail?id=" +
+          encodeURIComponent(fileId) +
+          "&sz=w800"
+        );
+      }
+
+
+      /*
+       * Format:
+       * https://drive.google.com/open?id=FILE_ID
+       */
+      const openMatch =
+        url.match(
+          /drive\.google\.com\/open\?id=([^&]+)/
+        );
+
+      if (openMatch) {
+
+        const fileId =
+          openMatch[1];
+
+        return (
+          "https://drive.google.com/thumbnail?id=" +
+          encodeURIComponent(fileId) +
+          "&sz=w800"
+        );
+      }
+
+
+      /*
+       * Format:
+       * https://drive.google.com/uc?id=FILE_ID
+       */
+      const ucMatch =
+        url.match(
+          /drive\.google\.com\/uc\?(?:export=[^&]+&)?id=([^&]+)/
+        );
+
+      if (ucMatch) {
+
+        const fileId =
+          ucMatch[1];
+
+        return (
+          "https://drive.google.com/thumbnail?id=" +
+          encodeURIComponent(fileId) +
+          "&sz=w800"
+        );
+      }
+
+
+      /*
+       * Format thumbnail Google Drive
+       * sudah benar → langsung gunakan.
+       */
+      if (
+        url.includes(
+          "drive.google.com/thumbnail"
+        )
+      ) {
+
+        return url;
+      }
+
+
+      /*
+       * URL Googleusercontent
+       * atau URL gambar biasa.
+       */
+      return url;
+    }
+
+
+    /* =====================================================
+       ALTERNATIF URL FOTO
+       ===================================================== */
+
+    function getAlternativePhotoUrls(value) {
+
+      const urls = [];
+
+      if (!value) {
+        return urls;
+      }
+
+      const raw =
+        String(value).trim();
+
+
+      /*
+       * Jika File ID
+       */
+      if (
+        !raw.startsWith("http://") &&
+        !raw.startsWith("https://") &&
+        !raw.includes("/")
+      ) {
+
+        urls.push(
+          "https://drive.google.com/thumbnail?id=" +
+          encodeURIComponent(raw) +
+          "&sz=w1000"
+        );
+
+        urls.push(
+          "https://drive.google.com/uc?export=view&id=" +
+          encodeURIComponent(raw)
+        );
+
+        return urls;
+      }
+
+
+      const match =
+        raw.match(
+          /drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=[^&]+&)?id=)([^/&]+)/
+        );
+
+
+      if (match) {
+
+        const fileId =
+          match[1];
+
+        urls.push(
+          "https://drive.google.com/thumbnail?id=" +
+          encodeURIComponent(fileId) +
+          "&sz=w1000"
+        );
+
+        urls.push(
+          "https://drive.google.com/uc?export=view&id=" +
+          encodeURIComponent(fileId)
+        );
+      }
+
+
+      /*
+       * URL asli sebagai opsi terakhir.
+       */
+      urls.push(raw);
+
+      return [
+        ...new Set(urls)
+      ];
+    }
+
+
+    /* =====================================================
+       LOAD FOTO DENGAN FALLBACK
+    ===================================================== */
+
+    function loadMemberPhoto(photoValue) {
+
+      const urls =
+        getAlternativePhotoUrls(
+          photoValue
+        );
+
+
+      if (!urls.length) {
+
+        ktaPhoto.src =
+          createPlaceholderPhoto();
+
+        return;
+      }
+
+
+      let index = 0;
+
+
+      function tryNextPhoto() {
+
+        if (
+          index >= urls.length
+        ) {
+
+          console.warn(
+            "Semua URL foto gagal dimuat:",
+            photoValue
+          );
+
+          ktaPhoto.classList.add(
+            "is-error"
+          );
+
+          ktaPhoto.src =
+            createPlaceholderPhoto();
+
+          return;
+        }
+
+
+        const currentUrl =
+          urls[index];
+
+        index++;
+
+
+        /*
+         * Buat Image terpisah terlebih dahulu.
+         * Jika berhasil, baru tampilkan pada kartu.
+         */
+        const testImage =
+          new Image();
+
+
+        testImage.onload =
+          function() {
+
+            ktaPhoto.classList.remove(
+              "is-error"
+            );
+
+            ktaPhoto.src =
+              currentUrl;
+          };
+
+
+        testImage.onerror =
+          function() {
+
+            console.warn(
+              "URL foto gagal:",
+              currentUrl
+            );
+
+            tryNextPhoto();
+          };
+
+
+        testImage.src =
+          currentUrl;
+      }
+
+
+      tryNextPhoto();
+    }
 
 
     /* =====================================================
@@ -2373,8 +2812,7 @@
     async function searchNISN() {
 
       const nisn =
-        nisnInput.value
-          .trim();
+        nisnInput.value.trim();
 
 
       hideMessage();
@@ -2392,7 +2830,6 @@
         nisnInput.focus();
 
         return;
-
       }
 
 
@@ -2406,13 +2843,10 @@
         nisnInput.focus();
 
         return;
-
       }
 
 
-      setLoading(
-        true
-      );
+      setLoading(true);
 
 
       try {
@@ -2420,9 +2854,7 @@
         const url =
           API_URL +
           "?action=searchNISN&nisn=" +
-          encodeURIComponent(
-            nisn
-          );
+          encodeURIComponent(nisn);
 
 
         const response =
@@ -2440,7 +2872,6 @@
           throw new Error(
             "Server tidak dapat dihubungi."
           );
-
         }
 
 
@@ -2460,8 +2891,13 @@
           );
 
           return;
-
         }
+
+
+        console.log(
+          "DATA MEMBER:",
+          data.member
+        );
 
 
         displayMember(
@@ -2475,7 +2911,6 @@
           error
         );
 
-
         showMessage(
           "Terjadi masalah saat menghubungi sistem. Silakan coba lagi.",
           "error"
@@ -2483,70 +2918,90 @@
 
       } finally {
 
-        setLoading(
-          false
-        );
-
+        setLoading(false);
       }
-
     }
-
 
 
     /* =====================================================
        DISPLAY MEMBER
     ===================================================== */
 
-    function displayMember(
-      member
-    ) {
+    function displayMember(member) {
 
       /*
        * Nama
        */
-
       ktaName.textContent =
         member.nama ||
+        member.NAMA_LENGKAP ||
         "-";
 
 
       /*
        * Nomor anggota
        */
-
       ktaNumber.textContent =
         member.nomorAnggota ||
+        member.NOMOR_ANGGOTA ||
         "-";
 
 
       /*
-       * Foto
+       * FOTO
+       *
+       * Mendukung beberapa kemungkinan
+       * nama field dari backend.
        */
+      const photoValue =
+        member.foto ||
+        member.FOTO_URL ||
+        member.fotoUrl ||
+        member.FOTO ||
+        member.fotoRawUrl ||
+        member.FOTO_RAW_URL ||
+        "";
 
-      if (
-        member.foto
-      ) {
 
-        ktaPhoto.src =
-          member.foto;
+      console.log(
+        "URL FOTO:",
+        photoValue
+      );
+
+
+      if (photoValue) {
+
+        loadMemberPhoto(
+          photoValue
+        );
 
       } else {
 
+        ktaPhoto.classList.add(
+          "is-error"
+        );
+
         ktaPhoto.src =
           createPlaceholderPhoto();
-
       }
 
 
       /*
        * QR
        */
-
       const qrData =
         "PMR|" +
-        (member.nomorAnggota || "") +
+        (
+          member.nomorAnggota ||
+          member.NOMOR_ANGGOTA ||
+          ""
+        ) +
         "|" +
-        (member.nisn || "");
+        (
+          member.nisn ||
+          member.NISN ||
+          ""
+        );
 
 
       ktaQR.src =
@@ -2559,40 +3014,25 @@
       /*
        * PDF
        */
-
-      /*
-       * Backend belum mengirim
-       * link PDF publik.
-       *
-       * Jika nanti API mengirim
-       * member.pdf, tombol akan aktif.
-       */
-
-      if (
-        member.pdf
-      ) {
+      if (member.pdf) {
 
         pdfBtn.dataset.url =
           member.pdf;
 
-        pdfBtn.disabled =
-          false;
+        pdfBtn.disabled = false;
 
       } else {
 
         pdfBtn.dataset.url =
           "";
 
-        pdfBtn.disabled =
-          true;
-
+        pdfBtn.disabled = false;
       }
 
 
       /*
-       * Tampilkan
+       * Tampilkan kartu
        */
-
       result.classList.add(
         "show"
       );
@@ -2605,9 +3045,8 @@
 
 
       /*
-       * Scroll ke kartu
+       * Scroll
        */
-
       setTimeout(
         function() {
 
@@ -2619,9 +3058,7 @@
         },
         150
       );
-
     }
-
 
 
     /* =====================================================
@@ -2635,6 +3072,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 300 400"
         >
+
           <rect
             width="300"
             height="400"
@@ -2672,19 +3110,45 @@
           >
             FOTO
           </text>
+
         </svg>
       `;
 
 
       return (
         "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(
-          svg
-        )
+        encodeURIComponent(svg)
       );
-
     }
 
+
+    /* =====================================================
+       FOTO ERROR HANDLER
+    ===================================================== */
+
+    ktaPhoto.addEventListener(
+      "error",
+      function() {
+
+        /*
+         * Jangan loop terus-menerus.
+         */
+        if (
+          !this.classList.contains(
+            "is-error"
+          )
+        ) {
+
+          this.classList.add(
+            "is-error"
+          );
+
+          this.src =
+            createPlaceholderPhoto();
+        }
+
+      }
+    );
 
 
     /* =====================================================
@@ -2704,14 +3168,11 @@
         );
 
         return;
-
       }
 
 
       window.print();
-
     }
-
 
 
     /* =====================================================
@@ -2732,7 +3193,6 @@
         );
 
         return;
-
       }
 
 
@@ -2741,211 +3201,413 @@
         "_blank",
         "noopener"
       );
-
     }
-
-
 
 
     /* =====================================================
-       PENDAFTARAN ANGGOTA
-       Format mengikuti sheet "Data Anggota":
-       NAMA_LENGKAP, JENIS_KELAMIN, TEMPAT_LAHIR,
-       TANGGAL_LAHIR, AGAMA, ALAMAT, NO_HP, HOBI,
-       GOLONGAN_DARAH, KELAS, NISN, FOTO
+       PENDAFTARAN
     ===================================================== */
 
-    function showRegisterResult(text, type = "success") {
-      registerResult.textContent = text;
-      registerResult.className = "register-result show " + type;
+    function showRegisterResult(
+      text,
+      type = "success"
+    ) {
+
+      registerResult.textContent =
+        text;
+
+      registerResult.className =
+        "register-result show " +
+        type;
     }
 
-    function setRegisterLoading(status) {
-      registerBtn.disabled = status;
-      registerBtn.textContent = status
-        ? "Mengirim pendaftaran..."
-        : "🩸 Daftar sebagai Anggota PMR";
+
+    function setRegisterLoading(
+      status
+    ) {
+
+      registerBtn.disabled =
+        status;
+
+      registerBtn.textContent =
+        status
+          ? "Mengirim pendaftaran..."
+          : "🩸 Daftar sebagai Anggota PMR";
     }
 
-    function fileToCompressedBase64(file) {
-      return new Promise((resolve, reject) => {
 
-        if (!file) {
-          reject(new Error("Silakan pilih foto terlebih dahulu."));
-          return;
-        }
+    /* =====================================================
+       COMPRESS FOTO
+    ===================================================== */
 
-        if (!file.type.startsWith("image/")) {
-          reject(new Error("File foto harus berupa gambar."));
-          return;
-        }
+    function fileToCompressedBase64(
+      file
+    ) {
 
-        if (file.size > 8 * 1024 * 1024) {
-          reject(new Error("Ukuran foto maksimal 8 MB."));
-          return;
-        }
+      return new Promise(
+        (
+          resolve,
+          reject
+        ) => {
 
-        const reader = new FileReader();
+          if (!file) {
 
-        reader.onload = function(event) {
-
-          const img = new Image();
-
-          img.onload = function() {
-
-            const maxWidth = 900;
-            const maxHeight = 1200;
-
-            let width = img.width;
-            let height = img.height;
-
-            const scale = Math.min(
-              1,
-              maxWidth / width,
-              maxHeight / height
+            reject(
+              new Error(
+                "Silakan pilih foto terlebih dahulu."
+              )
             );
 
-            width = Math.round(width * scale);
-            height = Math.round(height * scale);
+            return;
+          }
 
-            const canvas = document.createElement("canvas");
-            canvas.width = width;
-            canvas.height = height;
 
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
+          if (
+            !file.type.startsWith(
+              "image/"
+            )
+          ) {
 
-            /*
-             * JPEG dikompresi agar POST ke Apps Script
-             * tidak membawa file mentah yang terlalu besar.
-             */
-            const base64 = canvas.toDataURL(
-              "image/jpeg",
-              0.82
+            reject(
+              new Error(
+                "File foto harus berupa gambar."
+              )
             );
 
-            resolve({
-              data: base64,
-              mimeType: "image/jpeg",
-              fileName: file.name
-            });
+            return;
+          }
 
-          };
 
-          img.onerror = function() {
-            reject(new Error("Foto tidak dapat dibaca."));
-          };
+          if (
+            file.size >
+            8 * 1024 * 1024
+          ) {
 
-          img.src = event.target.result;
-        };
+            reject(
+              new Error(
+                "Ukuran foto maksimal 8 MB."
+              )
+            );
 
-        reader.onerror = function() {
-          reject(new Error("Foto gagal dibaca."));
-        };
+            return;
+          }
 
-        reader.readAsDataURL(file);
-      });
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload =
+            function(event) {
+
+              const img =
+                new Image();
+
+
+              img.onload =
+                function() {
+
+                  const maxWidth =
+                    900;
+
+                  const maxHeight =
+                    1200;
+
+
+                  let width =
+                    img.width;
+
+                  let height =
+                    img.height;
+
+
+                  const scale =
+                    Math.min(
+                      1,
+                      maxWidth / width,
+                      maxHeight / height
+                    );
+
+
+                  width =
+                    Math.round(
+                      width * scale
+                    );
+
+                  height =
+                    Math.round(
+                      height * scale
+                    );
+
+
+                  const canvas =
+                    document.createElement(
+                      "canvas"
+                    );
+
+
+                  canvas.width =
+                    width;
+
+                  canvas.height =
+                    height;
+
+
+                  const ctx =
+                    canvas.getContext(
+                      "2d"
+                    );
+
+
+                  ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                  );
+
+
+                  const base64 =
+                    canvas.toDataURL(
+                      "image/jpeg",
+                      0.82
+                    );
+
+
+                  resolve({
+
+                    data: base64,
+
+                    mimeType:
+                      "image/jpeg",
+
+                    fileName:
+                      file.name
+
+                  });
+
+                };
+
+
+              img.onerror =
+                function() {
+
+                  reject(
+                    new Error(
+                      "Foto tidak dapat dibaca."
+                    )
+                  );
+
+                };
+
+
+              img.src =
+                event.target.result;
+
+            };
+
+
+          reader.onerror =
+            function() {
+
+              reject(
+                new Error(
+                  "Foto gagal dibaca."
+                )
+              );
+
+            };
+
+
+          reader.readAsDataURL(
+            file
+          );
+
+        }
+      );
     }
 
 
-    async function registerMember(event) {
+    /* =====================================================
+       REGISTER MEMBER
+    ===================================================== */
+
+    async function registerMember(
+      event
+    ) {
 
       event.preventDefault();
 
-      registerResult.className = "register-result";
-      registerResult.textContent = "";
 
-      const formData = new FormData(registerForm);
-      const fotoFile = formData.get("foto");
+      registerResult.className =
+        "register-result";
+
+      registerResult.textContent =
+        "";
+
+
+      const formData =
+        new FormData(
+          registerForm
+        );
+
+
+      const fotoFile =
+        formData.get("foto");
+
 
       const data = {
-        action: "registerMember",
+
+        action:
+          "registerMember",
 
         NAMA_LENGKAP:
-          formData.get("nama").trim(),
+          formData
+            .get("nama")
+            .trim(),
 
         JENIS_KELAMIN:
-          formData.get("jenisKelamin"),
+          formData.get(
+            "jenisKelamin"
+          ),
 
         TEMPAT_LAHIR:
-          formData.get("tempatLahir").trim(),
+          formData
+            .get("tempatLahir")
+            .trim(),
 
         TANGGAL_LAHIR:
-          formData.get("tanggalLahir"),
+          formData.get(
+            "tanggalLahir"
+          ),
 
         AGAMA:
-          formData.get("agama"),
+          formData.get(
+            "agama"
+          ),
 
         ALAMAT:
-          formData.get("alamat").trim(),
+          formData
+            .get("alamat")
+            .trim(),
 
         NO_HP:
-          formData.get("noHP").trim(),
+          formData
+            .get("noHP")
+            .trim(),
 
         HOBI:
-          formData.get("hobi").trim(),
+          formData
+            .get("hobi")
+            .trim(),
 
         GOLONGAN_DARAH:
-          formData.get("golonganDarah"),
+          formData.get(
+            "golonganDarah"
+          ),
 
         KELAS:
-          formData.get("kelas"),
+          formData.get(
+            "kelas"
+          ),
 
         NISN:
-          formData.get("nisn").trim()
+          formData
+            .get("nisn")
+            .trim()
+
       };
 
 
-      if (!/^\d+$/.test(data.NISN)) {
+      if (
+        !/^\d+$/.test(
+          data.NISN
+        )
+      ) {
+
         showRegisterResult(
           "NISN hanya boleh berisi angka.",
           "error"
         );
-        document.getElementById("regNisn").focus();
+
+        document
+          .getElementById(
+            "regNisn"
+          )
+          .focus();
+
         return;
       }
 
 
-      if (!fotoFile || !fotoFile.size) {
+      if (
+        !fotoFile ||
+        !fotoFile.size
+      ) {
+
         showRegisterResult(
           "Silakan pilih foto anggota terlebih dahulu.",
           "error"
         );
+
         return;
       }
 
 
-      setRegisterLoading(true);
+      setRegisterLoading(
+        true
+      );
 
 
       try {
 
-        const foto = await fileToCompressedBase64(fotoFile);
+        const foto =
+          await fileToCompressedBase64(
+            fotoFile
+          );
 
-        data.FOTO = foto.data;
-        data.FOTO_MIME = foto.mimeType;
-        data.FOTO_NAMA_FILE = foto.fileName;
+
+        data.FOTO =
+          foto.data;
+
+        data.FOTO_MIME =
+          foto.mimeType;
+
+        data.FOTO_NAMA_FILE =
+          foto.fileName;
 
 
         /*
-         * POST sebagai text/plain untuk menghindari
-         * preflight CORS pada Google Apps Script.
-         *
-         * Backend membaca JSON dari e.postData.contents.
+         * POST text/plain
+         * agar tidak terkena preflight CORS.
          */
-        const response = await fetch(
-          API_URL,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8"
-            },
-            body: JSON.stringify(data)
-          }
-        );
+        const response =
+          await fetch(
+            API_URL,
+            {
+
+              method:
+                "POST",
+
+              headers: {
+
+                "Content-Type":
+                  "text/plain;charset=utf-8"
+
+              },
+
+              body:
+                JSON.stringify(
+                  data
+                )
+
+            }
+          );
 
 
         if (!response.ok) {
+
           throw new Error(
             "Server tidak dapat dihubungi."
           );
@@ -2956,7 +3618,10 @@
           await response.json();
 
 
-        if (!resultData.success) {
+        if (
+          !resultData.success
+        ) {
+
           throw new Error(
             resultData.message ||
             "Pendaftaran gagal diproses."
@@ -2967,7 +3632,8 @@
         const nomor =
           resultData.nomorAnggota
             ? " Nomor anggota: " +
-              resultData.nomorAnggota + "."
+              resultData.nomorAnggota +
+              "."
             : "";
 
 
@@ -2984,15 +3650,30 @@
 
         registerForm.reset();
 
-        photoPreviewWrap.classList.remove("show");
-        photoPreview.removeAttribute("src");
+
+        photoPreviewWrap
+          .classList
+          .remove(
+            "show"
+          );
+
+
+        photoPreview
+          .removeAttribute(
+            "src"
+          );
+
+
         photoPreviewInfo.textContent =
           "Foto siap dikirim.";
 
 
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          error
+        );
+
 
         showRegisterResult(
           error.message ||
@@ -3000,71 +3681,130 @@
           "error"
         );
 
+
       } finally {
 
-        setRegisterLoading(false);
-
+        setRegisterLoading(
+          false
+        );
       }
-
     }
 
 
-    /*
-     * Preview foto sebelum dikirim.
-     */
+    /* =====================================================
+       PREVIEW FOTO PENDAFTARAN
+    ===================================================== */
+
     document
-      .getElementById("regFoto")
+      .getElementById(
+        "regFoto"
+      )
       .addEventListener(
         "change",
         function() {
 
-          const file = this.files[0];
+          const file =
+            this.files[0];
+
 
           if (!file) {
-            photoPreviewWrap.classList.remove("show");
+
+            photoPreviewWrap
+              .classList
+              .remove(
+                "show"
+              );
+
             return;
           }
 
-          if (!file.type.startsWith("image/")) {
+
+          if (
+            !file.type.startsWith(
+              "image/"
+            )
+          ) {
+
             showRegisterResult(
               "File yang dipilih harus berupa foto.",
               "error"
             );
+
             this.value = "";
-            photoPreviewWrap.classList.remove("show");
+
+            photoPreviewWrap
+              .classList
+              .remove(
+                "show"
+              );
+
             return;
           }
 
-          const url =
-            URL.createObjectURL(file);
 
-          photoPreview.src = url;
+          const url =
+            URL.createObjectURL(
+              file
+            );
+
+
+          photoPreview.src =
+            url;
+
 
           photoPreviewInfo.textContent =
             file.name +
             " • " +
-            Math.round(file.size / 1024) +
+            Math.round(
+              file.size / 1024
+            ) +
             " KB";
 
-          photoPreviewWrap.classList.add("show");
+
+          photoPreviewWrap
+            .classList
+            .add(
+              "show"
+            );
 
         }
       );
 
 
-    /*
-     * NISN tetap disimpan sebagai teks agar
-     * angka 0 di depan tidak hilang.
-     */
+    /* =====================================================
+       FORMAT NISN
+    ===================================================== */
+
     document
-      .getElementById("regNisn")
+      .getElementById(
+        "regNisn"
+      )
       .addEventListener(
         "input",
         function() {
+
           this.value =
-            this.value.replace(/\D/g, "");
+            this.value.replace(
+              /\D/g,
+              ""
+            );
+
         }
       );
+
+
+    nisnInput.addEventListener(
+      "input",
+      function() {
+
+        this.value =
+          this.value.replace(
+            /\D/g,
+            ""
+          );
+
+      }
+    );
 
 
     /* =====================================================
@@ -3089,7 +3829,6 @@
           event.preventDefault();
 
           searchNISN();
-
         }
 
       }
@@ -3111,25 +3850,6 @@
     registerForm.addEventListener(
       "submit",
       registerMember
-    );
-
-
-
-    /* =====================================================
-       INPUT FORMAT
-    ===================================================== */
-
-    nisnInput.addEventListener(
-      "input",
-      function() {
-
-        this.value =
-          this.value.replace(
-            /\D/g,
-            ""
-          );
-
-      }
     );
 
 

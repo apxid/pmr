@@ -5,16 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KTA PMR - SMP Negeri 1 Moga</title>
   <style>
-    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-    body { background-color: #f4f6f9; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 1.5rem 1rem; }
+    :root {
+      --primary-color: #b71c1c;
+      --primary-dark: #8e0000;
+      --bg-color: #f4f6f9;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --border-color: #cccccc;
+    }
 
-    /* Ukuran Kartu KTA Responsif */
-    .kta-card {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Header Navigasi Web (Hidden saat Cetak) */
+    header {
       width: 100%;
-      max-width: 380px;
+      background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    header h2 { font-size: 1.3rem; }
+    header p { font-size: 0.85rem; opacity: 0.9; }
+
+    nav {
+      width: 100%;
+      background: #6a0000;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 5px;
+      margin-bottom: 2rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    /* Ukuran Tampilan Kartu KTA */
+    .kta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem 2rem;
+      width: 100%;
+    }
+
+    .kta-card {
+      width: 380px;
       height: 240px;
-      background: #ffffff;
-      border: 2px solid #b71c1c;
+      background: var(--card-bg);
+      border: 2px solid var(--primary-color);
       border-radius: 12px;
       padding: 12px;
       position: relative;
@@ -26,26 +84,35 @@
     }
 
     .kta-header {
-      border-bottom: 2px solid #b71c1c;
+      border-bottom: 2px solid var(--primary-color);
       padding-bottom: 6px;
       text-align: center;
     }
-    .kta-header h3 { font-size: 0.85rem; color: #b71c1c; letter-spacing: 0.5px; }
+    .kta-header h3 { font-size: 0.85rem; color: var(--primary-color); letter-spacing: 0.5px; }
     .kta-header h4 { font-size: 0.75rem; color: #333; font-weight: 600; }
 
-    .kta-body { display: flex; gap: 12px; margin-top: 8px; flex: 1; }
+    .kta-body {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+      flex: 1;
+    }
     
     .photo-box {
       width: 75px;
       height: 98px;
       border-radius: 4px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border-color);
       object-fit: cover;
       background: #e0e0e0;
       flex-shrink: 0;
     }
 
-    .kta-details { font-size: 0.72rem; color: #222; flex: 1; }
+    .kta-details {
+      font-size: 0.72rem;
+      color: #222;
+      flex: 1;
+    }
     .kta-details table { width: 100%; border-collapse: collapse; }
     .kta-details td { padding: 1px 2px; vertical-align: top; }
     .kta-details td.label { font-weight: bold; width: 65px; }
@@ -60,80 +127,135 @@
       border-top: 1px dashed #ddd;
       padding-top: 4px;
     }
-    .badge-pmi { color: #b71c1c; font-weight: bold; }
+    .badge-pmi {
+      color: var(--primary-color);
+      font-weight: bold;
+    }
 
-    .btn-container { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 380px; }
-    .btn { flex: 1; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; font-size: 0.9rem; }
-    .btn-print { background: #b71c1c; color: white; }
-    .btn-back { background: #555; color: white; }
+    .btn-container {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 380px;
+    }
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn-print { background: var(--primary-color); color: white; }
+    .btn-back { background: #555555; color: white; }
 
-    /* CSS Khusus Cetak Printer/PDF */
+    /* Aturan Cetak Printer / PDF */
     @media print {
-      body { background: white; padding: 0; }
-      .btn-container { display: none; }
+      body {
+        background: white;
+        padding: 0;
+        margin: 0;
+        display: block;
+      }
+      header, nav, .btn-container {
+        display: none !important;
+      }
+      .kta-container {
+        padding: 0;
+        margin: 0;
+      }
       .kta-card {
         width: 85.6mm; /* Ukuran standar ID Card */
         height: 53.9mm;
         border: 1px solid #000;
         box-shadow: none;
-        position: absolute;
-        left: 0; top: 0;
+        margin: 20mm auto;
+        page-break-inside: avoid;
       }
+      .kta-header h3 { color: #000; }
+      .badge-pmi { color: #000; }
     }
   </style>
 </head>
 <body>
 
-  <div class="kta-card">
-    <div class="kta-header">
-      <h3>KARTU TANDA ANGGOTA PMR</h3>
-      <h4>SMP NEGERI 1 MOGA</h4>
-    </div>
+  <header>
+    <h2>Kartu Tanda Anggota</h2>
+    <p>PMR Madya SMP Negeri 1 Moga</p>
+  </header>
 
-    <div class="kta-body">
-      <img id="cardFoto" class="photo-box" src="" alt="Foto Anggota">
-      <div class="kta-details">
-        <table>
-          <tr><td class="label">Nama</td><td>:</td><td id="cardNama" style="font-weight:bold;">-</td></tr>
-          <tr><td class="label">NISN</td><td>:</td><td id="cardNisn">-</td></tr>
-          <tr><td class="label">Jabatan</td><td>:</td><td id="cardJabatan" style="color:#b71c1c; font-weight:bold;">-</td></tr>
-          <tr><td class="label">Kelas</td><td>:</td><td id="cardKelas">-</td></tr>
-          <tr><td class="label">TTL</td><td>:</td><td id="cardTtl">-</td></tr>
-          <tr><td class="label">Gol. Darah</td><td>:</td><td id="cardGol">-</td></tr>
-        </table>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="daftar.html">Pendaftaran</a>
+    <a href="search.html">Cari KTA</a>
+  </nav>
+
+  <div class="kta-container">
+    <div class="kta-card">
+      <div class="kta-header">
+        <h3>KARTU TANDA ANGGOTA PMR</h3>
+        <h4>SMP NEGERI 1 MOGA</h4>
+      </div>
+
+      <div class="kta-body">
+        <img id="cardFoto" class="photo-box" src="" alt="Foto Anggota">
+        <div class="kta-details">
+          <table>
+            <tr><td class="label">Nama</td><td>:</td><td id="cardNama" style="font-weight:bold;">-</td></tr>
+            <tr><td class="label">NISN</td><td>:</td><td id="cardNisn">-</td></tr>
+            <tr><td class="label">Status</td><td>:</td><td id="cardStatus" style="color:var(--primary-color); font-weight:bold;">-</td></tr>
+            <tr><td class="label">Kelas</td><td>:</td><td id="cardKelas">-</td></tr>
+            <tr><td class="label">TTL</td><td>:</td><td id="cardTtl">-</td></tr>
+            <tr><td class="label">Gol. Darah</td><td>:</td><td id="cardGol">-</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="kta-footer">
+        <span class="badge-pmi">PMR MADYA</span>
+        <div style="text-align: right;">
+          <p>Moga, Pemalang</p>
+          <p>Pembina PMR</p>
+        </div>
       </div>
     </div>
 
-    <div class="kta-footer">
-      <span class="badge-pmi">PMR MADYA</span>
-      <div style="text-align: right;">
-        <p>Moga, Pemalang</p>
-        <p>Pembina PMR</p>
-      </div>
+    <div class="btn-container">
+      <button class="btn btn-print" onclick="window.print()">Cetak / Simpan PDF</button>
+      <a href="search.html" class="btn btn-back">Kembali</a>
     </div>
-  </div>
-
-  <div class="btn-container">
-    <button class="btn btn-print" onclick="window.print()">Cetak / Simpan PDF</button>
-    <a href="search.html" class="btn btn-back">Kembali</a>
   </div>
 
   <script>
-    // Ambil data dari query URL
+    // Membaca parameter dari Query URL
     const params = new URLSearchParams(window.location.search);
 
-    document.getElementById('cardNama').innerText = params.get('nama') || '-';
-    document.getElementById('cardNisn').innerText = params.get('nisn') || '-';
-    document.getElementById('cardJabatan').innerText = params.get('jabatan') || '-';
-    document.getElementById('cardKelas').innerText = params.get('kelas') || '-';
-    document.getElementById('cardTtl').innerText = params.get('ttl') || '-';
-    document.getElementById('cardGol').innerText = params.get('gol') || '-';
+    function getParam(key) {
+      const val = params.get(key);
+      return val ? decodeURIComponent(val) : '-';
+    }
+
+    document.getElementById('cardNama').innerText = getParam('nama');
+    document.getElementById('cardNisn').innerText = getParam('nisn');
+    document.getElementById('cardStatus').innerText = getParam('status');
+    document.getElementById('cardKelas').innerText = getParam('kelas');
+    document.getElementById('cardTtl').innerText = getParam('ttl');
+    document.getElementById('cardGol').innerText = getParam('gol');
 
     const fotoUrl = params.get('foto');
-    if (fotoUrl && fotoUrl !== "null" && fotoUrl !== "") {
-      document.getElementById('cardFoto').src = fotoUrl;
+    const photoImg = document.getElementById('cardFoto');
+
+    if (fotoUrl && fotoUrl !== "null" && fotoUrl.trim() !== "") {
+      photoImg.src = decodeURIComponent(fotoUrl);
     } else {
-      document.getElementById('cardFoto').src = 'https://via.placeholder.com/75x98?text=No+Foto';
+      // Fallback jika foto tidak ada
+      photoImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="98" viewBox="0 0 75 98"><rect width="100%" height="100%" fill="%23e0e0e0"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="10" fill="%23777">No Foto</text></svg>';
     }
   </script>
 </body>

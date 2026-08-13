@@ -5,39 +5,145 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cari Anggota / KTA PMR - SMPN 1 Moga</title>
   <style>
-    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-    body { background-color: #f4f6f9; color: #333; }
+    * { 
+      box-sizing: border-box; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+    }
+    body { 
+      background-color: #f4f6f9; 
+      color: #333; 
+    }
     
-    header { background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%); color: white; text-align: center; padding: 1.5rem 1rem; }
+    header { 
+      background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%); 
+      color: white; 
+      text-align: center; 
+      padding: 1.5rem 1rem; 
+    }
     header h2 { font-size: 1.4rem; }
     header p { font-size: 0.85rem; opacity: 0.9; }
 
-    nav { background: #6a0000; display: flex; justify-content: center; flex-wrap: wrap; padding: 5px; position: sticky; top: 0; z-index: 100; }
-    nav a { color: white; text-decoration: none; font-weight: 600; padding: 10px 16px; border-radius: 4px; font-size: 0.9rem; }
+    nav { 
+      background: #6a0000; 
+      display: flex; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+      padding: 5px; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+    }
+    nav a { 
+      color: white; 
+      text-decoration: none; 
+      font-weight: 600; 
+      padding: 10px 16px; 
+      border-radius: 4px; 
+      font-size: 0.9rem; 
+    }
     nav a.active { background: rgba(255, 255, 255, 0.2); }
 
-    .container { max-width: 600px; margin: 1.5rem auto; padding: 0 1rem; }
+    .container { 
+      max-width: 600px; 
+      margin: 1.5rem auto; 
+      padding: 0 1rem; 
+    }
     
-    .search-card { background: white; padding: 1.2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
+    .search-card { 
+      background: white; 
+      padding: 1.2rem; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+      margin-bottom: 1.5rem; 
+    }
     .search-box { display: flex; gap: 8px; }
-    input[type="text"] { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem; outline: none; }
+    input[type="text"] { 
+      flex: 1; 
+      padding: 12px; 
+      border: 1px solid #ccc; 
+      border-radius: 6px; 
+      font-size: 0.95rem; 
+      outline: none; 
+      transition: border-color 0.2s;
+    }
     input[type="text"]:focus { border-color: #b71c1c; }
-    button { padding: 12px 18px; background: #b71c1c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.95rem; }
-    button:active { background: #8e0000; }
+    button { 
+      padding: 12px 18px; 
+      background: #b71c1c; 
+      color: white; 
+      border: none; 
+      border-radius: 6px; 
+      font-weight: bold; 
+      cursor: pointer; 
+      font-size: 0.95rem; 
+      transition: background 0.2s;
+    }
+    button:hover { background: #8e0000; }
+    button:active { background: #6a0000; }
 
-    #loading { text-align: center; font-weight: bold; color: #b71c1c; margin: 1rem 0; display: none; }
+    #loading { 
+      text-align: center; 
+      font-weight: bold; 
+      color: #b71c1c; 
+      margin: 1rem 0; 
+      display: none; 
+    }
 
-    .result-item { background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
-    .result-photo { width: 65px; height: 85px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; background: #eee; flex-shrink: 0; }
+    .result-item { 
+      background: white; 
+      padding: 1rem; 
+      border-radius: 10px; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+      margin-bottom: 1rem; 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+    }
+    .result-photo { 
+      width: 65px; 
+      height: 85px; 
+      object-fit: cover; 
+      border-radius: 6px; 
+      border: 1px solid #ddd; 
+      background: #eee; 
+      flex-shrink: 0; 
+    }
     .result-info { flex: 1; min-width: 0; }
-    .result-info h4 { font-size: 1rem; color: #111; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .result-info h4 { 
+      font-size: 1rem; 
+      color: #111; 
+      margin-bottom: 4px; 
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis; 
+    }
     .result-info p { font-size: 0.8rem; color: #666; margin-bottom: 2px; }
     .result-info .jabatan { color: #b71c1c; font-weight: bold; }
     
-    .btn-cta { display: inline-block; background: #2e7d32; color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; text-align: center; }
+    .btn-cta { 
+      display: inline-block; 
+      background: #2e7d32; 
+      color: white; 
+      text-decoration: none; 
+      padding: 8px 12px; 
+      border-radius: 6px; 
+      font-size: 0.8rem; 
+      font-weight: bold; 
+      flex-shrink: 0; 
+      text-align: center; 
+      transition: background 0.2s;
+    }
     .btn-cta:hover { background: #1b5e20; }
 
-    .alert { padding: 12px; border-radius: 8px; text-align: center; font-size: 0.9rem; line-height: 1.4; }
+    .alert { 
+      padding: 12px; 
+      border-radius: 8px; 
+      text-align: center; 
+      font-size: 0.9rem; 
+      line-height: 1.4; 
+    }
     .alert-pending { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
     .alert-danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
 
@@ -64,7 +170,7 @@
   <div class="container">
     <div class="search-card">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Masukkan NISN atau Nama...">
+        <input type="text" id="searchInput" placeholder="Masukkan NISN atau Nama..." onkeypress="handleKeyPress(event)">
         <button onclick="doSearch()">Cari</button>
       </div>
     </div>
@@ -85,6 +191,12 @@
       }
     };
 
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        doSearch();
+      }
+    }
+
     function doSearch() {
       const query = document.getElementById('searchInput').value.trim();
       if (!query) return;
@@ -100,22 +212,36 @@
         .then(res => {
           loadingDiv.style.display = 'none';
 
-          if (res.success && res.data.length > 0) {
+          if (res.success && res.data && res.data.length > 0) {
             res.data.forEach(item => {
               const card = document.createElement('div');
               card.className = 'result-item';
 
               const photoSrc = item.fotoUrl || 'https://via.placeholder.com/65x85?text=No+Foto';
+              
+              // Formatting Tempat & Tanggal Lahir agar tidak menampilkan 'undefined'
+              const ttl = [item.tempatLahir, item.tanggalLahir].filter(Boolean).join(', ');
 
-              // Susun data query parameter untuk dikirim ke card.html
-              const cardUrl = `card.html?nama=${encodeURIComponent(item.nama)}&nisn=${encodeURIComponent(item.nisn)}&kelas=${encodeURIComponent(item.kelas)}&jk=${encodeURIComponent(item.jenisKelamin)}&jabatan=${encodeURIComponent(item.statusKeanggotaan)}&ttl=${encodeURIComponent(item.tempatLahir + ', ' + item.tanggalLahir)}&gol=${encodeURIComponent(item.golDarah)}&foto=${encodeURIComponent(item.fotoUrl)}`;
+              // Susun query parameter untuk dikirim ke card.html
+              const cardParams = new URLSearchParams({
+                nama: item.nama || '',
+                nisn: item.nisn || '',
+                kelas: item.kelas || '',
+                jk: item.jenisKelamin || '',
+                jabatan: item.statusKeanggotaan || '',
+                ttl: ttl,
+                gol: item.golDarah || '',
+                foto: item.fotoUrl || ''
+              });
+
+              const cardUrl = `card.html?${cardParams.toString()}`;
 
               card.innerHTML = `
-                <img src="${photoSrc}" class="result-photo" alt="Foto ${item.nama}">
+                <img src="${escapeHtml(photoSrc)}" class="result-photo" alt="Foto ${escapeHtml(item.nama || '')}">
                 <div class="result-info">
-                  <h4>${item.nama}</h4>
-                  <p>NISN: <strong>${item.nisn}</strong> | Kelas: <strong>${item.kelas}</strong></p>
-                  <p class="jabatan">Jabatan: ${item.statusKeanggotaan}</p>
+                  <h4>${escapeHtml(item.nama || '-')}</h4>
+                  <p>NISN: <strong>${escapeHtml(item.nisn || '-')}</strong> | Kelas: <strong>${escapeHtml(item.kelas || '-')}</strong></p>
+                  <p class="jabatan">Jabatan: ${escapeHtml(item.statusKeanggotaan || '-')}</p>
                 </div>
                 <a href="${cardUrl}" class="btn-cta">Cetak KTA</a>
               `;
@@ -129,15 +255,28 @@
 
             resultsDiv.innerHTML = `
               <div class="alert ${alertClass}">
-                ${res.message || "Data tidak ditemukan."}
+                ${escapeHtml(res.message || "Data tidak ditemukan.")}
               </div>
             `;
           }
         })
         .catch(err => {
+          console.error("Fetch Error:", err);
           loadingDiv.style.display = 'none';
           resultsDiv.innerHTML = '<div class="alert alert-danger">Terjadi kesalahan koneksi. Silakan coba lagi.</div>';
         });
+    }
+
+    // Fungsi utilitas mencegah Karakter Spesial (XSS)
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
   </script>
 </body>

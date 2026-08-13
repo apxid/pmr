@@ -99,17 +99,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 8px 15px 2px;
+      padding: 12px 15px 2px;
       text-align: center;
       flex-shrink: 0;
     }
 
-    /* Logo Diperbesar */
+    /* Logo Diturunkan & Diberi Jeda ke Teks */
     .pmi-logo {
       width: 90px; 
       height: 90px;
       object-fit: contain;
-      margin-bottom: 4px;
+      margin-top: 6px; /* Diturunkan dari batas atas */
+      margin-bottom: 12px; /* Jeda cukup luas sebelum teks */
     }
 
     .header-title {
@@ -128,11 +129,11 @@
       margin-top: 2px;
     }
 
-    /* Area Foto Diturunkan Lagi */
+    /* Area Foto Diturunkan Sekitar 4 Row */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 22px;
+      margin-top: 35px; /* Diturunkan signifikan sekitar 4 row */
       margin-bottom: 8px;
     }
 
@@ -354,14 +355,14 @@
       <div id="ktaCardFront" class="kta-card">
         <div class="top-bar"></div>
 
-        <!-- HEADER: Logo Besar & Judul -->
+        <!-- HEADER: Logo & Judul dengan Jeda -->
         <div class="kta-header">
           <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
-        <!-- FOTO (POSISI LEBIH TURUN) -->
+        <!-- FOTO (TURUN 4 ROW) -->
         <div class="kta-photo-section">
           <div class="photo-container">
             <img id="ktaPhoto" src="" alt="Foto Anggota">

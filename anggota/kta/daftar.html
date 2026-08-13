@@ -3,115 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pendaftaran PMR - SMPN 1 Moga</title>
+  <title>Pendaftaran Anggota PMR</title>
   <style>
-    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-    body { background-color: #f4f6f9; color: #333; line-height: 1.5; }
-
-    header { background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%); color: white; text-align: center; padding: 1.5rem 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
-    header h2 { font-size: 1.4rem; }
-    header p { font-size: 0.85rem; opacity: 0.9; }
-
-    nav { background: #6a0000; display: flex; justify-content: center; flex-wrap: wrap; padding: 5px; position: sticky; top: 0; z-index: 100; }
-    nav a { color: white; text-decoration: none; font-weight: 600; padding: 10px 16px; border-radius: 4px; font-size: 0.9rem; transition: background 0.3s; }
-    nav a.active, nav a:hover { background: rgba(255, 255, 255, 0.2); }
-
-    .form-container { max-width: 550px; margin: 1.5rem auto; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-    
-    .form-group { margin-bottom: 1rem; }
-    .form-row { display: flex; gap: 10px; }
-    .form-row .form-group { flex: 1; }
-
-    label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.88rem; color: #444; }
-    label span { color: #b71c1c; }
-
-    input[type="text"], input[type="number"], input[type="tel"], input[type="date"], select, textarea {
-      width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.92rem; outline: none; transition: border-color 0.2s;
+    :root {
+      --primary-color: #dc2626;
+      --primary-hover: #b91c1c;
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-color: #1f2937;
+      --border-color: #d1d5db;
     }
-    input:focus, select:focus, textarea:focus { border-color: #b71c1c; }
-    textarea { resize: vertical; height: 75px; }
 
-    .preview-box { width: 90px; height: 120px; border: 2px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.75rem; text-align: center; margin-top: 8px; overflow: hidden; background: #fafafa; }
-    .preview-box img { width: 100%; height: 100%; object-fit: cover; display: none; }
-
-    button[type="submit"] {
-      width: 100%; padding: 13px; background: #b71c1c; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 1rem; transition: background 0.3s;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    button[type="submit"]:disabled { background: #999; cursor: not-allowed; }
 
-    .alert { margin-top: 1rem; padding: 12px; border-radius: 6px; display: none; text-align: center; font-size: 0.9rem; font-weight: 600; }
-    .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 650px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .header h2 {
+      color: var(--primary-color);
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    /* Preview Foto Style */
+    .photo-preview-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      background-color: #fafafa;
+      margin-top: 5px;
+    }
+
+    .photo-preview {
+      width: 120px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    /* Alert Box */
+    .alert {
+      padding: 12px 15px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .alert-success {
+      background-color: #def7ec;
+      color: #03543f;
+      border: 1px solid #bcf0da;
+    }
+
+    .alert-error {
+      background-color: #fde8e8;
+      color: #9b1c1c;
+      border: 1px solid #fbd5d5;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-submit:disabled {
+      background-color: #9ca3af;
+      cursor: not-allowed;
+    }
 
     @media (max-width: 480px) {
-      .form-row { flex-direction: column; gap: 0; }
-      .form-container { margin: 1rem; padding: 1.2rem; }
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h2>Form Pendaftaran PMR</h2>
-    <p>SMP Negeri 1 Moga</p>
-  </header>
+  <div class="container">
+    <div class="header">
+      <h2>Pendaftaran Anggota PMR</h2>
+      <p>Isi formulir berikut dengan data yang valid</p>
+    </div>
 
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="daftar.html" class="active">Pendaftaran</a>
-    <a href="search.html">Cari KTA</a>
-  </nav>
+    <div id="alertMsg" class="alert"></div>
 
-  <div class="form-container">
     <form id="pmrForm">
-      
       <div class="form-group">
-        <label for="statusKeanggotaan">Status / Jabatan PMR <span>*</span></label>
+        <label for="statusKeanggotaan">Status Keanggotaan *</label>
         <select id="statusKeanggotaan" required>
-          <option value="">-- Pilih Jabatan --</option>
-          <option value="Ketua">Ketua</option>
-          <option value="Wakil Ketua">Wakil Ketua</option>
-          <option value="Sekretaris">Sekretaris</option>
-          <option value="Bendahara">Bendahara</option>
-          <option value="Seksi Dokumentasi">Seksi Dokumentasi</option>
-          <option value="Seksi Peralatan">Seksi Peralatan</option>
-          <option value="Anggota">Anggota</option>
+          <option value="">-- Pilih Status --</option>
+          <option value="Anggota Baru">Anggota Baru</option>
+          <option value="Anggota Lama">Anggota Lama</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="nama">Nama Lengkap <span>*</span></label>
+        <label for="nama">Nama Lengkap *</label>
         <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="nisn">NISN <span>*</span></label>
+          <label for="nisn">NISN *</label>
           <input type="number" id="nisn" placeholder="Nomor NISN" required>
         </div>
         <div class="form-group">
-          <label for="kelas">Kelas <span>*</span></label>
-          <select id="kelas" required>
-            <option value="">-- Pilih --</option>
-            <option value="7 A">7 A</option>
-            <option value="7 B">7 B</option>
-            <option value="7 C">7 C</option>
-            <option value="7 D">7 D</option>
-            <option value="8 A">8 A</option>
-            <option value="8 B">8 B</option>
-            <option value="8 C">8 C</option>
-            <option value="8 D">8 D</option>
-            <option value="9 A">9 A</option>
-            <option value="9 B">9 B</option>
-            <option value="9 C">9 C</option>
-            <option value="9 D">9 D</option>
-          </select>
+          <label for="kelas">Kelas *</label>
+          <input type="text" id="kelas" placeholder="Contoh: VII A / 7A" required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="jenisKelamin">Jenis Kelamin <span>*</span></label>
+          <label for="jenisKelamin">Jenis Kelamin *</label>
           <select id="jenisKelamin" required>
             <option value="">-- Pilih --</option>
             <option value="Laki-laki">Laki-laki</option>
@@ -119,7 +215,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="golDarah">Golongan Darah <span>*</span></label>
+          <label for="golDarah">Golongan Darah *</label>
           <select id="golDarah" required>
             <option value="">-- Pilih --</option>
             <option value="A">A</option>
@@ -133,90 +229,115 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label for="tempatLahir">Tempat Lahir <span>*</span></label>
-          <input type="text" id="tempatLahir" placeholder="Kota / Tempat Lahir" required>
+          <label for="tempatLahir">Tempat Lahir *</label>
+          <input type="text" id="tempatLahir" placeholder="Kota lahir" required>
         </div>
         <div class="form-group">
-          <label for="tanggalLahir">Tanggal Lahir <span>*</span></label>
+          <label for="tanggalLahir">Tanggal Lahir *</label>
           <input type="date" id="tanggalLahir" required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="agama">Agama <span>*</span></label>
+          <label for="agama">Agama *</label>
           <select id="agama" required>
-            <option value="">-- Pilih Agama --</option>
+            <option value="">-- Pilih --</option>
             <option value="Islam">Islam</option>
             <option value="Kristen">Kristen</option>
             <option value="Katolik">Katolik</option>
             <option value="Hindu">Hindu</option>
             <option value="Buddha">Buddha</option>
-            <option value="Khonghucu">Khonghucu</option>
+            <option value="Konghucu">Konghucu</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="noHp">No. WhatsApp <span>*</span></label>
+          <label for="noHp">No. WhatsApp / HP *</label>
           <input type="tel" id="noHp" placeholder="08xxxxxxxxxx" required>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="hobi">Hobi <span>*</span></label>
-        <input type="text" id="hobi" placeholder="Contoh: Membaca, Olahraga, Menggambar" required>
+        <label for="hobi">Hobi</label>
+        <input type="text" id="hobi" placeholder="Hobi Anda">
       </div>
 
       <div class="form-group">
-        <label for="alamat">Alamat Lengkap <span>*</span></label>
-        <textarea id="alamat" placeholder="Dusun/RT/RW, Desa, Kecamatan" required></textarea>
+        <label for="alamat">Alamat Lengkap *</label>
+        <textarea id="alamat" rows="3" placeholder="Alamat rumah lengkap" required></textarea>
       </div>
 
       <div class="form-group">
-        <label for="foto">Upload Pas Foto <span>*</span> <small style="color:#777;">(Maksimal 2MB)</small></label>
-        <input type="file" id="foto" accept="image/*" required onchange="previewImage(this)">
-        <div class="preview-box">
-          <span id="previewText">Preview Foto</span>
-          <img id="imgPreview" alt="Preview Foto">
+        <label for="fotoInput">Pas Foto (Maks. 5MB) *</label>
+        <input type="file" id="fotoInput" accept="image/*" onchange="processImage(this)" required>
+        <div class="photo-preview-container">
+          <img id="imgPreview" class="photo-preview" alt="Preview Foto">
+          <span id="previewText" style="color: #9ca3af; font-size: 13px;">Preview foto akan muncul di sini</span>
         </div>
       </div>
 
-      <button type="submit" id="btnSubmit">Kirim Pendaftaran</button>
+      <button type="submit" id="btnSubmit" class="btn-submit">Kirim Pendaftaran</button>
     </form>
-
-    <div id="alertMsg" class="alert"></div>
   </div>
 
   <script>
+    // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4bHbZoVqPuMYvLbGyrBOAafrg3engk6tjwbv-vz84rz7GmSgwsVPWRjHMR7qU7trq/exec";
     let fotoBase64 = "";
 
-    // Fungsi Preview dan Ubah Foto ke String Base64
-    function previewImage(input) {
+    // Fungsi membaca & mengompres foto ke ukuran ideal secara otomatis
+    function processImage(input) {
       const file = input.files[0];
-      if (file) {
-        if (file.size > 2 * 1024 * 1024) {
-          alert("Ukuran foto melebihi 2MB. Silakan pilih foto lain.");
-          input.value = "";
-          return;
-        }
+      if (!file) return;
 
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('imgPreview').src = e.target.result;
-          document.getElementById('imgPreview').style.display = 'block';
-          document.getElementById('previewText').style.display = 'none';
-          fotoBase64 = e.target.result; // Simpan Base64 foto
-        };
-        reader.readAsDataURL(file);
+      if (file.size > 5 * 1024 * 1024) {
+        alert("Ukuran file terlalu besar! Maksimal 5MB.");
+        input.value = "";
+        return;
       }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+          // Kompresi Gambar menggunakan Canvas
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          // Dimensi maksimal untuk pas foto
+          const maxWidth = 600;
+          const scaleSize = maxWidth / img.width;
+          
+          if (img.width > maxWidth) {
+            canvas.width = maxWidth;
+            canvas.height = img.height * scaleSize;
+          } else {
+            canvas.width = img.width;
+            canvas.height = img.height;
+          }
+
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          // Konversi ke format JPEG dengan kualitas 0.75 (Sangat efisien)
+          fotoBase64 = canvas.toDataURL('image/jpeg', 0.75);
+
+          // Tampilkan Preview
+          const imgPreview = document.getElementById('imgPreview');
+          imgPreview.src = fotoBase64;
+          imgPreview.style.display = 'block';
+          document.getElementById('previewText').style.display = 'none';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
 
-    // Penanganan Submit Form
-    document.getElementById('pmrForm').addEventListener('submit', function(e) {
+    // Tangani Submit Form
+    document.getElementById('pmrForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
       if (!fotoBase64) {
-        alert("Silakan pilih/upload pas foto Anda!");
+        alert("Silakan pilih pas foto terlebih dahulu!");
         return;
       }
 
@@ -243,11 +364,16 @@
         fotoBase64: fotoBase64
       };
 
+      // Trik Mengirim Data ke Apps Script tanpa memicu CORS Error:
+      // Gunakan 'text/plain' agar browser menganggapnya Simple Request
       fetch(SCRIPT_URL, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
         body: JSON.stringify(formData)
       })
-      .then(res => res.json())
+      .then(response => response.json())
       .then(res => {
         btn.disabled = false;
         btn.innerText = "Kirim Pendaftaran";
@@ -255,27 +381,29 @@
 
         if (res.success) {
           alertMsg.className = "alert alert-success";
-          alertMsg.innerText = res.message;
+          alertMsg.innerText = "Pendaftaran Berhasil! Mengalihkan ke kartu anggota...";
+          
           document.getElementById('pmrForm').reset();
           document.getElementById('imgPreview').style.display = 'none';
           document.getElementById('previewText').style.display = 'block';
           fotoBase64 = "";
 
-          // Mengalihkan otomatis ke halaman pencarian dengan query NISN
+          // Redirect ke halaman pencarian/kartu anggota setelah 2 detik
           setTimeout(() => {
             window.location.href = `search.html?q=${formData.nisn}`;
-          }, 2500);
+          }, 2000);
         } else {
           alertMsg.className = "alert alert-error";
-          alertMsg.innerText = res.message;
+          alertMsg.innerText = res.message || "Gagal menyimpan data.";
         }
       })
       .catch(err => {
+        console.error("Fetch Error:", err);
         btn.disabled = false;
         btn.innerText = "Kirim Pendaftaran";
         alertMsg.style.display = "block";
         alertMsg.className = "alert alert-error";
-        alertMsg.innerText = "Terjadi kesalahan pengiriman. Coba periksa koneksi Anda.";
+        alertMsg.innerText = "Terjadi kesalahan koneksi saat mengirim data. Pastikan status Deploy Apps Script adalah 'Anyone'.";
       });
     });
   </script>

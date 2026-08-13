@@ -66,11 +66,11 @@
     .kta-stage {
       display: flex;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     /* =====================================================
-       KTA CARD STYLING (UKURAN PRESISI: 8,993 cm x 5,679 cm)
+       KTA CARD STYLING (PORTRAIT: 8,993 cm x 5,679 cm)
     ===================================================== */
     .kta-card {
       position: relative;
@@ -79,13 +79,13 @@
       background: white;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
       border: 1px solid #ccc;
       display: flex;
       flex-direction: column;
     }
 
-    /* LINE ART / GARIS POTONG (8,72 cm x 5,513 cm dengan Rounded Corners) */
+    /* LAYER GARIS POTONG / CROP LINE ART (ROUNDED CORNERS) */
     .cut-line {
       position: absolute;
       top: 50%;
@@ -101,65 +101,63 @@
 
     /* Top Strip Design */
     .top-bar {
-      height: 5px;
+      height: 6px;
       background: linear-gradient(to right, #b71c1c 0%, #b71c1c 50%, #e57373 50%, #e57373 75%, #ffcdd2 75%);
       width: 100%;
       flex-shrink: 0;
     }
 
-    /* Header Logo & Titling */
+    /* Header Logo Area */
     .kta-header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      padding: 6px 12px 4px;
-      gap: 8px;
-      border-bottom: 1.5px solid #b71c1c;
+      justify-content: center;
+      padding: 6px 10px 2px;
+      text-align: center;
       flex-shrink: 0;
     }
 
     .pmi-logo {
-      width: 28px;
-      height: 28px;
+      width: 32px; 
+      height: 32px;
       object-fit: contain;
-    }
-
-    .header-text {
-      display: flex;
-      flex-direction: column;
+      margin-top: 2px;
+      margin-bottom: 3px;
     }
 
     .header-title {
       font-weight: 900;
       font-size: 11px;
       color: #b71c1c;
+      text-transform: uppercase;
       line-height: 1.1;
-      letter-spacing: 0.3px;
     }
 
     .header-subtitle {
-      font-weight: 800;
-      font-size: 9px;
+      font-weight: 900;
+      font-size: 9px; 
       color: #222;
-      line-height: 1.1;
+      text-transform: uppercase;
+      margin-top: 2px;
     }
 
-    /* Content Body (Foto + Informasi Anggota) */
-    .kta-body {
+    /* Foto Section */
+    .kta-photo-section {
       display: flex;
-      align-items: center;
-      padding: 8px 12px;
-      gap: 12px;
-      flex: 1;
+      justify-content: center;
+      margin-top: 4px;
+      margin-bottom: 4px; 
     }
 
     .photo-container {
       width: 1.8cm;
-      height: 2.4cm;
+      height: 2.3cm;
       border: 2px solid #d32f2f;
       background: #e0e0e0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
       border-radius: 4px;
       overflow: hidden;
-      flex-shrink: 0;
     }
 
     .photo-container img {
@@ -169,56 +167,60 @@
       display: block;
     }
 
+    /* Member Info Section */
     .member-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .member-label {
-      font-size: 7.5px;
-      color: #777;
-      text-transform: uppercase;
-      font-weight: bold;
-      margin-bottom: 1px;
+      text-align: center;
+      padding: 0 6px;
+      margin-top: 0;
+      margin-bottom: auto;
     }
 
     .member-name {
-      font-size: 13px;
-      font-weight: bold;
+      font-size: 11px;
+      font-weight: bold; 
       color: #111;
+      margin-bottom: 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-bottom: 6px;
     }
 
     .member-ni {
-      font-size: 10.5px;
-      color: #b71c1c;
-      font-weight: 700;
+      font-size: 9px;
+      color: #333;
+      font-weight: 700; 
     }
 
-    /* Footer Design */
+    /* Footer Teks */
     .kta-footer {
       background: #b71c1c;
       color: white;
-      padding: 4px 12px;
+      text-align: center;
+      padding: 4px 6px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 7.5px;
-      font-weight: bold;
+      flex-direction: column;
+      gap: 1px;
       margin-top: auto;
-      flex-shrink: 0;
+    }
+
+    .footer-title {
+      font-size: 7.5px;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-sub {
+      font-size: 6.5px;
+      font-weight: bold;
+      opacity: 0.95;
+      text-transform: uppercase;
     }
 
     /* =====================================================
-       BELAKANG KARTU (BACK SIDE STYLING)
+       BACK SIDE STYLING
     ===================================================== */
     .back-side {
-      padding: 8px 12px;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -234,7 +236,7 @@
     }
 
     .back-title {
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 900;
       color: #b71c1c;
       text-align: right;
@@ -242,10 +244,10 @@
     }
 
     .rules-list {
-      padding-left: 12px;
-      margin: 0;
-      font-size: 7.5px;
-      line-height: 1.25;
+      padding-left: 10px;
+      margin: 0 0 5px 0;
+      font-size: 7px;
+      line-height: 1.3;
       color: #222;
     }
 
@@ -253,12 +255,26 @@
       margin-bottom: 3px;
     }
 
-    .bottom-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+    .signature-container {
       margin-top: auto;
-      gap: 8px;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 4px;
+    }
+
+    .signature-section {
+      width: 65%;
+      text-align: left;
+      font-size: 6.5px;
+      line-height: 1.2;
+      color: #111;
+    }
+
+    .signature-name {
+      margin-top: 14px;
+      font-weight: bold;
+      text-decoration: underline;
+      font-size: 7px;
     }
 
     .attention-box {
@@ -266,39 +282,23 @@
       padding: 3px 5px;
       border-radius: 4px;
       background: #fff5f5;
-      flex: 1;
     }
 
     .attention-title {
       color: #d32f2f;
       font-weight: bold;
-      font-size: 7px;
-      margin-bottom: 2px;
       text-align: center;
+      font-size: 6.5px;
+      margin-bottom: 2px;
     }
 
     .attention-box .rules-list {
-      font-size: 6.5px;
+      font-size: 6px;
+      margin: 0;
       line-height: 1.2;
     }
 
-    .signature-section {
-      text-align: left;
-      font-size: 7px;
-      line-height: 1.2;
-      color: #111;
-      width: 42%;
-      flex-shrink: 0;
-    }
-
-    .signature-name {
-      margin-top: 18px;
-      font-weight: bold;
-      text-decoration: underline;
-      font-size: 7.5px;
-    }
-
-    /* Tombol Aksi */
+    /* Actions buttons */
     .actions {
       display: flex;
       gap: 10px;
@@ -339,7 +339,7 @@
     ===================================================== */
     @media print {
       @page {
-        size: A4 landscape;
+        size: A4 portrait;
         margin: 10mm;
       }
 
@@ -409,32 +409,31 @@
 
         <div class="top-bar"></div>
 
-        <!-- HEADER -->
+        <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
           <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
-          <div class="header-text">
-            <span class="header-title">PALANG MERAH REMAJA</span>
-            <span class="header-subtitle">UNIT SMP NEGERI 1 MOGA</span>
-          </div>
+          <div class="header-title">PALANG MERAH REMAJA</div>
+          <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
-        <!-- BODY: FOTO + NAMA & NO ANGGOTA -->
-        <div class="kta-body">
+        <!-- FOTO -->
+        <div class="kta-photo-section">
           <div class="photo-container">
             <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
-          <div class="member-info">
-            <span class="member-label">Nama Lengkap</span>
-            <div id="ktaName" class="member-name">-</div>
-            <span class="member-label">Nomor Anggota / NISN</span>
-            <div id="ktaNumber" class="member-ni">-</div>
-          </div>
         </div>
 
-        <!-- FOOTER -->
+        <!-- NAMA & NO ANGGOTA -->
+        <div class="member-info">
+          <div id="ktaName" class="member-name">-</div>
+          <div id="ktaNumber" class="member-ni">NO ANGGOTA: -</div>
+        </div>
+
+        <!-- FOOTER TEKS -->
         <div class="kta-footer">
-          <span>KTA RELAWAN PMR MADYA</span>
-          <span>PMI KAB. PEMALANG</span>
+          <div class="footer-title">PALANG MERAH REMAJA</div>
+          <div class="footer-sub">PMI KAB. PEMALANG</div>
+          <div class="footer-sub">Unit SMP Negeri 1 Moga</div>
         </div>
       </div>
 
@@ -446,31 +445,31 @@
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <img class="pmi-logo" style="width:22px; height:22px;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+            <img class="pmi-logo" style="width:20px; height:20px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
             <div class="back-title">
-              KARTU TANDA RELAWAN PMI
+              KARTU TANDA<br>RELAWAN PMI
             </div>
           </div>
 
           <ol class="rules-list">
-            <li>Pemegang kartu ini adalah Relawan PMI unit PMR Madya SMP Negeri 1 Moga.</li>
-            <li>Bekerja sesuai tugas berdasarkan Prinsip Dasar Gerakan Palang Merah dan Bulan Sabit Merah Internasional.</li>
+            <li>Pemegang kartu ini adalah Relawan PMI dengan kedudukan sebagai anggota PMR.</li>
+            <li>Bekerja berdasarkan Prinsip-Prinsip Dasar Gerakan Palang Merah Internasional.</li>
           </ol>
 
-          <div class="bottom-row">
-            <div class="attention-box">
-              <div class="attention-title">PERHATIAN</div>
-              <ol class="rules-list">
-                <li>Harap berikan bantuan dan kemudahan kepada pemegang kartu ini.</li>
-                <li>Jika ditemukan, kembalikan ke Markas PMI / SMPN 1 Moga.</li>
-              </ol>
-            </div>
-
+          <div class="signature-container">
             <div class="signature-section">
-              Pembina PMR<br>
-              <strong>SMP NEGERI 1 MOGA</strong>
-              <div class="signature-name">Puspa Indah P., S.Pd.</div>
+              Pengurus <strong>PMR SMPN 1 MOGA</strong><br>
+              Pembina PMR
+              <div class="signature-name">Puspa Indah Purwaningrum, S.Pd.</div>
             </div>
+          </div>
+
+          <div class="attention-box">
+            <div class="attention-title">PERHATIAN</div>
+            <ol class="rules-list">
+              <li>Harap berikan bantuan dan kemudahan kepada pemegang kartu ini.</li>
+              <li>Apabila menemukan kartu ini agar mengembalikan ke Markas PMI / Sekolah.</li>
+            </ol>
           </div>
         </div>
       </div>
@@ -513,7 +512,7 @@
     document.getElementById('error').style.display = 'block';
   } else {
     document.getElementById('ktaName').textContent = nama || '-';
-    document.getElementById('ktaNumber').textContent = nisn || '-';
+    document.getElementById('ktaNumber').textContent = 'NO ANGGOTA: ' + (nisn || '-');
 
     const photoElement = document.getElementById('ktaPhoto');
     const formattedFoto = formatDriveUrl(rawFoto);

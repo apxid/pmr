@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cari Anggota / KTA PMR - SMPN 1 Moga</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+    body { background-color: #f4f6f9; color: #333; }
+    
+    header { background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%); color: white; text-align: center; padding: 1.5rem 1rem; }
+    header h2 { font-size: 1.4rem; }
+    header p { font-size: 0.85rem; opacity: 0.9; }
+
+    nav { background: #6a0000; display: flex; justify-content: center; flex-wrap: wrap; padding: 5px; position: sticky; top: 0; z-index: 100; }
+    nav a { color: white; text-decoration: none; font-weight: 600; padding: 10px 16px; border-radius: 4px; font-size: 0.9rem; }
+    nav a.active { background: rgba(255, 255, 255, 0.2); }
+
+    .container { max-width: 600px; margin: 1.5rem auto; padding: 0 1rem; }
+    
+    .search-card { background: white; padding: 1.2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
+    .search-box { display: flex; gap: 8px; }
+    input[type="text"] { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem; outline: none; }
+    input[type="text"]:focus { border-color: #b71c1c; }
+    button { padding: 12px 18px; background: #b71c1c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.95rem; }
+    button:active { background: #8e0000; }
+
+    #loading { text-align: center; font-weight: bold; color: #b71c1c; margin: 1rem 0; display: none; }
+
+    .result-item { background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+    .result-photo { width: 65px; height: 85px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; background: #eee; flex-shrink: 0; }
+    .result-info { flex: 1; min-width: 0; }
+    .result-info h4 { font-size: 1rem; color: #111; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .result-info p { font-size: 0.8rem; color: #666; margin-bottom: 2px; }
+    .result-info .jabatan { color: #b71c1c; font-weight: bold; }
+    
+    .btn-cta { display: inline-block; background: #2e7d32; color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; text-align: center; }
+    .btn-cta:hover { background: #1b5e20; }
+
+    .alert { padding: 12px; border-radius: 8px; text-align: center; font-size: 0.9rem; line-height: 1.4; }
+    .alert-pending { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+    .alert-danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+    @media (max-width: 480px) {
+      .result-item { flex-direction: column; text-align: center; }
+      .result-info { width: 100%; margin-bottom: 8px; }
+      .btn-cta { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Pencarian Anggota & KTA</h2>
+    <p>SMP Negeri 1 Moga</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="daftar.html">Pendaftaran</a>
+    <a href="search.html" class="active">Cari KTA</a>
+  </nav>
+
+  <div class="container">
+    <div class="search-card">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Masukkan NISN atau Nama...">
+        <button onclick="doSearch()">Cari</button>
+      </div>
+    </div>
+
+    <div id="loading">Sedang mencari data...</div>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4bHbZoVqPuMYvLbGyrBOAafrg3engk6tjwbv-vz84rz7GmSgwsVPWRjHMR7qU7trq/exec";
+
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
+      if (query) {
+        document.getElementById('searchInput').value = query;
+        doSearch();
+      }
+    };
+
+    function doSearch() {
+      const query = document.getElementById('searchInput').value.trim();
+      if (!query) return;
+
+      const resultsDiv = document.getElementById('results');
+      const loadingDiv = document.getElementById('loading');
+
+      resultsDiv.innerHTML = '';
+      loadingDiv.style.display = 'block';
+
+      fetch(`${SCRIPT_URL}?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(res => {
+          loadingDiv.style.display = 'none';
+
+          if (res.success && res.data.length > 0) {
+            res.data.forEach(item => {
+              const card = document.createElement('div');
+              card.className = 'result-item';
+
+              const photoSrc = item.fotoUrl || 'https://via.placeholder.com/65x85?text=No+Foto';
+
+              // Susun data query parameter untuk dikirim ke card.html
+              const cardUrl = `card.html?nama=${encodeURIComponent(item.nama)}&nisn=${encodeURIComponent(item.nisn)}&kelas=${encodeURIComponent(item.kelas)}&jk=${encodeURIComponent(item.jenisKelamin)}&jabatan=${encodeURIComponent(item.statusKeanggotaan)}&ttl=${encodeURIComponent(item.tempatLahir + ', ' + item.tanggalLahir)}&gol=${encodeURIComponent(item.golDarah)}&foto=${encodeURIComponent(item.fotoUrl)}`;
+
+              card.innerHTML = `
+                <img src="${photoSrc}" class="result-photo" alt="Foto ${item.nama}">
+                <div class="result-info">
+                  <h4>${item.nama}</h4>
+                  <p>NISN: <strong>${item.nisn}</strong> | Kelas: <strong>${item.kelas}</strong></p>
+                  <p class="jabatan">Jabatan: ${item.statusKeanggotaan}</p>
+                </div>
+                <a href="${cardUrl}" class="btn-cta">Cetak KTA</a>
+              `;
+              resultsDiv.appendChild(card);
+            });
+          } else {
+            let alertClass = "alert-danger";
+            if (res.status === "pending") {
+              alertClass = "alert-pending";
+            }
+
+            resultsDiv.innerHTML = `
+              <div class="alert ${alertClass}">
+                ${res.message || "Data tidak ditemukan."}
+              </div>
+            `;
+          }
+        })
+        .catch(err => {
+          loadingDiv.style.display = 'none';
+          resultsDiv.innerHTML = '<div class="alert alert-danger">Terjadi kesalahan koneksi. Silakan coba lagi.</div>';
+        });
+    }
+  </script>
+</body>
+</html>

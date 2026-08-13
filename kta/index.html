@@ -20,7 +20,6 @@
 
   <title>KTA PMR Madya — SMP Negeri 1 Moga</title>
 
-
   <style>
 
     /* =====================================================
@@ -67,7 +66,6 @@
       font-family: inherit;
     }
 
-
     /* =====================================================
        BACKGROUND
     ===================================================== */
@@ -96,7 +94,6 @@
       background: rgba(189, 8, 28, .07);
     }
 
-
     /* =====================================================
        APP
     ===================================================== */
@@ -104,11 +101,9 @@
     .app {
       width: 100%;
       min-height: 100vh;
-
       display: flex;
       flex-direction: column;
     }
-
 
     /* =====================================================
        HEADER
@@ -154,7 +149,8 @@
       right: -100px;
       top: -120px;
 
-      background: rgba(255,255,255,.08);
+      background:
+        rgba(255,255,255,.08);
     }
 
     .header::after {
@@ -170,7 +166,8 @@
       left: -90px;
       bottom: -100px;
 
-      background: rgba(255,255,255,.06);
+      background:
+        rgba(255,255,255,.06);
     }
 
     .header-content {
@@ -195,7 +192,8 @@
 
       border-radius: 14px;
 
-      background: rgba(255,255,255,.96);
+      background:
+        rgba(255,255,255,.96);
 
       display: flex;
       align-items: center;
@@ -237,9 +235,7 @@
         );
 
       line-height: 1.08;
-
       font-weight: 900;
-
       letter-spacing: -.8px;
     }
 
@@ -249,12 +245,11 @@
       max-width: 570px;
 
       font-size: 14px;
-
       line-height: 1.65;
 
-      color: rgba(255,255,255,.86);
+      color:
+        rgba(255,255,255,.86);
     }
-
 
     /* =====================================================
        MAIN
@@ -275,7 +270,6 @@
       position: relative;
       z-index: 5;
     }
-
 
     /* =====================================================
        SEARCH CARD
@@ -327,6 +321,7 @@
 
       font-size: 17px;
       opacity: .55;
+
       pointer-events: none;
     }
 
@@ -366,6 +361,7 @@
 
     #searchBtn {
       height: 52px;
+
       min-width: 112px;
 
       border: 0;
@@ -416,7 +412,6 @@
       color: #777;
     }
 
-
     /* =====================================================
        MESSAGE
     ===================================================== */
@@ -446,21 +441,14 @@
     .message.error {
       background: #fff0f1;
       color: #a40019;
-
-      border:
-        1px solid
-        #ffd5da;
+      border: 1px solid #ffd5da;
     }
 
     .message.success {
       background: #effaf3;
       color: #217443;
-
-      border:
-        1px solid
-        #c9efd7;
+      border: 1px solid #c9efd7;
     }
-
 
     /* =====================================================
        LOADING
@@ -507,7 +495,6 @@
       color: #777;
     }
 
-
     /* =====================================================
        RESULT
     ===================================================== */
@@ -523,6 +510,7 @@
 
     .result-title {
       display: flex;
+
       align-items: center;
       justify-content: space-between;
 
@@ -536,24 +524,25 @@
 
     .verified {
       display: inline-flex;
+
       align-items: center;
       gap: 5px;
 
-      padding:
-        6px 9px;
+      padding: 6px 9px;
 
       border-radius: 99px;
 
       background: #eaf8ef;
+
       color: #218049;
 
       font-size: 10px;
       font-weight: 800;
     }
 
-
     /* =====================================================
-       KTA PREVIEW
+       KTA CONTAINER
+       Kartu sebenarnya berasal dari template.html
     ===================================================== */
 
     .kta-stage {
@@ -566,370 +555,22 @@
         8px 0 18px;
     }
 
-
     /*
-     * UKURAN KARTU
-     *
-     * Rasio dipertahankan seperti ID card vertikal.
+     * Wrapper agar template kartu dapat berdiri
+     * sendiri tanpa merusak struktur index.
      */
-    .kta-card {
-      position: relative;
 
-      width:
-        min(
-          100%,
-          360px
-        );
-
-      aspect-ratio:
-        5.513 / 8.72;
-
-      overflow: hidden;
-
-      border-radius: 18px;
-
-      background:
-        linear-gradient(
-          155deg,
-          #fff 0%,
-          #fff7f7 46%,
-          #fce5e7 100%
-        );
-
-      box-shadow:
-        0 18px 45px
-        rgba(65, 10, 18, .22);
-
-      border:
-        1px solid
-        rgba(189,8,28,.14);
-    }
-
-
-    /* =====================================================
-       KTA TOP
-    ===================================================== */
-
-    .kta-top {
-      position: absolute;
-
-      left: 0;
-      right: 0;
-      top: 0;
-
-      height: 18%;
-
-      background:
-        linear-gradient(
-          135deg,
-          #8f0016,
-          #bd081c 55%,
-          #e1273d
-        );
-
-      clip-path:
-        polygon(
-          0 0,
-          100% 0,
-          100% 77%,
-          50% 100%,
-          0 77%
-        );
-    }
-
-    .kta-org {
-      position: absolute;
-
-      top: 4.5%;
-      left: 8%;
-      right: 8%;
-
-      color: white;
-
-      text-align: center;
-
-      font-size: 10px;
-      line-height: 1.25;
-      font-weight: 800;
-    }
-
-    .kta-org strong {
-      display: block;
-      font-size: 12px;
-    }
-
-    .kta-cross {
-      margin:
-        4px auto 0;
-
-      width: 22px;
-      height: 22px;
-
-      background: white;
-
-      border-radius: 7px;
-
-      color: #bd081c;
+    .kta-template-container {
+      width: 100%;
 
       display: flex;
-      align-items: center;
       justify-content: center;
 
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-
-    /* =====================================================
-       FOTO KTA
-       DIPERBAIKI
-    ===================================================== */
-
-    .kta-photo-wrap {
-      position: absolute;
-
-      /*
-       * Sebelumnya 20%.
-       * Diturunkan sedikit agar tidak terlalu dekat
-       * dengan header merah.
-       */
-      top: 22%;
-
-      left: 50%;
-
-      transform:
-        translateX(-50%);
-
-      width: 43%;
-
-      /*
-       * Rasio foto portrait.
-       */
-      aspect-ratio:
-        3 / 4;
-
-      border-radius: 14px;
-
-      padding: 4px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #8f0016,
-          #e1263d
-        );
-
-      box-shadow:
-        0 9px 20px
-        rgba(80,0,15,.20);
-
-      /*
-       * Memastikan gambar tidak tertutup
-       * oleh elemen lain.
-       */
-      z-index: 5;
-    }
-
-
-    .kta-photo {
-      width: 100%;
-      height: 100%;
-
-      display: block;
-
-      object-fit: cover;
-      object-position: center center;
-
-      border-radius: 10px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #eeeeee,
-          #dddddd
-        );
-
-      /*
-       * Menghilangkan tampilan border default
-       * jika gambar gagal.
-       */
-      border: 0;
-    }
-
-
-    /*
-     * Saat gambar gagal dimuat,
-     * jangan tampilkan ikon gambar rusak.
-     */
-    .kta-photo.is-error {
-      object-fit: contain;
-      padding: 12px;
-    }
-
-
-    /* =====================================================
-       BODY KTA
-    ===================================================== */
-
-    .kta-body {
-      position: absolute;
-
-      left: 8%;
-      right: 8%;
-
-      /*
-       * Diturunkan mengikuti posisi foto.
-       */
-      top: 55%;
-
-      text-align: center;
-
-      z-index: 4;
-    }
-
-    .kta-label {
-      font-size: 8px;
-
-      text-transform: uppercase;
-
-      letter-spacing: 1.5px;
-
-      color: #9c7b80;
-
-      font-weight: 800;
-    }
-
-    .kta-name {
-      margin-top: 5px;
-
-      font-size:
-        clamp(
-          14px,
-          4vw,
-          19px
-        );
-
-      line-height: 1.15;
-
-      color: #3b1117;
-
-      font-weight: 900;
-
-      word-break: break-word;
-
-      /*
-       * Membatasi nama agar tidak
-       * menabrak footer.
-       */
-      max-width: 100%;
-    }
-
-    .kta-number {
-      display: inline-flex;
-
-      margin-top: 9px;
-
-      padding:
-        6px 11px;
-
-      border-radius: 99px;
-
-      background: #fff;
-
-      border:
-        1px solid
-        #f0c6cb;
-
-      color: #bd081c;
-
-      font-size: 9px;
-
-      font-weight: 900;
-
-      letter-spacing: .5px;
-    }
-
-
-    /* =====================================================
-       KTA BOTTOM
-    ===================================================== */
-
-    .kta-bottom {
-      position: absolute;
-
-      left: 7%;
-      right: 7%;
-
-      bottom: 6%;
-
-      display: flex;
-
       align-items: center;
-
-      gap: 10px;
-
-      padding-top: 9px;
-
-      border-top:
-        1px solid
-        rgba(189,8,28,.14);
-
-      z-index: 4;
     }
-
-    .kta-qr {
-      width: 23%;
-
-      aspect-ratio: 1;
-
-      object-fit: contain;
-
-      background: white;
-
-      padding: 3px;
-
-      border-radius: 7px;
-
-      border:
-        1px solid
-        #ead1d4;
-    }
-
-    .kta-footer-info {
-      flex: 1;
-      text-align: left;
-    }
-
-    .kta-position {
-      color: #bd081c;
-
-      font-size: 10px;
-      font-weight: 900;
-    }
-
-    .kta-school {
-      margin-top: 3px;
-
-      font-size: 8px;
-
-      line-height: 1.35;
-
-      font-weight: 800;
-
-      color: #44252a;
-    }
-
-    .kta-location {
-      margin-top: 2px;
-
-      font-size: 7px;
-
-      color: #8a6d71;
-    }
-
 
     /* =====================================================
-       ACTION BUTTONS
+       ACTION BUTTON
     ===================================================== */
 
     .actions {
@@ -956,6 +597,7 @@
       cursor: pointer;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -971,7 +613,6 @@
 
     .btn-print {
       background: #bd081c;
-
       color: white;
 
       box-shadow:
@@ -989,85 +630,13 @@
         #efc5ca;
     }
 
+    .btn-pdf:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
 
     /* =====================================================
-       INFO
-    ===================================================== */
-
-    .info-section {
-      margin-top: 26px;
-    }
-
-    .info-card {
-      background: white;
-
-      border-radius: 20px;
-
-      padding: 18px;
-
-      border:
-        1px solid
-        rgba(0,0,0,.04);
-
-      box-shadow:
-        0 9px 28px
-        rgba(0,0,0,.06);
-    }
-
-    .info-card h3 {
-      font-size: 14px;
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
-    .info-list {
-      list-style: none;
-    }
-
-    .info-list li {
-      display: flex;
-
-      gap: 10px;
-
-      padding: 9px 0;
-
-      border-bottom:
-        1px solid
-        #f0f0f0;
-
-      font-size: 12px;
-
-      color: #666;
-
-      line-height: 1.45;
-    }
-
-    .info-list li:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .info-icon {
-      width: 25px;
-      height: 25px;
-
-      flex: 0 0 25px;
-
-      border-radius: 8px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: #fff0f1;
-      color: #bd081c;
-
-      font-size: 12px;
-    }
-
-
-    /* =====================================================
-       PENDAFTARAN
+       REGISTER
     ===================================================== */
 
     .register-section {
@@ -1092,6 +661,7 @@
 
     .register-head {
       display: flex;
+
       align-items: flex-start;
       justify-content: space-between;
 
@@ -1123,7 +693,6 @@
       border-radius: 99px;
 
       background: #fff0f1;
-
       color: #bd081c;
 
       font-size: 10px;
@@ -1219,7 +788,9 @@
 
     .photo-upload input[type="file"] {
       border: 0;
+
       padding: 7px 0;
+
       background: transparent;
     }
 
@@ -1254,15 +825,12 @@
 
     .photo-preview-info {
       font-size: 10px;
-
       line-height: 1.5;
-
       color: #777;
     }
 
     .form-note {
-      padding:
-        11px 12px;
+      padding: 11px 12px;
 
       border-radius: 12px;
 
@@ -1271,7 +839,6 @@
       color: #70757a;
 
       font-size: 10px;
-
       line-height: 1.55;
     }
 
@@ -1294,7 +861,6 @@
       color: white;
 
       font-size: 14px;
-
       font-weight: 900;
 
       cursor: pointer;
@@ -1327,7 +893,6 @@
       border-radius: 13px;
 
       font-size: 12px;
-
       line-height: 1.5;
     }
 
@@ -1355,6 +920,84 @@
         #ffd5da;
     }
 
+    /* =====================================================
+       INFO
+    ===================================================== */
+
+    .info-section {
+      margin-top: 26px;
+    }
+
+    .info-card {
+      background: white;
+
+      border-radius: 20px;
+
+      padding: 18px;
+
+      border:
+        1px solid
+        rgba(0,0,0,.04);
+
+      box-shadow:
+        0 9px 28px
+        rgba(0,0,0,.06);
+    }
+
+    .info-card h3 {
+      font-size: 14px;
+
+      font-weight: 900;
+
+      margin-bottom: 12px;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      display: flex;
+
+      gap: 10px;
+
+      padding: 9px 0;
+
+      border-bottom:
+        1px solid
+        #f0f0f0;
+
+      font-size: 12px;
+
+      color: #666;
+
+      line-height: 1.45;
+    }
+
+    .info-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .info-icon {
+      width: 25px;
+      height: 25px;
+
+      flex: 0 0 25px;
+
+      border-radius: 8px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background: #fff0f1;
+
+      color: #bd081c;
+
+      font-size: 12px;
+    }
 
     /* =====================================================
        FOOTER
@@ -1377,7 +1020,6 @@
     .footer strong {
       color: #777;
     }
-
 
     /* =====================================================
        MOBILE
@@ -1441,19 +1083,8 @@
         width: 100%;
       }
 
-      .kta-card {
-        width:
-          min(
-            100%,
-            330px
-          );
-
-        border-radius: 16px;
-      }
-
       .actions {
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
       .register-card {
@@ -1471,9 +1102,8 @@
       }
     }
 
-
     /* =====================================================
-       VERY SMALL SCREEN
+       VERY SMALL
     ===================================================== */
 
     @media (max-width: 360px) {
@@ -1482,16 +1112,10 @@
         font-size: 27px;
       }
 
-      .kta-card {
-        width: 285px;
-      }
-
       .search-card {
         padding: 14px;
       }
-
     }
-
 
     /* =====================================================
        PRINT
@@ -1529,41 +1153,20 @@
         padding: 0;
       }
 
-      .kta-card {
-        width: 5.513cm;
-        height: 8.72cm;
-
-        aspect-ratio: auto;
-
-        border-radius: .35cm;
-
-        box-shadow: none;
-
-        border: none;
-      }
-
       @page {
-        size:
-          5.513cm
-          8.72cm;
-
         margin: 0;
       }
-
     }
 
   </style>
 </head>
-
 
 <body>
 
   <div class="bg-circle one"></div>
   <div class="bg-circle two"></div>
 
-
   <div class="app">
-
 
     <!-- ==================================================
          HEADER
@@ -1593,7 +1196,6 @@
 
         </div>
 
-
         <div class="hero">
 
           <h1>
@@ -1613,15 +1215,15 @@
 
     </header>
 
-
     <!-- ==================================================
          MAIN
     =================================================== -->
 
     <main class="main">
 
-
-      <!-- SEARCH -->
+      <!-- ==================================================
+           SEARCH
+      =================================================== -->
 
       <section class="search-card">
 
@@ -1631,7 +1233,6 @@
         >
           Cari Kartu Tanda Anggota
         </label>
-
 
         <div class="search-box">
 
@@ -1653,7 +1254,6 @@
 
           </div>
 
-
           <button
             id="searchBtn"
             type="button"
@@ -1662,7 +1262,6 @@
           </button>
 
         </div>
-
 
         <div class="search-help">
 
@@ -1675,12 +1274,10 @@
 
         </div>
 
-
         <div
           id="message"
           class="message"
         ></div>
-
 
         <div
           id="loading"
@@ -1696,7 +1293,6 @@
         </div>
 
       </section>
-
 
       <!-- ==================================================
            RESULT
@@ -1716,109 +1312,36 @@
 
         </div>
 
+        <!--
+          KARTU KTA DITARUH DI SINI.
+
+          Untuk sementara elemen ini menjadi tempat
+          template.html.
+        -->
 
         <div class="kta-stage">
 
           <div
-            id="ktaCard"
-            class="kta-card"
+            id="ktaTemplateContainer"
+            class="kta-template-container"
           >
 
-            <!-- TOP -->
+            <!--
+              TEMPLATE KTA
+              --------------------------------------------
+              Setelah template.html dibuat melalui GAS,
+              isi kartu akan berada di container ini.
+            -->
 
-            <div class="kta-top"></div>
-
-
-            <div class="kta-org">
-
-              <strong>
-                PALANG MERAH INDONESIA
-              </strong>
-
-              PMR MADYA
-              SMP NEGERI 1 MOGA
-
-              <div class="kta-cross">
-                ✚
-              </div>
-
-            </div>
-
-
-            <!-- PHOTO -->
-
-            <div class="kta-photo-wrap">
-
-              <img
-                id="ktaPhoto"
-                class="kta-photo"
-                src=""
-                alt="Foto Anggota PMR"
-              >
-
-            </div>
-
-
-            <!-- BODY -->
-
-            <div class="kta-body">
-
-              <div class="kta-label">
-                Nama Anggota
-              </div>
-
-              <div
-                id="ktaName"
-                class="kta-name"
-              >
-                -
-              </div>
-
-              <div
-                id="ktaNumber"
-                class="kta-number"
-              >
-                -
-              </div>
-
-            </div>
-
-
-            <!-- FOOTER -->
-
-            <div class="kta-bottom">
-
-              <img
-                id="ktaQR"
-                class="kta-qr"
-                src=""
-                alt="QR Code KTA"
-              >
-
-              <div class="kta-footer-info">
-
-                <div class="kta-position">
-                  PMR MADYA
-                </div>
-
-                <div class="kta-school">
-                  SMP NEGERI 1 MOGA
-                </div>
-
-                <div class="kta-location">
-                  Kab. Pemalang
-                </div>
-
-              </div>
-
-            </div>
+            <?!= include('template'); ?>
 
           </div>
 
         </div>
 
-
-        <!-- ACTION -->
+        <!-- ==================================================
+             ACTION
+        =================================================== -->
 
         <div class="actions">
 
@@ -1829,7 +1352,6 @@
           >
             🖨️ Cetak KTA
           </button>
-
 
           <button
             id="pdfBtn"
@@ -1842,7 +1364,6 @@
         </div>
 
       </section>
-
 
       <!-- ==================================================
            PENDAFTARAN ANGGOTA
@@ -1875,7 +1396,6 @@
 
           </div>
 
-
           <form
             id="registerForm"
             class="register-form"
@@ -1886,7 +1406,8 @@
               <div class="form-group">
 
                 <label for="regNama">
-                  Nama Lengkap <span>*</span>
+                  Nama Lengkap
+                  <span>*</span>
                 </label>
 
                 <input
@@ -1901,11 +1422,11 @@
 
               </div>
 
-
               <div class="form-group">
 
                 <label for="regJK">
-                  Jenis Kelamin <span>*</span>
+                  Jenis Kelamin
+                  <span>*</span>
                 </label>
 
                 <select
@@ -1932,13 +1453,13 @@
 
             </div>
 
-
             <div class="form-row">
 
               <div class="form-group">
 
                 <label for="regTempatLahir">
-                  Tempat Lahir <span>*</span>
+                  Tempat Lahir
+                  <span>*</span>
                 </label>
 
                 <input
@@ -1952,11 +1473,11 @@
 
               </div>
 
-
               <div class="form-group">
 
                 <label for="regTanggalLahir">
-                  Tanggal Lahir <span>*</span>
+                  Tanggal Lahir
+                  <span>*</span>
                 </label>
 
                 <input
@@ -1970,13 +1491,13 @@
 
             </div>
 
-
             <div class="form-row">
 
               <div class="form-group">
 
                 <label for="regAgama">
-                  Agama <span>*</span>
+                  Agama
+                  <span>*</span>
                 </label>
 
                 <select
@@ -2017,11 +1538,11 @@
 
               </div>
 
-
               <div class="form-group">
 
                 <label for="regGolonganDarah">
-                  Golongan Darah <span>*</span>
+                  Golongan Darah
+                  <span>*</span>
                 </label>
 
                 <select
@@ -2038,6 +1559,7 @@
                   <option value="B">B</option>
                   <option value="AB">AB</option>
                   <option value="O">O</option>
+
                   <option value="Tidak Tahu">
                     Tidak Tahu
                   </option>
@@ -2048,11 +1570,11 @@
 
             </div>
 
-
             <div class="form-group">
 
               <label for="regAlamat">
-                Alamat <span>*</span>
+                Alamat
+                <span>*</span>
               </label>
 
               <textarea
@@ -2065,13 +1587,13 @@
 
             </div>
 
-
             <div class="form-row">
 
               <div class="form-group">
 
                 <label for="regNoHP">
-                  No. HP <span>*</span>
+                  No. HP
+                  <span>*</span>
                 </label>
 
                 <input
@@ -2086,11 +1608,11 @@
 
               </div>
 
-
               <div class="form-group">
 
                 <label for="regHobi">
-                  Hobi <span>*</span>
+                  Hobi
+                  <span>*</span>
                 </label>
 
                 <input
@@ -2106,13 +1628,13 @@
 
             </div>
 
-
             <div class="form-row">
 
               <div class="form-group">
 
                 <label for="regKelas">
-                  Kelas <span>*</span>
+                  Kelas
+                  <span>*</span>
                 </label>
 
                 <select
@@ -2159,11 +1681,11 @@
 
               </div>
 
-
               <div class="form-group">
 
                 <label for="regNisn">
-                  NISN <span>*</span>
+                  NISN
+                  <span>*</span>
                 </label>
 
                 <input
@@ -2180,11 +1702,11 @@
 
             </div>
 
-
             <div class="form-group">
 
               <label for="regFoto">
-                Foto Anggota <span>*</span>
+                Foto Anggota
+                <span>*</span>
               </label>
 
               <div class="photo-upload">
@@ -2221,7 +1743,6 @@
 
             </div>
 
-
             <div class="form-note">
 
               📷 Foto diunggah langsung melalui formulir.
@@ -2233,18 +1754,16 @@
 
             </div>
 
-
             <div class="form-note">
 
               🔐 Setelah dikirim,
               <strong>STATUS_VALIDASI</strong> awal adalah
               <strong>Menunggu</strong>.
 
-              Nomor anggota dan KTA diterbitkan setelah data
-              disetujui admin.
+              Nomor anggota dan KTA diterbitkan setelah
+              data disetujui admin.
 
             </div>
-
 
             <button
               id="registerBtn"
@@ -2256,7 +1775,6 @@
 
           </form>
 
-
           <div
             id="registerResult"
             class="register-result"
@@ -2266,7 +1784,6 @@
         </div>
 
       </section>
-
 
       <!-- ==================================================
            INFO
@@ -2279,7 +1796,6 @@
           <h3>
             ℹ️ Informasi KTA
           </h3>
-
 
           <ul class="info-list">
 
@@ -2297,7 +1813,6 @@
 
             </li>
 
-
             <li>
 
               <span class="info-icon">
@@ -2310,7 +1825,6 @@
               </span>
 
             </li>
-
 
             <li>
 
@@ -2334,7 +1848,6 @@
 
     </main>
 
-
     <!-- ==================================================
          FOOTER
     =================================================== -->
@@ -2357,7 +1870,7 @@
   <script>
 
     /* =====================================================
-       KONFIGURASI API
+       API
     ===================================================== */
 
     const API_URL =
@@ -2432,8 +1945,8 @@
       message.textContent = text;
 
       message.className =
-        "message show " +
-        type;
+        "message show " + type;
+
     }
 
 
@@ -2442,8 +1955,8 @@
       message.className =
         "message";
 
-      message.textContent =
-        "";
+      message.textContent = "";
+
     }
 
 
@@ -2470,338 +1983,38 @@
 
         searchBtn.textContent =
           "Cari KTA";
+
       }
+
     }
 
 
     /* =====================================================
-       RESET RESULT
+       RESET
     ===================================================== */
 
     function resetResult() {
 
       result.classList.remove("show");
 
-      ktaName.textContent = "-";
+      if (ktaName) {
+        ktaName.textContent = "-";
+      }
 
-      ktaNumber.textContent = "-";
+      if (ktaNumber) {
+        ktaNumber.textContent = "-";
+      }
 
-      ktaPhoto.removeAttribute("src");
+      if (ktaPhoto) {
+        ktaPhoto.removeAttribute("src");
+      }
 
-      ktaPhoto.classList.remove("is-error");
-
-      ktaQR.removeAttribute("src");
+      if (ktaQR) {
+        ktaQR.removeAttribute("src");
+      }
 
       pdfBtn.dataset.url = "";
 
-      pdfBtn.disabled = false;
-    }
-
-
-    /* =====================================================
-       NORMALISASI URL FOTO
-       SUPPORT GOOGLE DRIVE
-    ===================================================== */
-
-    function normalizePhotoUrl(value) {
-
-      if (!value) {
-        return "";
-      }
-
-      let url =
-        String(value).trim();
-
-      if (!url) {
-        return "";
-      }
-
-
-      /*
-       * Jika sudah berupa data URL/base64
-       */
-      if (
-        url.startsWith("data:image/")
-      ) {
-
-        return url;
-      }
-
-
-      /*
-       * Jika backend hanya mengirim
-       * File ID Google Drive.
-       *
-       * File ID Google Drive biasanya
-       * panjang dan tidak mengandung slash.
-       */
-      if (
-        !url.startsWith("http://") &&
-        !url.startsWith("https://") &&
-        !url.includes("/")
-      ) {
-
-        return (
-          "https://drive.google.com/thumbnail?id=" +
-          encodeURIComponent(url) +
-          "&sz=w800"
-        );
-      }
-
-
-      /*
-       * Format:
-       * https://drive.google.com/file/d/FILE_ID/view
-       */
-      const fileMatch =
-        url.match(
-          /drive\.google\.com\/file\/d\/([^/]+)/
-        );
-
-      if (fileMatch) {
-
-        const fileId =
-          fileMatch[1];
-
-        return (
-          "https://drive.google.com/thumbnail?id=" +
-          encodeURIComponent(fileId) +
-          "&sz=w800"
-        );
-      }
-
-
-      /*
-       * Format:
-       * https://drive.google.com/open?id=FILE_ID
-       */
-      const openMatch =
-        url.match(
-          /drive\.google\.com\/open\?id=([^&]+)/
-        );
-
-      if (openMatch) {
-
-        const fileId =
-          openMatch[1];
-
-        return (
-          "https://drive.google.com/thumbnail?id=" +
-          encodeURIComponent(fileId) +
-          "&sz=w800"
-        );
-      }
-
-
-      /*
-       * Format:
-       * https://drive.google.com/uc?id=FILE_ID
-       */
-      const ucMatch =
-        url.match(
-          /drive\.google\.com\/uc\?(?:export=[^&]+&)?id=([^&]+)/
-        );
-
-      if (ucMatch) {
-
-        const fileId =
-          ucMatch[1];
-
-        return (
-          "https://drive.google.com/thumbnail?id=" +
-          encodeURIComponent(fileId) +
-          "&sz=w800"
-        );
-      }
-
-
-      /*
-       * Format thumbnail Google Drive
-       * sudah benar → langsung gunakan.
-       */
-      if (
-        url.includes(
-          "drive.google.com/thumbnail"
-        )
-      ) {
-
-        return url;
-      }
-
-
-      /*
-       * URL Googleusercontent
-       * atau URL gambar biasa.
-       */
-      return url;
-    }
-
-
-    /* =====================================================
-       ALTERNATIF URL FOTO
-       ===================================================== */
-
-    function getAlternativePhotoUrls(value) {
-
-      const urls = [];
-
-      if (!value) {
-        return urls;
-      }
-
-      const raw =
-        String(value).trim();
-
-
-      /*
-       * Jika File ID
-       */
-      if (
-        !raw.startsWith("http://") &&
-        !raw.startsWith("https://") &&
-        !raw.includes("/")
-      ) {
-
-        urls.push(
-          "https://drive.google.com/thumbnail?id=" +
-          encodeURIComponent(raw) +
-          "&sz=w1000"
-        );
-
-        urls.push(
-          "https://drive.google.com/uc?export=view&id=" +
-          encodeURIComponent(raw)
-        );
-
-        return urls;
-      }
-
-
-      const match =
-        raw.match(
-          /drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=[^&]+&)?id=)([^/&]+)/
-        );
-
-
-      if (match) {
-
-        const fileId =
-          match[1];
-
-        urls.push(
-          "https://drive.google.com/thumbnail?id=" +
-          encodeURIComponent(fileId) +
-          "&sz=w1000"
-        );
-
-        urls.push(
-          "https://drive.google.com/uc?export=view&id=" +
-          encodeURIComponent(fileId)
-        );
-      }
-
-
-      /*
-       * URL asli sebagai opsi terakhir.
-       */
-      urls.push(raw);
-
-      return [
-        ...new Set(urls)
-      ];
-    }
-
-
-    /* =====================================================
-       LOAD FOTO DENGAN FALLBACK
-    ===================================================== */
-
-    function loadMemberPhoto(photoValue) {
-
-      const urls =
-        getAlternativePhotoUrls(
-          photoValue
-        );
-
-
-      if (!urls.length) {
-
-        ktaPhoto.src =
-          createPlaceholderPhoto();
-
-        return;
-      }
-
-
-      let index = 0;
-
-
-      function tryNextPhoto() {
-
-        if (
-          index >= urls.length
-        ) {
-
-          console.warn(
-            "Semua URL foto gagal dimuat:",
-            photoValue
-          );
-
-          ktaPhoto.classList.add(
-            "is-error"
-          );
-
-          ktaPhoto.src =
-            createPlaceholderPhoto();
-
-          return;
-        }
-
-
-        const currentUrl =
-          urls[index];
-
-        index++;
-
-
-        /*
-         * Buat Image terpisah terlebih dahulu.
-         * Jika berhasil, baru tampilkan pada kartu.
-         */
-        const testImage =
-          new Image();
-
-
-        testImage.onload =
-          function() {
-
-            ktaPhoto.classList.remove(
-              "is-error"
-            );
-
-            ktaPhoto.src =
-              currentUrl;
-          };
-
-
-        testImage.onerror =
-          function() {
-
-            console.warn(
-              "URL foto gagal:",
-              currentUrl
-            );
-
-            tryNextPhoto();
-          };
-
-
-        testImage.src =
-          currentUrl;
-      }
-
-
-      tryNextPhoto();
     }
 
 
@@ -2814,11 +2027,9 @@
       const nisn =
         nisnInput.value.trim();
 
-
       hideMessage();
 
       resetResult();
-
 
       if (!nisn) {
 
@@ -2832,7 +2043,6 @@
         return;
       }
 
-
       if (!/^\d+$/.test(nisn)) {
 
         showMessage(
@@ -2845,9 +2055,7 @@
         return;
       }
 
-
       setLoading(true);
-
 
       try {
 
@@ -2855,7 +2063,6 @@
           API_URL +
           "?action=searchNISN&nisn=" +
           encodeURIComponent(nisn);
-
 
         const response =
           await fetch(
@@ -2866,18 +2073,16 @@
             }
           );
 
-
         if (!response.ok) {
 
           throw new Error(
             "Server tidak dapat dihubungi."
           );
-        }
 
+        }
 
         const data =
           await response.json();
-
 
         if (
           !data.success ||
@@ -2893,23 +2098,11 @@
           return;
         }
 
-
-        console.log(
-          "DATA MEMBER:",
-          data.member
-        );
-
-
-        displayMember(
-          data.member
-        );
-
+        displayMember(data.member);
 
       } catch (error) {
 
-        console.error(
-          error
-        );
+        console.error(error);
 
         showMessage(
           "Terjadi masalah saat menghubungi sistem. Silakan coba lagi.",
@@ -2919,7 +2112,9 @@
       } finally {
 
         setLoading(false);
+
       }
+
     }
 
 
@@ -2930,90 +2125,68 @@
     function displayMember(member) {
 
       /*
-       * Nama
-       */
-      ktaName.textContent =
-        member.nama ||
-        member.NAMA_LENGKAP ||
-        "-";
-
-
-      /*
-       * Nomor anggota
-       */
-      ktaNumber.textContent =
-        member.nomorAnggota ||
-        member.NOMOR_ANGGOTA ||
-        "-";
-
-
-      /*
-       * FOTO
+       * Pastikan template.html sudah mempunyai
+       * ID berikut:
        *
-       * Mendukung beberapa kemungkinan
-       * nama field dari backend.
+       * ktaPhoto
+       * ktaName
+       * ktaNumber
+       * ktaQR
        */
-      const photoValue =
-        member.foto ||
-        member.FOTO_URL ||
-        member.fotoUrl ||
-        member.FOTO ||
-        member.fotoRawUrl ||
-        member.FOTO_RAW_URL ||
-        "";
 
+      if (ktaName) {
 
-      console.log(
-        "URL FOTO:",
-        photoValue
-      );
+        ktaName.textContent =
+          member.nama || "-";
 
+      }
 
-      if (photoValue) {
+      if (ktaNumber) {
 
-        loadMemberPhoto(
-          photoValue
-        );
+        ktaNumber.textContent =
+          member.nomorAnggota || "-";
 
-      } else {
-
-        ktaPhoto.classList.add(
-          "is-error"
-        );
-
-        ktaPhoto.src =
-          createPlaceholderPhoto();
       }
 
 
-      /*
-       * QR
-       */
-      const qrData =
-        "PMR|" +
-        (
-          member.nomorAnggota ||
-          member.NOMOR_ANGGOTA ||
-          ""
-        ) +
-        "|" +
-        (
-          member.nisn ||
-          member.NISN ||
-          ""
-        );
+      /* FOTO */
+
+      if (ktaPhoto) {
+
+        if (member.foto) {
+
+          ktaPhoto.src =
+            member.foto;
+
+        } else {
+
+          ktaPhoto.src =
+            createPlaceholderPhoto();
+
+        }
+
+      }
 
 
-      ktaQR.src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
-        encodeURIComponent(
-          qrData
-        );
+      /* QR */
+
+      if (ktaQR) {
+
+        const qrData =
+          "PMR|" +
+          (member.nomorAnggota || "") +
+          "|" +
+          (member.nisn || "");
+
+        ktaQR.src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+          encodeURIComponent(qrData);
+
+      }
 
 
-      /*
-       * PDF
-       */
+      /* PDF */
+
       if (member.pdf) {
 
         pdfBtn.dataset.url =
@@ -3023,20 +2196,14 @@
 
       } else {
 
-        pdfBtn.dataset.url =
-          "";
+        pdfBtn.dataset.url = "";
 
-        pdfBtn.disabled = false;
+        pdfBtn.disabled = true;
+
       }
 
 
-      /*
-       * Tampilkan kartu
-       */
-      result.classList.add(
-        "show"
-      );
-
+      result.classList.add("show");
 
       showMessage(
         "KTA ditemukan dan sudah divalidasi admin.",
@@ -3044,9 +2211,6 @@
       );
 
 
-      /*
-       * Scroll
-       */
       setTimeout(
         function() {
 
@@ -3058,6 +2222,7 @@
         },
         150
       );
+
     }
 
 
@@ -3114,41 +2279,12 @@
         </svg>
       `;
 
-
       return (
         "data:image/svg+xml;charset=UTF-8," +
         encodeURIComponent(svg)
       );
+
     }
-
-
-    /* =====================================================
-       FOTO ERROR HANDLER
-    ===================================================== */
-
-    ktaPhoto.addEventListener(
-      "error",
-      function() {
-
-        /*
-         * Jangan loop terus-menerus.
-         */
-        if (
-          !this.classList.contains(
-            "is-error"
-          )
-        ) {
-
-          this.classList.add(
-            "is-error"
-          );
-
-          this.src =
-            createPlaceholderPhoto();
-        }
-
-      }
-    );
 
 
     /* =====================================================
@@ -3158,6 +2294,7 @@
     function printKTA() {
 
       if (
+        !ktaName ||
         !ktaName.textContent ||
         ktaName.textContent === "-"
       ) {
@@ -3170,8 +2307,8 @@
         return;
       }
 
-
       window.print();
+
     }
 
 
@@ -3184,7 +2321,6 @@
       const url =
         pdfBtn.dataset.url;
 
-
       if (!url) {
 
         showMessage(
@@ -3195,17 +2331,17 @@
         return;
       }
 
-
       window.open(
         url,
         "_blank",
         "noopener"
       );
+
     }
 
 
     /* =====================================================
-       PENDAFTARAN
+       REGISTER
     ===================================================== */
 
     function showRegisterResult(
@@ -3213,42 +2349,34 @@
       type = "success"
     ) {
 
-      registerResult.textContent =
-        text;
+      registerResult.textContent = text;
 
       registerResult.className =
-        "register-result show " +
-        type;
+        "register-result show " + type;
+
     }
 
 
-    function setRegisterLoading(
-      status
-    ) {
+    function setRegisterLoading(status) {
 
-      registerBtn.disabled =
-        status;
+      registerBtn.disabled = status;
 
       registerBtn.textContent =
         status
           ? "Mengirim pendaftaran..."
           : "🩸 Daftar sebagai Anggota PMR";
+
     }
 
 
     /* =====================================================
-       COMPRESS FOTO
+       FOTO → BASE64
     ===================================================== */
 
-    function fileToCompressedBase64(
-      file
-    ) {
+    function fileToCompressedBase64(file) {
 
       return new Promise(
-        (
-          resolve,
-          reject
-        ) => {
+        (resolve, reject) => {
 
           if (!file) {
 
@@ -3261,11 +2389,8 @@
             return;
           }
 
-
           if (
-            !file.type.startsWith(
-              "image/"
-            )
+            !file.type.startsWith("image/")
           ) {
 
             reject(
@@ -3276,7 +2401,6 @@
 
             return;
           }
-
 
           if (
             file.size >
@@ -3292,10 +2416,8 @@
             return;
           }
 
-
           const reader =
             new FileReader();
-
 
           reader.onload =
             function(event) {
@@ -3303,16 +2425,11 @@
               const img =
                 new Image();
 
-
               img.onload =
                 function() {
 
-                  const maxWidth =
-                    900;
-
-                  const maxHeight =
-                    1200;
-
+                  const maxWidth = 900;
+                  const maxHeight = 1200;
 
                   let width =
                     img.width;
@@ -3320,14 +2437,12 @@
                   let height =
                     img.height;
 
-
                   const scale =
                     Math.min(
                       1,
                       maxWidth / width,
                       maxHeight / height
                     );
-
 
                   width =
                     Math.round(
@@ -3339,12 +2454,10 @@
                       height * scale
                     );
 
-
                   const canvas =
                     document.createElement(
                       "canvas"
                     );
-
 
                   canvas.width =
                     width;
@@ -3352,12 +2465,8 @@
                   canvas.height =
                     height;
 
-
                   const ctx =
-                    canvas.getContext(
-                      "2d"
-                    );
-
+                    canvas.getContext("2d");
 
                   ctx.drawImage(
                     img,
@@ -3367,28 +2476,19 @@
                     height
                   );
 
-
                   const base64 =
                     canvas.toDataURL(
                       "image/jpeg",
                       0.82
                     );
 
-
                   resolve({
-
                     data: base64,
-
-                    mimeType:
-                      "image/jpeg",
-
-                    fileName:
-                      file.name
-
+                    mimeType: "image/jpeg",
+                    fileName: file.name
                   });
 
                 };
-
 
               img.onerror =
                 function() {
@@ -3401,12 +2501,10 @@
 
                 };
 
-
               img.src =
                 event.target.result;
 
             };
-
 
           reader.onerror =
             function() {
@@ -3419,13 +2517,11 @@
 
             };
 
-
-          reader.readAsDataURL(
-            file
-          );
+          reader.readAsDataURL(file);
 
         }
       );
+
     }
 
 
@@ -3433,25 +2529,17 @@
        REGISTER MEMBER
     ===================================================== */
 
-    async function registerMember(
-      event
-    ) {
+    async function registerMember(event) {
 
       event.preventDefault();
-
 
       registerResult.className =
         "register-result";
 
-      registerResult.textContent =
-        "";
-
+      registerResult.textContent = "";
 
       const formData =
-        new FormData(
-          registerForm
-        );
-
+        new FormData(registerForm);
 
       const fotoFile =
         formData.get("foto");
@@ -3463,68 +2551,42 @@
           "registerMember",
 
         NAMA_LENGKAP:
-          formData
-            .get("nama")
-            .trim(),
+          formData.get("nama").trim(),
 
         JENIS_KELAMIN:
-          formData.get(
-            "jenisKelamin"
-          ),
+          formData.get("jenisKelamin"),
 
         TEMPAT_LAHIR:
-          formData
-            .get("tempatLahir")
-            .trim(),
+          formData.get("tempatLahir").trim(),
 
         TANGGAL_LAHIR:
-          formData.get(
-            "tanggalLahir"
-          ),
+          formData.get("tanggalLahir"),
 
         AGAMA:
-          formData.get(
-            "agama"
-          ),
+          formData.get("agama"),
 
         ALAMAT:
-          formData
-            .get("alamat")
-            .trim(),
+          formData.get("alamat").trim(),
 
         NO_HP:
-          formData
-            .get("noHP")
-            .trim(),
+          formData.get("noHP").trim(),
 
         HOBI:
-          formData
-            .get("hobi")
-            .trim(),
+          formData.get("hobi").trim(),
 
         GOLONGAN_DARAH:
-          formData.get(
-            "golonganDarah"
-          ),
+          formData.get("golonganDarah"),
 
         KELAS:
-          formData.get(
-            "kelas"
-          ),
+          formData.get("kelas"),
 
         NISN:
-          formData
-            .get("nisn")
-            .trim()
+          formData.get("nisn").trim()
 
       };
 
 
-      if (
-        !/^\d+$/.test(
-          data.NISN
-        )
-      ) {
+      if (!/^\d+$/.test(data.NISN)) {
 
         showRegisterResult(
           "NISN hanya boleh berisi angka.",
@@ -3532,9 +2594,7 @@
         );
 
         document
-          .getElementById(
-            "regNisn"
-          )
+          .getElementById("regNisn")
           .focus();
 
         return;
@@ -3555,9 +2615,7 @@
       }
 
 
-      setRegisterLoading(
-        true
-      );
+      setRegisterLoading(true);
 
 
       try {
@@ -3566,7 +2624,6 @@
           await fileToCompressedBase64(
             fotoFile
           );
-
 
         data.FOTO =
           foto.data;
@@ -3578,29 +2635,19 @@
           foto.fileName;
 
 
-        /*
-         * POST text/plain
-         * agar tidak terkena preflight CORS.
-         */
         const response =
           await fetch(
             API_URL,
             {
-
-              method:
-                "POST",
+              method: "POST",
 
               headers: {
-
                 "Content-Type":
                   "text/plain;charset=utf-8"
-
               },
 
               body:
-                JSON.stringify(
-                  data
-                )
+                JSON.stringify(data)
 
             }
           );
@@ -3611,6 +2658,7 @@
           throw new Error(
             "Server tidak dapat dihubungi."
           );
+
         }
 
 
@@ -3618,14 +2666,13 @@
           await response.json();
 
 
-        if (
-          !resultData.success
-        ) {
+        if (!resultData.success) {
 
           throw new Error(
             resultData.message ||
             "Pendaftaran gagal diproses."
           );
+
         }
 
 
@@ -3653,15 +2700,11 @@
 
         photoPreviewWrap
           .classList
-          .remove(
-            "show"
-          );
+          .remove("show");
 
 
         photoPreview
-          .removeAttribute(
-            "src"
-          );
+          .removeAttribute("src");
 
 
         photoPreviewInfo.textContent =
@@ -3670,10 +2713,7 @@
 
       } catch (error) {
 
-        console.error(
-          error
-        );
-
+        console.error(error);
 
         showRegisterResult(
           error.message ||
@@ -3681,24 +2721,21 @@
           "error"
         );
 
-
       } finally {
 
-        setRegisterLoading(
-          false
-        );
+        setRegisterLoading(false);
+
       }
+
     }
 
 
     /* =====================================================
-       PREVIEW FOTO PENDAFTARAN
+       FOTO PREVIEW
     ===================================================== */
 
     document
-      .getElementById(
-        "regFoto"
-      )
+      .getElementById("regFoto")
       .addEventListener(
         "change",
         function() {
@@ -3706,23 +2743,18 @@
           const file =
             this.files[0];
 
-
           if (!file) {
 
             photoPreviewWrap
               .classList
-              .remove(
-                "show"
-              );
+              .remove("show");
 
             return;
           }
 
 
           if (
-            !file.type.startsWith(
-              "image/"
-            )
+            !file.type.startsWith("image/")
           ) {
 
             showRegisterResult(
@@ -3734,18 +2766,14 @@
 
             photoPreviewWrap
               .classList
-              .remove(
-                "show"
-              );
+              .remove("show");
 
             return;
           }
 
 
           const url =
-            URL.createObjectURL(
-              file
-            );
+            URL.createObjectURL(file);
 
 
           photoPreview.src =
@@ -3763,22 +2791,18 @@
 
           photoPreviewWrap
             .classList
-            .add(
-              "show"
-            );
+            .add("show");
 
         }
       );
 
 
     /* =====================================================
-       FORMAT NISN
+       NISN REGISTER
     ===================================================== */
 
     document
-      .getElementById(
-        "regNisn"
-      )
+      .getElementById("regNisn")
       .addEventListener(
         "input",
         function() {
@@ -3791,20 +2815,6 @@
 
         }
       );
-
-
-    nisnInput.addEventListener(
-      "input",
-      function() {
-
-        this.value =
-          this.value.replace(
-            /\D/g,
-            ""
-          );
-
-      }
-    );
 
 
     /* =====================================================
@@ -3822,13 +2832,13 @@
       function(event) {
 
         if (
-          event.key ===
-          "Enter"
+          event.key === "Enter"
         ) {
 
           event.preventDefault();
 
           searchNISN();
+
         }
 
       }
@@ -3852,6 +2862,19 @@
       registerMember
     );
 
+
+    nisnInput.addEventListener(
+      "input",
+      function() {
+
+        this.value =
+          this.value.replace(
+            /\D/g,
+            ""
+          );
+
+      }
+    );
 
   </script>
 

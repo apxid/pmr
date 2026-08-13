@@ -344,59 +344,47 @@
       btnText.innerText = "Mengirim Data...";
       alertMsg.style.display = "none";
 
-      const formData = {
-        statusKeanggotaan: document.getElementById('statusKeanggotaan').value,
-        nama: document.getElementById('nama').value,
-        nisn: document.getElementById('nisn').value,
-        kelas: document.getElementById('kelas').value,
-        jenisKelamin: document.getElementById('jenisKelamin').value,
-        golDarah: document.getElementById('golDarah').value,
-        tempatLahir: document.getElementById('tempatLahir').value,
-        tanggalLahir: document.getElementById('tanggalLahir').value,
-        agama: document.getElementById('agama').value,
-        noHp: document.getElementById('noHp').value,
-        hobi: document.getElementById('hobi').value,
-        alamat: document.getElementById('alamat').value,
-        fotoBase64: fotoBase64
-      };
+      const nisnValue = document.getElementById('nisn').value;
 
-      // Pengiriman data menggunakan 'text/plain' dan 'redirect: follow' untuk Google Apps Script
+      // Konversi payload ke format URLSearchParams untuk menghindari blokir CORS pada GAS
+      const payload = new URLSearchParams();
+      payload.append('statusKeanggotaan', document.getElementById('statusKeanggotaan').value);
+      payload.append('nama', document.getElementById('nama').value);
+      payload.append('nisn', nisnValue);
+      payload.append('kelas', document.getElementById('kelas').value);
+      payload.append('jenisKelamin', document.getElementById('jenisKelamin').value);
+      payload.append('golDarah', document.getElementById('golDarah').value);
+      payload.append('tempatLahir', document.getElementById('tempatLahir').value);
+      payload.append('tanggalLahir', document.getElementById('tanggalLahir').value);
+      payload.append('agama', document.getElementById('agama').value);
+      payload.append('noHp', document.getElementById('noHp').value);
+      payload.append('hobi', document.getElementById('hobi').value);
+      payload.append('alamat', document.getElementById('alamat').value);
+      payload.append('fotoBase64', fotoBase64);
+
       fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'cors',
-        redirect: 'follow',
+        mode: 'no-cors',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(formData)
+        body: payload.toString()
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Respon jaringan tidak OK');
-        }
-        return response.json();
-      })
-      .then(res => {
+      .then(() => {
         btn.disabled = false;
         btnText.innerText = "Kirim Pendaftaran";
         alertMsg.style.display = "block";
+        alertMsg.className = "alert alert-success";
+        alertMsg.innerText = "Pendaftaran Berhasil Dikirim! Mengalihkan...";
 
-        if (res.success) {
-          alertMsg.className = "alert alert-success";
-          alertMsg.innerText = "Pendaftaran Berhasil! Mengalihkan...";
-          
-          document.getElementById('pmrForm').reset();
-          document.getElementById('imgPreview').style.display = 'none';
-          document.getElementById('previewText').style.display = 'block';
-          fotoBase64 = "";
+        document.getElementById('pmrForm').reset();
+        document.getElementById('imgPreview').style.display = 'none';
+        document.getElementById('previewText').style.display = 'block';
+        fotoBase64 = "";
 
-          setTimeout(() => {
-            window.location.href = `search.html?q=${formData.nisn}`;
-          }, 1500);
-        } else {
-          alertMsg.className = "alert alert-error";
-          alertMsg.innerText = res.message || "Gagal menyimpan data.";
-        }
+        setTimeout(() => {
+          window.location.href = `search.html?q=${nisnValue}`;
+        }, 1500);
       })
       .catch(err => {
         console.error("Fetch Error:", err);

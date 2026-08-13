@@ -29,7 +29,7 @@
     }
 
     .error {
-      width: min(100%, 400px);
+      width: min(100%, 340px);
       background: white;
       border-radius: 12px;
       padding: 25px;
@@ -55,19 +55,26 @@
       line-height: 1.5;
     }
 
+    /* Container Utama */
+    #ktaContainer {
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     /* =====================================================
        KTA CARD STYLING
     ===================================================== */
     .kta-stage {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0 20px;
+      margin-bottom: 16px;
     }
 
     .kta-card {
       position: relative;
-      width: min(100%, 340px);
+      width: 100%;
       aspect-ratio: 1 / 1.58; /* Standard ID Card Ratio */
       background: white;
       border-radius: 12px;
@@ -83,6 +90,7 @@
       height: 12px;
       background: linear-gradient(to right, #b71c1c 0%, #b71c1c 50%, #e57373 50%, #e57373 75%, #ffcdd2 75%);
       width: 100%;
+      flex-shrink: 0;
     }
 
     /* Header Logo Area */
@@ -92,18 +100,20 @@
       justify-content: center;
       padding: 12px 15px 5px;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .pmi-logo {
       width: 42px;
       height: 42px;
+      object-fit: contain;
       flex-shrink: 0;
     }
 
     .header-text {
       font-weight: 800;
-      font-size: 14px;
-      line-height: 1.15;
+      font-size: 13px;
+      line-height: 1.2;
       color: #000;
       text-transform: uppercase;
     }
@@ -116,9 +126,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
+    /* Foto dinaikkan (margin-bottom diperbesar) dan rounded-corner */
     .photo-container {
       position: relative;
       z-index: 2;
@@ -126,8 +137,10 @@
       aspect-ratio: 3 / 4;
       border: 3.5px solid #d32f2f;
       background: #e0e0e0;
-      margin-bottom: -45px;
+      margin-bottom: -35px; /* Naik lebih tinggi dari sebelumnya (-45px) */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      border-radius: 12px; /* Rounded corner pada bingkai */
+      overflow: hidden;
     }
 
     .photo-container img {
@@ -140,7 +153,7 @@
     .red-banner {
       width: 100%;
       background: linear-gradient(135deg, #7f0000 0%, #a71313 100%);
-      padding: 52px 10px 12px;
+      padding: 42px 10px 12px; /* Disesuaikan agar pas dengan posisi foto */
       text-align: center;
       color: white;
       z-index: 1;
@@ -168,6 +181,7 @@
       padding: 10px 12px;
       gap: 10px;
       background: white;
+      flex-shrink: 0;
     }
 
     .qr-code {
@@ -238,14 +252,21 @@
 
     .signature-section {
       margin-top: auto;
-      font-size: 8px;
+      font-size: 8.5px;
       text-align: left;
+      line-height: 1.3;
+    }
+
+    .signature-name {
+      margin-top: 35px;
+      font-weight: bold;
+      text-decoration: underline;
     }
 
     .attention-box {
       border: 1.5px solid #d32f2f;
       padding: 6px;
-      margin-top: 6px;
+      margin-top: 8px;
       border-radius: 4px;
     }
 
@@ -260,18 +281,27 @@
     /* Actions buttons */
     .actions {
       display: flex;
-      gap: 8px;
-      width: min(100%, 340px);
+      gap: 10px;
+      width: 100%;
     }
 
     .action-btn {
       flex: 1;
-      padding: 10px;
+      padding: 12px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .action-btn:active {
+      opacity: 0.8;
     }
 
     .btn-print {
@@ -292,7 +322,7 @@
         padding: 0;
       }
       .actions {
-        display: none;
+        display: none !important;
       }
       .kta-card {
         box-shadow: none;
@@ -321,12 +351,9 @@
         <div class="top-bar"></div>
 
         <div class="kta-header">
-          <svg class="pmi-logo" viewBox="0 0 100 100">
-            <path d="M 35 10 H 65 V 35 H 90 V 65 H 65 V 90 H 35 V 65 H 10 V 35 H 35 Z" fill="#d32f2f"/>
-            <path d="M 50 2 C 23.5 2 2 23.5 2 50 C 2 76.5 23.5 98 50 98 C 76.5 98 98 76.5 98 50 C 98 23.5 76.5 2 50 2 Z M 50 90 C 27.9 90 10 72.1 10 50 C 10 27.9 27.9 10 50 10 C 72.1 10 90 27.9 90 50 C 90 72.1 72.1 90 50 90 Z" fill="#d32f2f"/>
-          </svg>
+          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMI">
           <div class="header-text">
-            Palang<br>Merah<br>Indonesia
+            PALANG MERAH REMAJA<br>SMP NEGERI 1 MOGA
           </div>
         </div>
 
@@ -355,10 +382,7 @@
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <svg class="pmi-logo" style="width:30px; height:30px;" viewBox="0 0 100 100">
-              <path d="M 35 10 H 65 V 35 H 90 V 65 H 65 V 90 H 35 V 65 H 10 V 35 H 35 Z" fill="#d32f2f"/>
-              <path d="M 50 2 C 23.5 2 2 23.5 2 50 C 2 76.5 23.5 98 50 98 C 76.5 98 98 76.5 98 50 C 98 23.5 76.5 2 50 2 Z M 50 90 C 27.9 90 10 72.1 10 50 C 10 27.9 27.9 10 50 10 C 72.1 10 90 27.9 90 50 C 90 72.1 72.1 90 50 90 Z" fill="#d32f2f"/>
-            </svg>
+            <img class="pmi-logo" style="width:30px; height:30px;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMI">
             <div class="back-title">
               KARTU TANDA<br>RELAWAN PMI
             </div>
@@ -371,10 +395,10 @@
 
           <div class="signature-section">
             Pengurus<br>
-            <strong>PALANG MERAH INDONESIA</strong><br>
-            <strong>KAB. PEMALANG</strong><br>
-            Pembina PMR<br><br><br>
-            <u>(..........................................)</u>
+            <strong>PALANG MERAH REMAJA</strong><br>
+            <strong>SMP NEGERI 1 MOGA</strong><br>
+            Pembina PMR
+            <div class="signature-name">Puspa Indah Purwaningrum, S.Pd.</div>
           </div>
 
           <div class="attention-box">
@@ -388,6 +412,7 @@
       </div>
     </div>
 
+    <!-- Tombol Aksi -->
     <div class="actions">
       <button class="action-btn btn-toggle" onclick="toggleCardSide()">🔄 Balik Kartu</button>
       <button class="action-btn btn-print" onclick="window.print()">🖨️ Cetak</button>
@@ -400,28 +425,21 @@
 <script>
   const DEFAULT_PHOTO = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23e0e0e0"/><circle cx="150" cy="140" r="60" fill="%239e9e9e"/><path d="M 50 340 C 50 240, 250 240, 250 340 Z" fill="%239e9e9e"/></svg>';
 
-  // Fungsi konversi URL Google Drive ke Direct Image Link
   function formatDriveUrl(url) {
     if (!url) return '';
-    
-    // Jika format lh3.googleusercontent.com/d/FILE_ID
     if (url.includes('lh3.googleusercontent.com/d/')) {
       const fileId = url.split('/d/')[1].split('?')[0];
       return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
     }
-    
-    // Jika format drive.google.com/file/d/FILE_ID/view
     if (url.includes('drive.google.com')) {
       const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
       if (match && match[1]) {
         return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
       }
     }
-    
     return url;
   }
 
-  // Ambil parameter URL
   const params = new URLSearchParams(window.location.search);
   const nama = params.get('nama') || params.get('NAMA') || '';
   const nisn = params.get('nisn') || params.get('NISN') || '';
@@ -430,32 +448,30 @@
   if (!nama && !nisn) {
     document.getElementById('error').style.display = 'block';
   } else {
-    // Set Nama & Nomor
     document.getElementById('ktaName').textContent = nama || '-';
     document.getElementById('ktaNumber').textContent = 'NI. ' + (nisn || '-');
 
-    // Set Foto dengan fallback jika gagal load
     const photoElement = document.getElementById('ktaPhoto');
     const formattedFoto = formatDriveUrl(rawFoto);
     
     photoElement.onerror = function() {
-      this.onerror = null; // mencegah infinite loop jika default photo gagal
+      this.onerror = null;
       this.src = DEFAULT_PHOTO;
     };
     
     photoElement.src = formattedFoto ? formattedFoto : DEFAULT_PHOTO;
 
-    // QR Code
     const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(window.location.href);
     document.getElementById('ktaQR').src = qrUrl;
 
     document.title = 'KTA PMR - ' + (nama || 'Anggota');
-    document.getElementById('ktaContainer').style.display = 'block';
+    document.getElementById('ktaContainer').style.display = 'flex';
   }
 
   function toggleCardSide() {
     const front = document.getElementById('ktaCardFront');
     const back = document.getElementById('ktaCardBack');
+    
     if (front.style.display === 'none') {
       front.style.display = 'flex';
       back.style.display = 'none';

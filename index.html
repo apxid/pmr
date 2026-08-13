@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentasi & Arsip PMR SPENSAMO</title>
     
+    <!-- PWA & Mobile Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#b00020">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="PMR SPENSAMO">
+    <link rel="apple-touch-icon" href="https://yanuar-moga.github.io/pmr/assets/logo.png">
+    
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,6 +101,34 @@
             font-weight: 700;
             padding: 8px 16px;
             border-radius: 20px;
+        }
+
+        /* PWA Install Banner Button */
+        #pwa-install-container {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .btn-install-pwa {
+            width: 100%;
+            background: #1e293b;
+            color: #ffffff;
+            border: none;
+            padding: 14px 20px;
+            border-radius: var(--border-radius-md);
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+
+        .btn-install-pwa:hover {
+            background: #0f172a;
         }
 
         /* Hero Banner Gradasi Merah */
@@ -281,6 +318,13 @@
         <div class="version-badge">Version 1.0</div>
     </header>
 
+    <!-- Tombol Instal PWA (Otomatis muncul jika browser mendukung) -->
+    <div id="pwa-install-container">
+        <button id="pwa-install-btn" class="btn-install-pwa">
+            <span>📲</span> Instal Aplikasi PMR SPENSAMO
+        </button>
+    </div>
+
     <!-- Banner Merah Gradasi -->
     <section class="hero-banner">
         <h2>Halo, Selamat Datang!</h2>
@@ -373,6 +417,56 @@
     </footer>
 
 </div>
+
+<!-- JavaScript Service Worker & Prompt Instalasi PWA -->
+<script>
+    // 1. Registrasi Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Service Worker berhasil didaftarkan!', reg))
+                .catch(err => console.error('Pendaftaran Service Worker gagal!', err));
+        });
+    }
+
+    // 2. Logic Tampilan Tombol Instal Aplikasi
+    let deferredPrompt;
+    const installContainer = document.getElementById('pwa-install-container');
+    const installBtn = document.getElementById('pwa-install-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Cegah browser menampilkan prompt otomatis
+        e.preventDefault();
+        // Simpan event sehingga dapat dipicu nanti
+        deferredPrompt = e;
+        // Tampilkan tombol instal
+        installContainer.style.display = 'block';
+    });
+
+    installBtn.addEventListener('click', () => {
+        if (deferredPrompt) {
+            // Tampilkan prompt instalasi
+            deferredPrompt.prompt();
+            // Tunggu pilihan pengguna
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Pengguna menyetujui instalasi PWA');
+                } else {
+                    console.log('Pengguna menolak instalasi PWA');
+                }
+                deferredPrompt = null;
+                // Sembunyikan tombol setelah berinteraksi
+                installContainer.style.display = 'none';
+            });
+        }
+    });
+
+    window.addEventListener('appinstalled', () => {
+        // Sembunyikan tombol jika aplikasi sudah berhasil diinstal
+        installContainer.style.display = 'none';
+        console.log('PWA berhasil diinstal pada perangkat');
+    });
+</script>
 
 </body>
 </html>

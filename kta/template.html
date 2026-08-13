@@ -1,6 +1,17 @@
 <!-- =========================================================
-     TEMPLATE KARTU KTA PMR
-     File: Template.html
+     TEMPLATE KARTU KTA PMR MADYA
+     File: template.html
+     
+     KOMPATIBEL DENGAN:
+     - Google Apps Script generateKTAPDF()
+     - GitHub Pages
+     
+     PLACEHOLDER:
+     {{NAMA_LENGKAP}}
+     {{NOMOR_ANGGOTA}}
+     {{FOTO_URL}}
+     {{QR_URL}}
+     {{API_URL}}
 ========================================================= -->
 
 <style>
@@ -142,7 +153,6 @@
 
   /* =========================================================
      FOTO
-     DITURUNKAN AGAR LEBIH PROPORSIONAL
   ========================================================= */
 
   .kta-photo-wrap {
@@ -240,6 +250,8 @@
 
     word-break: break-word;
 
+    overflow-wrap: anywhere;
+
     text-transform: uppercase;
   }
 
@@ -270,6 +282,8 @@
     font-weight: 900;
 
     letter-spacing: .5px;
+
+    white-space: nowrap;
   }
 
 
@@ -323,6 +337,8 @@
   .kta-footer-info {
     flex: 1;
 
+    min-width: 0;
+
     text-align: left;
   }
 
@@ -372,6 +388,7 @@
 
     .kta-photo-wrap {
       top: 22%;
+
       width: 43%;
     }
 
@@ -396,7 +413,7 @@
 
 
   /* =========================================================
-     PRINT
+     PRINT / PDF
   ========================================================= */
 
   @media print {
@@ -422,6 +439,18 @@
 
   }
 
+
+  /* =========================================================
+     PDF / HTML SAFETY
+     
+     Memastikan gambar tidak memiliki margin tambahan
+     dari browser / engine PDF.
+  ========================================================= */
+
+  img {
+    max-width: 100%;
+  }
+
 </style>
 
 
@@ -431,14 +460,21 @@
 
 <div class="kta-stage">
 
-  <div id="ktaCard" class="kta-card">
+  <div
+    id="ktaCard"
+    class="kta-card"
+  >
 
-    <!-- TOP MERAH -->
+    <!-- =====================================================
+         TOP MERAH
+    ====================================================== -->
 
     <div class="kta-top"></div>
 
 
-    <!-- ORGANISASI -->
+    <!-- =====================================================
+         ORGANISASI
+    ====================================================== -->
 
     <div class="kta-org">
 
@@ -456,21 +492,28 @@
     </div>
 
 
-    <!-- FOTO -->
+    <!-- =====================================================
+         FOTO ANGGOTA
+         
+         {{FOTO_URL}} akan diganti oleh code.gs
+         sebelum HTML dikonversi menjadi PDF.
+    ====================================================== -->
 
     <div class="kta-photo-wrap">
 
       <img
         id="ktaPhoto"
         class="kta-photo"
-        src=""
+        src="{{FOTO_URL}}"
         alt="Foto Anggota PMR"
       >
 
     </div>
 
 
-    <!-- INFORMASI ANGGOTA -->
+    <!-- =====================================================
+         INFORMASI ANGGOTA
+    ====================================================== -->
 
     <div class="kta-body">
 
@@ -479,35 +522,58 @@
       </div>
 
 
+      <!--
+        {{NAMA_LENGKAP}}
+        akan diganti oleh code.gs
+      -->
+
       <div
         id="ktaName"
         class="kta-name"
       >
-        -
+        {{NAMA_LENGKAP}}
       </div>
 
+
+      <!--
+        {{NOMOR_ANGGOTA}}
+        akan diganti oleh code.gs
+      -->
 
       <div
         id="ktaNumber"
         class="kta-number"
       >
-        -
+        {{NOMOR_ANGGOTA}}
       </div>
 
     </div>
 
 
-    <!-- FOOTER -->
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <div class="kta-bottom">
+
+
+      <!-- ===================================================
+           QR CODE
+
+           {{QR_URL}} akan diganti oleh code.gs
+      ==================================================== -->
 
       <img
         id="ktaQR"
         class="kta-qr"
-        src=""
+        src="{{QR_URL}}"
         alt="QR Code KTA"
       >
 
+
+      <!-- ===================================================
+           INFORMASI ORGANISASI
+      ==================================================== -->
 
       <div class="kta-footer-info">
 
@@ -515,9 +581,11 @@
           PMR MADYA
         </div>
 
+
         <div class="kta-school">
           SMP NEGERI 1 MOGA
         </div>
+
 
         <div class="kta-location">
           Kab. Pemalang
@@ -530,3 +598,4 @@
   </div>
 
 </div>
+

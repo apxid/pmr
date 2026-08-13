@@ -2,18 +2,11 @@
 <html lang="id">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KTA PMR Madya - SMP Negeri 1 Moga</title>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -22,8 +15,8 @@
       margin: 0;
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #f7eeee, #ffffff);
-      color: #351015;
+      background: #eef2f5;
+      color: #333;
     }
 
     .page {
@@ -37,7 +30,7 @@
 
     .loading {
       text-align: center;
-      color: #8a6d71;
+      color: #666;
       font-size: 14px;
     }
 
@@ -46,24 +39,22 @@
       height: 42px;
       margin: 0 auto 14px;
       border-radius: 50%;
-      border: 4px solid #f0d5d8;
-      border-top-color: #bd081c;
+      border: 4px solid #e0e0e0;
+      border-top-color: #d32f2f;
       animation: spin .8s linear infinite;
     }
 
     @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
 
     .error {
-      width: min(100%, 430px);
+      width: min(100%, 400px);
       background: white;
-      border-radius: 20px;
+      border-radius: 12px;
       padding: 25px;
       text-align: center;
-      box-shadow: 0 18px 50px rgba(60, 10, 20, .12);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
     }
 
     .error-icon {
@@ -73,294 +64,263 @@
 
     .error h2 {
       margin: 0 0 8px;
-      color: #9b1422;
+      color: #d32f2f;
       font-size: 19px;
     }
 
     .error p {
       margin: 0;
-      color: #745f63;
+      color: #666;
       font-size: 13px;
       line-height: 1.5;
     }
 
     /* =====================================================
-       KTA CARD
+       KTA CARD STYLING (MATCHING DESIGN)
     ===================================================== */
-
     .kta-stage {
       width: 100%;
       display: flex;
       justify-content: center;
-      padding: 12px 0 22px;
+      padding: 10px 0 20px;
     }
 
     .kta-card {
       position: relative;
-      width: min(100%, 360px);
-      aspect-ratio: 5.513 / 8.72;
+      width: min(100%, 340px);
+      aspect-ratio: 1 / 1.58; /* Standard ID Card Ratio */
+      background: white;
+      border-radius: 12px;
       overflow: hidden;
-      border-radius: 20px;
-      background: linear-gradient(155deg, #ffffff 0%, #fff8f8 45%, #fce5e7 100%);
-      box-shadow: 0 20px 50px rgba(65, 10, 18, .22);
-      border: 1px solid rgba(189, 8, 28, .16);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      border: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* =====================================================
-       TOP MERAH
-    ===================================================== */
-
-    .kta-top {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 18.5%;
-      background: linear-gradient(135deg, #8f0016 0%, #bd081c 55%, #e1273d 100%);
-      clip-path: polygon(0 0, 100% 0, 100% 77%, 50% 100%, 0 77%);
+    /* Top Strip Design */
+    .top-bar {
+      height: 12px;
+      background: linear-gradient(to right, #b71c1c 0%, #b71c1c 50%, #e57373 50%, #e57373 75%, #ffcdd2 75%);
+      width: 100%;
     }
 
-    /* =====================================================
-       ORGANISASI
-    ===================================================== */
-
-    .kta-org {
-      position: absolute;
-      top: 4.5%;
-      left: 8%;
-      right: 8%;
-      z-index: 5;
-      color: white;
-      text-align: center;
-      font-size: 9px;
-      line-height: 1.25;
-      font-weight: 800;
-    }
-
-    .kta-org strong {
-      display: block;
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .kta-cross {
-      width: 24px;
-      height: 24px;
-      margin: 5px auto 0;
+    /* Header Logo Area */
+    .kta-header {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: white;
-      border-radius: 7px;
-      color: #bd081c;
-      font-size: 16px;
-      font-weight: 900;
-      box-shadow: 0 3px 10px rgba(0,0,0,.10);
+      padding: 12px 15px 5px;
+      gap: 12px;
     }
 
-    /* =====================================================
-       FOTO
-    ===================================================== */
+    .pmi-logo {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+    }
 
-    .kta-photo-wrap {
-      position: absolute;
-      z-index: 4;
-      top: 22%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 43%;
+    .header-text {
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1.15;
+      color: #000;
+      text-transform: uppercase;
+    }
+
+    /* Main Photo Area & Red Banner */
+    .kta-main-section {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .photo-container {
+      position: relative;
+      z-index: 2;
+      width: 48%;
       aspect-ratio: 3 / 4;
-      padding: 4px;
-      border-radius: 14px;
-      background: linear-gradient(145deg, #8f0016, #e1263d);
-      box-shadow: 0 9px 22px rgba(80,0,15,.20);
+      border: 3.5px solid #d32f2f;
+      background: #e0e0e0;
+      margin-bottom: -45px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
-    .kta-photo {
-      display: block;
+    .photo-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center center;
-      border-radius: 10px;
-      background: #eeeeee;
+      display: block;
     }
 
-    /* =====================================================
-       BODY
-    ===================================================== */
-
-    .kta-body {
-      position: absolute;
-      z-index: 5;
-      left: 7%;
-      right: 7%;
-      top: 55.5%;
+    .red-banner {
+      width: 100%;
+      background: linear-gradient(135deg, #7f0000 0%, #a71313 100%);
+      padding: 52px 10px 12px;
       text-align: center;
+      color: white;
+      z-index: 1;
     }
 
-    .kta-label {
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      color: #9c7b80;
-      font-weight: 900;
+    .member-name {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .kta-name {
-      margin-top: 5px;
-      font-size: clamp(14px, 4vw, 19px);
-      line-height: 1.15;
-      color: #3b1117;
-      font-weight: 900;
-      word-break: break-word;
-      text-transform: uppercase;
+    .member-ni {
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      opacity: 0.95;
     }
 
-    .kta-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 9px;
-      padding: 6px 12px;
-      min-height: 25px;
-      border-radius: 99px;
-      background: white;
-      border: 1px solid #f0c6cb;
-      color: #bd081c;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .5px;
-    }
-
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    .kta-bottom {
-      position: absolute;
-      z-index: 5;
-      left: 7%;
-      right: 7%;
-      bottom: 6%;
+    /* Footer Section */
+    .kta-footer {
       display: flex;
       align-items: center;
+      padding: 10px 12px;
       gap: 10px;
-      padding-top: 9px;
-      border-top: 1px solid rgba(189,8,28,.14);
-    }
-
-    .kta-qr {
-      display: block;
-      width: 23%;
-      aspect-ratio: 1;
-      object-fit: contain;
       background: white;
-      padding: 3px;
-      border-radius: 7px;
-      border: 1px solid #ead1d4;
     }
 
-    .kta-footer-info {
-      flex: 1;
+    .qr-code {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .footer-text {
+      display: flex;
+      flex-direction: column;
       text-align: left;
     }
 
-    .kta-position {
-      color: #bd081c;
-      font-size: 10px;
+    .footer-title {
+      font-size: 12px;
       font-weight: 900;
+      color: #b71c1c;
+      letter-spacing: 0.3px;
     }
 
-    .kta-school {
-      margin-top: 3px;
+    .footer-sub {
+      font-size: 8.5px;
+      font-weight: bold;
+      color: #222;
+      line-height: 1.2;
+      margin-top: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Back Side Specific Rules */
+    .back-side {
+      padding: 12px 15px;
       font-size: 8px;
       line-height: 1.35;
-      font-weight: 800;
-      color: #44252a;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
-    .kta-location {
-      margin-top: 2px;
-      font-size: 7px;
-      color: #8a6d71;
+    .back-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
     }
 
+    .back-title {
+      font-size: 11px;
+      font-weight: 900;
+      color: #b71c1c;
+      text-align: right;
+      line-height: 1.1;
+    }
+
+    .rules-list {
+      padding-left: 12px;
+      margin: 0 0 8px 0;
+    }
+
+    .rules-list li {
+      margin-bottom: 4px;
+    }
+
+    .signature-section {
+      margin-top: auto;
+      font-size: 8px;
+      text-align: left;
+    }
+
+    .attention-box {
+      border: 1.5px solid #d32f2f;
+      padding: 6px;
+      margin-top: 6px;
+      border-radius: 4px;
+    }
+
+    .attention-title {
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
+      font-size: 8.5px;
+      margin-bottom: 3px;
+    }
+
+    /* Actions buttons */
     .actions {
       display: flex;
       gap: 8px;
-      width: min(100%, 360px);
+      width: min(100%, 340px);
     }
 
     .action-btn {
       flex: 1;
-      padding: 11px;
+      padding: 10px;
       border: none;
-      border-radius: 11px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: bold;
     }
 
     .btn-print {
-      background: #bd081c;
+      background: #b71c1c;
       color: white;
     }
 
-    .btn-search {
-      background: white;
-      color: #bd081c;
-      border: 1px solid #e6c6ca;
-    }
-
-    @media (max-width: 520px) {
-      .kta-card {
-        width: min(100%, 330px);
-        border-radius: 18px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .kta-card {
-        width: 285px;
-      }
-    }
-
-    @page {
-      size: auto;
-      margin: 0;
+    .btn-toggle {
+      background: #333;
+      color: white;
     }
 
     @media print {
       body {
         background: white;
       }
-
       .page {
         padding: 0;
-        min-height: auto;
       }
-
       .actions {
         display: none;
       }
-
-      .kta-stage {
-        padding: 0;
-      }
-
       .kta-card {
-        width: 5.513cm;
-        height: 8.72cm;
-        aspect-ratio: auto;
-        border-radius: .35cm;
         box-shadow: none;
-        border: none;
+        border: 1px solid #999;
+        page-break-after: always;
       }
     }
-
   </style>
-
 </head>
 
 <body>
@@ -381,61 +341,81 @@
   <div id="ktaContainer" style="display:none">
 
     <div class="kta-stage">
-      <div id="ktaCard" class="kta-card">
+      <!-- DEPAN KARTU -->
+      <div id="ktaCardFront" class="kta-card">
+        <div class="top-bar"></div>
 
-        <div class="kta-top"></div>
-
-        <div class="kta-org">
-          <strong>PALANG MERAH INDONESIA</strong>
-          PMR MADYA<br>
-          SMP NEGERI 1 MOGA
-
-          <div class="kta-cross">✚</div>
-        </div>
-
-        <div class="kta-photo-wrap">
-          <img
-            id="ktaPhoto"
-            class="kta-photo"
-            src=""
-            alt="Foto Anggota PMR"
-          >
-        </div>
-
-        <div class="kta-body">
-          <div class="kta-label">Nama Anggota</div>
-
-          <div id="ktaName" class="kta-name">-</div>
-
-          <div id="ktaNumber" class="kta-number">-</div>
-        </div>
-
-        <div class="kta-bottom">
-          <img
-            id="ktaQR"
-            class="kta-qr"
-            src=""
-            alt="QR Code KTA"
-          >
-
-          <div class="kta-footer-info">
-            <div class="kta-position">PMR MADYA</div>
-            <div class="kta-school">SMP NEGERI 1 MOGA</div>
-            <div class="kta-location">Kab. Pemalang</div>
+        <div class="kta-header">
+          <svg class="pmi-logo" viewBox="0 0 100 100">
+            <path d="M 35 10 H 65 V 35 H 90 V 65 H 65 V 90 H 35 V 65 H 10 V 35 H 35 Z" fill="#d32f2f"/>
+            <path d="M 50 2 C 23.5 2 2 23.5 2 50 C 2 76.5 23.5 98 50 98 C 76.5 98 98 76.5 98 50 C 98 23.5 76.5 2 50 2 Z M 50 90 C 27.9 90 10 72.1 10 50 C 10 27.9 27.9 10 50 10 C 72.1 10 90 27.9 90 50 C 90 72.1 72.1 90 50 90 Z" fill="#d32f2f"/>
+          </svg>
+          <div class="header-text">
+            Palang<br>Merah<br>Indonesia
           </div>
         </div>
 
+        <div class="kta-main-section">
+          <div class="photo-container">
+            <img id="ktaPhoto" src="" alt="Foto Anggota">
+          </div>
+          <div class="red-banner">
+            <div id="ktaName" class="member-name">-</div>
+            <div id="ktaNumber" class="member-ni">NI. -</div>
+          </div>
+        </div>
+
+        <div class="kta-footer">
+          <img id="ktaQR" class="qr-code" src="" alt="QR">
+          <div class="footer-text">
+            <div class="footer-title">PALANG MERAH REMAJA</div>
+            <div class="footer-sub">PMI KAB. PEMALANG</div>
+            <div class="footer-sub">Unit SMP Negeri 1 Moga</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BELAKANG KARTU (Hidden by default) -->
+      <div id="ktaCardBack" class="kta-card" style="display:none;">
+        <div class="top-bar"></div>
+        <div class="back-side">
+          <div class="back-header">
+            <svg class="pmi-logo" style="width:30px; height:30px;" viewBox="0 0 100 100">
+              <path d="M 35 10 H 65 V 35 H 90 V 65 H 65 V 90 H 35 V 65 H 10 V 35 H 35 Z" fill="#d32f2f"/>
+              <path d="M 50 2 C 23.5 2 2 23.5 2 50 C 2 76.5 23.5 98 50 98 C 76.5 98 98 76.5 98 50 C 98 23.5 76.5 2 50 2 Z M 50 90 C 27.9 90 10 72.1 10 50 C 10 27.9 27.9 10 50 10 C 72.1 10 90 27.9 90 50 C 90 72.1 72.1 90 50 90 Z" fill="#d32f2f"/>
+            </svg>
+            <div class="back-title">
+              KARTU TANDA<br>RELAWAN PMI
+            </div>
+          </div>
+
+          <ol class="rules-list">
+            <li>Pemegang kartu ini adalah Relawan Palang Merah Indonesia (PMI) dengan kedudukan sebagai anggota Palang Merah Remaja (PMR).</li>
+            <li>Pemegang kartu ini bekerja sesuai tugas pokok dan fungsinya berdasarkan Prinsip-Prinsip Dasar Gerakan Palang Merah dan Bulan Sabit Merah Internasional.</li>
+          </ol>
+
+          <div class="signature-section">
+            Pengurus<br>
+            <strong>PALANG MERAH INDONESIA</strong><br>
+            <strong>KAB. PEMALANG</strong><br>
+            Pembina PMR<br><br><br>
+            <u>(..........................................)</u>
+          </div>
+
+          <div class="attention-box">
+            <div class="attention-title">PERHATIAN</div>
+            <ol class="rules-list" style="margin:0;">
+              <li>Kepada semua pihak harap memberikan bantuan dan kemudahan kepada pemegang kartu ini.</li>
+              <li>Apabila menemukan kartu ini agar mengembalikan ke Markas PMI / Sekolah.</li>
+            </ol>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="actions">
-      <button class="action-btn btn-print" onclick="window.print()">
-        🖨️ Cetak
-      </button>
-
-      <button class="action-btn btn-search" onclick="goSearch()">
-        🔎 Cari KTA
-      </button>
+      <button class="action-btn btn-toggle" onclick="toggleCardSide()">🔄 Balik Kartu</button>
+      <button class="action-btn btn-print" onclick="window.print()">🖨️ Cetak</button>
     </div>
 
   </div>
@@ -443,7 +423,6 @@
 </div>
 
 <script>
-
   const API_URL = 'https://script.google.com/macros/s/AKfycbwlh56TBt1I1DK8M2rkdvQKFZXwWgTyTqOD9opCf8PjKTyHTsEWMKzhFwcSiK9xJ2OFWw/exec';
   const KTA_URL = 'https://apxid.github.io/pmr/kta/';
   const DEFAULT_PHOTO = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23e0e0e0"/><circle cx="150" cy="140" r="60" fill="%239e9e9e"/><path d="M 50 340 C 50 240, 250 240, 250 340 Z" fill="%239e9e9e"/></svg>';
@@ -496,7 +475,7 @@
     const foto = member.foto || '';
 
     document.getElementById('ktaName').textContent = nama;
-    document.getElementById('ktaNumber').textContent = nomorAnggota;
+    document.getElementById('ktaNumber').textContent = 'NI. ' + nomorAnggota;
 
     const photoElement = document.getElementById('ktaPhoto');
     photoElement.onerror = function() {
@@ -520,10 +499,17 @@
     document.getElementById('errorText').textContent = text || 'Data anggota tidak ditemukan.';
   }
 
-  function goSearch() {
-    window.location.href = 'index.html';
+  function toggleCardSide() {
+    const front = document.getElementById('ktaCardFront');
+    const back = document.getElementById('ktaCardBack');
+    if (front.style.display === 'none') {
+      front.style.display = 'flex';
+      back.style.display = 'none';
+    } else {
+      front.style.display = 'none';
+      back.style.display = 'flex';
+    }
   }
-
 </script>
 
 </body>

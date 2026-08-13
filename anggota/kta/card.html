@@ -99,15 +99,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10px 15px 2px;
+      padding: 8px 15px 2px;
       text-align: center;
       flex-shrink: 0;
     }
 
-    /* Logo diperbesar */
+    /* Logo Diperbesar */
     .pmi-logo {
-      width: 75px; 
-      height: 75px;
+      width: 90px; 
+      height: 90px;
       object-fit: contain;
       margin-bottom: 4px;
     }
@@ -128,16 +128,16 @@
       margin-top: 2px;
     }
 
-    /* Area Foto Diturunkan */
+    /* Area Foto Diturunkan Lagi */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 14px;
-      margin-bottom: 6px;
+      margin-top: 22px;
+      margin-bottom: 8px;
     }
 
     .photo-container {
-      width: 42%;
+      width: 40%;
       aspect-ratio: 3 / 4;
       border: 3px solid #d32f2f;
       background: #e0e0e0;
@@ -153,11 +153,11 @@
       display: block;
     }
 
-    /* Member Info Section (Persis Di Bawah Foto) */
+    /* Member Info Section (Mengikuti tepat di bawah foto) */
     .member-info {
       text-align: center;
       padding: 0 10px;
-      margin-bottom: auto; /* Mendorong footer ke bawah */
+      margin-bottom: auto;
     }
 
     .member-name {
@@ -176,12 +176,12 @@
       font-weight: 600;
     }
 
-    /* Footer Teks Dinaikkan Sedikit */
+    /* Footer Teks */
     .kta-footer {
       background: #b71c1c;
       color: white;
       text-align: center;
-      padding: 10px 10px 12px; /* Margin bawah diperluas agar posisi teks sedikit naik */
+      padding: 10px 10px 12px;
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -354,21 +354,21 @@
       <div id="ktaCardFront" class="kta-card">
         <div class="top-bar"></div>
 
-        <!-- HEADER: Logo & Judul -->
+        <!-- HEADER: Logo Besar & Judul -->
         <div class="kta-header">
           <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
-        <!-- FOTO -->
+        <!-- FOTO (POSISI LEBIH TURUN) -->
         <div class="kta-photo-section">
           <div class="photo-container">
             <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
         </div>
 
-        <!-- NAMA & NO ANGGOTA (PERSIS DIBAWAH FOTO) -->
+        <!-- NAMA & NO ANGGOTA -->
         <div class="member-info">
           <div id="ktaName" class="member-name">-</div>
           <div id="ktaNumber" class="member-ni">NI. -</div>

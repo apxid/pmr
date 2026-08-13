@@ -34,7 +34,7 @@
       border-radius: 12px;
       padding: 25px;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
     .error-icon {
@@ -65,11 +65,12 @@
     }
 
     /* =====================================================
-       KTA CARD STYLING
+       KTA CARD STYLING & FLIP EFFECT
     ===================================================== */
     .kta-stage {
       width: 100%;
       margin-bottom: 16px;
+      perspective: 1000px;
     }
 
     .kta-card {
@@ -105,26 +106,24 @@
     }
 
     .pmi-logo {
-      width: 90px; 
-      height: 90px;
+      width: 80px; 
+      height: 80px;
       object-fit: contain;
-      margin-top: 6px;
-      margin-bottom: 12px;
+      margin-top: 4px;
+      margin-bottom: 8px;
     }
 
-    /* PALANG MERAH REMAJA (FONT 18) */
     .header-title {
       font-weight: 900;
-      font-size: 18px;
+      font-size: 17px;
       color: #b71c1c;
       text-transform: uppercase;
       line-height: 1.1;
     }
 
-    /* SMP NEGERI 1 MOGA (FONT 14) */
     .header-subtitle {
       font-weight: 900;
-      font-size: 14px; 
+      font-size: 13.5px; 
       color: #222;
       text-transform: uppercase;
       margin-top: 4px;
@@ -134,17 +133,17 @@
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 50px; 
+      margin-top: 10px; 
       margin-bottom: 8px;
     }
 
     .photo-container {
-      width: 40%;
+      width: 38%;
       aspect-ratio: 3 / 4;
       border: 3px solid #d32f2f;
       background: #e0e0e0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
     }
 
@@ -159,11 +158,10 @@
     .member-info {
       text-align: center;
       padding: 0 10px;
-      margin-top: 12px;
+      margin-top: 6px;
       margin-bottom: auto;
     }
 
-    /* NAMA TEBAL */
     .member-name {
       font-size: 14.5px;
       font-weight: bold; 
@@ -174,7 +172,6 @@
       text-overflow: ellipsis;
     }
 
-    /* NISN TIDAK TEBAL */
     .member-ni {
       font-size: 11px;
       color: #555;
@@ -186,10 +183,11 @@
       background: #b71c1c;
       color: white;
       text-align: center;
-      padding: 10px 10px 12px;
+      padding: 8px 10px 10px;
       display: flex;
       flex-direction: column;
       gap: 2px;
+      margin-top: auto;
     }
 
     .footer-title {
@@ -252,7 +250,7 @@
     }
 
     .signature-section {
-      width: 55%;
+      width: 60%;
       text-align: left;
       font-size: 9px;
       line-height: 1.35;
@@ -306,7 +304,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: opacity 0.2s;
+      transition: background 0.2s, opacity 0.2s;
     }
 
     .action-btn:active {
@@ -323,19 +321,25 @@
       color: white;
     }
 
+    /* Print Optimization */
     @media print {
       body {
         background: white;
       }
       .page {
         padding: 0;
+        justify-content: flex-start;
       }
       .actions {
         display: none !important;
       }
+      .kta-stage {
+        margin: 0;
+      }
       .kta-card {
         box-shadow: none;
         border: 1px solid #999;
+        display: flex !important;
         page-break-after: always;
       }
     }
@@ -376,7 +380,7 @@
         <!-- NAMA & NO ANGGOTA -->
         <div class="member-info">
           <div id="ktaName" class="member-name">-</div>
-          <div id="ktaNumber" class="member-ni">NI. -</div>
+          <div id="ktaNumber" class="member-ni">NO ANGGOTA: -</div>
         </div>
 
         <!-- FOOTER TEKS -->
@@ -461,7 +465,7 @@
     document.getElementById('error').style.display = 'block';
   } else {
     document.getElementById('ktaName').textContent = nama || '-';
-    document.getElementById('ktaNumber').textContent = 'NO ANGGOTA' + (nisn || '-');
+    document.getElementById('ktaNumber').textContent = 'NO ANGGOTA: ' + (nisn || '-');
 
     const photoElement = document.getElementById('ktaPhoto');
     const formattedFoto = formatDriveUrl(rawFoto);

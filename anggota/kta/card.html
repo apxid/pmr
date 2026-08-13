@@ -1,262 +1,531 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KTA PMR - SMP Negeri 1 Moga</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>KTA PMR Madya - SMP Negeri 1 Moga</title>
+
   <style>
-    :root {
-      --primary-color: #b71c1c;
-      --primary-dark: #8e0000;
-      --bg-color: #f4f6f9;
-      --card-bg: #ffffff;
-      --text-color: #333333;
-      --border-color: #cccccc;
-    }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #f7eeee, #ffffff);
+      color: #351015;
+    }
+
+    .page {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      justify-content: center;
+      padding: 20px;
     }
 
-    /* Header Navigasi Web (Hidden saat Cetak) */
-    header {
-      width: 100%;
-      background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%);
-      color: white;
+    .loading {
       text-align: center;
-      padding: 1rem;
+      color: #8a6d71;
+      font-size: 14px;
     }
-    header h2 { font-size: 1.3rem; }
-    header p { font-size: 0.85rem; opacity: 0.9; }
 
-    nav {
+    .spinner {
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      border: 4px solid #f0d5d8;
+      border-top-color: #bd081c;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .error {
+      width: min(100%, 430px);
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 18px 50px rgba(60, 10, 20, .12);
+    }
+
+    .error-icon {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .error h2 {
+      margin: 0 0 8px;
+      color: #9b1422;
+      font-size: 19px;
+    }
+
+    .error p {
+      margin: 0;
+      color: #745f63;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       KTA CARD
+    ===================================================== */
+
+    .kta-stage {
       width: 100%;
-      background: #6a0000;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      padding: 5px;
-      margin-bottom: 2rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
-
-    /* Ukuran Tampilan Kartu KTA */
-    .kta-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 1rem 2rem;
-      width: 100%;
+      padding: 12px 0 22px;
     }
 
     .kta-card {
-      width: 380px;
-      height: 240px;
-      background: var(--card-bg);
-      border: 2px solid var(--primary-color);
-      border-radius: 12px;
-      padding: 12px;
       position: relative;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      width: min(100%, 360px);
+      aspect-ratio: 5.513 / 8.72;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      border-radius: 20px;
+      background: linear-gradient(155deg, #ffffff 0%, #fff8f8 45%, #fce5e7 100%);
+      box-shadow: 0 20px 50px rgba(65, 10, 18, .22);
+      border: 1px solid rgba(189, 8, 28, .16);
     }
 
-    .kta-header {
-      border-bottom: 2px solid var(--primary-color);
-      padding-bottom: 6px;
-      text-align: center;
+    /* =====================================================
+       TOP MERAH
+    ===================================================== */
+
+    .kta-top {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 18.5%;
+      background: linear-gradient(135deg, #8f0016 0%, #bd081c 55%, #e1273d 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 77%, 50% 100%, 0 77%);
     }
-    .kta-header h3 { font-size: 0.85rem; color: var(--primary-color); letter-spacing: 0.5px; }
-    .kta-header h4 { font-size: 0.75rem; color: #333; font-weight: 600; }
+
+    /* =====================================================
+       ORGANISASI
+    ===================================================== */
+
+    .kta-org {
+      position: absolute;
+      top: 4.5%;
+      left: 8%;
+      right: 8%;
+      z-index: 5;
+      color: white;
+      text-align: center;
+      font-size: 9px;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .kta-org strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .kta-cross {
+      width: 24px;
+      height: 24px;
+      margin: 5px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 7px;
+      color: #bd081c;
+      font-size: 16px;
+      font-weight: 900;
+      box-shadow: 0 3px 10px rgba(0,0,0,.10);
+    }
+
+    /* =====================================================
+       FOTO
+    ===================================================== */
+
+    .kta-photo-wrap {
+      position: absolute;
+      z-index: 4;
+      top: 22%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 43%;
+      aspect-ratio: 3 / 4;
+      padding: 4px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #8f0016, #e1263d);
+      box-shadow: 0 9px 22px rgba(80,0,15,.20);
+    }
+
+    .kta-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 10px;
+      background: #eeeeee;
+    }
+
+    /* =====================================================
+       BODY
+    ===================================================== */
 
     .kta-body {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-      flex: 1;
-    }
-    
-    .photo-box {
-      width: 75px;
-      height: 98px;
-      border-radius: 4px;
-      border: 1px solid var(--border-color);
-      object-fit: cover;
-      background: #e0e0e0;
-      flex-shrink: 0;
-    }
-
-    .kta-details {
-      font-size: 0.72rem;
-      color: #222;
-      flex: 1;
-    }
-    .kta-details table { width: 100%; border-collapse: collapse; }
-    .kta-details td { padding: 1px 2px; vertical-align: top; }
-    .kta-details td.label { font-weight: bold; width: 65px; }
-
-    .kta-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      font-size: 0.65rem;
-      color: #444;
-      margin-top: 4px;
-      border-top: 1px dashed #ddd;
-      padding-top: 4px;
-    }
-    .badge-pmi {
-      color: var(--primary-color);
-      font-weight: bold;
-    }
-
-    .btn-container {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      width: 100%;
-      max-width: 380px;
-    }
-    .btn {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
+      position: absolute;
+      z-index: 5;
+      left: 7%;
+      right: 7%;
+      top: 55.5%;
       text-align: center;
-      font-size: 0.9rem;
-      transition: opacity 0.2s;
     }
-    .btn:hover { opacity: 0.9; }
-    .btn-print { background: var(--primary-color); color: white; }
-    .btn-back { background: #555555; color: white; }
 
-    /* Aturan Cetak Printer / PDF */
+    .kta-label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: #9c7b80;
+      font-weight: 900;
+    }
+
+    .kta-name {
+      margin-top: 5px;
+      font-size: clamp(14px, 4vw, 19px);
+      line-height: 1.15;
+      color: #3b1117;
+      font-weight: 900;
+      word-break: break-word;
+      text-transform: uppercase;
+    }
+
+    .kta-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 9px;
+      padding: 6px 12px;
+      min-height: 25px;
+      border-radius: 99px;
+      background: white;
+      border: 1px solid #f0c6cb;
+      color: #bd081c;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .kta-bottom {
+      position: absolute;
+      z-index: 5;
+      left: 7%;
+      right: 7%;
+      bottom: 6%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 9px;
+      border-top: 1px solid rgba(189,8,28,.14);
+    }
+
+    .kta-qr {
+      display: block;
+      width: 23%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      background: white;
+      padding: 3px;
+      border-radius: 7px;
+      border: 1px solid #ead1d4;
+    }
+
+    .kta-footer-info {
+      flex: 1;
+      text-align: left;
+    }
+
+    .kta-position {
+      color: #bd081c;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .kta-school {
+      margin-top: 3px;
+      font-size: 8px;
+      line-height: 1.35;
+      font-weight: 800;
+      color: #44252a;
+    }
+
+    .kta-location {
+      margin-top: 2px;
+      font-size: 7px;
+      color: #8a6d71;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      width: min(100%, 360px);
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 11px;
+      border: none;
+      border-radius: 11px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .btn-print {
+      background: #bd081c;
+      color: white;
+    }
+
+    .btn-search {
+      background: white;
+      color: #bd081c;
+      border: 1px solid #e6c6ca;
+    }
+
+    @media (max-width: 520px) {
+      .kta-card {
+        width: min(100%, 330px);
+        border-radius: 18px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .kta-card {
+        width: 285px;
+      }
+    }
+
+    @page {
+      size: auto;
+      margin: 0;
+    }
+
     @media print {
       body {
         background: white;
+      }
+
+      .page {
         padding: 0;
-        margin: 0;
-        display: block;
+        min-height: auto;
       }
-      header, nav, .btn-container {
-        display: none !important;
+
+      .actions {
+        display: none;
       }
-      .kta-container {
+
+      .kta-stage {
         padding: 0;
-        margin: 0;
       }
+
       .kta-card {
-        width: 85.6mm; /* Ukuran standar ID Card */
-        height: 53.9mm;
-        border: 1px solid #000;
+        width: 5.513cm;
+        height: 8.72cm;
+        aspect-ratio: auto;
+        border-radius: .35cm;
         box-shadow: none;
-        margin: 20mm auto;
-        page-break-inside: avoid;
+        border: none;
       }
-      .kta-header h3 { color: #000; }
-      .badge-pmi { color: #000; }
     }
+
   </style>
+
 </head>
+
 <body>
 
-  <header>
-    <h2>Kartu Tanda Anggota</h2>
-    <p>PMR Madya SMP Negeri 1 Moga</p>
-  </header>
+<div class="page">
 
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="daftar.html">Pendaftaran</a>
-    <a href="search.html">Cari KTA</a>
-  </nav>
-
-  <div class="kta-container">
-    <div class="kta-card">
-      <div class="kta-header">
-        <h3>KARTU TANDA ANGGOTA PMR</h3>
-        <h4>SMP NEGERI 1 MOGA</h4>
-      </div>
-
-      <div class="kta-body">
-        <img id="cardFoto" class="photo-box" src="" alt="Foto Anggota">
-        <div class="kta-details">
-          <table>
-            <tr><td class="label">Nama</td><td>:</td><td id="cardNama" style="font-weight:bold;">-</td></tr>
-            <tr><td class="label">NISN</td><td>:</td><td id="cardNisn">-</td></tr>
-            <tr><td class="label">Status</td><td>:</td><td id="cardStatus" style="color:var(--primary-color); font-weight:bold;">-</td></tr>
-            <tr><td class="label">Kelas</td><td>:</td><td id="cardKelas">-</td></tr>
-            <tr><td class="label">TTL</td><td>:</td><td id="cardTtl">-</td></tr>
-            <tr><td class="label">Gol. Darah</td><td>:</td><td id="cardGol">-</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="kta-footer">
-        <span class="badge-pmi">PMR MADYA</span>
-        <div style="text-align: right;">
-          <p>Moga, Pemalang</p>
-          <p>Pembina PMR</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="btn-container">
-      <button class="btn btn-print" onclick="window.print()">Cetak / Simpan PDF</button>
-      <a href="search.html" class="btn btn-back">Kembali</a>
-    </div>
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <div>Memuat data KTA...</div>
   </div>
 
-  <script>
-    // Membaca parameter dari Query URL
-    const params = new URLSearchParams(window.location.search);
+  <div id="error" class="error" style="display:none">
+    <div class="error-icon">⚠️</div>
+    <h2>KTA Tidak Ditemukan</h2>
+    <p id="errorText">Data anggota tidak ditemukan.</p>
+  </div>
 
-    function getParam(key) {
-      const val = params.get(key);
-      return val ? decodeURIComponent(val) : '-';
+  <div id="ktaContainer" style="display:none">
+
+    <div class="kta-stage">
+      <div id="ktaCard" class="kta-card">
+
+        <div class="kta-top"></div>
+
+        <div class="kta-org">
+          <strong>PALANG MERAH INDONESIA</strong>
+          PMR MADYA<br>
+          SMP NEGERI 1 MOGA
+
+          <div class="kta-cross">✚</div>
+        </div>
+
+        <div class="kta-photo-wrap">
+          <img
+            id="ktaPhoto"
+            class="kta-photo"
+            src=""
+            alt="Foto Anggota PMR"
+          >
+        </div>
+
+        <div class="kta-body">
+          <div class="kta-label">Nama Anggota</div>
+
+          <div id="ktaName" class="kta-name">-</div>
+
+          <div id="ktaNumber" class="kta-number">-</div>
+        </div>
+
+        <div class="kta-bottom">
+          <img
+            id="ktaQR"
+            class="kta-qr"
+            src=""
+            alt="QR Code KTA"
+          >
+
+          <div class="kta-footer-info">
+            <div class="kta-position">PMR MADYA</div>
+            <div class="kta-school">SMP NEGERI 1 MOGA</div>
+            <div class="kta-location">Kab. Pemalang</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="action-btn btn-print" onclick="window.print()">
+        🖨️ Cetak
+      </button>
+
+      <button class="action-btn btn-search" onclick="goSearch()">
+        🔎 Cari KTA
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  const API_URL = 'https://script.google.com/macros/s/AKfycbwlh56TBt1I1DK8M2rkdvQKFZXwWgTyTqOD9opCf8PjKTyHTsEWMKzhFwcSiK9xJ2OFWw/exec';
+  const KTA_URL = 'https://apxid.github.io/pmr/kta/';
+  const DEFAULT_PHOTO = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23e0e0e0"/><circle cx="150" cy="140" r="60" fill="%239e9e9e"/><path d="M 50 340 C 50 240, 250 240, 250 340 Z" fill="%239e9e9e"/></svg>';
+
+  const params = new URLSearchParams(window.location.search);
+  const nisn = (params.get('nisn') || '').trim();
+  const nomor = (params.get('nomor') || '').trim();
+
+  loadKTA();
+
+  async function loadKTA() {
+    try {
+      if (!nisn && !nomor) {
+        throw new Error('NISN atau nomor anggota belum diberikan.');
+      }
+
+      let url;
+      if (nisn) {
+        url = API_URL + '?action=searchNISN&nisn=' + encodeURIComponent(nisn);
+      } else {
+        url = API_URL + '?action=member&nomor=' + encodeURIComponent(nomor);
+      }
+
+      const response = await fetch(url, {
+        method: 'GET',
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error('Server API tidak dapat dihubungi.');
+      }
+
+      const result = await response.json();
+
+      if (!result.success || !result.member) {
+        throw new Error(result.message || 'Data anggota tidak ditemukan.');
+      }
+
+      displayKTA(result.member);
+
+    } catch (error) {
+      console.error(error);
+      showError(error.message);
     }
+  }
 
-    document.getElementById('cardNama').innerText = getParam('nama');
-    document.getElementById('cardNisn').innerText = getParam('nisn');
-    document.getElementById('cardStatus').innerText = getParam('status');
-    document.getElementById('cardKelas').innerText = getParam('kelas');
-    document.getElementById('cardTtl').innerText = getParam('ttl');
-    document.getElementById('cardGol').innerText = getParam('gol');
+  function displayKTA(member) {
+    const nama = member.nama || '-';
+    const nomorAnggota = member.nomorAnggota || '-';
+    const foto = member.foto || '';
 
-    const fotoUrl = params.get('foto');
-    const photoImg = document.getElementById('cardFoto');
+    document.getElementById('ktaName').textContent = nama;
+    document.getElementById('ktaNumber').textContent = nomorAnggota;
 
-    if (fotoUrl && fotoUrl !== "null" && fotoUrl.trim() !== "") {
-      photoImg.src = decodeURIComponent(fotoUrl);
-    } else {
-      // Fallback jika foto tidak ada
-      photoImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="98" viewBox="0 0 75 98"><rect width="100%" height="100%" fill="%23e0e0e0"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="10" fill="%23777">No Foto</text></svg>';
-    }
-  </script>
+    const photoElement = document.getElementById('ktaPhoto');
+    photoElement.onerror = function() {
+      this.src = DEFAULT_PHOTO;
+    };
+    photoElement.src = foto ? foto : DEFAULT_PHOTO;
+
+    const qrTarget = KTA_URL + '?nisn=' + encodeURIComponent(member.nisn || nisn);
+    const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(qrTarget);
+
+    document.getElementById('ktaQR').src = qrUrl;
+    document.title = 'KTA PMR - ' + nama;
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('ktaContainer').style.display = 'block';
+  }
+
+  function showError(text) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error').style.display = 'block';
+    document.getElementById('errorText').textContent = text || 'Data anggota tidak ditemukan.';
+  }
+
+  function goSearch() {
+    window.location.href = 'index.html';
+  }
+
+</script>
+
 </body>
+
 </html>

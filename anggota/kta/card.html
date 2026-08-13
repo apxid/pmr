@@ -99,21 +99,22 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px 15px 5px;
+      padding: 10px 15px 2px;
       text-align: center;
       flex-shrink: 0;
     }
 
+    /* Logo diperbesar */
     .pmi-logo {
-      width: 55px; /* Ukuran Sedang */
-      height: 55px;
+      width: 75px; 
+      height: 75px;
       object-fit: contain;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .header-title {
       font-weight: 900;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #b71c1c;
       text-transform: uppercase;
       line-height: 1.1;
@@ -121,17 +122,18 @@
 
     .header-subtitle {
       font-weight: 800;
-      font-size: 12px;
+      font-size: 11.5px;
       color: #222;
       text-transform: uppercase;
       margin-top: 2px;
     }
 
-    /* Photo Area */
+    /* Area Foto Diturunkan */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin: 8px 0;
+      margin-top: 14px;
+      margin-bottom: 6px;
     }
 
     .photo-container {
@@ -151,14 +153,15 @@
       display: block;
     }
 
-    /* Member Info Section */
+    /* Member Info Section (Persis Di Bawah Foto) */
     .member-info {
       text-align: center;
-      padding: 4px 10px;
+      padding: 0 10px;
+      margin-bottom: auto; /* Mendorong footer ke bawah */
     }
 
     .member-name {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: bold;
       color: #111;
       margin-bottom: 2px;
@@ -173,13 +176,12 @@
       font-weight: 600;
     }
 
-    /* Footer Section */
+    /* Footer Teks Dinaikkan Sedikit */
     .kta-footer {
-      margin-top: auto;
       background: #b71c1c;
       color: white;
       text-align: center;
-      padding: 8px 10px;
+      padding: 10px 10px 12px; /* Margin bawah diperluas agar posisi teks sedikit naik */
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -225,11 +227,10 @@
       line-height: 1.1;
     }
 
-    /* Teks Aturan Diperbesar */
     .rules-list {
       padding-left: 14px;
       margin: 0 0 10px 0;
-      font-size: 10px; /* Diperbesar */
+      font-size: 10px;
       line-height: 1.4;
       color: #222;
     }
@@ -238,17 +239,16 @@
       margin-bottom: 6px;
     }
 
-    /* Tanda Tangan: Rata Kiri di Posisi Kanan */
     .signature-container {
       margin-top: auto;
       display: flex;
-      justify-content: flex-end; /* Geser blok ke kanan */
+      justify-content: flex-end;
       margin-bottom: 8px;
     }
 
     .signature-section {
-      width: 55%; /* Batas lebar blok kanan */
-      text-align: left; /* Teks di dalam blok tetap rata kiri */
+      width: 55%;
+      text-align: left;
       font-size: 9px;
       line-height: 1.35;
       color: #111;
@@ -368,7 +368,7 @@
           </div>
         </div>
 
-        <!-- NAMA & NO ANGGOTA -->
+        <!-- NAMA & NO ANGGOTA (PERSIS DIBAWAH FOTO) -->
         <div class="member-info">
           <div id="ktaName" class="member-name">-</div>
           <div id="ktaNumber" class="member-ni">NI. -</div>
@@ -387,19 +387,17 @@
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <img class="pmi-logo" style="width:30px; height:30px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
             <div class="back-title">
               KARTU TANDA<br>RELAWAN PMI
             </div>
           </div>
 
-          <!-- TEKS PERATURAN (FONT DIPERBESAR) -->
           <ol class="rules-list">
             <li>Pemegang kartu ini adalah Relawan Palang Merah Indonesia (PMI) dengan kedudukan sebagai anggota Palang Merah Remaja (PMR).</li>
             <li>Pemegang kartu ini bekerja sesuai tugas pokok dan fungsinya berdasarkan Prinsip-Prinsip Dasar Gerakan Palang Merah dan Bulan Sabit Merah Internasional.</li>
           </ol>
 
-          <!-- TANDA TANGAN: RATA KIRI, POSISI KANAN -->
           <div class="signature-container">
             <div class="signature-section">
               Pengurus<br>

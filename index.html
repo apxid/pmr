@@ -6,89 +6,78 @@
     <title>Dokumentasi & Arsip PMR SPENSAMO</title>
     
     <!-- Google Font: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #b00020;
-            --primary-dark: #800017;
-            --primary-light: #ff4d6d;
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-main: #2d3748;
-            --text-muted: #718096;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 20px 25px -5px rgba(176, 0, 32, 0.15);
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --primary-light: #ff6659;
+            --bg-color: #f0f2f5;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
-            padding: 24px 16px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px 16px;
         }
 
-        /* Container utama */
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 650px;
             margin: auto;
         }
 
         /* Header Section */
         .header {
             text-align: center;
-            margin-bottom: 32px;
-            padding: 20px 10px;
-        }
-
-        .logo-wrapper {
-            display: inline-block;
-            position: relative;
-            margin-bottom: 12px;
+            margin-bottom: 28px;
         }
 
         .logo {
-            width: 110px;
+            width: 100px;
             height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 8px 12px rgba(176, 0, 32, 0.15));
+            margin-bottom: 12px;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.1));
             transition: transform 0.3s ease;
         }
 
         .logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(-2deg);
         }
 
         .badge {
             display: inline-block;
-            background: rgba(176, 0, 32, 0.1);
+            background: #ffebee;
             color: var(--primary);
-            font-size: 12px;
-            font-weight: 600;
-            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
             border-radius: 20px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             margin-bottom: 8px;
             text-transform: uppercase;
+            border: 1px solid rgba(211, 47, 47, 0.2);
         }
 
         h1 {
             color: var(--text-main);
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             line-height: 1.3;
         }
 
@@ -98,151 +87,153 @@
 
         /* Section Title */
         .section-title {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin: 24px 0 12px;
+            margin: 20px 0 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .section-title::after {
             content: '';
             flex: 1;
-            height: 1px;
-            background: #e2e8f0;
+            height: 2px;
+            background: #e5e7eb;
+            border-radius: 2px;
         }
 
-        /* Grid Menu */
+        /* Grid Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
+            gap: 16px;
         }
 
-        /* Card styling */
-        .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 18px 16px;
+        /* 3D Button Style */
+        .btn-3d {
+            position: relative;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 16px 14px;
             text-decoration: none;
             color: var(--text-main);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(176, 0, 32, 0.06);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
+            text-align: center;
+            
+            /* Efek Kedalaman 3D */
+            box-shadow: 0 8px 0 #d1d5db, 0 12px 18px rgba(0,0,0,0.08);
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+            user-select: none;
         }
 
-        .card-title {
-            font-size: 15px;
-            font-weight: 600;
-            line-height: 1.3;
+        .btn-3d .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform 0.2s ease;
+        }
+
+        .btn-3d .title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
             color: var(--text-main);
-            transition: color 0.2s ease;
         }
 
-        .card-desc {
-            font-size: 12px;
+        .btn-3d .desc {
+            font-size: 11px;
             color: var(--text-muted);
             margin-top: 4px;
-            font-weight: 400;
+            font-weight: 500;
         }
 
-        /* Hover & Active State */
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: transparent;
+        /* Hover State */
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 #d1d5db, 0 14px 20px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
         }
 
-        .card:hover::before {
-            opacity: 1;
+        .btn-3d:hover .icon {
+            transform: scale(1.15) translateY(-2px);
         }
 
-        .card:hover .icon-box {
-            background: var(--primary);
-            transform: scale(1.05);
+        /* Active / Click State (Efek Tekan) */
+        .btn-3d:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #d1d5db, 0 4px 8px rgba(0,0,0,0.05);
         }
 
-        /* Responsive Breakpoints */
+        /* Accent Highlight untuk Fitur Utama */
+        .btn-3d.highlight {
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+            border-color: #fca5a5;
+            box-shadow: 0 8px 0 #ef4444, 0 12px 18px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-3d.highlight:hover {
+            box-shadow: 0 10px 0 #ef4444, 0 14px 20px rgba(239, 68, 68, 0.25);
+        }
+
+        .btn-3d.highlight:active {
+            box-shadow: 0 2px 0 #ef4444, 0 4px 8px rgba(239, 68, 68, 0.1);
+        }
+
+        /* Mobile Optimization */
         @media (max-width: 480px) {
-            body {
-                padding: 16px 12px;
-            }
-
             .grid {
-                grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom di HP */
-                gap: 10px;
+                gap: 12px;
             }
 
-            .card {
-                padding: 14px 12px;
+            .btn-3d {
+                padding: 14px 10px;
+                border-radius: 16px;
+                box-shadow: 0 6px 0 #d1d5db, 0 8px 12px rgba(0,0,0,0.06);
             }
 
-            .icon-box {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-                margin-bottom: 8px;
+            .btn-3d:hover {
+                transform: none; /* Matikan hover berlebih di HP */
+                box-shadow: 0 6px 0 #d1d5db, 0 8px 12px rgba(0,0,0,0.06);
             }
 
-            .card-title {
+            .btn-3d:active {
+                transform: translateY(4px);
+                box-shadow: 0 2px 0 #d1d5db, 0 3px 6px rgba(0,0,0,0.05);
+            }
+
+            .btn-3d .icon {
+                font-size: 28px;
+                margin-bottom: 6px;
+            }
+
+            .btn-3d .title {
                 font-size: 13px;
             }
 
-            .card-desc {
-                font-size: 11px;
+            .btn-3d .desc {
+                font-size: 10px;
             }
 
             h1 {
-                font-size: 20px;
-            }
-        }
-
-        @media (min-width: 640px) {
-            .grid {
-                grid-template-columns: repeat(4, 1fr);
+                font-size: 19px;
             }
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            margin-top: 36px;
-            font-size: 12px;
+            margin-top: 32px;
+            font-size: 11px;
             color: var(--text-muted);
+            font-weight: 500;
         }
     </style>
 </head>
@@ -253,86 +244,63 @@
 
     <!-- Header Section -->
     <header class="header">
-        <div class="logo-wrapper">
-            <img src="assets/logo.png" alt="Logo PMR SPENSAMO" class="logo" onerror="this.src='https://via.placeholder.com/110?text=PMR+SPENSAMO'">
-        </div>
+        <img src="assets/logo.png" alt="Logo PMR SPENSAMO" class="logo" onerror="this.src='https://via.placeholder.com/100?text=PMR+SPENSAMO'">
         <div>
             <span class="badge">Portal Resmi</span>
-            <h1>Arsip & Layanan <span>PMR SPENSAMO</span></h1>
+            <h1>Arsip & Akses <span>PMR SPENSAMO</span></h1>
         </div>
     </header>
 
-    <!-- Kategori 1: Layanan Utama -->
-    <div class="section-title">Layanan & Fitur</div>
+    <!-- Kategori 1: Layanan Mandiri -->
+    <div class="section-title">Layanan Utama</div>
     <div class="grid">
 
-        <!-- Materi PMR -->
-        <a class="card" href="https://apxid.github.io/pmr/materi.html">
-            <div class="icon-box">📖</div>
-            <div class="card-title">Materi PMR</div>
-            <div class="card-desc">Modul & bahan pembelajaran</div>
-        </a>
-
-        <!-- Kegiatan -->
-        <a class="card" href="https://apxid.github.io/pmr/kegiatan.html">
-            <div class="icon-box">📌</div>
-            <div class="card-title">Kegiatan</div>
-            <div class="card-desc">Agenda & program aksi</div>
+        <!-- Materi PMR (Akses Langsung) -->
+        <a class="btn-3d highlight" href="https://apxid.github.io/pmr/materi.html">
+            <span class="icon">📖</span>
+            <span class="title">Materi PMR</span>
+            <span class="desc">Modul & Pembelajaran</span>
         </a>
 
         <!-- Daftar Anggota -->
-        <a class="card" href="https://apxid.github.io/pmr/anggota/kta/daftar.html">
-            <div class="icon-box">📋</div>
-            <div class="card-title">Daftar Anggota</div>
-            <div class="card-desc">Registrasi anggota resmi</div>
+        <a class="btn-3d highlight" href="https://apxid.github.io/pmr/anggota/kta/daftar.html">
+            <span class="icon">📋</span>
+            <span class="title">Daftar Anggota</span>
+            <span class="desc">Registrasi Anggota Baru</span>
         </a>
 
         <!-- Cetak Kartu -->
-        <a class="card" href="https://apxid.github.io/pmr/anggota/kta/search.html">
-            <div class="icon-box">🪪</div>
-            <div class="card-title">Cetak Kartu</div>
-            <div class="card-desc">Cari & cetak KTA PMR</div>
+        <a class="btn-3d highlight" href="https://apxid.github.io/pmr/anggota/kta/search.html" style="grid-column: span 2;">
+            <span class="icon">🪪</span>
+            <span class="title">Cetak Kartu Anggota</span>
+            <span class="desc">Cari & Cetak KTA PMR Digital</span>
         </a>
 
     </div>
 
     <!-- Kategori 2: Digital Drive Archive -->
-    <div class="section-title">Arsip Digital</div>
+    <div class="section-title">Arsip Google Drive</div>
     <div class="grid">
 
         <!-- Dokumentasi Foto & Video -->
-        <a class="card" href="kegiatan.html?judul=Dokumentasi+Kegiatan+PMR&src=https://drive.google.com/embeddedfolderview?id=1dr-ca4Ev0sP-UxYa-54kAzyuutc_OwID#grid">
-            <div class="icon-box">📸</div>
-            <div class="card-title">Foto & Video</div>
-            <div class="card-desc">Galeri dokumentasi</div>
-        </a>
-
-        <!-- Data Anggota (Drive) -->
-        <a class="card" href="anggota.html#gid=861302230" target="_blank">
-            <div class="icon-box">📊</div>
-            <div class="card-title">Data Anggota</div>
-            <div class="card-desc">Database spreadsheet</div>
-        </a>
-
-        <!-- Materi PMR (Drive) -->
-        <a class="card" href="materi.html#grid">
-            <div class="icon-box">📚</div>
-            <div class="card-title">Arsip Materi</div>
-            <div class="card-desc">File & e-book Drive</div>
+        <a class="btn-3d" href="kegiatan.html?judul=Dokumentasi+Kegiatan+PMR&src=https://drive.google.com/embeddedfolderview?id=1dr-ca4Ev0sP-UxYa-54kAzyuutc_OwID#grid">
+            <span class="icon">📸</span>
+            <span class="title">Foto & Video</span>
+            <span class="desc">Dokumentasi Aksi</span>
         </a>
 
         <!-- SK & Program Kerja -->
-        <a class="card" href="kegiatan.html?judul=SK+dan+Program+Kerja+PMR&src=https://drive.google.com/embeddedfolderview?id=1BZ6utSfYX_fD5945ocHL05XP-B95LBxb#grid">
-            <div class="icon-box">🗂️</div>
-            <div class="card-title">SK & Proja</div>
-            <div class="card-desc">Dokumen resmi organisasi</div>
+        <a class="btn-3d" href="kegiatan.html?judul=SK+dan+Program+Kerja+PMR&src=https://drive.google.com/embeddedfolderview?id=1BZ6utSfYX_fD5945ocHL05XP-B95LBxb#grid">
+            <span class="icon">🗂️</span>
+            <span class="title">SK & Proja</span>
+            <span class="desc">Dokumen Organisasi</span>
         </a>
 
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; PMR Madya SMP Negeri 1 Moga. All rights reserved.</p>
+        <p>&copy; PMR Madya SMP Negeri 1 Moga</p>
     </footer>
 
 </div>

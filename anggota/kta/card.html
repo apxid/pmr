@@ -87,7 +87,7 @@
 
     /* Top Strip Design */
     .top-bar {
-      height: 12px;
+      height: 10px;
       background: linear-gradient(to right, #b71c1c 0%, #b71c1c 50%, #e57373 50%, #e57373 75%, #ffcdd2 75%);
       width: 100%;
       flex-shrink: 0;
@@ -96,50 +96,51 @@
     /* Header Logo Area */
     .kta-header {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 12px 15px 5px;
-      gap: 12px;
+      text-align: center;
       flex-shrink: 0;
     }
 
     .pmi-logo {
-      width: 42px;
-      height: 42px;
+      width: 55px; /* Ukuran Sedang */
+      height: 55px;
       object-fit: contain;
-      flex-shrink: 0;
+      margin-bottom: 6px;
     }
 
-    .header-text {
-      font-weight: 800;
-      font-size: 13px;
-      line-height: 1.2;
-      color: #000;
+    .header-title {
+      font-weight: 900;
+      font-size: 14px;
+      color: #b71c1c;
       text-transform: uppercase;
+      line-height: 1.1;
     }
 
-    /* Main Photo Area & Red Banner */
-    .kta-main-section {
-      position: relative;
-      flex: 1;
+    .header-subtitle {
+      font-weight: 800;
+      font-size: 12px;
+      color: #222;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Photo Area */
+    .kta-photo-section {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      margin-top: 5px;
+      justify-content: center;
+      margin: 8px 0;
     }
 
-    /* Foto dinaikkan (margin-bottom diperbesar) dan rounded-corner */
     .photo-container {
-      position: relative;
-      z-index: 2;
-      width: 48%;
+      width: 42%;
       aspect-ratio: 3 / 4;
-      border: 3.5px solid #d32f2f;
+      border: 3px solid #d32f2f;
       background: #e0e0e0;
-      margin-bottom: -35px; /* Naik lebih tinggi dari sebelumnya (-45px) */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      border-radius: 12px; /* Rounded corner pada bingkai */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+      border-radius: 10px;
       overflow: hidden;
     }
 
@@ -150,19 +151,17 @@
       display: block;
     }
 
-    .red-banner {
-      width: 100%;
-      background: linear-gradient(135deg, #7f0000 0%, #a71313 100%);
-      padding: 42px 10px 12px; /* Disesuaikan agar pas dengan posisi foto */
+    /* Member Info Section */
+    .member-info {
       text-align: center;
-      color: white;
-      z-index: 1;
+      padding: 4px 10px;
     }
 
     .member-name {
       font-size: 15px;
       font-weight: bold;
-      margin-bottom: 3px;
+      color: #111;
+      margin-bottom: 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -170,55 +169,40 @@
 
     .member-ni {
       font-size: 11px;
-      letter-spacing: 0.5px;
-      opacity: 0.95;
+      color: #555;
+      font-weight: 600;
     }
 
     /* Footer Section */
     .kta-footer {
-      display: flex;
-      align-items: center;
-      padding: 10px 12px;
-      gap: 10px;
-      background: white;
-      flex-shrink: 0;
-    }
-
-    .qr-code {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .footer-text {
+      margin-top: auto;
+      background: #b71c1c;
+      color: white;
+      text-align: center;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
-      text-align: left;
+      gap: 2px;
     }
 
     .footer-title {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
-      color: #b71c1c;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
     }
 
     .footer-sub {
-      font-size: 8.5px;
+      font-size: 9px;
       font-weight: bold;
-      color: #222;
-      line-height: 1.2;
-      margin-top: 2px;
+      opacity: 0.95;
       text-transform: uppercase;
     }
 
-    /* Back Side Specific Rules */
+    /* =====================================================
+       BACK SIDE STYLING
+    ===================================================== */
     .back-side {
-      padding: 12px 15px;
-      font-size: 8px;
-      line-height: 1.35;
-      color: #222;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -228,9 +212,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 2px solid #b71c1c;
       padding-bottom: 6px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .back-title {
@@ -241,41 +225,61 @@
       line-height: 1.1;
     }
 
+    /* Teks Aturan Diperbesar */
     .rules-list {
-      padding-left: 12px;
-      margin: 0 0 8px 0;
+      padding-left: 14px;
+      margin: 0 0 10px 0;
+      font-size: 10px; /* Diperbesar */
+      line-height: 1.4;
+      color: #222;
     }
 
     .rules-list li {
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+    }
+
+    /* Tanda Tangan: Rata Kiri di Posisi Kanan */
+    .signature-container {
+      margin-top: auto;
+      display: flex;
+      justify-content: flex-end; /* Geser blok ke kanan */
+      margin-bottom: 8px;
     }
 
     .signature-section {
-      margin-top: auto;
-      font-size: 8.5px;
-      text-align: left;
-      line-height: 1.3;
+      width: 55%; /* Batas lebar blok kanan */
+      text-align: left; /* Teks di dalam blok tetap rata kiri */
+      font-size: 9px;
+      line-height: 1.35;
+      color: #111;
     }
 
     .signature-name {
       margin-top: 35px;
       font-weight: bold;
       text-decoration: underline;
+      font-size: 9.5px;
     }
 
     .attention-box {
       border: 1.5px solid #d32f2f;
-      padding: 6px;
-      margin-top: 8px;
-      border-radius: 4px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      background: #fff5f5;
     }
 
     .attention-title {
       color: #d32f2f;
       font-weight: bold;
       text-align: center;
-      font-size: 8.5px;
+      font-size: 9px;
       margin-bottom: 3px;
+    }
+
+    .attention-box .rules-list {
+      font-size: 8.5px;
+      margin: 0;
+      line-height: 1.3;
     }
 
     /* Actions buttons */
@@ -350,30 +354,31 @@
       <div id="ktaCardFront" class="kta-card">
         <div class="top-bar"></div>
 
+        <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
-          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMI">
-          <div class="header-text">
-            PALANG MERAH REMAJA<br>SMP NEGERI 1 MOGA
-          </div>
+          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+          <div class="header-title">PALANG MERAH REMAJA</div>
+          <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
-        <div class="kta-main-section">
+        <!-- FOTO -->
+        <div class="kta-photo-section">
           <div class="photo-container">
             <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
-          <div class="red-banner">
-            <div id="ktaName" class="member-name">-</div>
-            <div id="ktaNumber" class="member-ni">NI. -</div>
-          </div>
         </div>
 
+        <!-- NAMA & NO ANGGOTA -->
+        <div class="member-info">
+          <div id="ktaName" class="member-name">-</div>
+          <div id="ktaNumber" class="member-ni">NI. -</div>
+        </div>
+
+        <!-- FOOTER TEKS -->
         <div class="kta-footer">
-          <img id="ktaQR" class="qr-code" src="" alt="QR">
-          <div class="footer-text">
-            <div class="footer-title">PALANG MERAH REMAJA</div>
-            <div class="footer-sub">PMI KAB. PEMALANG</div>
-            <div class="footer-sub">Unit SMP Negeri 1 Moga</div>
-          </div>
+          <div class="footer-title">PALANG MERAH REMAJA</div>
+          <div class="footer-sub">PMI KAB. PEMALANG</div>
+          <div class="footer-sub">Unit SMP Negeri 1 Moga</div>
         </div>
       </div>
 
@@ -382,28 +387,32 @@
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <img class="pmi-logo" style="width:30px; height:30px;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMI">
+            <img class="pmi-logo" style="width:30px; height:30px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
             <div class="back-title">
               KARTU TANDA<br>RELAWAN PMI
             </div>
           </div>
 
+          <!-- TEKS PERATURAN (FONT DIPERBESAR) -->
           <ol class="rules-list">
             <li>Pemegang kartu ini adalah Relawan Palang Merah Indonesia (PMI) dengan kedudukan sebagai anggota Palang Merah Remaja (PMR).</li>
             <li>Pemegang kartu ini bekerja sesuai tugas pokok dan fungsinya berdasarkan Prinsip-Prinsip Dasar Gerakan Palang Merah dan Bulan Sabit Merah Internasional.</li>
           </ol>
 
-          <div class="signature-section">
-            Pengurus<br>
-            <strong>PALANG MERAH REMAJA</strong><br>
-            <strong>SMP NEGERI 1 MOGA</strong><br>
-            Pembina PMR
-            <div class="signature-name">Puspa Indah Purwaningrum, S.Pd.</div>
+          <!-- TANDA TANGAN: RATA KIRI, POSISI KANAN -->
+          <div class="signature-container">
+            <div class="signature-section">
+              Pengurus<br>
+              <strong>PALANG MERAH REMAJA</strong><br>
+              <strong>SMP NEGERI 1 MOGA</strong><br>
+              Pembina PMR
+              <div class="signature-name">Puspa Indah Purwaningrum, S.Pd.</div>
+            </div>
           </div>
 
           <div class="attention-box">
             <div class="attention-title">PERHATIAN</div>
-            <ol class="rules-list" style="margin:0;">
+            <ol class="rules-list">
               <li>Kepada semua pihak harap memberikan bantuan dan kemudahan kepada pemegang kartu ini.</li>
               <li>Apabila menemukan kartu ini agar mengembalikan ke Markas PMI / Sekolah.</li>
             </ol>
@@ -460,9 +469,6 @@
     };
     
     photoElement.src = formattedFoto ? formattedFoto : DEFAULT_PHOTO;
-
-    const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(window.location.href);
-    document.getElementById('ktaQR').src = qrUrl;
 
     document.title = 'KTA PMR - ' + (nama || 'Anggota');
     document.getElementById('ktaContainer').style.display = 'flex';

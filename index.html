@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentasi & Arsip PMR SPENSAMO</title>
     
-    <!-- Google Fonts: Plus Jakarta Sans / Inter -->
+    <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-blue: #003882;
-            --bg-light: #eef3f9;
+            --primary-red: #b00020;
+            --primary-gradient: linear-gradient(135deg, #b00020 0%, #e53935 100%);
+            --bg-light: #f8fafc;
             --card-bg: #ffffff;
             --text-dark: #1e293b;
             --text-muted: #64748b;
-            --input-bg: #edf2f7;
+            --input-bg: #f1f5f9;
             --border-radius-lg: 24px;
             --border-radius-md: 16px;
         }
@@ -34,7 +35,7 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             min-height: 100vh;
-            padding: 20px 16px;
+            padding: 24px 16px;
             display: flex;
             justify-content: center;
         }
@@ -45,72 +46,75 @@
             margin: 0 auto;
         }
 
-        /* Top Navigation Bar */
+        /* Top Navigation Bar / Kop Besar */
         .top-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 24px;
-            padding: 4px 0;
+            margin-bottom: 28px;
+            padding: 8px 0;
         }
 
         .brand-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px; /* Jarak logo & teks diperbesar */
         }
 
+        /* Logo Diperbesar */
         .brand-logo {
-            width: 44px;
-            height: 44px;
+            width: 68px; /* Diperbesar dari 44px */
+            height: 68px;
             object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(176, 0, 32, 0.15));
         }
 
         .brand-text h1 {
-            font-size: 18px;
+            font-size: 22px; /* Diperbesar */
             font-weight: 800;
-            color: var(--primary-blue);
-            line-height: 1.1;
+            color: var(--primary-red);
+            line-height: 1.15;
             letter-spacing: -0.3px;
         }
 
         .brand-text p {
-            font-size: 12px;
+            font-size: 13px; /* Diperbesar */
             color: var(--text-muted);
-            font-weight: 500;
-            margin-top: 2px;
+            font-weight: 600;
+            margin-top: 4px;
         }
 
         .version-badge {
-            background-color: #e2e8f0;
-            color: var(--primary-blue);
+            background-color: #ffebee;
+            color: var(--primary-red);
+            border: 1px solid rgba(176, 0, 32, 0.15);
             font-size: 12px;
             font-weight: 700;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
         }
 
-        /* Hero Banner */
+        /* Hero Banner Gradasi Merah */
         .hero-banner {
-            background-color: var(--primary-blue);
+            background: var(--primary-gradient);
             color: #ffffff;
-            padding: 32px 28px;
+            padding: 36px 30px;
             border-radius: var(--border-radius-lg);
             margin-bottom: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 56, 130, 0.25);
+            box-shadow: 0 12px 28px -6px rgba(176, 0, 32, 0.35);
         }
 
         .hero-banner h2 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             margin-bottom: 12px;
             letter-spacing: -0.5px;
         }
 
         .hero-banner p {
-            font-size: 13.5px;
+            font-size: 14px;
             line-height: 1.6;
-            color: #e0e7ff;
+            color: #ffebee;
             font-weight: 400;
             opacity: 0.95;
         }
@@ -131,7 +135,7 @@
         .card-header h3 {
             font-size: 20px;
             font-weight: 800;
-            color: var(--primary-blue);
+            color: var(--primary-red);
             margin-bottom: 4px;
         }
 
@@ -147,7 +151,7 @@
             gap: 12px;
         }
 
-        /* Item Button / Link Card (Mirip Input Field pada gambar) */
+        /* Item Button / Link Card */
         .menu-item {
             display: flex;
             align-items: center;
@@ -162,8 +166,8 @@
         }
 
         .menu-item:hover {
-            background-color: #e2e8f0;
-            border-color: #cbd5e1;
+            background-color: #ffebee;
+            border-color: #ffcdd2;
             transform: translateY(-2px);
         }
 
@@ -203,7 +207,7 @@
 
         .arrow-icon {
             font-size: 18px;
-            color: var(--text-muted);
+            color: var(--primary-red);
             font-weight: bold;
         }
 
@@ -213,12 +217,26 @@
             padding: 16px 0;
             font-size: 12px;
             color: var(--text-muted);
+            font-weight: 500;
         }
 
-        /* Responsif HP */
+        /* Penyesuaian Tampilan Ponsel (Responsive) */
         @media (max-width: 480px) {
             body {
-                padding: 14px 12px;
+                padding: 16px 12px;
+            }
+
+            .brand-logo {
+                width: 54px; /* Disesuaikan agar tetap pas di HP */
+                height: 54px;
+            }
+
+            .brand-text h1 {
+                font-size: 18px;
+            }
+
+            .brand-text p {
+                font-size: 12px;
             }
 
             .hero-banner {
@@ -227,11 +245,11 @@
             }
 
             .hero-banner h2 {
-                font-size: 20px;
+                font-size: 21px;
             }
 
             .hero-banner p {
-                font-size: 12.5px;
+                font-size: 13px;
             }
 
             .main-card {
@@ -239,12 +257,8 @@
                 border-radius: 20px;
             }
 
-            .brand-text h1 {
-                font-size: 16px;
-            }
-
             .version-badge {
-                padding: 4px 10px;
+                padding: 6px 12px;
                 font-size: 11px;
             }
         }
@@ -255,10 +269,10 @@
 
 <div class="wrapper">
 
-    <!-- Top Bar Navigation -->
+    <!-- Kop Header Besar -->
     <header class="top-bar">
         <div class="brand-info">
-            <img src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR SPENSAMO" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=PMR'">
+            <img src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR SPENSAMO" class="brand-logo" onerror="this.src='https://via.placeholder.com/68?text=PMR'">
             <div class="brand-text">
                 <h1>PMR SPENSAMO</h1>
                 <p>Arsip & Layanan Digital</p>
@@ -267,7 +281,7 @@
         <div class="version-badge">Version 1.0</div>
     </header>
 
-    <!-- Blue Welcome Banner -->
+    <!-- Banner Merah Gradasi -->
     <section class="hero-banner">
         <h2>Halo, Selamat Datang!</h2>
         <p>Silakan akses berbagai layanan digital, portal informasi materi, serta dokumentasi resmi PMR Madya SMP Negeri 1 Moga melalui menu yang tersedia di bawah ini.</p>

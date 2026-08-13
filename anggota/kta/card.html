@@ -58,36 +58,53 @@
     /* Container Utama */
     #ktaContainer {
       width: 100%;
-      max-width: 340px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     /* =====================================================
-       KTA CARD STYLING
+       KTA CARD STYLING & DIMENSIONS
     ===================================================== */
     .kta-stage {
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       margin-bottom: 16px;
     }
 
     .kta-card {
       position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1.58; /* Standard ID Card Ratio */
+      /* Ukuran Utama Kartu */
+      width: 5.679cm;
+      height: 8.993cm;
       background: white;
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       border: 1px solid #ccc;
       display: flex;
       flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    /* Overlay Line Art (Garis Potong / Inner Cut Guide) */
+    .crop-line-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 5.513cm;
+      height: 8.72cm;
+      border: 1px dashed rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      pointer-events: none;
+      z-index: 10;
     }
 
     /* Top Strip Design */
     .top-bar {
-      height: 10px;
+      height: 6px;
       background: linear-gradient(to right, #b71c1c 0%, #b71c1c 50%, #e57373 50%, #e57373 75%, #ffcdd2 75%);
       width: 100%;
       flex-shrink: 0;
@@ -99,22 +116,22 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px 15px 2px;
+      padding: 6px 6px 2px;
       text-align: center;
       flex-shrink: 0;
     }
 
     .pmi-logo {
-      width: 80px; 
-      height: 80px;
+      width: 38px;
+      height: 38px;
       object-fit: contain;
-      margin-top: 4px;
-      margin-bottom: 8px;
+      margin-top: 2px;
+      margin-bottom: 4px;
     }
 
     .header-title {
       font-weight: 900;
-      font-size: 17px;
+      font-size: 9.5px;
       color: #b71c1c;
       text-transform: uppercase;
       line-height: 1.1;
@@ -122,27 +139,27 @@
 
     .header-subtitle {
       font-weight: 900;
-      font-size: 13.5px; 
+      font-size: 7.5px;
       color: #222;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     /* Foto Section */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 60px;
-      margin-bottom: 16px; 
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
 
     .photo-container {
-      width: 38%;
-      aspect-ratio: 3 / 4;
-      border: 3px solid #d32f2f;
+      width: 2.1cm;
+      height: 2.8cm;
+      border: 1.5px solid #d32f2f;
       background: #e0e0e0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
       overflow: hidden;
     }
 
@@ -156,25 +173,25 @@
     /* Member Info Section */
     .member-info {
       text-align: center;
-      padding: 0 10px;
+      padding: 0 6px;
       margin-top: 0;
       margin-bottom: auto;
     }
 
     .member-name {
-      font-size: 20px;
-      font-weight: bold; 
+      font-size: 11px;
+      font-weight: bold;
       color: #111;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .member-ni {
-      font-size: 15px;
+      font-size: 8.5px;
       color: #333;
-      font-weight: 700; 
+      font-weight: 700;
     }
 
     /* Footer Teks */
@@ -182,21 +199,21 @@
       background: #b71c1c;
       color: white;
       text-align: center;
-      padding: 8px 10px 10px;
+      padding: 4px 4px 6px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
       margin-top: auto;
     }
 
     .footer-title {
-      font-size: 11px;
+      font-size: 7px;
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
     .footer-sub {
-      font-size: 9px;
+      font-size: 5.5px;
       font-weight: bold;
       opacity: 0.95;
       text-transform: uppercase;
@@ -206,7 +223,7 @@
        BACK SIDE STYLING
     ===================================================== */
     .back-side {
-      padding: 14px 16px;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -216,13 +233,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 2px solid #b71c1c;
-      padding-bottom: 6px;
-      margin-bottom: 10px;
+      border-bottom: 1.5px solid #b71c1c;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .back-title {
-      font-size: 11px;
+      font-size: 7px;
       font-weight: 900;
       color: #b71c1c;
       text-align: right;
@@ -230,43 +247,43 @@
     }
 
     .rules-list {
-      padding-left: 14px;
-      margin: 0 0 10px 0;
-      font-size: 10px;
-      line-height: 1.4;
+      padding-left: 10px;
+      margin: 0 0 6px 0;
+      font-size: 6px;
+      line-height: 1.3;
       color: #222;
     }
 
     .rules-list li {
-      margin-bottom: 6px;
+      margin-bottom: 3px;
     }
 
     .signature-container {
       margin-top: auto;
       display: flex;
       justify-content: flex-end;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .signature-section {
-      width: 60%;
+      width: 65%;
       text-align: left;
-      font-size: 9px;
-      line-height: 1.35;
+      font-size: 5.5px;
+      line-height: 1.2;
       color: #111;
     }
 
     .signature-name {
-      margin-top: 35px;
+      margin-top: 18px;
       font-weight: bold;
       text-decoration: underline;
-      font-size: 9.5px;
+      font-size: 6px;
     }
 
     .attention-box {
-      border: 1.5px solid #d32f2f;
-      padding: 6px 8px;
-      border-radius: 6px;
+      border: 1px solid #d32f2f;
+      padding: 4px 5px;
+      border-radius: 4px;
       background: #fff5f5;
     }
 
@@ -274,14 +291,14 @@
       color: #d32f2f;
       font-weight: bold;
       text-align: center;
-      font-size: 9px;
-      margin-bottom: 3px;
+      font-size: 6px;
+      margin-bottom: 2px;
     }
 
     .attention-box .rules-list {
-      font-size: 8.5px;
+      font-size: 5.5px;
       margin: 0;
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
     /* Actions buttons */
@@ -289,15 +306,16 @@
       display: flex;
       gap: 10px;
       width: 100%;
+      max-width: 220px;
     }
 
     .action-btn {
       flex: 1;
-      padding: 12px;
+      padding: 10px;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
       display: flex;
       align-items: center;
@@ -325,7 +343,7 @@
     ===================================================== */
     @media print {
       @page {
-        size: A4 landscape; /* Set default orientasi kertas ke Lanskap */
+        size: A4 landscape;
         margin: 10mm;
       }
 
@@ -354,18 +372,22 @@
         flex-direction: row !important;
         justify-content: center;
         align-items: center;
-        gap: 15px; /* Jarak antar kartu saat dicetak */
+        gap: 15px;
         margin: 0;
       }
 
       .kta-card {
-        width: 85.6mm !important;  /* Ukuran standar ID Card (CR80) */
-        height: 135mm !important;
+        width: 5.679cm !important;
+        height: 8.993cm !important;
         box-shadow: none !important;
         border: 1px solid #999 !important;
-        display: flex !important; /* Paksa sisi depan & belakang muncul berjejer */
+        display: flex !important;
         page-break-after: avoid !important;
         page-break-inside: avoid !important;
+      }
+
+      .crop-line-overlay {
+        border: 1px dashed #000 !important;
       }
     }
   </style>
@@ -386,6 +408,7 @@
     <div class="kta-stage">
       <!-- DEPAN KARTU -->
       <div id="ktaCardFront" class="kta-card">
+        <div class="crop-line-overlay"></div>
         <div class="top-bar"></div>
 
         <!-- HEADER: Logo & Judul -->
@@ -418,10 +441,11 @@
 
       <!-- BELAKANG KARTU -->
       <div id="ktaCardBack" class="kta-card" style="display:none;">
+        <div class="crop-line-overlay"></div>
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+            <img class="pmi-logo" style="width:20px; height:20px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
             <div class="back-title">
               KARTU TANDA<br>RELAWAN PMI
             </div>

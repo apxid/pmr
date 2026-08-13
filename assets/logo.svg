@@ -1,45 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
   <defs>
-    <!-- Gradasi Merah Khas PMR -->
-    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E53935" />
-      <stop offset="100%" stop-color="#8E0000" />
+    <!-- Gradasi Latar Belakang Kotak -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f4f6f8"/>
     </linearGradient>
 
-    <!-- Shadow Effect Halus -->
-    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.15"/>
+    <!-- Gradasi Merah Utama (Clean & Bold) -->
+    <linearGradient id="pmiRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e53935"/>
+      <stop offset="100%" stop-color="#b71c1c"/>
+    </linearGradient>
+
+    <!-- Gradasi Bingkai Luar -->
+    <linearGradient id="borderRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d32f2f"/>
+      <stop offset="100%" stop-color="#8e0000"/>
+    </linearGradient>
+
+    <!-- Drop Shadow yang Halus dan Elegan -->
+    <filter id="cleanShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.12"/>
     </filter>
   </defs>
 
-  <g filter="url(#dropShadow)">
-    <!-- 6 KELOPAK BUNGA MENYATU (Bertumpuk di Belakang Lingkaran) -->
-    <!-- Kelopak 1 (0 Deg) -->
-    <path d="M 300 300 C 180 80, 180 -10, 300 -10 C 420 -10, 420 80, 300 300 Z" 
-          fill="url(#redGrad)" stroke="#FFFFFF" stroke-width="6" transform="rotate(0 300 300)" />
-    <!-- Kelopak 2 (60 Deg) -->
-    <path d="M 300 300 C 180 80, 180 -10, 300 -10 C 420 -10, 420 80, 300 300 Z" 
-          fill="url(#redGrad)" stroke="#FFFFFF" stroke-width="6" transform="rotate(60 300 300)" />
-    <!-- Kelopak 3 (120 Deg) -->
-    <path d="M 300 300 C 180 80, 180 -10, 300 -10 C 420 -10, 420 80, 300 300 Z" 
-          fill="url(#redGrad)" stroke="#FFFFFF" stroke-width="6" transform="rotate(120 300 300)" />
-    <!-- Kelopak 4 (180 Deg) -->
-    <path d="M 300 300 C 180 80, 180 -10, 300 -10 C 420 -10, 420 80, 300 300 Z" 
-          fill="url(#redGrad)" stroke="#FFFFFF" stroke-width="6" transform="rotate(180 300 300)" />
-    <!-- Kelopak 5 (240 Deg) -->
-    <path d="M 300 300 C 180 80, 180 -10, 300 -10 C 420 -10, 420 80, 300 300 Z" 
-          fill="url(#redGrad)" stroke="#FFFFFF" stroke-width="6" transform="rotate(240 300 300)" />
-    <!-- Kelopak 6 (300 Deg) -->
-    <path d="M 300 300 C 180 80, 180 -10, 300 -10 C 420 -10, 420 80, 300 300 Z" 
-          fill="url(#redGrad)" stroke="#FFFFFF" stroke-width="6" transform="rotate(300 300 300)" />
-
-    <!-- LINGKARAN TENGAH PENUH (BESAR 80% AREA) -->
-    <circle cx="300" cy="300" r="200" fill="#FFFFFF" stroke="#1E293B" stroke-width="8" />
-
-    <!-- SIMBOL PALANG MERAH DI TENGAH (PRESISI & TEGAS) -->
-    <g fill="url(#redGrad)">
-      <rect x="260" y="180" width="80" height="240" rx="12" />
-      <rect x="180" y="260" width="240" height="80" rx="12" />
-    </g>
+  <!-- 1. BINGKAI KOTAK UTAMA (OUTER ROUNDED SQUARE) -->
+  <g filter="url(#cleanShadow)">
+    <rect x="25" y="25" width="450" height="450" rx="52" 
+          fill="url(#cardBg)" stroke="url(#borderRed)" stroke-width="10"/>
+    
+    <!-- Bingkai Dalam (Solid Double Line, Clean tanpa garis putus-putus) -->
+    <rect x="42" y="42" width="416" height="416" rx="36" 
+          fill="none" stroke="#d32f2f" stroke-width="2.5" stroke-opacity="0.3"/>
   </g>
+
+  <!-- 2. SIMBOL UTAMA: BUNGA MELATI 5 KELOPAK -->
+  <g id="PMR_Flower" transform="translate(0, -18)">
+    <!-- Kelopak Bunga Melati (Garis Solid Merah) -->
+    <path d="M 250,85 
+             C 288,85 320,108 331,140 
+             C 364,138 399,161 406,196 
+             C 414,231 392,265 368,287 
+             C 384,319 370,359 340,378 
+             C 311,397 272,389 250,367 
+             C 228,389 189,397 160,378 
+             C 130,359 116,319 132,287 
+             C 108,265 86,231 94,196 
+             C 101,161 136,138 169,140 
+             C 180,108 212,85 250,85 Z" 
+          fill="#ffffff" stroke="url(#pmiRed)" stroke-width="13" stroke-linejoin="round"/>
+
+    <!-- Palang Merah Presisi -->
+    <path d="M 220,160 H 280 V 220 H 340 V 280 H 280 V 340 H 220 V 280 H 160 V 220 H 220 Z" 
+          fill="url(#pmiRed)" rx="3"/>
+  </g>
+
+  <!-- 3. BANNER TEKS BAWAH (CLEAN SOLID BADGE) -->
+  <rect x="110" y="408" width="280" height="42" rx="21" fill="url(#pmiRed)" />
+  
+  <text x="250" y="435" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="18" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">
+    PMR SMPN 1 MOGA
+  </text>
 </svg>

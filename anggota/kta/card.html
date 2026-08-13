@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTA PMR - SMP Negeri 1 Moga</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+    body { background-color: #f4f6f9; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 1.5rem 1rem; }
+
+    /* Ukuran Kartu KTA Responsif */
+    .kta-card {
+      width: 100%;
+      max-width: 380px;
+      height: 240px;
+      background: #ffffff;
+      border: 2px solid #b71c1c;
+      border-radius: 12px;
+      padding: 12px;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kta-header {
+      border-bottom: 2px solid #b71c1c;
+      padding-bottom: 6px;
+      text-align: center;
+    }
+    .kta-header h3 { font-size: 0.85rem; color: #b71c1c; letter-spacing: 0.5px; }
+    .kta-header h4 { font-size: 0.75rem; color: #333; font-weight: 600; }
+
+    .kta-body { display: flex; gap: 12px; margin-top: 8px; flex: 1; }
+    
+    .photo-box {
+      width: 75px;
+      height: 98px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      object-fit: cover;
+      background: #e0e0e0;
+      flex-shrink: 0;
+    }
+
+    .kta-details { font-size: 0.72rem; color: #222; flex: 1; }
+    .kta-details table { width: 100%; border-collapse: collapse; }
+    .kta-details td { padding: 1px 2px; vertical-align: top; }
+    .kta-details td.label { font-weight: bold; width: 65px; }
+
+    .kta-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 0.65rem;
+      color: #444;
+      margin-top: 4px;
+      border-top: 1px dashed #ddd;
+      padding-top: 4px;
+    }
+    .badge-pmi { color: #b71c1c; font-weight: bold; }
+
+    .btn-container { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 380px; }
+    .btn { flex: 1; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; font-size: 0.9rem; }
+    .btn-print { background: #b71c1c; color: white; }
+    .btn-back { background: #555; color: white; }
+
+    /* CSS Khusus Cetak Printer/PDF */
+    @media print {
+      body { background: white; padding: 0; }
+      .btn-container { display: none; }
+      .kta-card {
+        width: 85.6mm; /* Ukuran standar ID Card */
+        height: 53.9mm;
+        border: 1px solid #000;
+        box-shadow: none;
+        position: absolute;
+        left: 0; top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="kta-card">
+    <div class="kta-header">
+      <h3>KARTU TANDA ANGGOTA PMR</h3>
+      <h4>SMP NEGERI 1 MOGA</h4>
+    </div>
+
+    <div class="kta-body">
+      <img id="cardFoto" class="photo-box" src="" alt="Foto Anggota">
+      <div class="kta-details">
+        <table>
+          <tr><td class="label">Nama</td><td>:</td><td id="cardNama" style="font-weight:bold;">-</td></tr>
+          <tr><td class="label">NISN</td><td>:</td><td id="cardNisn">-</td></tr>
+          <tr><td class="label">Jabatan</td><td>:</td><td id="cardJabatan" style="color:#b71c1c; font-weight:bold;">-</td></tr>
+          <tr><td class="label">Kelas</td><td>:</td><td id="cardKelas">-</td></tr>
+          <tr><td class="label">TTL</td><td>:</td><td id="cardTtl">-</td></tr>
+          <tr><td class="label">Gol. Darah</td><td>:</td><td id="cardGol">-</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="kta-footer">
+      <span class="badge-pmi">PMR MADYA</span>
+      <div style="text-align: right;">
+        <p>Moga, Pemalang</p>
+        <p>Pembina PMR</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-container">
+    <button class="btn btn-print" onclick="window.print()">Cetak / Simpan PDF</button>
+    <a href="search.html" class="btn btn-back">Kembali</a>
+  </div>
+
+  <script>
+    // Ambil data dari query URL
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById('cardNama').innerText = params.get('nama') || '-';
+    document.getElementById('cardNisn').innerText = params.get('nisn') || '-';
+    document.getElementById('cardJabatan').innerText = params.get('jabatan') || '-';
+    document.getElementById('cardKelas').innerText = params.get('kelas') || '-';
+    document.getElementById('cardTtl').innerText = params.get('ttl') || '-';
+    document.getElementById('cardGol').innerText = params.get('gol') || '-';
+
+    const fotoUrl = params.get('foto');
+    if (fotoUrl && fotoUrl !== "null" && fotoUrl !== "") {
+      document.getElementById('cardFoto').src = fotoUrl;
+    } else {
+      document.getElementById('cardFoto').src = 'https://via.placeholder.com/75x98?text=No+Foto';
+    }
+  </script>
+</body>
+</html>

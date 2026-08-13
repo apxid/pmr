@@ -1,402 +1,453 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
+<!-- =========================================================
+     TEMPLATE KARTU KTA PMR
+     File: Template.html
+========================================================= -->
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<style>
 
-  <title>KTA PMR Madya</title>
+  /* =========================================================
+     KTA CARD
+  ========================================================= */
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  .kta-stage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 22px;
+  }
 
-    @page {
-      size: 85.6mm 53.98mm;
-      margin: 0;
-    }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 85.6mm;
-      height: 53.98mm;
-      background: #ffffff;
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-    }
+  .kta-card {
+    position: relative;
 
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    width: min(100%, 360px);
 
-    /* =========================================================
-       KARTU
-    ========================================================= */
+    aspect-ratio: 5.513 / 8.72;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+      linear-gradient(
+        155deg,
+        #ffffff 0%,
+        #fff8f8 45%,
+        #fce5e7 100%
+      );
+
+    box-shadow:
+      0 20px 50px rgba(65, 10, 18, .22);
+
+    border:
+      1px solid rgba(189, 8, 28, .16);
+  }
+
+
+  /* =========================================================
+     TOP MERAH
+  ========================================================= */
+
+  .kta-top {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 18.5%;
+
+    background:
+      linear-gradient(
+        135deg,
+        #8f0016 0%,
+        #bd081c 55%,
+        #e1273d 100%
+      );
+
+    clip-path:
+      polygon(
+        0 0,
+        100% 0,
+        100% 77%,
+        50% 100%,
+        0 77%
+      );
+  }
+
+
+  /* =========================================================
+     ORGANISASI
+  ========================================================= */
+
+  .kta-org {
+    position: absolute;
+
+    top: 4.5%;
+
+    left: 8%;
+    right: 8%;
+
+    z-index: 5;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    line-height: 1.25;
+
+    font-weight: 800;
+
+    letter-spacing: .1px;
+  }
+
+
+  .kta-org strong {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: .15px;
+  }
+
+
+  .kta-cross {
+    width: 24px;
+    height: 24px;
+
+    margin: 5px auto 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border-radius: 7px;
+
+    color: #bd081c;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.10);
+  }
+
+
+  /* =========================================================
+     FOTO
+     DITURUNKAN AGAR LEBIH PROPORSIONAL
+  ========================================================= */
+
+  .kta-photo-wrap {
+    position: absolute;
+
+    z-index: 4;
+
+    top: 22%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 43%;
+
+    aspect-ratio: 3 / 4;
+
+    padding: 4px;
+
+    border-radius: 14px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #8f0016,
+        #e1263d
+      );
+
+    box-shadow:
+      0 9px 22px rgba(80,0,15,.20);
+  }
+
+
+  .kta-photo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center center;
+
+    border-radius: 10px;
+
+    background: #eeeeee;
+  }
+
+
+  /* =========================================================
+     BODY / NAMA
+  ========================================================= */
+
+  .kta-body {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 7%;
+    right: 7%;
+
+    top: 55.5%;
+
+    text-align: center;
+  }
+
+
+  .kta-label {
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.6px;
+
+    color: #9c7b80;
+
+    font-weight: 900;
+  }
+
+
+  .kta-name {
+    margin-top: 5px;
+
+    font-size: clamp(
+      14px,
+      4vw,
+      19px
+    );
+
+    line-height: 1.15;
+
+    color: #3b1117;
+
+    font-weight: 900;
+
+    word-break: break-word;
+
+    text-transform: uppercase;
+  }
+
+
+  .kta-number {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 9px;
+
+    padding: 6px 12px;
+
+    min-height: 25px;
+
+    border-radius: 99px;
+
+    background: white;
+
+    border:
+      1px solid #f0c6cb;
+
+    color: #bd081c;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: .5px;
+  }
+
+
+  /* =========================================================
+     FOOTER
+  ========================================================= */
+
+  .kta-bottom {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 7%;
+    right: 7%;
+
+    bottom: 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 9px;
+
+    border-top:
+      1px solid rgba(189,8,28,.14);
+  }
+
+
+  .kta-qr {
+    display: block;
+
+    width: 23%;
+
+    aspect-ratio: 1;
+
+    object-fit: contain;
+
+    background: white;
+
+    padding: 3px;
+
+    border-radius: 7px;
+
+    border:
+      1px solid #ead1d4;
+  }
+
+
+  .kta-footer-info {
+    flex: 1;
+
+    text-align: left;
+  }
+
+
+  .kta-position {
+    color: #bd081c;
+
+    font-size: 10px;
+
+    font-weight: 900;
+  }
+
+
+  .kta-school {
+    margin-top: 3px;
+
+    font-size: 8px;
+
+    line-height: 1.35;
+
+    font-weight: 800;
+
+    color: #44252a;
+  }
+
+
+  .kta-location {
+    margin-top: 2px;
+
+    font-size: 7px;
+
+    color: #8a6d71;
+  }
+
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media (max-width: 520px) {
 
     .kta-card {
-      position: relative;
+      width: min(100%, 330px);
 
-      width: 85.6mm;
-      height: 53.98mm;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #f8fbff 100%
-        );
-
-      border: 0.35mm solid #1565c0;
-
-      border-radius: 3mm;
-
-      color: #17324d;
-
-      box-shadow:
-        0 1mm 3mm rgba(0, 0, 0, 0.15);
+      border-radius: 18px;
     }
-
-    /* =========================================================
-       HEADER
-    ========================================================= */
-
-    .kta-top {
-      position: absolute;
-
-      top: 0;
-      left: 0;
-
-      width: 100%;
-      height: 10mm;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1565c0,
-          #0d47a1
-        );
-    }
-
-    /*
-      Dekorasi garis merah
-    */
-
-    .kta-top::after {
-      content: "";
-
-      position: absolute;
-
-      right: -5mm;
-      bottom: -2mm;
-
-      width: 45mm;
-      height: 5mm;
-
-      background: #d32f2f;
-
-      transform: skewX(-35deg);
-    }
-
-    /* =========================================================
-       IDENTITAS ORGANISASI
-    ========================================================= */
-
-    .kta-org {
-      position: absolute;
-
-      top: 2.2mm;
-      left: 4mm;
-
-      width: 48mm;
-
-      color: #ffffff;
-
-      z-index: 5;
-
-      line-height: 1.15;
-    }
-
-    .kta-org .pmi {
-      font-size: 3.1mm;
-      font-weight: 700;
-
-      letter-spacing: 0.15mm;
-    }
-
-    .kta-org .pmr {
-      margin-top: 0.8mm;
-
-      font-size: 2.5mm;
-      font-weight: 600;
-    }
-
-    .kta-org .school {
-      margin-top: 0.5mm;
-
-      font-size: 2.1mm;
-      font-weight: 500;
-    }
-
-    /* =========================================================
-       LOGO / CROSS
-    ========================================================= */
-
-    .kta-cross {
-      position: absolute;
-
-      top: -0.5mm;
-      right: -30mm;
-
-      width: 8mm;
-      height: 8mm;
-
-      border-radius: 50%;
-
-      background: #ffffff;
-
-      color: #d32f2f;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 5mm;
-      font-weight: bold;
-
-      box-shadow:
-        0 0 0 0.6mm rgba(255, 255, 255, 0.35);
-    }
-
-    /* =========================================================
-       FOTO
-    ========================================================= */
 
     .kta-photo-wrap {
-      position: absolute;
-
-      left: 4mm;
-      top: 14mm;
-
-      width: 22mm;
-      height: 28mm;
-
-      padding: 0.7mm;
-
-      background: #ffffff;
-
-      border: 0.35mm solid #1565c0;
-
-      border-radius: 1.5mm;
-
-      z-index: 3;
+      top: 22%;
+      width: 43%;
     }
-
-    .kta-photo {
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      border-radius: 1mm;
-    }
-
-    /* =========================================================
-       DATA ANGGOTA
-    ========================================================= */
 
     .kta-body {
-      position: absolute;
-
-      top: 14mm;
-      left: 29mm;
-
-      width: 51mm;
-
-      padding-right: 2mm;
+      top: 55.5%;
     }
 
-    .data-label {
-      font-size: 1.8mm;
+  }
 
-      color: #607d8b;
 
-      font-weight: 700;
+  /* =========================================================
+     VERY SMALL
+  ========================================================= */
 
-      text-transform: uppercase;
+  @media (max-width: 360px) {
 
-      letter-spacing: 0.15mm;
+    .kta-card {
+      width: 285px;
     }
 
-    .data-value {
-      margin-top: 0.5mm;
+  }
 
-      margin-bottom: 2.2mm;
 
-      font-size: 3.4mm;
+  /* =========================================================
+     PRINT
+  ========================================================= */
 
-      color: #17324d;
+  @media print {
 
-      font-weight: 700;
-
-      line-height: 1.1;
+    .kta-stage {
+      padding: 0;
     }
 
-    .member-number {
-      color: #1565c0;
+    .kta-card {
 
-      font-size: 3.1mm;
+      width: 5.513cm;
 
-      letter-spacing: 0.15mm;
+      height: 8.72cm;
+
+      aspect-ratio: auto;
+
+      border-radius: .35cm;
+
+      box-shadow: none;
+
+      border: none;
     }
 
-    /* =========================================================
-       QR
-    ========================================================= */
+  }
 
-    .kta-qr {
-      position: absolute;
+</style>
 
-      right: 4mm;
-      bottom: 5mm;
 
-      width: 13mm;
-      height: 13mm;
+<!-- =========================================================
+     KTA CARD
+========================================================= -->
 
-      padding: 0.8mm;
+<div class="kta-stage">
 
-      background: #ffffff;
+  <div id="ktaCard" class="kta-card">
 
-      border: 0.25mm solid #d9e2ec;
-
-      border-radius: 1mm;
-    }
-
-    /* =========================================================
-       FOOTER
-    ========================================================= */
-
-    .kta-footer {
-      position: absolute;
-
-      left: 29mm;
-      bottom: 4mm;
-
-      width: 35mm;
-
-      color: #607d8b;
-
-      line-height: 1.25;
-    }
-
-    .kta-position {
-      font-size: 2.3mm;
-
-      color: #1565c0;
-
-      font-weight: 700;
-    }
-
-    .kta-school {
-      margin-top: 0.4mm;
-
-      font-size: 1.8mm;
-
-      font-weight: 600;
-    }
-
-    .kta-location {
-      margin-top: 0.3mm;
-
-      font-size: 1.7mm;
-    }
-
-    /* =========================================================
-       WATERMARK
-    ========================================================= */
-
-    .watermark {
-      position: absolute;
-
-      right: -5mm;
-      bottom: 12mm;
-
-      font-size: 15mm;
-
-      font-weight: 900;
-
-      color: rgba(21, 101, 192, 0.035);
-
-      transform: rotate(-15deg);
-
-      white-space: nowrap;
-
-      pointer-events: none;
-    }
-
-    /* =========================================================
-       PRINT
-    ========================================================= */
-
-    @media print {
-
-      html,
-      body {
-        width: 85.6mm;
-        height: 53.98mm;
-
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        display: block;
-      }
-
-      .kta-card {
-        box-shadow: none;
-        border-radius: 0;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="kta-card">
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+    <!-- TOP MERAH -->
 
     <div class="kta-top"></div>
 
+
+    <!-- ORGANISASI -->
+
     <div class="kta-org">
 
-      <div class="pmi">
+      <strong>
         PALANG MERAH INDONESIA
-      </div>
+      </strong>
 
-      <div class="pmr">
-        PMR MADYA
-      </div>
-
-      <div class="school">
-        SMP NEGERI 1 MOGA
-      </div>
+      PMR MADYA<br>
+      SMP NEGERI 1 MOGA
 
       <div class="kta-cross">
         ✚
@@ -405,88 +456,77 @@
     </div>
 
 
-    <!-- =====================================================
-         FOTO ANGGOTA
-    ====================================================== -->
+    <!-- FOTO -->
 
     <div class="kta-photo-wrap">
 
       <img
+        id="ktaPhoto"
         class="kta-photo"
-        src="{{FOTO_URL}}"
+        src=""
         alt="Foto Anggota PMR"
       >
 
     </div>
 
 
-    <!-- =====================================================
-         DATA ANGGOTA
-    ====================================================== -->
+    <!-- INFORMASI ANGGOTA -->
 
     <div class="kta-body">
 
-      <div class="data-label">
+      <div class="kta-label">
         Nama Anggota
       </div>
 
-      <div class="data-value">
-        {{NAMA_LENGKAP}}
+
+      <div
+        id="ktaName"
+        class="kta-name"
+      >
+        -
       </div>
 
 
-      <div class="data-label">
-        Nomor Anggota
-      </div>
-
-      <div class="data-value member-number">
-        {{NOMOR_ANGGOTA}}
-      </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <div class="kta-footer">
-
-      <div class="kta-position">
-        PMR MADYA
-      </div>
-
-      <div class="kta-school">
-        SMP NEGERI 1 MOGA
-      </div>
-
-      <div class="kta-location">
-        Kab. Pemalang
+      <div
+        id="ktaNumber"
+        class="kta-number"
+      >
+        -
       </div>
 
     </div>
 
 
-    <!-- =====================================================
-         QR CODE
-    ====================================================== -->
+    <!-- FOOTER -->
 
-    <img
-      class="kta-qr"
-      src="{{QR_URL}}"
-      alt="QR Code KTA"
-    >
+    <div class="kta-bottom">
+
+      <img
+        id="ktaQR"
+        class="kta-qr"
+        src=""
+        alt="QR Code KTA"
+      >
 
 
-    <!-- =====================================================
-         WATERMARK
-    ====================================================== -->
+      <div class="kta-footer-info">
 
-    <div class="watermark">
-      PMR
+        <div class="kta-position">
+          PMR MADYA
+        </div>
+
+        <div class="kta-school">
+          SMP NEGERI 1 MOGA
+        </div>
+
+        <div class="kta-location">
+          Kab. Pemalang
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 
-</body>
-</html>
+</div>

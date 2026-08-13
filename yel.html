@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yel-Yel PMR Spensamo</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-red: #BE123C;
+      --secondary-blue: #1E3A8A;
+      --accent-gold: #D97706;
+      --bg-light: #F8FAFC;
+      --card-white: #FFFFFF;
+      --text-main: #0F172A;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+      background: var(--card-white);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid #E2E8F0;
+    }
+
+    /* HEADER LOGO & JUDUL */
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 2px dashed #E2E8F0;
+      position: relative;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(190, 18, 60, 0.1);
+      color: var(--primary-red);
+      font-weight: 800;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .header h1 {
+      color: var(--primary-red);
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .header p {
+      color: var(--secondary-blue);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* KARTU DIALOG YEL-YEL */
+    .yel-card {
+      background: #FFFFFF;
+      border: 1px solid #F1F5F9;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      border-left: 5px solid var(--secondary-blue);
+    }
+
+    .yel-card.pemandu {
+      border-left-color: var(--accent-gold);
+      background: #FFFBEB;
+    }
+
+    .yel-card.semua {
+      border-left-color: var(--primary-red);
+      background: #FFF1F2;
+    }
+
+    .role-tag {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pemandu .role-tag { color: var(--accent-gold); }
+    .semua .role-tag { color: var(--primary-red); }
+
+    .lyric-text {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #1E293B;
+    }
+
+    .action-badge {
+      display: inline-block;
+      margin-top: 8px;
+      background: #FFFFFF;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      border: 1px solid #E2E8F0;
+    }
+
+    /* PENUTUP (JAYA 3X) */
+    .highlight-box {
+      background: linear-gradient(135deg, #BE123C 0%, #881337 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+      box-shadow: 0 8px 20px rgba(190, 18, 60, 0.25);
+    }
+
+    .highlight-box h2 {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      color: #FDE68A;
+    }
+
+    .highlight-item {
+      font-size: 15px;
+      margin: 8px 0;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px;
+      border-radius: 10px;
+    }
+
+    .final-shout {
+      font-size: 32px;
+      font-weight: 900;
+      margin-top: 14px;
+      color: #FFFFFF;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- HEADER -->
+    <div class="header">
+      <span class="header-badge">OFFICIAL YEL-YEL</span>
+      <h1>PMR SPENSAMO</h1>
+      <p>SIAP • TANGGAP • PENOLONG</p>
+    </div>
+
+    <!-- DIALOG 1 -->
+    <div class="yel-card pemandu">
+      <div class="role-tag">📢 Pemandu</div>
+      <div class="lyric-text">PMR!</div>
+    </div>
+
+    <!-- DIALOG 2 -->
+    <div class="yel-card semua">
+      <div class="role-tag">👥 Semua</div>
+      <div class="lyric-text">Siap!</div>
+      <div class="action-badge">👊 Tangan kanan mengepal di dada</div>
+    </div>
+
+    <!-- DIALOG 3 -->
+    <div class="yel-card pemandu">
+      <div class="role-tag">📢 Pemandu (Semangat)</div>
+      <div class="lyric-text">👉 SPENSAMO!</div>
+    </div>
+
+    <!-- DIALOG 4 -->
+    <div class="yel-card semua">
+      <div class="role-tag">👥 Semua (Kompak & Keras)</div>
+      <div class="lyric-text">👉 Yes!</div>
+      <div class="action-badge">🤟 Tangan kanan ke atas → lanjut tepuk 2x bareng 👏</div>
+    </div>
+
+    <!-- DIALOG 5 -->
+    <div class="yel-card semua">
+      <div class="role-tag">🔥 Semua (Penuh Energi)</div>
+      <div class="lyric-text">
+        👉 Sehat jiwa, sehat raga!<br>
+        <span class="action-badge" style="margin-bottom: 10px;">💪 Kedua tangan direntangkan, lalu tekuk ke otot (pose strong)</span><br><br>
+        👉 Siap selalu kapan saja!
+      </div>
+      <div class="action-badge">✋ Tangan kanan hormat, lalu dihentakkan ke bawah</div>
+    </div>
+
+    <!-- DIALOG 6 -->
+    <div class="yel-card semua">
+      <div class="role-tag">🚶‍♂️ Semua (Maju 1 Langkah)</div>
+      <div class="lyric-text">
+        👉 PMR… Bersahabat!<br>
+        <span class="action-badge" style="margin-bottom: 10px;">🤝 Badan sedikit ke kanan & kiri, berjabat tangan</span><br><br>
+        👉 SPENSAMO… Hebat!
+      </div>
+      <div class="action-badge">💥 Lompat kecil sambil kepalkan tangan kanan ke atas</div>
+    </div>
+
+    <!-- PENUTUP (JAYA JAYA JAYA) -->
+    <div class="highlight-box">
+      <p style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; opacity: 0.9;">PEMBUNGKUS (3X HENTAKAN)</p>
+      <div class="highlight-item">👉 JAYA! <span>(👊 Pukul dada keras)</span></div>
+      <div class="highlight-item">👉 JAYA! <span>(👊 Pukul dada lagi, makin keras)</span></div>
+      <div class="highlight-item">👉 JAYA! <span>(👊 Pukul dada → Tangan ke atas → Tepuk 1x 👏)</span></div>
+      <div class="final-shout">YES!!! 😁</div>
+      <p style="font-size: 13px; font-weight: 600; margin-top: 4px; opacity: 0.9;">(Tangan ke atas, senyum lebar)</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -112,9 +112,6 @@
       margin-bottom: 8px;
     }
 
-    /* ==========================================
-       UKURAN TEKS DIPERBESAR DI SINI (21px)
-    ========================================== */
     .header-title {
       font-weight: 900;
       font-size: 21px;
@@ -123,19 +120,20 @@
       line-height: 1.1;
     }
 
+    /* TEKS SMP NEGERI 1 MOGA DIPERBESAR */
     .header-subtitle {
       font-weight: 900;
-      font-size: 13.5px; 
+      font-size: 16px; 
       color: #222;
       text-transform: uppercase;
       margin-top: 4px;
     }
 
-    /* Foto Section */
+    /* FOTO SECTION - DITURUNKAN POSISINYA */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 35px;
+      margin-top: 70px;
       margin-bottom: 16px; 
     }
 
@@ -511,7 +509,7 @@
 
   function toggleCardSide() {
     const front = document.getElementById('ktaCardFront');
-    back = document.getElementById('ktaCardBack');
+    const back = document.getElementById('ktaCardBack');
     
     if (front.style.display === 'none') {
       front.style.display = 'flex';

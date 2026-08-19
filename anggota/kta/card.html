@@ -112,9 +112,12 @@
       margin-bottom: 8px;
     }
 
+    /* ==========================================
+       UKURAN TEKS DIPERBESAR DI SINI (21px)
+    ========================================== */
     .header-title {
       font-weight: 900;
-      font-size: 17px;
+      font-size: 21px;
       color: #b71c1c;
       text-transform: uppercase;
       line-height: 1.1;
@@ -132,7 +135,7 @@
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 60px;
+      margin-top: 35px;
       margin-bottom: 16px; 
     }
 
@@ -325,7 +328,7 @@
     ===================================================== */
     @media print {
       @page {
-        size: A4 landscape; /* Set default orientasi kertas ke Lanskap */
+        size: A4 landscape;
         margin: 10mm;
       }
 
@@ -354,16 +357,16 @@
         flex-direction: row !important;
         justify-content: center;
         align-items: center;
-        gap: 15px; /* Jarak antar kartu saat dicetak */
+        gap: 15px;
         margin: 0;
       }
 
       .kta-card {
-        width: 85.6mm !important;  /* Ukuran standar ID Card (CR80) */
+        width: 85.6mm !important;
         height: 135mm !important;
         box-shadow: none !important;
         border: 1px solid #999 !important;
-        display: flex !important; /* Paksa sisi depan & belakang muncul berjejer */
+        display: flex !important;
         page-break-after: avoid !important;
         page-break-inside: avoid !important;
       }
@@ -508,7 +511,7 @@
 
   function toggleCardSide() {
     const front = document.getElementById('ktaCardFront');
-    const back = document.getElementById('ktaCardBack');
+    back = document.getElementById('ktaCardBack');
     
     if (front.style.display === 'none') {
       front.style.display = 'flex';

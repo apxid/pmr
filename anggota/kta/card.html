@@ -120,6 +120,7 @@
       line-height: 1.1;
     }
 
+    /* TEKS SMP NEGERI 1 MOGA DIPERBESAR */
     .header-subtitle {
       font-weight: 900;
       font-size: 16px; 
@@ -321,31 +322,28 @@
     }
 
     /* =====================================================
-       OPTIMASI CETAK (A4 PORTRAIT - 1 LEMBAR PDF)
+       OPTIMASI CETAK (PRINT TO PDF 1 LEMBAR - BERSANDINGAN)
     ===================================================== */
     @media print {
       @page {
-        size: A4 portrait;
-        margin: 8mm;
+        size: A4 landscape;
+        margin: 10mm;
       }
 
-      html, body {
-        height: 100%;
-        background: white !important;
+      body {
+        background: white;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
 
       .page {
         padding: 0;
-        margin: 0;
         min-height: auto;
         display: block;
       }
 
       #ktaContainer {
-        max-width: 100% !important;
-        width: 100% !important;
+        max-width: 100%;
       }
 
       .actions {
@@ -354,20 +352,19 @@
 
       .kta-stage {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: center;
+        flex-direction: row !important;
         justify-content: center;
-        gap: 10mm;
-        margin: 0 auto;
+        align-items: center;
+        gap: 15px;
+        margin: 0;
       }
 
-      /* Memaksa kartu depan & belakang tampil vertikal dan muat dalam 1 lembar A4 */
-      #ktaCardFront, #ktaCardBack {
-        display: flex !important;
-        width: 70mm !important;
-        height: 110mm !important;
+      .kta-card {
+        width: 85.6mm !important;
+        height: 135mm !important;
         box-shadow: none !important;
         border: 1px solid #999 !important;
+        display: flex !important;
         page-break-after: avoid !important;
         page-break-inside: avoid !important;
       }
@@ -388,26 +385,31 @@
   <div id="ktaContainer" style="display:none">
 
     <div class="kta-stage">
+      <!-- DEPAN KARTU -->
       <div id="ktaCardFront" class="kta-card">
         <div class="top-bar"></div>
 
+        <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
           <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
+        <!-- FOTO -->
         <div class="kta-photo-section">
           <div class="photo-container">
             <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
         </div>
 
+        <!-- NAMA & NO ANGGOTA -->
         <div class="member-info">
           <div id="ktaName" class="member-name">-</div>
           <div id="ktaNumber" class="member-ni">NO ANGGOTA: -</div>
         </div>
 
+        <!-- FOOTER TEKS -->
         <div class="kta-footer">
           <div class="footer-title">PALANG MERAH REMAJA</div>
           <div class="footer-sub">PMI KAB. PEMALANG</div>
@@ -415,6 +417,7 @@
         </div>
       </div>
 
+      <!-- BELAKANG KARTU -->
       <div id="ktaCardBack" class="kta-card" style="display:none;">
         <div class="top-bar"></div>
         <div class="back-side">
@@ -451,6 +454,7 @@
       </div>
     </div>
 
+    <!-- Tombol Aksi -->
     <div class="actions">
       <button class="action-btn btn-toggle" onclick="toggleCardSide()">🔄 Balik Kartu</button>
       <button class="action-btn btn-print" onclick="window.print()">🖨️ Cetak</button>

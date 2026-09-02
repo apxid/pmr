@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KTA PMR Madya - SMP Negeri 1 Moga</title>
 
+  <!-- Library html2canvas untuk fitur Download Gambar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.min.js"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -65,7 +68,7 @@
     }
 
     /* =====================================================
-       KTA CARD STYLING
+       KTA CARD STYLING (TIDAK DIUBAH ATAU DIGANGGU GUAT)
     ===================================================== */
     .kta-stage {
       width: 100%;
@@ -120,7 +123,6 @@
       line-height: 1.1;
     }
 
-    /* TEKS SMP NEGERI 1 MOGA DIPERBESAR */
     .header-subtitle {
       font-weight: 900;
       font-size: 16px; 
@@ -129,7 +131,6 @@
       margin-top: 4px;
     }
 
-    /* FOTO SECTION - DITURUNKAN POSISINYA */
     .kta-photo-section {
       display: flex;
       justify-content: center;
@@ -154,7 +155,6 @@
       display: block;
     }
 
-    /* Member Info Section */
     .member-info {
       text-align: center;
       padding: 0 10px;
@@ -178,7 +178,6 @@
       font-weight: 700; 
     }
 
-    /* Footer Teks */
     .kta-footer {
       background: #b71c1c;
       color: white;
@@ -203,9 +202,6 @@
       text-transform: uppercase;
     }
 
-    /* =====================================================
-       BACK SIDE STYLING
-    ===================================================== */
     .back-side {
       padding: 14px 16px;
       display: flex;
@@ -288,22 +284,29 @@
     /* Actions buttons */
     .actions {
       display: flex;
-      gap: 10px;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
       width: 100%;
     }
 
     .action-btn {
       flex: 1;
-      padding: 12px;
+      padding: 10px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       transition: background 0.2s, opacity 0.2s;
     }
 
@@ -321,12 +324,17 @@
       color: white;
     }
 
+    .btn-download {
+      background: #1976d2;
+      color: white;
+    }
+
     /* =====================================================
-       OPTIMASI CETAK (PRINT TO PDF 1 LEMBAR - BERSANDINGAN)
+       OPTIMASI CETAK (SOLUSI 1 HALAMAN PDF CETAK A4)
     ===================================================== */
     @media print {
       @page {
-        size: A4 landscape;
+        size: A4 portrait;
         margin: 10mm;
       }
 
@@ -354,8 +362,8 @@
         display: flex !important;
         flex-direction: row !important;
         justify-content: center;
-        align-items: center;
-        gap: 15px;
+        align-items: flex-start;
+        gap: 20px;
         margin: 0;
       }
 
@@ -391,7 +399,7 @@
 
         <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
-          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
@@ -399,7 +407,7 @@
         <!-- FOTO -->
         <div class="kta-photo-section">
           <div class="photo-container">
-            <img id="ktaPhoto" src="" alt="Foto Anggota">
+            <img id="ktaPhoto" src="" alt="Foto Anggota" crossorigin="anonymous">
           </div>
         </div>
 
@@ -422,7 +430,7 @@
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
             <div class="back-title">
               KARTU TANDA<br>RELAWAN PMI
             </div>
@@ -456,8 +464,14 @@
 
     <!-- Tombol Aksi -->
     <div class="actions">
-      <button class="action-btn btn-toggle" onclick="toggleCardSide()">🔄 Balik Kartu</button>
-      <button class="action-btn btn-print" onclick="window.print()">🖨️ Cetak</button>
+      <div class="btn-row">
+        <button class="action-btn btn-toggle" onclick="toggleCardSide()">🔄 Balik Kartu</button>
+        <button class="action-btn btn-print" onclick="window.print()">🖨️ Cetak / PDF</button>
+      </div>
+      <div class="btn-row">
+        <button class="action-btn btn-download" onclick="downloadImage('ktaCardFront', 'KTA_Depan')">🖼️ Gambar Depan</button>
+        <button class="action-btn btn-download" onclick="downloadImage('ktaCardBack', 'KTA_Belakang')">🖼️ Gambar Belakang</button>
+      </div>
     </div>
 
   </div>
@@ -518,6 +532,33 @@
       front.style.display = 'none';
       back.style.display = 'flex';
     }
+  }
+
+  /* Fungsi tambahan untuk mengunduh gambar kartu */
+  function downloadImage(elementId, filePrefix) {
+    const targetEl = document.getElementById(elementId);
+    const originalDisplay = targetEl.style.display;
+
+    // Tampilkan elemen sementara jika dalam kondisi hidden agar bisa diproses canvas
+    targetEl.style.display = 'flex';
+
+    html2canvas(targetEl, {
+      scale: 3, // Menggunakan resolusi tinggi
+      useCORS: true, // Mengatasi pembatasan gambar eksternal/Google Drive
+      logging: false
+    }).then(canvas => {
+      // Kembalikan ke tampilan semula jika tadinya disembunyikan
+      targetEl.style.display = originalDisplay;
+
+      const link = document.createElement('a');
+      const filename = `${filePrefix}_${(nama || 'Anggota').replace(/\s+/g, '_')}.png`;
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }).catch(err => {
+      targetEl.style.display = originalDisplay;
+      alert('Gagal mengunduh gambar. Pastikan gambar tidak terblokir oleh CORS.');
+    });
   }
 </script>
 

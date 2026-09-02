@@ -65,7 +65,7 @@
     }
 
     /* =====================================================
-        KTA CARD STYLING (DIJAGA ASLI TANPA UBAHAN LAYOUT)
+        KTA CARD STYLING (PRESISI ASLI MENGGUNAKAN PX TINGGI PASTI)
     ===================================================== */
     .kta-stage {
       width: 100%;
@@ -75,7 +75,7 @@
     .kta-card {
       position: relative;
       width: 100%;
-      aspect-ratio: 1 / 1.58; /* Standard ID Card Ratio */
+      height: 537px; /* Tinggi pasti sesuai aspek rasio ID Card standard */
       background: white;
       border-radius: 12px;
       overflow: hidden;
@@ -129,11 +129,11 @@
       margin-top: 4px;
     }
 
-    /* FOTO SECTION - DITURUNKAN POSISINYA */
+    /* FOTO SECTION */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 70px;
+      margin-top: 24px;
       margin-bottom: 16px; 
     }
 
@@ -323,7 +323,7 @@
     }
 
     /* =====================================================
-        OPTIMASI CETAK (PERBAIKAN BUG FOOTER LAPTOP)
+        OPTIMASI CETAK (UKURAN PRESISI KARTU MM)
     ===================================================== */
     @media print {
       @page {
@@ -358,28 +358,21 @@
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
-        align-items: flex-start !important;
+        align-items: stretch !important;
         gap: 15px !important;
         margin: 0 !important;
         width: 100% !important;
       }
 
-      /* Mengubah height kaku menjadi min-height agar seluruh isi termasuk footer muat */
       #ktaCardFront,
       #ktaCardBack {
         display: flex !important;
         width: 85.6mm !important;
-        height: auto !important;
-        min-height: 135mm !important;
-        aspect-ratio: auto !important;
+        height: 135mm !important; /* Presisi tinggi ID card cetak */
         box-shadow: none !important;
         border: 1px solid #999 !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
-      }
-
-      .kta-footer {
-        flex-shrink: 0 !important;
       }
     }
   </style>

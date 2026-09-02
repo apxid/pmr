@@ -65,7 +65,7 @@
     }
 
     /* =====================================================
-        KTA CARD STYLING (PRESISI ASLI MENGGUNAKAN PX TINGGI PASTI)
+        KTA CARD STYLING (LAYOUT DEPAN TETAP SEPERTI ASLI)
     ===================================================== */
     .kta-stage {
       width: 100%;
@@ -75,7 +75,7 @@
     .kta-card {
       position: relative;
       width: 100%;
-      height: 537px; /* Tinggi pasti sesuai aspek rasio ID Card standard */
+      aspect-ratio: 1 / 1.58;
       background: white;
       border-radius: 12px;
       overflow: hidden;
@@ -120,7 +120,6 @@
       line-height: 1.1;
     }
 
-    /* TEKS SMP NEGERI 1 MOGA DIPERBESAR */
     .header-subtitle {
       font-weight: 900;
       font-size: 16px; 
@@ -129,11 +128,11 @@
       margin-top: 4px;
     }
 
-    /* FOTO SECTION */
+    /* FOTO SECTION - TETAP MARGIN-TOP 70PX (TIDAK DINAIKKAN) */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 70px;
       margin-bottom: 16px; 
     }
 
@@ -323,12 +322,12 @@
     }
 
     /* =====================================================
-        OPTIMASI CETAK (UKURAN PRESISI KARTU MM)
+        PERBAIKAN CETAK: MENYESUAIKAN TINGGI AREA CETAK
     ===================================================== */
     @media print {
       @page {
-        size: A4 landscape;
-        margin: 5mm;
+        size: A4 portrait;
+        margin: 10mm;
       }
 
       html, body {
@@ -358,8 +357,8 @@
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
-        align-items: stretch !important;
-        gap: 15px !important;
+        align-items: flex-start !important;
+        gap: 20px !important;
         margin: 0 !important;
         width: 100% !important;
       }
@@ -368,7 +367,7 @@
       #ktaCardBack {
         display: flex !important;
         width: 85.6mm !important;
-        height: 135mm !important; /* Presisi tinggi ID card cetak */
+        height: 145mm !important; /* Menampung margin 70px foto agar tidak terpotong saat dicetak */
         box-shadow: none !important;
         border: 1px solid #999 !important;
         page-break-inside: avoid !important;
@@ -391,31 +390,27 @@
   <div id="ktaContainer" style="display:none">
 
     <div class="kta-stage">
-      <!-- DEPAN KARTU -->
+      <!-- DEPAN KARTU (TETAP SESUAI LAYOUT ASLI) -->
       <div id="ktaCardFront" class="kta-card">
         <div class="top-bar"></div>
 
-        <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
           <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
-        <!-- FOTO -->
         <div class="kta-photo-section">
           <div class="photo-container">
             <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
         </div>
 
-        <!-- NAMA & NO ANGGOTA -->
         <div class="member-info">
           <div id="ktaName" class="member-name">-</div>
           <div id="ktaNumber" class="member-ni">NO ANGGOTA: -</div>
         </div>
 
-        <!-- FOOTER TEKS -->
         <div class="kta-footer">
           <div class="footer-title">PALANG MERAH REMAJA</div>
           <div class="footer-sub">PMI KAB. PEMALANG</div>

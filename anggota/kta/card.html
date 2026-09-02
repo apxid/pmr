@@ -65,7 +65,7 @@
     }
 
     /* =====================================================
-        KTA CARD STYLING
+        KTA CARD STYLING (DIJAGA ASLI TANPA UBAHAN LAYOUT)
     ===================================================== */
     .kta-stage {
       width: 100%;
@@ -105,41 +105,41 @@
     }
 
     .pmi-logo {
-      width: 70px; 
-      height: 70px;
+      width: 80px; 
+      height: 80px;
       object-fit: contain;
       margin-top: 4px;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .header-title {
       font-weight: 900;
-      font-size: 18px;
+      font-size: 21px;
       color: #b71c1c;
       text-transform: uppercase;
       line-height: 1.1;
     }
 
-    /* TEKS SMP NEGERI 1 MOGA */
+    /* TEKS SMP NEGERI 1 MOGA DIPERBESAR */
     .header-subtitle {
       font-weight: 900;
-      font-size: 14px; 
+      font-size: 16px; 
       color: #222;
       text-transform: uppercase;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
-    /* FOTO SECTION - DIMENSI PRESISI */
+    /* FOTO SECTION - DITURUNKAN POSISINYA */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 10px;
-      margin-bottom: 10px; 
+      margin-top: 70px;
+      margin-bottom: 16px; 
     }
 
     .photo-container {
-      width: 100px;
-      height: 130px;
+      width: 38%;
+      aspect-ratio: 3 / 4;
       border: 3px solid #d32f2f;
       background: #e0e0e0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
@@ -163,7 +163,7 @@
     }
 
     .member-name {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold; 
       color: #111;
       margin-bottom: 4px;
@@ -173,7 +173,7 @@
     }
 
     .member-ni {
-      font-size: 13px;
+      font-size: 15px;
       color: #333;
       font-weight: 700; 
     }
@@ -183,7 +183,7 @@
       background: #b71c1c;
       color: white;
       text-align: center;
-      padding: 8px 10px;
+      padding: 8px 10px 10px;
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -322,7 +322,7 @@
     }
 
     /* =====================================================
-        OPTIMASI CETAK (TAMPIL BERSANDINGAN DEPAN & BELAKANG)
+        OPTIMASI CETAK (SOLUSI BUG LAYOUT HP VS LAPTOP)
     ===================================================== */
     @media print {
       @page {
@@ -363,17 +363,16 @@
         width: 100% !important;
       }
 
-      /* Memaksa Sisi Depan dan Belakang Tampil Bersamaan */
+      /* Memaksa kartu depan & belakang SELALU muncul saat di-print (mengatasi bug display:none di HP) */
       #ktaCardFront,
       #ktaCardBack {
         display: flex !important;
         width: 85.6mm !important;
-        height: 130mm !important;
+        height: 135mm !important;
         box-shadow: none !important;
         border: 1px solid #999 !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
-        border-radius: 8px !important;
       }
     }
   </style>

@@ -68,7 +68,7 @@
     }
 
     /* =====================================================
-       KTA CARD STYLING (TIDAK DIUBAH ATAU DIGANGGU GUAT)
+       KTA CARD STYLING (TIDAK DIUBAH ATAU DIGANGGU GUGAT)
     ===================================================== */
     .kta-stage {
       width: 100%;
@@ -399,7 +399,8 @@
 
         <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
-          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
+          <!-- DIHAPUS crossorigin="anonymous" -->
+          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
@@ -407,7 +408,8 @@
         <!-- FOTO -->
         <div class="kta-photo-section">
           <div class="photo-container">
-            <img id="ktaPhoto" src="" alt="Foto Anggota" crossorigin="anonymous">
+            <!-- DIHAPUS crossorigin="anonymous" -->
+            <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
         </div>
 
@@ -430,7 +432,8 @@
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
+            <!-- DIHAPUS crossorigin="anonymous" -->
+            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
             <div class="back-title">
               KARTU TANDA<br>RELAWAN PMI
             </div>
@@ -544,7 +547,8 @@
 
     html2canvas(targetEl, {
       scale: 3, // Menggunakan resolusi tinggi
-      useCORS: true, // Mengatasi pembatasan gambar eksternal/Google Drive
+      useCORS: true, // Membiarkan html2canvas mencoba memproses image eksternal
+      allowTaint: true, // Mengizinkan gambar tanpa CORS agar tidak error
       logging: false
     }).then(canvas => {
       // Kembalikan ke tampilan semula jika tadinya disembunyikan
@@ -557,7 +561,7 @@
       link.click();
     }).catch(err => {
       targetEl.style.display = originalDisplay;
-      alert('Gagal mengunduh gambar. Pastikan gambar tidak terblokir oleh CORS.');
+      alert('Gagal mengunduh gambar.');
     });
   }
 </script>

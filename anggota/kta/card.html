@@ -65,7 +65,7 @@
     }
 
     /* =====================================================
-       KTA CARD STYLING
+        KTA CARD STYLING
     ===================================================== */
     .kta-stage {
       width: 100%;
@@ -105,41 +105,41 @@
     }
 
     .pmi-logo {
-      width: 80px; 
-      height: 80px;
+      width: 70px; 
+      height: 70px;
       object-fit: contain;
       margin-top: 4px;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .header-title {
       font-weight: 900;
-      font-size: 21px;
+      font-size: 18px;
       color: #b71c1c;
       text-transform: uppercase;
       line-height: 1.1;
     }
 
-    /* TEKS SMP NEGERI 1 MOGA DIPERBESAR */
+    /* TEKS SMP NEGERI 1 MOGA */
     .header-subtitle {
       font-weight: 900;
-      font-size: 16px; 
+      font-size: 14px; 
       color: #222;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
-    /* FOTO SECTION - DITURUNKAN POSISINYA */
+    /* FOTO SECTION - DIMENSI PRESISI */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 70px;
-      margin-bottom: 16px; 
+      margin-top: 10px;
+      margin-bottom: 10px; 
     }
 
     .photo-container {
-      width: 38%;
-      aspect-ratio: 3 / 4;
+      width: 100px;
+      height: 130px;
       border: 3px solid #d32f2f;
       background: #e0e0e0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
@@ -163,7 +163,7 @@
     }
 
     .member-name {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold; 
       color: #111;
       margin-bottom: 4px;
@@ -173,7 +173,7 @@
     }
 
     .member-ni {
-      font-size: 15px;
+      font-size: 13px;
       color: #333;
       font-weight: 700; 
     }
@@ -183,7 +183,7 @@
       background: #b71c1c;
       color: white;
       text-align: center;
-      padding: 8px 10px 10px;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -204,7 +204,7 @@
     }
 
     /* =====================================================
-       BACK SIDE STYLING
+        BACK SIDE STYLING
     ===================================================== */
     .back-side {
       padding: 14px 16px;
@@ -322,28 +322,31 @@
     }
 
     /* =====================================================
-       OPTIMASI CETAK (PRINT TO PDF 1 LEMBAR - BERSANDINGAN)
+        OPTIMASI CETAK (TAMPIL BERSANDINGAN DEPAN & BELAKANG)
     ===================================================== */
     @media print {
       @page {
         size: A4 landscape;
-        margin: 10mm;
+        margin: 5mm;
       }
 
-      body {
-        background: white;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+      html, body {
+        width: 100%;
+        height: 100%;
+        background: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
 
       .page {
-        padding: 0;
-        min-height: auto;
-        display: block;
+        padding: 0 !important;
+        min-height: auto !important;
+        display: block !important;
       }
 
       #ktaContainer {
-        max-width: 100%;
+        max-width: 100% !important;
+        width: 100% !important;
       }
 
       .actions {
@@ -353,20 +356,24 @@
       .kta-stage {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin: 0;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 15px !important;
+        margin: 0 !important;
+        width: 100% !important;
       }
 
-      .kta-card {
+      /* Memaksa Sisi Depan dan Belakang Tampil Bersamaan */
+      #ktaCardFront,
+      #ktaCardBack {
+        display: flex !important;
         width: 85.6mm !important;
-        height: 135mm !important;
+        height: 130mm !important;
         box-shadow: none !important;
         border: 1px solid #999 !important;
-        display: flex !important;
-        page-break-after: avoid !important;
         page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        border-radius: 8px !important;
       }
     }
   </style>

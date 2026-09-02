@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KTA PMR Madya - SMP Negeri 1 Moga</title>
 
-  <!-- Library html2canvas untuk konversi ke file gambar -->
+  <!-- Library html2canvas untuk fitur unduh JPEG -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
@@ -68,7 +68,7 @@
     }
 
     /* =====================================================
-       KTA CARD STYLING (TIDAK DIUBAH ATAU DIGANGGU GUGAT)
+       KTA CARD STYLING (PRESISI SESUAI TEMPLATE ACUAN)
     ===================================================== */
     .kta-stage {
       width: 100%;
@@ -107,12 +107,23 @@
       flex-shrink: 0;
     }
 
-    .pmi-logo {
-      width: 80px; 
+    /* Wrapper Logo Presisi (Mencegah Distorsi Logo) */
+    .pmi-logo-wrapper {
+      width: 80px;
       height: 80px;
-      object-fit: contain;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-top: 4px;
       margin-bottom: 8px;
+    }
+
+    .pmi-logo {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .header-title {
@@ -131,6 +142,7 @@
       margin-top: 4px;
     }
 
+    /* FOTO SECTION - Sesuai Jarak Margin Template */
     .kta-photo-section {
       display: flex;
       justify-content: center;
@@ -155,6 +167,7 @@
       display: block;
     }
 
+    /* Member Info Section */
     .member-info {
       text-align: center;
       padding: 0 10px;
@@ -178,6 +191,7 @@
       font-weight: 700; 
     }
 
+    /* Footer Teks */
     .kta-footer {
       background: #b71c1c;
       color: white;
@@ -202,6 +216,9 @@
       text-transform: uppercase;
     }
 
+    /* =====================================================
+       BACK SIDE STYLING
+    ===================================================== */
     .back-side {
       padding: 14px 16px;
       display: flex;
@@ -216,6 +233,14 @@
       border-bottom: 2px solid #b71c1c;
       padding-bottom: 6px;
       margin-bottom: 10px;
+    }
+
+    .pmi-logo-wrapper-small {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .back-title {
@@ -281,7 +306,7 @@
       line-height: 1.3;
     }
 
-    /* Actions buttons */
+    /* Action Buttons Area */
     .actions {
       display: flex;
       flex-direction: column;
@@ -329,10 +354,12 @@
       color: white;
     }
 
-    /* OPTIMASI CETAK (1 HALAMAN PDF A4) */
+    /* =====================================================
+       OPTIMASI CETAK (PRINT TO PDF 1 LEMBAR - BERSANDINGAN)
+    ===================================================== */
     @media print {
       @page {
-        size: A4 portrait;
+        size: A4 landscape;
         margin: 10mm;
       }
 
@@ -360,8 +387,8 @@
         display: flex !important;
         flex-direction: row !important;
         justify-content: center;
-        align-items: flex-start;
-        gap: 20px;
+        align-items: center;
+        gap: 15px;
         margin: 0;
       }
 
@@ -397,7 +424,9 @@
 
         <!-- HEADER: Logo & Judul -->
         <div class="kta-header">
-          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
+          <div class="pmi-logo-wrapper">
+            <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
+          </div>
           <div class="header-title">PALANG MERAH REMAJA</div>
           <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
@@ -428,7 +457,9 @@
         <div class="top-bar"></div>
         <div class="back-side">
           <div class="back-header">
-            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
+            <div class="pmi-logo-wrapper-small">
+              <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR" crossorigin="anonymous">
+            </div>
             <div class="back-title">
               KARTU TANDA<br>RELAWAN PMI
             </div>
@@ -467,8 +498,8 @@
         <button class="action-btn btn-print" onclick="window.print()">🖨️ Cetak / PDF</button>
       </div>
       <div class="btn-row">
-        <button class="action-btn btn-download" id="btnDlFront" onclick="downloadAsJpeg('ktaCardFront', 'KTA_Depan')">⬇️ Download JPG Depan</button>
-        <button class="action-btn btn-download" id="btnDlBack" onclick="downloadAsJpeg('ktaCardBack', 'KTA_Belakang')">⬇️ Download JPG Belakang</button>
+        <button class="action-btn btn-download" onclick="downloadAsJpeg('ktaCardFront', 'KTA_Depan')">⬇️ JPG Depan</button>
+        <button class="action-btn btn-download" onclick="downloadAsJpeg('ktaCardBack', 'KTA_Belakang')">⬇️ JPG Belakang</button>
       </div>
     </div>
 
@@ -479,7 +510,7 @@
 <script>
   const DEFAULT_PHOTO = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23e0e0e0"/><circle cx="150" cy="140" r="60" fill="%239e9e9e"/><path d="M 50 340 C 50 240, 250 240, 250 340 Z" fill="%239e9e9e"/></svg>';
 
-  // Mengubah URL gambar ke proxy CORS agar aman di-render ke file download JPG
+  // Menghindari masalah CORS saat ekspor canvas gambar JPEG
   function getCorsProxyUrl(url) {
     if (!url || url.startsWith('data:')) return url;
     return `https://images.weserv.nl/?url=${encodeURIComponent(url)}`;
@@ -521,7 +552,6 @@
     
     photoElement.src = formattedFoto ? formattedFoto : DEFAULT_PHOTO;
 
-    // Pasang proxy ke logo PMI juga
     document.querySelectorAll('.pmi-logo').forEach(img => {
       img.src = getCorsProxyUrl(img.src);
     });
@@ -543,27 +573,24 @@
     }
   }
 
-  // FUNGSI UNTUK MENDOWNLOAD FILE (.JPEG) KARTU
+  // FUNGSI UTAMA UNDUH JPEG
   function downloadAsJpeg(elementId, filePrefix) {
     const targetEl = document.getElementById(elementId);
     const originalDisplay = targetEl.style.display;
 
-    // Tampilkan elemen sementara jika disembunyikan agar html2canvas bisa memproses
+    // Tampilkan elemen agar html2canvas bisa memproses bagian kartu belakang meski sedang tersembunyi
     targetEl.style.display = 'flex';
 
     html2canvas(targetEl, {
-      scale: 3, // Kualitas HD/Resolusi tinggi
+      scale: 3, // Resolusi HD
       useCORS: true,
       allowTaint: false,
-      backgroundColor: '#ffffff' // Background putih untuk format JPEG
+      backgroundColor: '#ffffff'
     }).then(canvas => {
-      // Kembalikan ke tampilan semula
       targetEl.style.display = originalDisplay;
 
-      // Konversi canvas ke file gambar format .jpeg
       const imageURI = canvas.toDataURL('image/jpeg', 0.95);
       
-      // Buat elemen pemicu unduhan otomatis file
       const downloadLink = document.createElement('a');
       const cleanName = (nama || 'Anggota').replace(/[^a-zA-Z0-9]/g, '_');
       downloadLink.download = `${filePrefix}_${cleanName}.jpeg`;
@@ -574,7 +601,7 @@
       document.body.removeChild(downloadLink);
     }).catch(err => {
       targetEl.style.display = originalDisplay;
-      alert('Gagal membuat file gambar. Silakan coba lagi.');
+      alert('Gagal mendownload gambar. Silakan coba lagi.');
     });
   }
 </script>

@@ -105,8 +105,8 @@
     }
 
     .pmi-logo {
-      width: 70px; 
-      height: 70px;
+      width: 80px; 
+      height: 80px;
       object-fit: contain;
       margin-top: 4px;
       margin-bottom: 8px;
@@ -114,7 +114,7 @@
 
     .header-title {
       font-weight: 900;
-      font-size: 20px;
+      font-size: 21px;
       color: #b71c1c;
       text-transform: uppercase;
       line-height: 1.1;
@@ -122,18 +122,18 @@
 
     .header-subtitle {
       font-weight: 900;
-      font-size: 15px; 
+      font-size: 16px; 
       color: #222;
       text-transform: uppercase;
       margin-top: 4px;
     }
 
-    /* FOTO SECTION */
+    /* FOTO SECTION - DITURUNKAN POSISINYA */
     .kta-photo-section {
       display: flex;
       justify-content: center;
-      margin-top: 15px;
-      margin-bottom: 12px; 
+      margin-top: 70px;
+      margin-bottom: 16px; 
     }
 
     .photo-container {
@@ -162,7 +162,7 @@
     }
 
     .member-name {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold; 
       color: #111;
       margin-bottom: 4px;
@@ -172,7 +172,7 @@
     }
 
     .member-ni {
-      font-size: 14px;
+      font-size: 15px;
       color: #333;
       font-weight: 700; 
     }
@@ -257,7 +257,7 @@
     }
 
     .signature-name {
-      margin-top: 30px;
+      margin-top: 35px;
       font-weight: bold;
       text-decoration: underline;
       font-size: 9.5px;
@@ -321,17 +321,16 @@
     }
 
     /* =====================================================
-       OPTIMASI CETAK (1 LEMBAR PAS)
+       OPTIMASI CETAK (A4 PORTRAIT - 1 LEMBAR PDF)
     ===================================================== */
     @media print {
       @page {
-        size: A4 landscape;
-        margin: 0;
+        size: A4 portrait;
+        margin: 8mm;
       }
 
       html, body {
         height: 100%;
-        overflow: hidden;
         background: white !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
@@ -340,10 +339,8 @@
       .page {
         padding: 0;
         margin: 0;
-        min-height: 100vh;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
+        min-height: auto;
+        display: block;
       }
 
       #ktaContainer {
@@ -357,18 +354,18 @@
 
       .kta-stage {
         display: flex !important;
-        flex-direction: row !important;
-        justify-content: center;
+        flex-direction: column !important;
         align-items: center;
-        gap: 20px;
-        margin: 0;
+        justify-content: center;
+        gap: 10mm;
+        margin: 0 auto;
       }
 
-      /* Memaksa KEDUA kartu tampil bersampingan saat dicetak */
+      /* Memaksa kartu depan & belakang tampil vertikal dan muat dalam 1 lembar A4 */
       #ktaCardFront, #ktaCardBack {
         display: flex !important;
-        width: 85.6mm !important;
-        height: 125mm !important;
+        width: 70mm !important;
+        height: 110mm !important;
         box-shadow: none !important;
         border: 1px solid #999 !important;
         page-break-after: avoid !important;

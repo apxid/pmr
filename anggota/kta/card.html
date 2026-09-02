@@ -188,6 +188,7 @@
       flex-direction: column;
       gap: 2px;
       margin-top: auto;
+      flex-shrink: 0;
     }
 
     .footer-title {
@@ -322,7 +323,7 @@
     }
 
     /* =====================================================
-        OPTIMASI CETAK (SOLUSI BUG LAYOUT HP VS LAPTOP)
+        OPTIMASI CETAK (PERBAIKAN BUG FOOTER LAPTOP)
     ===================================================== */
     @media print {
       @page {
@@ -357,22 +358,28 @@
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
-        align-items: center !important;
+        align-items: flex-start !important;
         gap: 15px !important;
         margin: 0 !important;
         width: 100% !important;
       }
 
-      /* Memaksa kartu depan & belakang SELALU muncul saat di-print (mengatasi bug display:none di HP) */
+      /* Mengubah height kaku menjadi min-height agar seluruh isi termasuk footer muat */
       #ktaCardFront,
       #ktaCardBack {
         display: flex !important;
         width: 85.6mm !important;
-        height: 135mm !important;
+        height: auto !important;
+        min-height: 135mm !important;
+        aspect-ratio: auto !important;
         box-shadow: none !important;
         border: 1px solid #999 !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+      }
+
+      .kta-footer {
+        flex-shrink: 0 !important;
       }
     }
   </style>

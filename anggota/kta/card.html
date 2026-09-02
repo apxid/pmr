@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="id">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KTA PMR Madya - SMP Negeri 1 Moga</title>
-
-  <!-- HTML2CANVAS UNTUK DOWNLOAD GAMBAR -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
     * {
@@ -72,7 +67,6 @@
     /* =====================================================
        KTA CARD STYLING
     ===================================================== */
-
     .kta-stage {
       width: 100%;
       margin-bottom: 16px;
@@ -81,7 +75,7 @@
     .kta-card {
       position: relative;
       width: 100%;
-      aspect-ratio: 1 / 1.58;
+      aspect-ratio: 1 / 1.58; /* Standard ID Card Ratio */
       background: white;
       border-radius: 12px;
       overflow: hidden;
@@ -94,14 +88,7 @@
     /* Top Strip Design */
     .top-bar {
       height: 10px;
-      background: linear-gradient(
-        to right,
-        #b71c1c 0%,
-        #b71c1c 50%,
-        #e57373 50%,
-        #e57373 75%,
-        #ffcdd2 75%
-      );
+      background: linear-gradient(to right, #b71c1c 0%, #b71c1c 50%, #e57373 50%, #e57373 75%, #ffcdd2 75%);
       width: 100%;
       flex-shrink: 0;
     }
@@ -118,7 +105,7 @@
     }
 
     .pmi-logo {
-      width: 80px;
+      width: 80px; 
       height: 80px;
       object-fit: contain;
       margin-top: 4px;
@@ -133,20 +120,21 @@
       line-height: 1.1;
     }
 
+    /* TEKS SMP NEGERI 1 MOGA DIPERBESAR */
     .header-subtitle {
       font-weight: 900;
-      font-size: 16px;
+      font-size: 16px; 
       color: #222;
       text-transform: uppercase;
       margin-top: 4px;
     }
 
-    /* FOTO SECTION - SAMA SEPERTI HTML ASLI */
+    /* FOTO SECTION - DITURUNKAN POSISINYA */
     .kta-photo-section {
       display: flex;
       justify-content: center;
       margin-top: 70px;
-      margin-bottom: 16px;
+      margin-bottom: 16px; 
     }
 
     .photo-container {
@@ -176,7 +164,7 @@
 
     .member-name {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: bold; 
       color: #111;
       margin-bottom: 4px;
       white-space: nowrap;
@@ -187,7 +175,7 @@
     .member-ni {
       font-size: 15px;
       color: #333;
-      font-weight: 700;
+      font-weight: 700; 
     }
 
     /* Footer Teks */
@@ -218,7 +206,6 @@
     /* =====================================================
        BACK SIDE STYLING
     ===================================================== */
-
     .back-side {
       padding: 14px 16px;
       display: flex;
@@ -298,39 +285,30 @@
       line-height: 1.3;
     }
 
-    /* =====================================================
-       MENU / TOMBOL
-    ===================================================== */
-
+    /* Actions buttons */
     .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      display: flex;
+      gap: 10px;
       width: 100%;
     }
 
     .action-btn {
+      flex: 1;
+      padding: 12px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      transition: opacity 0.2s;
-      min-height: 42px;
-      padding: 8px;
+      gap: 6px;
+      transition: background 0.2s, opacity 0.2s;
     }
 
     .action-btn:active {
-      opacity: 0.75;
-    }
-
-    .btn-toggle {
-      background: #333;
-      color: white;
+      opacity: 0.8;
     }
 
     .btn-print {
@@ -338,960 +316,210 @@
       color: white;
     }
 
-    .btn-download-front {
-      background: #1565c0;
+    .btn-toggle {
+      background: #333;
       color: white;
     }
 
-    .btn-download-back {
-      background: #2e7d32;
-      color: white;
-    }
-
-    .download-info {
-      width: 100%;
-      text-align: center;
-      margin-top: 8px;
-      color: #777;
-      font-size: 10px;
-    }
-
     /* =====================================================
-       MODE DOWNLOAD GAMBAR
+       OPTIMASI CETAK (PRINT TO PDF 1 LEMBAR - BERSANDINGAN)
     ===================================================== */
-
-    /*
-       Saat html2canvas bekerja, kartu diberi ukuran
-       tetap agar hasil PNG proporsional.
-    */
-
-    .capture-mode {
-      width: 85.6mm !important;
-      height: 135mm !important;
-      aspect-ratio: auto !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-    }
-
-    /* =====================================================
-       PRINT - 1 LEMBAR A4 LANDSCAPE
-    ===================================================== */
-
     @media print {
-
       @page {
         size: A4 landscape;
         margin: 10mm;
       }
 
-      html,
       body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background: white !important;
-      }
-
-      body {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+        background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       .page {
-        width: 100%;
-        min-height: auto;
-        height: auto;
         padding: 0;
-        margin: 0;
+        min-height: auto;
         display: block;
       }
 
       #ktaContainer {
-        width: 100%;
-        max-width: none;
-        display: block !important;
-        margin: 0;
-        padding: 0;
+        max-width: 100%;
       }
 
-      /*
-        DEPAN + BELAKANG BERDAMPINGAN
-        DALAM SATU LEMBAR
-      */
-
-      .kta-stage {
-        width: 100%;
-        height: 135mm;
-        margin: 0;
-        padding: 0;
-
-        display: flex !important;
-        flex-direction: row !important;
-
-        justify-content: center !important;
-        align-items: flex-start !important;
-
-        gap: 15mm;
-
-        page-break-after: avoid !important;
-        break-after: avoid !important;
-      }
-
-      .kta-card,
-      #ktaCardFront,
-      #ktaCardBack {
-
-        display: flex !important;
-
-        flex: 0 0 85.6mm !important;
-
-        width: 85.6mm !important;
-        min-width: 85.6mm !important;
-        max-width: 85.6mm !important;
-
-        height: 135mm !important;
-        min-height: 135mm !important;
-        max-height: 135mm !important;
-
-        margin: 0 !important;
-
-        border-radius: 0 !important;
-
-        box-shadow: none !important;
-
-        border: 0.3mm solid #999 !important;
-
-        page-break-before: avoid !important;
-        page-break-after: avoid !important;
-        page-break-inside: avoid !important;
-
-        break-before: avoid !important;
-        break-after: avoid !important;
-        break-inside: avoid !important;
-      }
-
-      /*
-        PENTING:
-        Layout isi kartu TIDAK DIUBAH.
-        Foto tetap margin-top 70px seperti HTML asli.
-      */
-
-      .kta-photo-section {
-        margin-top: 70px !important;
-        margin-bottom: 16px !important;
-      }
-
-      .actions,
-      .download-info,
-      .error {
+      .actions {
         display: none !important;
       }
 
-      /*
-        Memastikan sisi belakang selalu muncul
-        ketika PDF dibuat.
-      */
+      .kta-stage {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 0;
+      }
 
-      #ktaCardBack {
-        visibility: visible !important;
+      .kta-card {
+        width: 85.6mm !important;
+        height: 135mm !important;
+        box-shadow: none !important;
+        border: 1px solid #999 !important;
+        display: flex !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
       }
     }
-
   </style>
-
 </head>
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-```
-<!-- ERROR -->
-
-<div id="error" class="error" style="display:none">
-
-  <div class="error-icon">
-    ⚠️
+  <div id="error" class="error" style="display:none">
+    <div class="error-icon">⚠️</div>
+    <h2>Data Tidak Ditemukan</h2>
+    <p id="errorText">Parameter data anggota pada URL tidak lengkap.</p>
   </div>
 
-  <h2>
-    Data Tidak Ditemukan
-  </h2>
+  <div id="ktaContainer" style="display:none">
 
-  <p id="errorText">
-    Parameter data anggota pada URL tidak lengkap.
-  </p>
+    <div class="kta-stage">
+      <!-- DEPAN KARTU -->
+      <div id="ktaCardFront" class="kta-card">
+        <div class="top-bar"></div>
 
-</div>
-
-
-<!-- KTA CONTAINER -->
-
-<div id="ktaContainer" style="display:none">
-
-  <div class="kta-stage">
-
-
-    <!-- =================================================
-         DEPAN KARTU
-    ================================================== -->
-
-    <div id="ktaCardFront" class="kta-card">
-
-      <div class="top-bar"></div>
-
-
-      <!-- HEADER -->
-
-      <div class="kta-header">
-
-        <img
-          class="pmi-logo"
-          src="https://yanuar-moga.github.io/pmr/assets/logo.png"
-          alt="Logo PMR"
-        >
-
-        <div class="header-title">
-          PALANG MERAH REMAJA
+        <!-- HEADER: Logo & Judul -->
+        <div class="kta-header">
+          <img class="pmi-logo" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+          <div class="header-title">PALANG MERAH REMAJA</div>
+          <div class="header-subtitle">SMP NEGERI 1 MOGA</div>
         </div>
 
-        <div class="header-subtitle">
-          SMP NEGERI 1 MOGA
-        </div>
-
-      </div>
-
-
-      <!-- FOTO -->
-
-      <div class="kta-photo-section">
-
-        <div class="photo-container">
-
-          <img
-            id="ktaPhoto"
-            src=""
-            alt="Foto Anggota"
-          >
-
-        </div>
-
-      </div>
-
-
-      <!-- NAMA & NO ANGGOTA -->
-
-      <div class="member-info">
-
-        <div
-          id="ktaName"
-          class="member-name"
-        >
-          -
-        </div>
-
-        <div
-          id="ktaNumber"
-          class="member-ni"
-        >
-          NO ANGGOTA: -
-        </div>
-
-      </div>
-
-
-      <!-- FOOTER -->
-
-      <div class="kta-footer">
-
-        <div class="footer-title">
-          PALANG MERAH REMAJA
-        </div>
-
-        <div class="footer-sub">
-          PMI KAB. PEMALANG
-        </div>
-
-        <div class="footer-sub">
-          Unit SMP Negeri 1 Moga
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- =================================================
-         BELAKANG KARTU
-    ================================================== -->
-
-    <div
-      id="ktaCardBack"
-      class="kta-card"
-      style="display:none;"
-    >
-
-      <div class="top-bar"></div>
-
-
-      <div class="back-side">
-
-
-        <!-- HEADER BELAKANG -->
-
-        <div class="back-header">
-
-          <img
-            class="pmi-logo"
-            style="
-              width:35px;
-              height:35px;
-              margin:0;
-            "
-            src="https://yanuar-moga.github.io/pmr/assets/logo.png"
-            alt="Logo PMR"
-          >
-
-          <div class="back-title">
-            KARTU TANDA<br>
-            RELAWAN PMI
+        <!-- FOTO -->
+        <div class="kta-photo-section">
+          <div class="photo-container">
+            <img id="ktaPhoto" src="" alt="Foto Anggota">
           </div>
-
         </div>
 
+        <!-- NAMA & NO ANGGOTA -->
+        <div class="member-info">
+          <div id="ktaName" class="member-name">-</div>
+          <div id="ktaNumber" class="member-ni">NO ANGGOTA: -</div>
+        </div>
 
-        <!-- ATURAN -->
+        <!-- FOOTER TEKS -->
+        <div class="kta-footer">
+          <div class="footer-title">PALANG MERAH REMAJA</div>
+          <div class="footer-sub">PMI KAB. PEMALANG</div>
+          <div class="footer-sub">Unit SMP Negeri 1 Moga</div>
+        </div>
+      </div>
 
-        <ol class="rules-list">
-
-          <li>
-            Pemegang kartu ini adalah Relawan
-            Palang Merah Indonesia (PMI) dengan
-            kedudukan sebagai anggota Palang
-            Merah Remaja (PMR).
-          </li>
-
-          <li>
-            Pemegang kartu ini bekerja sesuai
-            tugas pokok dan fungsinya berdasarkan
-            Prinsip-Prinsip Dasar Gerakan Palang
-            Merah dan Bulan Sabit Merah Internasional.
-          </li>
-
-        </ol>
-
-
-        <!-- TANDA TANGAN -->
-
-        <div class="signature-container">
-
-          <div class="signature-section">
-
-            Pengurus<br>
-
-            <strong>
-              PALANG MERAH REMAJA
-            </strong><br>
-
-            <strong>
-              SMP NEGERI 1 MOGA
-            </strong><br>
-
-            Pembina PMR
-
-            <div class="signature-name">
-              Puspa Indah Purwaningrum, S.Pd.
+      <!-- BELAKANG KARTU -->
+      <div id="ktaCardBack" class="kta-card" style="display:none;">
+        <div class="top-bar"></div>
+        <div class="back-side">
+          <div class="back-header">
+            <img class="pmi-logo" style="width:35px; height:35px; margin:0;" src="https://yanuar-moga.github.io/pmr/assets/logo.png" alt="Logo PMR">
+            <div class="back-title">
+              KARTU TANDA<br>RELAWAN PMI
             </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- PERHATIAN -->
-
-        <div class="attention-box">
-
-          <div class="attention-title">
-            PERHATIAN
           </div>
 
           <ol class="rules-list">
-
-            <li>
-              Kepada semua pihak harap memberikan
-              bantuan dan kemudahan kepada
-              pemegang kartu ini.
-            </li>
-
-            <li>
-              Apabila menemukan kartu ini agar
-              mengembalikan ke Markas PMI / Sekolah.
-            </li>
-
+            <li>Pemegang kartu ini adalah Relawan Palang Merah Indonesia (PMI) dengan kedudukan sebagai anggota Palang Merah Remaja (PMR).</li>
+            <li>Pemegang kartu ini bekerja sesuai tugas pokok dan fungsinya berdasarkan Prinsip-Prinsip Dasar Gerakan Palang Merah dan Bulan Sabit Merah Internasional.</li>
           </ol>
 
+          <div class="signature-container">
+            <div class="signature-section">
+              Pengurus<br>
+              <strong>PALANG MERAH REMAJA</strong><br>
+              <strong>SMP NEGERI 1 MOGA</strong><br>
+              Pembina PMR
+              <div class="signature-name">Puspa Indah Purwaningrum, S.Pd.</div>
+            </div>
+          </div>
+
+          <div class="attention-box">
+            <div class="attention-title">PERHATIAN</div>
+            <ol class="rules-list">
+              <li>Kepada semua pihak harap memberikan bantuan dan kemudahan kepada pemegang kartu ini.</li>
+              <li>Apabila menemukan kartu ini agar mengembalikan ke Markas PMI / Sekolah.</li>
+            </ol>
+          </div>
         </div>
-
       </div>
+    </div>
 
+    <!-- Tombol Aksi -->
+    <div class="actions">
+      <button class="action-btn btn-toggle" onclick="toggleCardSide()">🔄 Balik Kartu</button>
+      <button class="action-btn btn-print" onclick="window.print()">🖨️ Cetak</button>
     </div>
 
   </div>
 
-
-  <!-- =================================================
-       MENU AKSI
-  ================================================== -->
-
-  <div class="actions">
-
-    <button
-      class="action-btn btn-toggle"
-      onclick="toggleCardSide()"
-    >
-      🔄 Balik Kartu
-    </button>
-
-    <button
-      class="action-btn btn-print"
-      onclick="window.print()"
-    >
-      🖨️ Cetak / PDF
-    </button>
-
-    <button
-      class="action-btn btn-download-front"
-      onclick="downloadCard('front')"
-    >
-      🖼️ Download Depan
-    </button>
-
-    <button
-      class="action-btn btn-download-back"
-      onclick="downloadCard('back')"
-    >
-      🖼️ Download Belakang
-    </button>
-
-  </div>
-
-
-  <div class="download-info">
-    Gambar kartu akan disimpan dalam format PNG berkualitas tinggi.
-  </div>
-
 </div>
-```
 
-  </div>
+<script>
+  const DEFAULT_PHOTO = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23e0e0e0"/><circle cx="150" cy="140" r="60" fill="%239e9e9e"/><path d="M 50 340 C 50 240, 250 240, 250 340 Z" fill="%239e9e9e"/></svg>';
 
-  <script>
-
-    /* =====================================================
-       DEFAULT PHOTO
-    ===================================================== */
-
-    const DEFAULT_PHOTO =
-      'data:image/svg+xml;utf8,' +
-      '<svg xmlns="http://www.w3.org/2000/svg" ' +
-      'width="300" height="400" viewBox="0 0 300 400">' +
-      '<rect width="100%" height="100%" fill="%23e0e0e0"/>' +
-      '<circle cx="150" cy="140" r="60" fill="%239e9e9e"/>' +
-      '<path d="M 50 340 C 50 240, 250 240, 250 340 Z" fill="%239e9e9e"/>' +
-      '</svg>';
-
-
-    /* =====================================================
-       FORMAT GOOGLE DRIVE URL
-    ===================================================== */
-
-    function formatDriveUrl(url) {
-
-      if (!url) return '';
-
-
-      if (
-        url.includes(
-          'lh3.googleusercontent.com/d/'
-        )
-      ) {
-
-        const fileId =
-          url
-            .split('/d/')[1]
-            .split('?')[0];
-
-        return (
-          'https://drive.google.com/thumbnail?id=' +
-          fileId +
-          '&sz=w1000'
-        );
-
-      }
-
-
-      if (
-        url.includes(
-          'drive.google.com'
-        )
-      ) {
-
-        const match =
-          url.match(
-            /\/d\/([a-zA-Z0-9_-]+)/
-          ) ||
-          url.match(
-            /id=([a-zA-Z0-9_-]+)/
-          );
-
-
-        if (
-          match &&
-          match[1]
-        ) {
-
-          return (
-            'https://drive.google.com/thumbnail?id=' +
-            match[1] +
-            '&sz=w1000'
-          );
-
-        }
-
-      }
-
-
-      return url;
-
+  function formatDriveUrl(url) {
+    if (!url) return '';
+    if (url.includes('lh3.googleusercontent.com/d/')) {
+      const fileId = url.split('/d/')[1].split('?')[0];
+      return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
     }
-
-
-    /* =====================================================
-       AMBIL PARAMETER URL
-    ===================================================== */
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-
-    const nama =
-      params.get('nama') ||
-      params.get('NAMA') ||
-      '';
-
-
-    const nisn =
-      params.get('nisn') ||
-      params.get('NISN') ||
-      '';
-
-
-    const rawFoto =
-      params.get('foto') ||
-      params.get('FOTO') ||
-      '';
-
-
-    /* =====================================================
-       TAMPILKAN DATA
-    ===================================================== */
-
-    if (
-      !nama &&
-      !nisn
-    ) {
-
-      document.getElementById(
-        'error'
-      ).style.display = 'block';
-
+    if (url.includes('drive.google.com')) {
+      const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+      }
     }
+    return url;
+  }
 
-    else {
+  const params = new URLSearchParams(window.location.search);
+  const nama = params.get('nama') || params.get('NAMA') || '';
+  const nisn = params.get('nisn') || params.get('NISN') || '';
+  const rawFoto = params.get('foto') || params.get('FOTO') || '';
 
-      document.getElementById(
-        'ktaName'
-      ).textContent =
-        nama || '-';
+  if (!nama && !nisn) {
+    document.getElementById('error').style.display = 'block';
+  } else {
+    document.getElementById('ktaName').textContent = nama || '-';
+    document.getElementById('ktaNumber').textContent = 'NO ANGGOTA: ' + (nisn || '-');
 
+    const photoElement = document.getElementById('ktaPhoto');
+    const formattedFoto = formatDriveUrl(rawFoto);
+    
+    photoElement.onerror = function() {
+      this.onerror = null;
+      this.src = DEFAULT_PHOTO;
+    };
+    
+    photoElement.src = formattedFoto ? formattedFoto : DEFAULT_PHOTO;
 
-      document.getElementById(
-        'ktaNumber'
-      ).textContent =
-        'NO ANGGOTA: ' +
-        (nisn || '-');
+    document.title = 'KTA PMR - ' + (nama || 'Anggota');
+    document.getElementById('ktaContainer').style.display = 'flex';
+  }
 
-
-      const photoElement =
-        document.getElementById(
-          'ktaPhoto'
-        );
-
-
-      const formattedFoto =
-        formatDriveUrl(
-          rawFoto
-        );
-
-
-      photoElement.onerror =
-        function () {
-
-          this.onerror = null;
-
-          this.src =
-            DEFAULT_PHOTO;
-
-        };
-
-
-      photoElement.src =
-        formattedFoto
-          ? formattedFoto
-          : DEFAULT_PHOTO;
-
-
-      document.title =
-        'KTA PMR - ' +
-        (nama || 'Anggota');
-
-
-      document.getElementById(
-        'ktaContainer'
-      ).style.display =
-        'flex';
-
+  function toggleCardSide() {
+    const front = document.getElementById('ktaCardFront');
+    const back = document.getElementById('ktaCardBack');
+    
+    if (front.style.display === 'none') {
+      front.style.display = 'flex';
+      back.style.display = 'none';
+    } else {
+      front.style.display = 'none';
+      back.style.display = 'flex';
     }
-
-
-    /* =====================================================
-       TOGGLE DEPAN / BELAKANG
-    ===================================================== */
-
-    function toggleCardSide() {
-
-      const front =
-        document.getElementById(
-          'ktaCardFront'
-        );
-
-      const back =
-        document.getElementById(
-          'ktaCardBack'
-        );
-
-
-      if (
-        front.style.display === 'none'
-      ) {
-
-        front.style.display =
-          'flex';
-
-        back.style.display =
-          'none';
-
-      }
-
-      else {
-
-        front.style.display =
-          'none';
-
-        back.style.display =
-          'flex';
-
-      }
-
-    }
-
-
-    /* =====================================================
-       DOWNLOAD KARTU SEBAGAI PNG
-    ===================================================== */
-
-    async function downloadCard(side) {
-
-      let card;
-
-      if (side === 'front') {
-
-        card =
-          document.getElementById(
-            'ktaCardFront'
-          );
-
-      }
-
-      else {
-
-        card =
-          document.getElementById(
-            'ktaCardBack'
-          );
-
-      }
-
-
-      if (!card) {
-
-        alert(
-          'Kartu tidak ditemukan.'
-        );
-
-        return;
-
-      }
-
-
-      /*
-        Simpan kondisi awal
-      */
-
-      const originalDisplay =
-        card.style.display;
-
-      const originalBorderRadius =
-        card.style.borderRadius;
-
-
-      /*
-        Pastikan kartu terlihat
-      */
-
-      card.style.display =
-        'flex';
-
-
-      /*
-        Tambahkan mode capture
-        tanpa mengubah layout isi
-      */
-
-      card.classList.add(
-        'capture-mode'
-      );
-
-
-      try {
-
-        /*
-          Tunggu gambar/logo selesai
-        */
-
-        await waitForImages(card);
-
-
-        /*
-          Render dengan resolusi tinggi
-        */
-
-        const canvas =
-          await html2canvas(
-            card,
-            {
-              scale: 4,
-
-              useCORS: true,
-
-              allowTaint: false,
-
-              backgroundColor: '#ffffff',
-
-              imageTimeout: 15000,
-
-              logging: false
-            }
-          );
-
-
-        /*
-          Nama file
-        */
-
-        const safeName =
-          (nama || 'anggota')
-            .replace(
-              /[^a-zA-Z0-9À-ÿ\s_-]/g,
-              ''
-            )
-            .trim()
-            .replace(
-              /\s+/g,
-              '_'
-            );
-
-
-        const sideName =
-          side === 'front'
-            ? 'DEPAN'
-            : 'BELAKANG';
-
-
-        const fileName =
-          'KTA_PMR_' +
-          safeName +
-          '_' +
-          sideName +
-          '.png';
-
-
-        /*
-          Download
-        */
-
-        canvas.toBlob(
-          function(blob) {
-
-            if (!blob) {
-
-              alert(
-                'Gagal membuat gambar.'
-              );
-
-              return;
-
-            }
-
-
-            const url =
-              URL.createObjectURL(
-                blob
-              );
-
-
-            const link =
-              document.createElement(
-                'a'
-              );
-
-
-            link.href =
-              url;
-
-            link.download =
-              fileName;
-
-
-            document.body.appendChild(
-              link
-            );
-
-
-            link.click();
-
-
-            document.body.removeChild(
-              link
-            );
-
-
-            setTimeout(
-              function() {
-
-                URL.revokeObjectURL(
-                  url
-                );
-
-              },
-              1000
-            );
-
-          },
-
-          'image/png'
-
-        );
-
-      }
-
-      catch (error) {
-
-        console.error(
-          'Gagal membuat PNG:',
-          error
-        );
-
-        alert(
-          'Gagal membuat gambar KTA. Silakan coba lagi.'
-        );
-
-      }
-
-      finally {
-
-        /*
-          Kembalikan kondisi kartu
-        */
-
-        card.classList.remove(
-          'capture-mode'
-        );
-
-        card.style.display =
-          originalDisplay;
-
-        card.style.borderRadius =
-          originalBorderRadius;
-
-      }
-
-    }
-
-
-    /* =====================================================
-       MENUNGGU GAMBAR SELESAI DIMUAT
-    ===================================================== */
-
-    function waitForImages(element) {
-
-      const images =
-        Array.from(
-          element.querySelectorAll(
-            'img'
-          )
-        );
-
-
-      return Promise.all(
-
-        images.map(
-          function(img) {
-
-            if (
-              img.complete &&
-              img.naturalWidth > 0
-            ) {
-
-              return Promise.resolve();
-
-            }
-
-
-            return new Promise(
-              function(resolve) {
-
-                img.onload =
-                  resolve;
-
-                img.onerror =
-                  resolve;
-
-              }
-            );
-
-          }
-        )
-
-      );
-
-    }
-
-  </script>
+  }
+</script>
 
 </body>
 

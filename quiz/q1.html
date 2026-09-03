@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -8,9 +9,8 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-    Quiz PMR - Pertemuan Ke-3
-</title>
+<title>Quiz PMR Pertemuan Ke-3</title>
+
 
 <style>
 
@@ -27,7 +27,9 @@ body {
 }
 
 
-/* CONTAINER */
+/* =========================
+   CONTAINER
+========================= */
 
 .container {
     max-width: 900px;
@@ -35,7 +37,9 @@ body {
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .header {
     background: white;
@@ -47,7 +51,7 @@ body {
 }
 
 .logo {
-    font-size: 50px;
+    font-size: 55px;
 }
 
 .header h1 {
@@ -57,11 +61,13 @@ body {
 
 .header p {
     color: #555;
-    margin-bottom: 0;
+    margin: 5px 0;
 }
 
 
-/* PROGRESS */
+/* =========================
+   PROGRESS
+========================= */
 
 .progress-box {
     background: white;
@@ -93,7 +99,9 @@ body {
 }
 
 
-/* CARD */
+/* =========================
+   QUIZ CARD
+========================= */
 
 .quiz-card {
     background: white;
@@ -102,45 +110,23 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-
-/* CATEGORY */
-
-.category {
-    display: inline-block;
-    padding: 7px 15px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.easy {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.hard {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-
-/* QUESTION */
-
 .question-number {
     color: #777;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .question {
     font-size: 22px;
     font-weight: bold;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 15px 0 25px;
 }
 
 
-/* BUTTON TRUE FALSE */
+/* =========================
+   TRUE FALSE
+========================= */
 
 .answer-buttons {
     display: grid;
@@ -158,6 +144,15 @@ body {
     transition: 0.2s;
 }
 
+.answer-btn:hover:not(:disabled) {
+    transform: scale(1.03);
+}
+
+.answer-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .true-btn {
     background: #16a34a;
     color: white;
@@ -168,30 +163,93 @@ body {
     color: white;
 }
 
-.answer-btn:hover {
-    transform: scale(1.03);
+
+/* =========================
+   MULTIPLE CHOICE
+========================= */
+
+.multiple-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-
-/* TEXT ANSWER */
-
-.text-answer {
+.choice-btn {
     width: 100%;
-    min-height: 120px;
-    padding: 15px;
+    text-align: left;
+    border: 2px solid #e5e7eb;
+    background: white;
+    padding: 16px;
     border-radius: 12px;
-    border: 2px solid #ddd;
-    font-size: 17px;
-    resize: vertical;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.text-answer:focus {
-    outline: none;
+.choice-btn:hover:not(:disabled) {
     border-color: #dc2626;
+    transform: translateX(5px);
+}
+
+.choice-btn:disabled {
+    cursor: not-allowed;
+}
+
+.choice-letter {
+    display: inline-flex;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e5e7eb;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 
-/* NAVIGATION */
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback {
+    display: none;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.feedback.correct {
+    display: block;
+    background: #dcfce7;
+    color: #166534;
+    border: 2px solid #16a34a;
+}
+
+.feedback.wrong {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 2px solid #dc2626;
+}
+
+.correct-choice {
+    background: #dcfce7 !important;
+    border-color: #16a34a !important;
+}
+
+.wrong-choice {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 .navigation {
     display: flex;
@@ -224,7 +282,9 @@ body {
 }
 
 
-/* RESULT */
+/* =========================
+   RESULT
+========================= */
 
 .result {
     display: none;
@@ -245,7 +305,9 @@ body {
 }
 
 
-/* REVIEW */
+/* =========================
+   REVIEW
+========================= */
 
 .review-item {
     border-left: 6px solid #ddd;
@@ -255,17 +317,17 @@ body {
     border-radius: 10px;
 }
 
-.correct {
+.correct-review {
     border-left-color: #16a34a;
 }
 
-.wrong {
+.wrong-review {
     border-left-color: #dc2626;
 }
 
 .review-question {
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .review-answer {
@@ -274,7 +336,9 @@ body {
 }
 
 
-/* RETRY */
+/* =========================
+   RETRY
+========================= */
 
 .retry-btn {
     width: 100%;
@@ -289,9 +353,15 @@ body {
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px) {
+
+    body {
+        padding: 12px;
+    }
 
     .quiz-card {
         padding: 20px;
@@ -316,15 +386,19 @@ body {
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="container">
 
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <div class="header">
 
@@ -348,7 +422,9 @@ body {
 
 
 
-<!-- PROGRESS -->
+<!-- =========================
+     PROGRESS
+========================= -->
 
 <div class="progress-box">
 
@@ -378,19 +454,14 @@ body {
 
 
 
-<!-- QUIZ -->
+<!-- =========================
+     QUIZ
+========================= -->
 
 <div
     class="quiz-card"
     id="quizCard"
 >
-
-    <div
-        class="category"
-        id="category"
-    >
-    </div>
-
 
     <div
         class="question-number"
@@ -412,12 +483,19 @@ body {
     </div>
 
 
+    <div
+        class="feedback"
+        id="feedback"
+    >
+    </div>
+
+
     <div class="navigation">
 
         <button
             class="nav-btn prev-btn"
-            onclick="previousQuestion()"
             id="prevButton"
+            onclick="previousQuestion()"
         >
             ← Sebelumnya
         </button>
@@ -425,8 +503,8 @@ body {
 
         <button
             class="nav-btn next-btn"
-            onclick="nextQuestion()"
             id="nextButton"
+            onclick="nextQuestion()"
         >
             Selanjutnya →
         </button>
@@ -437,7 +515,9 @@ body {
 
 
 
-<!-- RESULT -->
+<!-- =========================
+     RESULT
+========================= -->
 
 <div
     class="quiz-card result"
@@ -476,9 +556,7 @@ body {
     </h2>
 
 
-    <div
-        id="review"
-    >
+    <div id="review">
     </div>
 
 
@@ -499,18 +577,19 @@ body {
 <script>
 
 
-/* ==============================
+/* =========================
    DATA SOAL
-================================ */
+========================= */
 
 const questions = [
 
-/* ==============================
-   10 SOAL MUDAH
-================================ */
+/* ==========================================
+   SOAL 1 - 10
+   BENAR / SALAH
+========================================== */
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Anggota PMR harus tetap tenang ketika ada siswa yang mengalami keluhan kesehatan saat upacara.",
@@ -519,7 +598,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Ketika ada siswa hampir pingsan, semua anggota PMR harus berlari menuju korban.",
@@ -528,7 +607,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "PMR perlu mengetahui area tugas dan jalur menuju UKS sebelum bertugas.",
@@ -537,7 +616,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Siswa yang belum sadar boleh langsung dipaksa minum air putih.",
@@ -546,7 +625,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "PMR tidak boleh memberikan obat sembarangan tanpa arahan guru atau petugas kesehatan.",
@@ -555,7 +634,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Salah satu tanda siswa mengalami gangguan kesehatan saat upacara adalah wajah pucat dan badan lemas.",
@@ -564,7 +643,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Korban yang sakit harus dipaksa berdiri agar bisa segera kembali ke barisan.",
@@ -573,7 +652,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Jika kondisi siswa memburuk, anggota PMR harus segera melaporkan kepada guru atau petugas UKS.",
@@ -582,7 +661,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Anggota PMR boleh mengambil foto atau video siswa yang sedang sakit untuk dibagikan kepada teman.",
@@ -591,7 +670,7 @@ const questions = [
 },
 
 {
-    type: "easy",
+    type: "truefalse",
 
     question:
     "Kerja sama dan koordinasi antaranggota PMR sangat penting saat menangani siswa yang mengalami masalah kesehatan.",
@@ -600,135 +679,146 @@ const questions = [
 },
 
 
-
-/* ==============================
-   5 SOAL SULIT
-================================ */
+/* ==========================================
+   SOAL 11 - 15
+   PILIHAN GANDA
+========================================== */
 
 {
-    type: "hard",
+    type: "multiple",
 
     question:
-    "Saat upacara, seorang siswa terlihat pucat, berkeringat dingin, lemas, dan hampir pingsan. Tuliskan minimal tiga tindakan awal yang harus dilakukan oleh anggota PMR!",
+    "Seorang siswa saat upacara terlihat pucat, berkeringat dingin, lemas, dan hampir pingsan. Tindakan awal yang paling tepat adalah...",
 
-    keywords:
-    [
-        "tenang",
-        "dampingi",
-        "keluar dari barisan",
-        "tempat teduh",
-        "uks",
-        "longgarkan",
-        "laporkan",
-        "guru"
+    options: [
+
+        "Memaksa siswa tetap berdiri di barisan",
+
+        "Mendampingi siswa keluar dari barisan dan membawa ke UKS atau tempat teduh",
+
+        "Memberikan obat secara langsung",
+
+        "Membiarkan siswa agar segera kuat sendiri",
+
+        "Mengajak semua anggota PMR mengerumuni siswa"
+
     ],
 
-    sample:
-    "Tetap tenang, dampingi siswa keluar dari barisan, bawa ke UKS atau tempat teduh, kemudian laporkan kepada guru atau petugas UKS."
+    answer: 1
 },
 
 {
-    type: "hard",
+    type: "multiple",
 
     question:
-    "Jelaskan mengapa tidak semua anggota PMR boleh berlari menuju satu korban ketika terjadi siswa pingsan saat upacara!",
+    "Mengapa tidak semua anggota PMR boleh berlari menuju satu korban ketika ada siswa pingsan?",
 
-    keywords:
-    [
-        "koordinasi",
-        "tugas",
-        "area",
-        "mengawasi",
-        "mengerumuni",
-        "tim lain"
+    options: [
+
+        "Karena korban harus ditinggalkan sendiri",
+
+        "Agar anggota PMR dapat beristirahat",
+
+        "Karena hanya guru yang boleh mendekati korban",
+
+        "Karena anggota PMR harus tetap menjalankan pembagian tugas dan mengawasi area",
+
+        "Agar upacara segera dihentikan"
+
     ],
 
-    sample:
-    "Karena anggota PMR memiliki pembagian tugas. Hanya petugas yang diperlukan menangani korban, sedangkan tim lain tetap mengawasi area dan menjaga peserta agar tidak terjadi kerumunan."
+    answer: 3
 },
 
 {
-    type: "hard",
+    type: "multiple",
 
     question:
-    "Sebutkan kondisi-kondisi yang dapat menjadi alasan penggunaan tandu untuk membawa korban!",
+    "Salah satu kondisi yang tepat untuk menggunakan tandu adalah...",
 
-    keywords:
-    [
-        "cedera kaki",
-        "tidak dapat berjalan",
-        "belum sadar",
-        "sulit mempertahankan kesadaran",
-        "terlalu lemah",
-        "tidak bisa berjalan"
+    options: [
+
+        "Korban hanya ingin duduk",
+
+        "Korban masih mampu berjalan dengan baik",
+
+        "Korban mengalami cedera kaki dan tidak dapat berjalan",
+
+        "Korban ingin kembali ke kelas",
+
+        "Korban tidak ingin mengikuti upacara"
+
     ],
 
-    sample:
-    "Tandu dapat digunakan jika korban mengalami cedera kaki dan tidak dapat berjalan, belum sadar atau sulit mempertahankan kesadaran, atau terlalu lemah untuk berjalan."
+    answer: 2
 },
 
 {
-    type: "hard",
+    type: "multiple",
 
     question:
-    "Jelaskan prinsip kerja sama saat membawa korban menggunakan tandu!",
+    "Prinsip yang tepat saat membawa korban menggunakan tandu adalah...",
 
-    keywords:
-    [
-        "minimal 4",
-        "empat",
-        "pemimpin",
-        "aba-aba",
-        "komunikasi",
-        "kompak",
-        "perlahan",
-        "hati-hati"
+    options: [
+
+        "Berjalan secepat mungkin tanpa aba-aba",
+
+        "Dibawa oleh satu orang agar lebih cepat",
+
+        "Berjalan sambil bercanda agar korban tidak takut",
+
+        "Berjalan sendiri-sendiri tanpa koordinasi",
+
+        "Ada pemimpin aba-aba, komunikasi jelas, dan bergerak perlahan serta hati-hati"
+
     ],
 
-    sample:
-    "Petugas harus bekerja secara kompak, minimal empat orang membantu, ada pemimpin yang memberikan aba-aba, komunikasi harus jelas, dan tandu dibawa perlahan serta hati-hati."
+    answer: 4
 },
 
 {
-    type: "hard",
+    type: "multiple",
 
     question:
-    "Setelah korban tiba di UKS, apa saja tugas PMR yang perlu dilakukan? Tuliskan minimal tiga!",
+    "Setelah korban tiba di UKS, tindakan PMR yang paling tepat adalah...",
 
-    keywords:
-    [
-        "baringkan",
-        "nyaman",
-        "longgarkan",
-        "amati",
-        "catat",
-        "identitas",
-        "keluhan",
-        "laporkan"
+    options: [
+
+        "Memberikan obat apa saja yang tersedia",
+
+        "Membiarkan korban sendiri",
+
+        "Memaksa korban segera kembali ke kelas",
+
+        "Baringkan korban dengan nyaman, amati kondisi, catat keluhan, dan laporkan kepada guru",
+
+        "Mengambil foto korban untuk dokumentasi pribadi"
+
     ],
 
-    sample:
-    "Baringkan korban dengan nyaman, amati kondisinya, catat identitas dan keluhan, serta laporkan perkembangan korban kepada guru atau petugas yang bertanggung jawab."
+    answer: 3
 }
 
 ];
 
 
 
-/* ==============================
+/* =========================
    VARIABEL
-================================ */
+========================= */
 
 let currentQuestion = 0;
 
 let userAnswers =
-new Array(questions.length).fill(null);
+new Array(
+    questions.length
+).fill(null);
 
 
 
-/* ==============================
+/* =========================
    LOAD QUESTION
-================================ */
+========================= */
 
 function loadQuestion() {
 
@@ -751,32 +841,6 @@ function loadQuestion() {
         q.question;
 
 
-    const category =
-    document
-        .getElementById("category");
-
-
-    if(q.type === "easy") {
-
-        category.innerText =
-        "🟢 SOAL MUDAH - BENAR / SALAH";
-
-        category.className =
-        "category easy";
-
-    }
-
-    else {
-
-        category.innerText =
-        "🔴 SOAL SULIT - JAWABAN TEKS";
-
-        category.className =
-        "category hard";
-
-    }
-
-
     const answerArea =
     document
         .getElementById("answerArea");
@@ -785,145 +849,575 @@ function loadQuestion() {
     answerArea.innerHTML = "";
 
 
-    /* TRUE FALSE */
-
-    if(q.type === "easy") {
-
-        const buttons =
-        document.createElement("div");
-
-        buttons.className =
-        "answer-buttons";
+    resetFeedback();
 
 
-        const trueButton =
-        document.createElement("button");
+    if(
+        q.type === "truefalse"
+    ) {
 
-        trueButton.className =
-        "answer-btn true-btn";
+        createTrueFalseQuestion(
+            q,
+            answerArea
+        );
 
-        trueButton.innerText =
-        "✓ BENAR";
+    }
 
+    else {
 
-        trueButton.onclick =
-        function() {
+        createMultipleChoiceQuestion(
+            q,
+            answerArea
+        );
 
-            saveEasyAnswer(true);
-
-        };
-
-
-        const falseButton =
-        document.createElement("button");
-
-        falseButton.className =
-        "answer-btn false-btn";
-
-        falseButton.innerText =
-        "✕ SALAH";
+    }
 
 
-        falseButton.onclick =
-        function() {
+    updateNavigation();
 
-            saveEasyAnswer(false);
+    updateProgress();
 
-        };
-
-
-        buttons.appendChild(trueButton);
-
-        buttons.appendChild(falseButton);
-
-        answerArea.appendChild(buttons);
+}
 
 
-        if(
-            userAnswers[currentQuestion]
-            !== null
+
+/* =========================
+   TRUE FALSE QUESTION
+========================= */
+
+function createTrueFalseQuestion(
+    q,
+    answerArea
+) {
+
+    const buttons =
+    document.createElement("div");
+
+
+    buttons.className =
+    "answer-buttons";
+
+
+    const trueButton =
+    document.createElement("button");
+
+
+    trueButton.className =
+    "answer-btn true-btn";
+
+
+    trueButton.innerText =
+    "✓ BENAR";
+
+
+    trueButton.onclick =
+    function() {
+
+        answerQuestion(
+            true,
+            q.answer,
+            trueButton
+        );
+
+    };
+
+
+
+    const falseButton =
+    document.createElement("button");
+
+
+    falseButton.className =
+    "answer-btn false-btn";
+
+
+    falseButton.innerText =
+    "✕ SALAH";
+
+
+    falseButton.onclick =
+    function() {
+
+        answerQuestion(
+            false,
+            q.answer,
+            falseButton
+        );
+
+    };
+
+
+    buttons.appendChild(
+        trueButton
+    );
+
+
+    buttons.appendChild(
+        falseButton
+    );
+
+
+    answerArea.appendChild(
+        buttons
+    );
+
+
+    if(
+        userAnswers[currentQuestion]
+        !== null
+    ) {
+
+        restoreTrueFalseAnswer(
+            q,
+            trueButton,
+            falseButton
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   MULTIPLE CHOICE QUESTION
+========================= */
+
+function createMultipleChoiceQuestion(
+    q,
+    answerArea
+) {
+
+    const choices =
+    document.createElement("div");
+
+
+    choices.className =
+    "multiple-choice";
+
+
+    const letters =
+    ["A", "B", "C", "D", "E"];
+
+
+    q.options.forEach(
+        function(
+            option,
+            index
         ) {
 
-            const info =
-            document.createElement("p");
-
-            info.style.marginTop =
-            "20px";
-
-            info.style.fontWeight =
-            "bold";
+            const button =
+            document.createElement("button");
 
 
-            info.innerText =
-            "Jawaban kamu: " +
-            (
-                userAnswers[currentQuestion]
-                ?
-                "BENAR"
-                :
-                "SALAH"
+            button.className =
+            "choice-btn";
+
+
+            button.innerHTML =
+
+            `
+            <span class="choice-letter">
+                ${letters[index]}
+            </span>
+
+            ${option}
+            `;
+
+
+            button.onclick =
+            function() {
+
+                answerQuestion(
+                    index,
+                    q.answer,
+                    button
+                );
+
+            };
+
+
+            choices.appendChild(
+                button
             );
 
+        }
+    );
 
-            answerArea.appendChild(info);
+
+    answerArea.appendChild(
+        choices
+    );
+
+
+    if(
+        userAnswers[currentQuestion]
+        !== null
+    ) {
+
+        restoreMultipleAnswer(
+            q,
+            choices
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   ANSWER QUESTION
+========================= */
+
+function answerQuestion(
+    selectedAnswer,
+    correctAnswer,
+    selectedButton
+) {
+
+    if(
+        userAnswers[currentQuestion]
+        !== null
+    ) {
+
+        return;
+
+    }
+
+
+    userAnswers[currentQuestion] =
+    selectedAnswer;
+
+
+    const isCorrect =
+    selectedAnswer ===
+    correctAnswer;
+
+
+    const allButtons =
+    document.querySelectorAll(
+        "#answerArea button"
+    );
+
+
+    allButtons.forEach(
+        function(button) {
+
+            button.disabled = true;
+
+        }
+    );
+
+
+    if(
+        isCorrect
+    ) {
+
+        selectedButton.classList.add(
+            "correct-choice"
+        );
+
+    }
+
+    else {
+
+        selectedButton.classList.add(
+            "wrong-choice"
+        );
+
+
+        allButtons.forEach(
+            function(
+                button,
+                index
+            ) {
+
+                if(
+                    index === correctAnswer
+                ) {
+
+                    button.classList.add(
+                        "correct-choice"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    showFeedback(
+        isCorrect
+    );
+
+
+    updateProgress();
+
+}
+
+
+
+/* =========================
+   SHOW FEEDBACK
+========================= */
+
+function showFeedback(
+    isCorrect
+) {
+
+    const feedback =
+    document.getElementById(
+        "feedback"
+    );
+
+
+    feedback.className =
+    "feedback";
+
+
+    if(
+        isCorrect
+    ) {
+
+        feedback.classList.add(
+            "correct"
+        );
+
+
+        feedback.innerHTML =
+        "🎉 BENAR! Jawaban kamu tepat.";
+
+    }
+
+    else {
+
+        feedback.classList.add(
+            "wrong"
+        );
+
+
+        feedback.innerHTML =
+        "❌ SALAH! Jawaban yang benar ditandai dengan warna hijau.";
+
+    }
+
+}
+
+
+
+/* =========================
+   RESET FEEDBACK
+========================= */
+
+function resetFeedback() {
+
+    const feedback =
+    document.getElementById(
+        "feedback"
+    );
+
+
+    feedback.className =
+    "feedback";
+
+
+    feedback.innerHTML =
+    "";
+
+}
+
+
+
+/* =========================
+   RESTORE TRUE FALSE
+========================= */
+
+function restoreTrueFalseAnswer(
+    q,
+    trueButton,
+    falseButton
+) {
+
+    trueButton.disabled =
+    true;
+
+
+    falseButton.disabled =
+    true;
+
+
+    const userAnswer =
+    userAnswers[currentQuestion];
+
+
+    const isCorrect =
+    userAnswer ===
+    q.answer;
+
+
+    if(
+        userAnswer === true
+    ) {
+
+        if(
+            isCorrect
+        ) {
+
+            trueButton.classList.add(
+                "correct-choice"
+            );
+
+        }
+
+        else {
+
+            trueButton.classList.add(
+                "wrong-choice"
+            );
+
+            falseButton.classList.add(
+                "correct-choice"
+            );
+
+        }
+
+    }
+
+    else {
+
+        if(
+            isCorrect
+        ) {
+
+            falseButton.classList.add(
+                "correct-choice"
+            );
+
+        }
+
+        else {
+
+            falseButton.classList.add(
+                "wrong-choice"
+            );
+
+            trueButton.classList.add(
+                "correct-choice"
+            );
 
         }
 
     }
 
 
-    /* TEXT ANSWER */
+    showFeedback(
+        isCorrect
+    );
 
-    else {
-
-        const textarea =
-        document.createElement("textarea");
-
-        textarea.className =
-        "text-answer";
-
-
-        textarea.placeholder =
-        "Ketik jawaban kamu di sini...";
-
-
-        textarea.value =
-        userAnswers[currentQuestion] || "";
-
-
-        textarea.oninput =
-        function() {
-
-            userAnswers[currentQuestion] =
-            textarea.value;
-
-        };
-
-
-        answerArea.appendChild(textarea);
-
-    }
+}
 
 
 
-    /* BUTTON PREVIOUS */
+/* =========================
+   RESTORE MULTIPLE ANSWER
+========================= */
 
-    document
-        .getElementById("prevButton")
-        .style.visibility =
-        currentQuestion === 0
-        ?
-        "hidden"
-        :
-        "visible";
+function restoreMultipleAnswer(
+    q,
+    choices
+) {
+
+    const buttons =
+    choices.querySelectorAll(
+        "button"
+    );
+
+
+    const userAnswer =
+    userAnswers[currentQuestion];
+
+
+    const isCorrect =
+    userAnswer ===
+    q.answer;
+
+
+    buttons.forEach(
+        function(
+            button,
+            index
+        ) {
+
+            button.disabled =
+            true;
+
+
+            if(
+                index === q.answer
+            ) {
+
+                button.classList.add(
+                    "correct-choice"
+                );
+
+            }
+
+
+            if(
+                index === userAnswer &&
+                !isCorrect
+            ) {
+
+                button.classList.add(
+                    "wrong-choice"
+                );
+
+            }
+
+        }
+    );
+
+
+    showFeedback(
+        isCorrect
+    );
+
+}
 
 
 
-    /* BUTTON NEXT */
+/* =========================
+   NAVIGATION
+========================= */
+
+function updateNavigation() {
+
+    const prevButton =
+    document.getElementById(
+        "prevButton"
+    );
+
 
     const nextButton =
-    document
-        .getElementById("nextButton");
+    document.getElementById(
+        "nextButton"
+    );
+
+
+    prevButton.style.visibility =
+
+    currentQuestion === 0
+
+    ?
+
+    "hidden"
+
+    :
+
+    "visible";
 
 
     if(
@@ -949,32 +1443,13 @@ function loadQuestion() {
 
     }
 
-
-    updateProgress();
-
 }
 
 
 
-/* ==============================
-   SAVE EASY ANSWER
-================================ */
-
-function saveEasyAnswer(answer) {
-
-    userAnswers[currentQuestion] =
-    answer;
-
-
-    loadQuestion();
-
-}
-
-
-
-/* ==============================
+/* =========================
    NEXT QUESTION
-================================ */
+========================= */
 
 function nextQuestion() {
 
@@ -994,13 +1469,21 @@ function nextQuestion() {
 
     loadQuestion();
 
+
+    window.scrollTo(
+        {
+            top: 0,
+            behavior: "smooth"
+        }
+    );
+
 }
 
 
 
-/* ==============================
+/* =========================
    PREVIOUS QUESTION
-================================ */
+========================= */
 
 function previousQuestion() {
 
@@ -1018,17 +1501,16 @@ function previousQuestion() {
 
 
 
-/* ==============================
+/* =========================
    PROGRESS
-================================ */
+========================= */
 
 function updateProgress() {
 
     const answered =
     userAnswers.filter(
         answer =>
-        answer !== null &&
-        answer !== ""
+        answer !== null
     ).length;
 
 
@@ -1044,9 +1526,13 @@ function updateProgress() {
     document
         .getElementById("progressText")
         .innerText =
+
         "Soal " +
+
         (currentQuestion + 1) +
+
         " dari " +
+
         questions.length;
 
 
@@ -1065,238 +1551,203 @@ function updateProgress() {
 
 
 
-/* ==============================
-   CHECK HARD ANSWER
-================================ */
-
-function checkHardAnswer(
-    answer,
-    keywords
-) {
-
-    if(!answer) {
-
-        return false;
-
-    }
-
-
-    answer =
-    answer.toLowerCase();
-
-
-    let match = 0;
-
-
-    keywords.forEach(
-        keyword => {
-
-            if(
-                answer.includes(
-                    keyword.toLowerCase()
-                )
-            ) {
-
-                match++;
-
-            }
-
-        }
-    );
-
-
-    return match >= 2;
-
-}
-
-
-
-/* ==============================
+/* =========================
    FINISH QUIZ
-================================ */
+========================= */
 
 function finishQuiz() {
 
-    let score = 0;
+    let correctCount =
+    0;
 
-    let reviewHTML = "";
+
+    let reviewHTML =
+    "";
 
 
     questions.forEach(
-        (
+        function(
             q,
             index
-        ) => {
-
-
-        const userAnswer =
-        userAnswers[index];
-
-
-        let correct =
-        false;
-
-
-        /* EASY */
-
-        if(
-            q.type === "easy"
         ) {
 
-            correct =
-            userAnswer === q.answer;
-
-        }
+            const userAnswer =
+            userAnswers[index];
 
 
-        /* HARD */
+            const isCorrect =
 
-        else {
+            userAnswer ===
+            q.answer;
 
-            correct =
-            checkHardAnswer(
-                userAnswer,
-                q.keywords
-            );
-
-        }
-
-
-        if(correct) {
-
-            score++;
-
-        }
-
-
-        let userAnswerText;
-
-
-        if(
-            q.type === "easy"
-        ) {
 
             if(
-                userAnswer === null
+                isCorrect
+            ) {
+
+                correctCount++;
+
+            }
+
+
+            let userAnswerText =
+            "";
+
+
+            let correctAnswerText =
+            "";
+
+
+            if(
+                q.type === "truefalse"
             ) {
 
                 userAnswerText =
-                "Belum dijawab";
+
+                userAnswer === null
+
+                ?
+
+                "Belum dijawab"
+
+                :
+
+                userAnswer
+
+                ?
+
+                "BENAR"
+
+                :
+
+                "SALAH";
+
+
+                correctAnswerText =
+
+                q.answer
+
+                ?
+
+                "BENAR"
+
+                :
+
+                "SALAH";
 
             }
 
             else {
 
                 userAnswerText =
-                userAnswer
+
+                userAnswer === null
+
                 ?
-                "BENAR"
+
+                "Belum dijawab"
+
                 :
-                "SALAH";
+
+                q.options[
+                    userAnswer
+                ];
+
+
+                correctAnswerText =
+
+                q.options[
+                    q.answer
+                ];
 
             }
 
-        }
 
-        else {
+            reviewHTML +=
 
-            userAnswerText =
-            userAnswer
-            ?
-            userAnswer
-            :
-            "Belum dijawab";
-
-        }
-
-
-        reviewHTML +=
-
-        `
-        <div
-            class="review-item ${
-                correct
-                ?
-                "correct"
-                :
-                "wrong"
-            }"
-        >
-
-            <div class="review-question">
-
-                Soal ${index + 1}
-
-            </div>
-
-
-            <div class="review-answer">
-
-                <strong>
-                    Pertanyaan:
-                </strong>
-
-                <br>
-
-                ${q.question}
-
-                <br><br>
-
-
-                <strong>
-                    Jawaban Kamu:
-                </strong>
-
-                <br>
-
-                ${userAnswerText}
-
-                <br><br>
-
-
-                <strong>
-                    Status:
-                </strong>
-
-                ${
-                    correct
+            `
+            <div
+                class="review-item ${
+                    isCorrect
                     ?
-                    "✅ Benar"
+                    "correct-review"
                     :
-                    "❌ Perlu Diperbaiki"
-                }
+                    "wrong-review"
+                }"
+            >
 
-                ${
-                    q.type === "hard"
-                    ?
-                    `
-                    <br><br>
+                <div
+                    class="review-question"
+                >
+
+                    Soal ${index + 1}
+
+                </div>
+
+
+                <div
+                    class="review-answer"
+                >
 
                     <strong>
-                        Contoh Jawaban:
+                        Pertanyaan:
                     </strong>
 
                     <br>
 
-                    ${q.sample}
-                    `
-                    :
-                    ""
-                }
+                    ${q.question}
+
+                    <br><br>
+
+
+                    <strong>
+                        Jawaban Kamu:
+                    </strong>
+
+                    <br>
+
+                    ${userAnswerText}
+
+                    <br><br>
+
+
+                    <strong>
+                        Jawaban Benar:
+                    </strong>
+
+                    <br>
+
+                    ${correctAnswerText}
+
+                    <br><br>
+
+
+                    ${
+                        isCorrect
+
+                        ?
+
+                        "✅ Jawaban Benar"
+
+                        :
+
+                        "❌ Jawaban Salah"
+
+                    }
+
+                </div>
 
             </div>
+            `;
 
-        </div>
-        `;
-
-    });
-
+        }
+    );
 
 
     const finalScore =
     Math.round(
         (
-            score /
+            correctCount /
             questions.length
         ) * 100
     );
@@ -1308,8 +1759,8 @@ function finishQuiz() {
         finalScore;
 
 
-
-    let description = "";
+    let description =
+    "";
 
 
     if(
@@ -1317,7 +1768,7 @@ function finishQuiz() {
     ) {
 
         description =
-        "Luar biasa! Kamu sangat memahami materi PMR.";
+        "🎉 Luar biasa! Kamu sangat memahami materi PMR.";
 
     }
 
@@ -1326,7 +1777,7 @@ function finishQuiz() {
     ) {
 
         description =
-        "Bagus! Pemahaman kamu terhadap materi PMR sudah baik.";
+        "👏 Bagus! Pemahaman kamu terhadap materi PMR sudah baik.";
 
     }
 
@@ -1335,14 +1786,14 @@ function finishQuiz() {
     ) {
 
         description =
-        "Cukup baik, tetapi masih perlu mempelajari beberapa materi.";
+        "👍 Cukup baik, tetapi masih perlu mempelajari beberapa materi.";
 
     }
 
     else {
 
         description =
-        "Yuk pelajari kembali materi PMR dan coba quiz ini lagi.";
+        "📚 Yuk pelajari kembali materi PMR dan coba quiz ini lagi.";
 
     }
 
@@ -1353,12 +1804,10 @@ function finishQuiz() {
         description;
 
 
-
     document
         .getElementById("review")
         .innerHTML =
         reviewHTML;
-
 
 
     document
@@ -1384,13 +1833,15 @@ function finishQuiz() {
 
 
 
-/* ==============================
-   RESTART
-================================ */
+/* =========================
+   RESTART QUIZ
+========================= */
 
 function restartQuiz() {
 
-    currentQuestion = 0;
+    currentQuestion =
+    0;
+
 
     userAnswers =
     new Array(
@@ -1424,9 +1875,9 @@ function restartQuiz() {
 
 
 
-/* ==============================
-   START
-================================ */
+/* =========================
+   START QUIZ
+========================= */
 
 loadQuestion();
 

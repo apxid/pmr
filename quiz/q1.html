@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Quiz PMR - Pertemuan Ke-3
+</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #ef4444, #991b1b);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+/* CONTAINER */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+
+/* HEADER */
+
+.header {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.logo {
+    font-size: 50px;
+}
+
+.header h1 {
+    margin: 10px 0;
+    color: #b91c1c;
+}
+
+.header p {
+    color: #555;
+    margin-bottom: 0;
+}
+
+
+/* PROGRESS */
+
+.progress-box {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #dc2626;
+    transition: 0.4s;
+}
+
+
+/* CARD */
+
+.quiz-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+/* CATEGORY */
+
+.category {
+    display: inline-block;
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.easy {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.hard {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* QUESTION */
+
+.question-number {
+    color: #777;
+    font-size: 14px;
+}
+
+.question {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 15px 0 25px;
+}
+
+
+/* BUTTON TRUE FALSE */
+
+.answer-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.answer-btn {
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.true-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.false-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.answer-btn:hover {
+    transform: scale(1.03);
+}
+
+
+/* TEXT ANSWER */
+
+.text-answer {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    font-size: 17px;
+    resize: vertical;
+}
+
+.text-answer:focus {
+    outline: none;
+    border-color: #dc2626;
+}
+
+
+/* NAVIGATION */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.nav-btn {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.prev-btn {
+    background: #e5e7eb;
+}
+
+.next-btn {
+    background: #b91c1c;
+    color: white;
+}
+
+.submit-btn {
+    background: #15803d;
+    color: white;
+}
+
+
+/* RESULT */
+
+.result {
+    display: none;
+}
+
+.score-box {
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    background: #fef2f2;
+    margin-bottom: 25px;
+}
+
+.score-number {
+    font-size: 60px;
+    font-weight: bold;
+    color: #b91c1c;
+}
+
+
+/* REVIEW */
+
+.review-item {
+    border-left: 6px solid #ddd;
+    background: #f9fafb;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.correct {
+    border-left-color: #16a34a;
+}
+
+.wrong {
+    border-left-color: #dc2626;
+}
+
+.review-question {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.review-answer {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* RETRY */
+
+.retry-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    background: #b91c1c;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .quiz-card {
+        padding: 20px;
+    }
+
+    .question {
+        font-size: 19px;
+    }
+
+    .answer-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .navigation {
+        flex-direction: column;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+        ⛑️
+    </div>
+
+    <h1>
+        QUIZ PMR
+    </h1>
+
+    <p>
+        Pertemuan Ke-3
+    </p>
+
+    <p>
+        Stand By Kesehatan Saat Upacara Bendera
+    </p>
+
+</div>
+
+
+
+<!-- PROGRESS -->
+
+<div class="progress-box">
+
+    <div class="progress-text">
+
+        <span id="progressText">
+            Soal 1 dari 15
+        </span>
+
+        <span id="percentage">
+            0%
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            class="progress-fill"
+            id="progressFill"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- QUIZ -->
+
+<div
+    class="quiz-card"
+    id="quizCard"
+>
+
+    <div
+        class="category"
+        id="category"
+    >
+    </div>
+
+
+    <div
+        class="question-number"
+        id="questionNumber"
+    >
+    </div>
+
+
+    <div
+        class="question"
+        id="question"
+    >
+    </div>
+
+
+    <div
+        id="answerArea"
+    >
+    </div>
+
+
+    <div class="navigation">
+
+        <button
+            class="nav-btn prev-btn"
+            onclick="previousQuestion()"
+            id="prevButton"
+        >
+            ← Sebelumnya
+        </button>
+
+
+        <button
+            class="nav-btn next-btn"
+            onclick="nextQuestion()"
+            id="nextButton"
+        >
+            Selanjutnya →
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- RESULT -->
+
+<div
+    class="quiz-card result"
+    id="resultCard"
+>
+
+    <div class="score-box">
+
+        <div class="logo">
+            🏆
+        </div>
+
+        <h2>
+            Quiz Selesai!
+        </h2>
+
+        <p>
+            Skor Kamu
+        </p>
+
+        <div
+            class="score-number"
+            id="score"
+        >
+            0
+        </div>
+
+        <p id="scoreDescription">
+        </p>
+
+    </div>
+
+
+    <h2>
+        📝 Hasil Jawaban
+    </h2>
+
+
+    <div
+        id="review"
+    >
+    </div>
+
+
+    <button
+        class="retry-btn"
+        onclick="restartQuiz()"
+    >
+        🔄 Ulangi Quiz
+    </button>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ==============================
+   DATA SOAL
+================================ */
+
+const questions = [
+
+/* ==============================
+   10 SOAL MUDAH
+================================ */
+
+{
+    type: "easy",
+
+    question:
+    "Anggota PMR harus tetap tenang ketika ada siswa yang mengalami keluhan kesehatan saat upacara.",
+
+    answer: true
+},
+
+{
+    type: "easy",
+
+    question:
+    "Ketika ada siswa hampir pingsan, semua anggota PMR harus berlari menuju korban.",
+
+    answer: false
+},
+
+{
+    type: "easy",
+
+    question:
+    "PMR perlu mengetahui area tugas dan jalur menuju UKS sebelum bertugas.",
+
+    answer: true
+},
+
+{
+    type: "easy",
+
+    question:
+    "Siswa yang belum sadar boleh langsung dipaksa minum air putih.",
+
+    answer: false
+},
+
+{
+    type: "easy",
+
+    question:
+    "PMR tidak boleh memberikan obat sembarangan tanpa arahan guru atau petugas kesehatan.",
+
+    answer: true
+},
+
+{
+    type: "easy",
+
+    question:
+    "Salah satu tanda siswa mengalami gangguan kesehatan saat upacara adalah wajah pucat dan badan lemas.",
+
+    answer: true
+},
+
+{
+    type: "easy",
+
+    question:
+    "Korban yang sakit harus dipaksa berdiri agar bisa segera kembali ke barisan.",
+
+    answer: false
+},
+
+{
+    type: "easy",
+
+    question:
+    "Jika kondisi siswa memburuk, anggota PMR harus segera melaporkan kepada guru atau petugas UKS.",
+
+    answer: true
+},
+
+{
+    type: "easy",
+
+    question:
+    "Anggota PMR boleh mengambil foto atau video siswa yang sedang sakit untuk dibagikan kepada teman.",
+
+    answer: false
+},
+
+{
+    type: "easy",
+
+    question:
+    "Kerja sama dan koordinasi antaranggota PMR sangat penting saat menangani siswa yang mengalami masalah kesehatan.",
+
+    answer: true
+},
+
+
+
+/* ==============================
+   5 SOAL SULIT
+================================ */
+
+{
+    type: "hard",
+
+    question:
+    "Saat upacara, seorang siswa terlihat pucat, berkeringat dingin, lemas, dan hampir pingsan. Tuliskan minimal tiga tindakan awal yang harus dilakukan oleh anggota PMR!",
+
+    keywords:
+    [
+        "tenang",
+        "dampingi",
+        "keluar dari barisan",
+        "tempat teduh",
+        "uks",
+        "longgarkan",
+        "laporkan",
+        "guru"
+    ],
+
+    sample:
+    "Tetap tenang, dampingi siswa keluar dari barisan, bawa ke UKS atau tempat teduh, kemudian laporkan kepada guru atau petugas UKS."
+},
+
+{
+    type: "hard",
+
+    question:
+    "Jelaskan mengapa tidak semua anggota PMR boleh berlari menuju satu korban ketika terjadi siswa pingsan saat upacara!",
+
+    keywords:
+    [
+        "koordinasi",
+        "tugas",
+        "area",
+        "mengawasi",
+        "mengerumuni",
+        "tim lain"
+    ],
+
+    sample:
+    "Karena anggota PMR memiliki pembagian tugas. Hanya petugas yang diperlukan menangani korban, sedangkan tim lain tetap mengawasi area dan menjaga peserta agar tidak terjadi kerumunan."
+},
+
+{
+    type: "hard",
+
+    question:
+    "Sebutkan kondisi-kondisi yang dapat menjadi alasan penggunaan tandu untuk membawa korban!",
+
+    keywords:
+    [
+        "cedera kaki",
+        "tidak dapat berjalan",
+        "belum sadar",
+        "sulit mempertahankan kesadaran",
+        "terlalu lemah",
+        "tidak bisa berjalan"
+    ],
+
+    sample:
+    "Tandu dapat digunakan jika korban mengalami cedera kaki dan tidak dapat berjalan, belum sadar atau sulit mempertahankan kesadaran, atau terlalu lemah untuk berjalan."
+},
+
+{
+    type: "hard",
+
+    question:
+    "Jelaskan prinsip kerja sama saat membawa korban menggunakan tandu!",
+
+    keywords:
+    [
+        "minimal 4",
+        "empat",
+        "pemimpin",
+        "aba-aba",
+        "komunikasi",
+        "kompak",
+        "perlahan",
+        "hati-hati"
+    ],
+
+    sample:
+    "Petugas harus bekerja secara kompak, minimal empat orang membantu, ada pemimpin yang memberikan aba-aba, komunikasi harus jelas, dan tandu dibawa perlahan serta hati-hati."
+},
+
+{
+    type: "hard",
+
+    question:
+    "Setelah korban tiba di UKS, apa saja tugas PMR yang perlu dilakukan? Tuliskan minimal tiga!",
+
+    keywords:
+    [
+        "baringkan",
+        "nyaman",
+        "longgarkan",
+        "amati",
+        "catat",
+        "identitas",
+        "keluhan",
+        "laporkan"
+    ],
+
+    sample:
+    "Baringkan korban dengan nyaman, amati kondisinya, catat identitas dan keluhan, serta laporkan perkembangan korban kepada guru atau petugas yang bertanggung jawab."
+}
+
+];
+
+
+
+/* ==============================
+   VARIABEL
+================================ */
+
+let currentQuestion = 0;
+
+let userAnswers =
+new Array(questions.length).fill(null);
+
+
+
+/* ==============================
+   LOAD QUESTION
+================================ */
+
+function loadQuestion() {
+
+    const q =
+    questions[currentQuestion];
+
+
+    document
+        .getElementById("questionNumber")
+        .innerText =
+        "SOAL " +
+        (currentQuestion + 1) +
+        " DARI " +
+        questions.length;
+
+
+    document
+        .getElementById("question")
+        .innerText =
+        q.question;
+
+
+    const category =
+    document
+        .getElementById("category");
+
+
+    if(q.type === "easy") {
+
+        category.innerText =
+        "🟢 SOAL MUDAH - BENAR / SALAH";
+
+        category.className =
+        "category easy";
+
+    }
+
+    else {
+
+        category.innerText =
+        "🔴 SOAL SULIT - JAWABAN TEKS";
+
+        category.className =
+        "category hard";
+
+    }
+
+
+    const answerArea =
+    document
+        .getElementById("answerArea");
+
+
+    answerArea.innerHTML = "";
+
+
+    /* TRUE FALSE */
+
+    if(q.type === "easy") {
+
+        const buttons =
+        document.createElement("div");
+
+        buttons.className =
+        "answer-buttons";
+
+
+        const trueButton =
+        document.createElement("button");
+
+        trueButton.className =
+        "answer-btn true-btn";
+
+        trueButton.innerText =
+        "✓ BENAR";
+
+
+        trueButton.onclick =
+        function() {
+
+            saveEasyAnswer(true);
+
+        };
+
+
+        const falseButton =
+        document.createElement("button");
+
+        falseButton.className =
+        "answer-btn false-btn";
+
+        falseButton.innerText =
+        "✕ SALAH";
+
+
+        falseButton.onclick =
+        function() {
+
+            saveEasyAnswer(false);
+
+        };
+
+
+        buttons.appendChild(trueButton);
+
+        buttons.appendChild(falseButton);
+
+        answerArea.appendChild(buttons);
+
+
+        if(
+            userAnswers[currentQuestion]
+            !== null
+        ) {
+
+            const info =
+            document.createElement("p");
+
+            info.style.marginTop =
+            "20px";
+
+            info.style.fontWeight =
+            "bold";
+
+
+            info.innerText =
+            "Jawaban kamu: " +
+            (
+                userAnswers[currentQuestion]
+                ?
+                "BENAR"
+                :
+                "SALAH"
+            );
+
+
+            answerArea.appendChild(info);
+
+        }
+
+    }
+
+
+    /* TEXT ANSWER */
+
+    else {
+
+        const textarea =
+        document.createElement("textarea");
+
+        textarea.className =
+        "text-answer";
+
+
+        textarea.placeholder =
+        "Ketik jawaban kamu di sini...";
+
+
+        textarea.value =
+        userAnswers[currentQuestion] || "";
+
+
+        textarea.oninput =
+        function() {
+
+            userAnswers[currentQuestion] =
+            textarea.value;
+
+        };
+
+
+        answerArea.appendChild(textarea);
+
+    }
+
+
+
+    /* BUTTON PREVIOUS */
+
+    document
+        .getElementById("prevButton")
+        .style.visibility =
+        currentQuestion === 0
+        ?
+        "hidden"
+        :
+        "visible";
+
+
+
+    /* BUTTON NEXT */
+
+    const nextButton =
+    document
+        .getElementById("nextButton");
+
+
+    if(
+        currentQuestion ===
+        questions.length - 1
+    ) {
+
+        nextButton.innerText =
+        "Selesai & Lihat Hasil";
+
+        nextButton.className =
+        "nav-btn submit-btn";
+
+    }
+
+    else {
+
+        nextButton.innerText =
+        "Selanjutnya →";
+
+        nextButton.className =
+        "nav-btn next-btn";
+
+    }
+
+
+    updateProgress();
+
+}
+
+
+
+/* ==============================
+   SAVE EASY ANSWER
+================================ */
+
+function saveEasyAnswer(answer) {
+
+    userAnswers[currentQuestion] =
+    answer;
+
+
+    loadQuestion();
+
+}
+
+
+
+/* ==============================
+   NEXT QUESTION
+================================ */
+
+function nextQuestion() {
+
+    if(
+        currentQuestion ===
+        questions.length - 1
+    ) {
+
+        finishQuiz();
+
+        return;
+
+    }
+
+
+    currentQuestion++;
+
+    loadQuestion();
+
+}
+
+
+
+/* ==============================
+   PREVIOUS QUESTION
+================================ */
+
+function previousQuestion() {
+
+    if(
+        currentQuestion > 0
+    ) {
+
+        currentQuestion--;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+
+/* ==============================
+   PROGRESS
+================================ */
+
+function updateProgress() {
+
+    const answered =
+    userAnswers.filter(
+        answer =>
+        answer !== null &&
+        answer !== ""
+    ).length;
+
+
+    const percent =
+    Math.round(
+        (
+            answered /
+            questions.length
+        ) * 100
+    );
+
+
+    document
+        .getElementById("progressText")
+        .innerText =
+        "Soal " +
+        (currentQuestion + 1) +
+        " dari " +
+        questions.length;
+
+
+    document
+        .getElementById("percentage")
+        .innerText =
+        percent + "%";
+
+
+    document
+        .getElementById("progressFill")
+        .style.width =
+        percent + "%";
+
+}
+
+
+
+/* ==============================
+   CHECK HARD ANSWER
+================================ */
+
+function checkHardAnswer(
+    answer,
+    keywords
+) {
+
+    if(!answer) {
+
+        return false;
+
+    }
+
+
+    answer =
+    answer.toLowerCase();
+
+
+    let match = 0;
+
+
+    keywords.forEach(
+        keyword => {
+
+            if(
+                answer.includes(
+                    keyword.toLowerCase()
+                )
+            ) {
+
+                match++;
+
+            }
+
+        }
+    );
+
+
+    return match >= 2;
+
+}
+
+
+
+/* ==============================
+   FINISH QUIZ
+================================ */
+
+function finishQuiz() {
+
+    let score = 0;
+
+    let reviewHTML = "";
+
+
+    questions.forEach(
+        (
+            q,
+            index
+        ) => {
+
+
+        const userAnswer =
+        userAnswers[index];
+
+
+        let correct =
+        false;
+
+
+        /* EASY */
+
+        if(
+            q.type === "easy"
+        ) {
+
+            correct =
+            userAnswer === q.answer;
+
+        }
+
+
+        /* HARD */
+
+        else {
+
+            correct =
+            checkHardAnswer(
+                userAnswer,
+                q.keywords
+            );
+
+        }
+
+
+        if(correct) {
+
+            score++;
+
+        }
+
+
+        let userAnswerText;
+
+
+        if(
+            q.type === "easy"
+        ) {
+
+            if(
+                userAnswer === null
+            ) {
+
+                userAnswerText =
+                "Belum dijawab";
+
+            }
+
+            else {
+
+                userAnswerText =
+                userAnswer
+                ?
+                "BENAR"
+                :
+                "SALAH";
+
+            }
+
+        }
+
+        else {
+
+            userAnswerText =
+            userAnswer
+            ?
+            userAnswer
+            :
+            "Belum dijawab";
+
+        }
+
+
+        reviewHTML +=
+
+        `
+        <div
+            class="review-item ${
+                correct
+                ?
+                "correct"
+                :
+                "wrong"
+            }"
+        >
+
+            <div class="review-question">
+
+                Soal ${index + 1}
+
+            </div>
+
+
+            <div class="review-answer">
+
+                <strong>
+                    Pertanyaan:
+                </strong>
+
+                <br>
+
+                ${q.question}
+
+                <br><br>
+
+
+                <strong>
+                    Jawaban Kamu:
+                </strong>
+
+                <br>
+
+                ${userAnswerText}
+
+                <br><br>
+
+
+                <strong>
+                    Status:
+                </strong>
+
+                ${
+                    correct
+                    ?
+                    "✅ Benar"
+                    :
+                    "❌ Perlu Diperbaiki"
+                }
+
+                ${
+                    q.type === "hard"
+                    ?
+                    `
+                    <br><br>
+
+                    <strong>
+                        Contoh Jawaban:
+                    </strong>
+
+                    <br>
+
+                    ${q.sample}
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+
+
+    const finalScore =
+    Math.round(
+        (
+            score /
+            questions.length
+        ) * 100
+    );
+
+
+    document
+        .getElementById("score")
+        .innerText =
+        finalScore;
+
+
+
+    let description = "";
+
+
+    if(
+        finalScore >= 90
+    ) {
+
+        description =
+        "Luar biasa! Kamu sangat memahami materi PMR.";
+
+    }
+
+    else if(
+        finalScore >= 75
+    ) {
+
+        description =
+        "Bagus! Pemahaman kamu terhadap materi PMR sudah baik.";
+
+    }
+
+    else if(
+        finalScore >= 60
+    ) {
+
+        description =
+        "Cukup baik, tetapi masih perlu mempelajari beberapa materi.";
+
+    }
+
+    else {
+
+        description =
+        "Yuk pelajari kembali materi PMR dan coba quiz ini lagi.";
+
+    }
+
+
+    document
+        .getElementById("scoreDescription")
+        .innerText =
+        description;
+
+
+
+    document
+        .getElementById("review")
+        .innerHTML =
+        reviewHTML;
+
+
+
+    document
+        .getElementById("quizCard")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("resultCard")
+        .style.display =
+        "block";
+
+
+    window.scrollTo(
+        {
+            top: 0,
+            behavior: "smooth"
+        }
+    );
+
+}
+
+
+
+/* ==============================
+   RESTART
+================================ */
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+
+    userAnswers =
+    new Array(
+        questions.length
+    ).fill(null);
+
+
+    document
+        .getElementById("resultCard")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("quizCard")
+        .style.display =
+        "block";
+
+
+    loadQuestion();
+
+
+    window.scrollTo(
+        {
+            top: 0,
+            behavior: "smooth"
+        }
+    );
+
+}
+
+
+
+/* ==============================
+   START
+================================ */
+
+loadQuestion();
+
+
+</script>
+
+
+</body>
+</html>

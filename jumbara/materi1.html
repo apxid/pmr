@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pertolongan Pertama (Materi SMP) — Presentasi Interaktif</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --teal: #0F766E;
+      --teal-dark: #115E59;
+      --teal-light: #CCFBF1;
+      --teal-soft: #F0FDFA;
+      --red: #E11D48;
+      --red-soft: #FFF1F2;
+      --red-border: #FECDD3;
+      --amber: #D97706;
+      --amber-soft: #FFFBEB;
+      --amber-border: #FDE68A;
+      --slate-900: #0F172A;
+      --slate-700: #334155;
+      --slate-500: #64748B;
+      --slate-200: #E2E8F0;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0F172A;
+      color: var(--slate-900);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    /* Stage Container (16:9 Responsive) */
+    .stage-wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 16px 68px 16px;
+    }
+
+    .deck {
+      width: 100%;
+      max-width: 1280px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 84px);
+      background: var(--bg);
+      border-radius: 24px;
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Decorative Top Strip */
+    .deck::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--teal) 0%, #14B8A6 55%, var(--amber) 80%, var(--red) 100%);
+      z-index: 20;
+    }
+
+    /* Slide Base */
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 36px 48px 44px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(40px) scale(0.985);
+      transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      background:
+        radial-gradient(circle at 95% 8%, rgba(20, 184, 166, 0.07) 0%, transparent 32%),
+        radial-gradient(circle at 5% 95%, rgba(245, 158, 11, 0.06) 0%, transparent 30%),
+        var(--bg);
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0) scale(1);
+      z-index: 10;
+    }
+
+    .slide.prev {
+      opacity: 0;
+      transform: translateX(-40px) scale(0.985);
+    }
+
+    /* Staggered Child Animations */
+    .slide .anim {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .slide.active .anim {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide.active .d1 { transition-delay: 0.08s; }
+    .slide.active .d2 { transition-delay: 0.16s; }
+    .slide.active .d3 { transition-delay: 0.24s; }
+    .slide.active .d4 { transition-delay: 0.32s; }
+    .slide.active .d5 { transition-delay: 0.40s; }
+    .slide.active .d6 { transition-delay: 0.48s; }
+
+    /* Keyframe Pulse & Float */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); opacity: 0.85; }
+      70% { transform: scale(1.08); opacity: 0.15; }
+      100% { transform: scale(0.95); opacity: 0.85; }
+    }
+    .float-anim { animation: floatSlow 3.6s ease-in-out infinite; }
+    .pulse-anim { animation: pulseRing 2.2s ease-in-out infinite; }
+
+    /* Slide Header */
+    .slide-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      margin-bottom: 6px;
+    }
+
+    .badge.red {
+      background: var(--red-soft);
+      color: var(--red);
+      border: 1px solid var(--red-border);
+    }
+
+    .badge.amber {
+      background: var(--amber-soft);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+
+    h1 {
+      font-size: clamp(28px, 3.2vw, 44px);
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--slate-900);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(21px, 2.2vw, 30px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--slate-900);
+      letter-spacing: -0.015em;
+    }
+
+    .subtitle {
+      font-size: clamp(13px, 1.15vw, 15.5px);
+      color: var(--slate-500);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .slide-num-pill {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate-500);
+      background: var(--surface);
+      border: 1px solid var(--slate-200);
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Common Card Styles */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.13);
+    }
+
+    .card.teal {
+      background: var(--teal-soft);
+      border-color: #99F6E4;
+    }
+
+    .card.red {
+      background: var(--red-soft);
+      border-color: var(--red-border);
+    }
+
+    .card.amber {
+      background: var(--amber-soft);
+      border-color: var(--amber-border);
+    }
+
+    .card-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--slate-900);
+    }
+
+    .card.teal .card-title { color: var(--teal-dark); }
+    .card.red .card-title { color: #BE123C; }
+    .card.amber .card-title { color: #B45309; }
+
+    .card p, .card li {
+      font-size: clamp(12.5px, 1.05vw, 14.5px);
+      line-height: 1.48;
+      color: var(--slate-700);
+    }
+
+    ul.clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    ul.clean-list li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    ul.clean-list li::before {
+      content: "•";
+      position: absolute;
+      left: 3px;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .card.red ul.clean-list li::before { color: var(--red); }
+    .card.amber ul.clean-list li::before { color: var(--amber); }
+
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .split-60-40 { display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px; }
+    .split-40-60 { display: grid; grid-template-columns: 1fr 1.35fr; gap: 20px; }
+
+    /* Number Circle */
+    .step-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: var(--teal);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-badge.red { background: var(--red); }
+    .step-badge.amber { background: var(--amber); }
+
+    /* Table */
+    table.vital-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--slate-200);
+    }
+
+    table.vital-table th {
+      background: var(--teal);
+      color: #fff;
+      font-size: 14.5px;
+      font-weight: 700;
+      padding: 13px 18px;
+      text-align: left;
+    }
+
+    table.vital-table td {
+      padding: 13px 18px;
+      font-size: 14.5px;
+      border-bottom: 1px solid var(--slate-200);
+      color: var(--slate-700);
+      font-weight: 600;
+    }
+
+    table.vital-table tr:last-child td { border-bottom: none; }
+    table.vital-table tr:nth-child(even) td { background: #F8FAFC; }
+
+    /* KOMPAK Ladder */
+    .kompak-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 8px 14px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .kompak-letter {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--teal);
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Footer Banner inside Slide */
+    .slide-footer {
+      font-size: 12px;
+      color: var(--slate-500);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--slate-200);
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
+    /* Bottom Presentation Controls */
+    .controls-bar {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 8px 16px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .ctrl-btn:hover:not(:disabled) {
+      background: var(--teal);
+      transform: translateY(-1px);
+    }
+
+    .ctrl-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .progress-track {
+      width: 180px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #14B8A6, #F59E0B);
+      width: 6.66%;
+      transition: width 0.35s ease;
+    }
+
+    .counter-text {
+      color: #E2E8F0;
+      font-size: 13px;
+      font-weight: 700;
+      min-width: 54px;
+      text-align: center;
+    }
+
+    /* Slide Overview Modal */
+    .overview-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    .overview-modal.open {
+      display: block;
+    }
+
+    .overview-grid {
+      max-width: 1100px;
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .ov-item {
+      background: #1E293B;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 14px;
+      color: #F8FAFC;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ov-item:hover, .ov-item.current {
+      border-color: #14B8A6;
+      background: #0F766E;
+    }
+
+    .ov-item span {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      opacity: 0.75;
+      margin-bottom: 4px;
+    }
+
+    .ov-item strong {
+      font-size: 14px;
+      line-height: 1.35;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .deck { aspect-ratio: auto; height: 100%; max-height: none; border-radius: 16px; }
+      .slide { padding: 22px; overflow-y: auto; }
+      .grid-2, .grid-3, .grid-4, .split-60-40, .split-40-60 { grid-template-columns: 1fr; }
+      .progress-track { width: 90px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="stage-wrapper">
+  <div class="deck" id="deck">
+
+    <!-- ==================== SLIDE 1 ==================== -->
+    <section class="slide active" data-title="Sampul & Tujuan Pembelajaran">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Materi Pertolongan Pertama • SMP</span>
+          <h1>PERTOLONGAN PERTAMA</h1>
+          <p class="subtitle" style="font-size: 17px; color: var(--teal-dark); font-weight: 700; margin-top: 6px;">
+            Penilaian Penderita, Perdarahan, Syok, dan Cedera Jaringan Lunak
+          </p>
+        </div>
+        <span class="slide-num-pill">Slide 1 / 15</span>
+      </div>
+
+      <div class="split-60-40" style="align-items: center; my-auto;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card teal anim d2">
+            <div class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              Tujuan Belajar
+            </div>
+            <p>Memahami cara <strong>menilai keadaan</strong>, mengenali <strong>tanda bahaya</strong>, dan mengetahui <strong>tindakan awal yang aman</strong> sambil meminta bantuan orang dewasa atau tenaga kesehatan.</p>
+          </div>
+
+          <div class="grid-3 anim d3">
+            <div class="card" style="padding: 12px; text-align: center;">
+              <strong style="color: var(--teal); font-size: 14px;">Bahasa Sederhana</strong>
+              <p style="font-size: 12px; margin-top: 2px;">Mudah dipahami siswa SMP</p>
+            </div>
+            <div class="card" style="padding: 12px; text-align: center;">
+              <strong style="color: var(--teal); font-size: 14px;">Langkah Terstruktur</strong>
+              <p style="font-size: 12px; margin-top: 2px;">Urutan aman & sistematis</p>
+            </div>
+            <div class="card" style="padding: 12px; text-align: center;">
+              <strong style="color: var(--teal); font-size: 14px;">Ilustrasi Ringkas</strong>
+              <p style="font-size: 12px; margin-top: 2px;">Visual langsung ke inti</p>
+            </div>
+          </div>
+
+          <div class="card red anim d4">
+            <div class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Catatan Penting Keselamatan
+            </div>
+            <p>Modul ini untuk pembelajaran, <strong>bukan pengganti pelatihan P3K</strong>. Dalam keadaan darurat, segera panggil guru/orang dewasa dan layanan darurat. Jangan melakukan tindakan yang belum pernah dilatih.</p>
+          </div>
+        </div>
+
+        <!-- Vector Illustration: Penolong, Penderita, AMAN, BANTUAN -->
+        <div class="card anim d3" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; background: linear-gradient(180deg, #F0FDFA 0%, #FFFFFF 100%);">
+          <svg class="float-anim" width="100%" height="230" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- First Aid Kit Box -->
+            <rect x="235" y="128" width="92" height="64" rx="12" fill="#0F766E"/>
+            <path d="M262 128V118C262 114.686 264.686 112 268 112H294C297.314 112 300 114.686 300 118V128" stroke="#115E59" stroke-width="5"/>
+            <rect x="275" y="144" width="12" height="32" rx="3" fill="#FFFFFF"/>
+            <rect x="265" y="154" width="32" height="12" rx="3" fill="#FFFFFF"/>
+            <!-- Penolong (Rescuer) -->
+            <circle cx="72" cy="64" r="24" fill="#F59E0B" stroke="#0F172A" stroke-width="3"/>
+            <path d="M72 88V148M72 108L42 132M72 108L102 132M72 148L52 188M72 148L92 188" stroke="#0F172A" stroke-width="6" stroke-linecap="round"/>
+            <text x="72" y="208" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Penolong</text>
+            <!-- AMAN & BANTUAN Badges -->
+            <circle class="pulse-anim" cx="185" cy="58" r="26" fill="#0F766E"/>
+            <path d="M176 58L182 64L195 51" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="185" y="100" text-anchor="middle" font-size="12" font-weight="800" fill="#0F766E">AMAN</text>
+
+            <circle cx="275" cy="58" r="26" fill="#E11D48"/>
+            <rect x="272.5" y="45" width="5" height="16" rx="2.5" fill="#FFFFFF"/>
+            <circle cx="275" cy="69" r="3" fill="#FFFFFF"/>
+            <text x="275" y="100" text-anchor="middle" font-size="12" font-weight="800" fill="#E11D48">BANTUAN</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Panduan Pertolongan Pertama • Materi SMP</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 2 ==================== -->
+    <section class="slide" data-title="1A. Penilaian Keadaan">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 1 • Mengenal Penilaian Penderita</span>
+          <h2>1A. Penilaian Keadaan (Prinsip AMAN & BANTUAN)</h2>
+          <p class="subtitle">Penilaian adalah proses mengamati kondisi orang sakit/cedera untuk menentukan masalah paling mendesak.</p>
+        </div>
+        <span class="slide-num-pill">Slide 2 / 15</span>
+      </div>
+
+      <div class="grid-4" style="margin: auto 0;">
+        <div class="card red anim d2" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="step-badge red">1</span>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E11D48" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="card-title">Pastikan Aman</div>
+          <p>Periksa apakah ada <strong>kendaraan, api, listrik, benda tajam</strong>, atau bahaya lain. Jangan mendekat jika lokasi belum aman.</p>
+        </div>
+
+        <div class="card teal anim d3" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="step-badge">2</span>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2.2"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+          </div>
+          <div class="card-title">Perkenalkan Diri</div>
+          <p>Sampaikan bahwa kamu ingin membantu dan <strong>minta izin</strong> jika orang tersebut dalam keadaan sadar.</p>
+        </div>
+
+        <div class="card anim d4" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="step-badge">3</span>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="card-title">Lihat Gambaran Umum</div>
+          <p>Amati <strong>apa yang terjadi</strong>, berapa orang yang terdampak, dan bantuan apa yang segera dibutuhkan.</p>
+        </div>
+
+        <div class="card amber anim d5" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="step-badge amber">4</span>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="card-title">Minta Bantuan</div>
+          <p>Panggil <strong>guru atau orang dewasa</strong> dan hubungi layanan darurat bila keadaan tampak serius.</p>
+        </div>
+      </div>
+
+      <div class="card teal anim d6" style="padding: 12px 18px; display: flex; align-items: center; gap: 12px;">
+        <strong>💡 Mengapa Harus Berurutan?</strong>
+        <p>Urutan penilaian membantu penolong tetap tenang, terlindungi dari bahaya, dan tidak melewatkan kondisi penting.</p>
+      </div>
+
+      <div class="slide-footer">
+        <span>1. Mengenal Penilaian Penderita</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 3 ==================== -->
+    <section class="slide" data-title="1B. Penilaian Dini & Batasan Kewenangan">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 1 • Prioritas Penyelamatan</span>
+          <h2>1B. Penilaian Dini & Batasan Kewenangan Siswa</h2>
+          <p class="subtitle">Fokus utama pada kondisi yang paling cepat mengancam nyawa.</p>
+        </div>
+        <span class="slide-num-pill">Slide 3 / 15</span>
+      </div>
+
+      <div class="split-60-40" style="margin: auto 0; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="card teal anim d2">
+            <div class="card-title">4 Prioritas yang Mengancam Nyawa</div>
+            <div class="grid-2" style="margin-top: 10px; gap: 10px;">
+              <div class="card" style="padding: 12px;">
+                <strong style="color: var(--teal); font-size: 14px;">1. Respons / Kesadaran</strong>
+                <p style="font-size: 12.5px; margin-top: 3px;">Apakah korban sadar atau merespons panggilan?</p>
+              </div>
+              <div class="card" style="padding: 12px;">
+                <strong style="color: var(--teal); font-size: 14px;">2. Jalan Napas</strong>
+                <p style="font-size: 12.5px; margin-top: 3px;">Apakah jalur udara terbuka dan tidak tersumbat?</p>
+              </div>
+              <div class="card" style="padding: 12px;">
+                <strong style="color: var(--teal); font-size: 14px;">3. Pernapasan</strong>
+                <p style="font-size: 12.5px; margin-top: 3px;">Apakah korban bernapas dengan normal?</p>
+              </div>
+              <div class="card" style="padding: 12px;">
+                <strong style="color: var(--red); font-size: 14px;">4. Perdarahan Berat</strong>
+                <p style="font-size: 12.5px; margin-top: 3px;">Apakah ada darah keluar deras/banyak?</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card red anim d3">
+            <div class="card-title">🚨 Tindakan Segera</div>
+            <p>Jika orang <strong>tidak merespons</strong> atau <strong>tidak bernapas normal</strong>, segera minta bantuan darurat dan ikuti arahan petugas/operator. <strong>Jangan menunda panggilan bantuan</strong> untuk melakukan pemeriksaan panjang.</p>
+          </div>
+        </div>
+
+        <div class="card amber anim d4" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-title">📌 Catatan Istilah pada Dokumen Sumber</div>
+            <ul class="clean-list" style="margin-top: 8px;">
+              <li><strong>ASNT, HTCL, LDR, dan PLNB:</strong> tertulis dalam dokumen sumber, namun kepanjangannya tidak dijelaskan sehingga tidak ditebak.</li>
+              <li><strong>Jaw thrust:</strong> istilah teknik membuka jalan napas yang membutuhkan pelatihan khusus.</li>
+              <li><strong>Peran Siswa SMP:</strong> cukup mengenal istilahnya dan segera memanggil penolong terlatih.</li>
+            </ul>
+          </div>
+          <div style="background: #FEF3C7; padding: 10px 12px; border-radius: 10px; margin-top: 12px; font-size: 13px; font-weight: 700; color: #92400E;">
+            ⚠️ Jangan mencoba teknik medis pada korban tanpa pelatihan dan pendampingan!
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>1. Mengenal Penilaian Penderita</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4 ==================== -->
+    <section class="slide" data-title="2A. Pemeriksaan Fisik Teratur">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 2 • Pemeriksaan Fisik & Riwayat</span>
+          <h2>2A. Pemeriksaan Fisik Teratur (Kepala hingga Kaki)</h2>
+          <p class="subtitle">Dilakukan secara sistematis oleh penolong kompeten agar tidak ada cedera yang terlewat.</p>
+        </div>
+        <span class="slide-num-pill">Slide 4 / 15</span>
+      </div>
+
+      <div class="split-40-60" style="margin: auto 0; align-items: center;">
+        <!-- Body Sequence Illustration -->
+        <div class="card anim d2" style="display: flex; align-items: center; gap: 16px; padding: 18px;">
+          <svg width="110" height="270" viewBox="0 0 110 270" fill="none">
+            <!-- Head -->
+            <circle cx="55" cy="28" r="18" fill="#FDE68A" stroke="#0F766E" stroke-width="3"/>
+            <!-- Neck -->
+            <rect x="49" y="46" width="12" height="12" fill="#99F6E4"/>
+            <!-- Torso -->
+            <rect x="33" y="58" width="44" height="78" rx="12" fill="#CCFBF1" stroke="#0F766E" stroke-width="3"/>
+            <!-- Pelvis -->
+            <rect x="35" y="136" width="40" height="24" rx="8" fill="#99F6E4" stroke="#0F766E" stroke-width="2.5"/>
+            <!-- Arms -->
+            <rect x="13" y="62" width="14" height="76" rx="7" fill="#E2E8F0" stroke="#334155" stroke-width="2.5"/>
+            <rect x="83" y="62" width="14" height="76" rx="7" fill="#E2E8F0" stroke="#334155" stroke-width="2.5"/>
+            <!-- Legs -->
+            <rect x="36" y="162" width="15" height="92" rx="7.5" fill="#E2E8F0" stroke="#334155" stroke-width="2.5"/>
+            <rect x="59" y="162" width="15" height="92" rx="7.5" fill="#E2E8F0" stroke="#334155" stroke-width="2.5"/>
+          </svg>
+
+          <div style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+            <strong style="font-size: 13px; color: var(--teal-dark); text-transform: uppercase;">Urutan Pemeriksaan:</strong>
+            <div style="font-size: 13px; font-weight: 700; background: var(--teal-soft); padding: 6px 10px; border-radius: 8px;">1. Kepala → 2. Leher</div>
+            <div style="font-size: 13px; font-weight: 700; background: var(--teal-soft); padding: 6px 10px; border-radius: 8px;">3. Dada → 4. Perut</div>
+            <div style="font-size: 13px; font-weight: 700; background: var(--teal-soft); padding: 6px 10px; border-radius: 8px;">5. Punggung → 6. Panggul</div>
+            <div style="font-size: 13px; font-weight: 700; background: var(--teal-soft); padding: 6px 10px; border-radius: 8px;">7. Anggota Gerak Bawah (Kaki)</div>
+            <div style="font-size: 13px; font-weight: 700; background: var(--teal-soft); padding: 6px 10px; border-radius: 8px;">8. Anggota Gerak Atas (Tangan)</div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card teal anim d3">
+            <div class="card-title">🔍 Hal yang Diamati</div>
+            <ul class="clean-list">
+              <li>Apakah ada <strong>luka, bengkak, memar, perubahan bentuk, atau nyeri</strong>.</li>
+              <li>Apakah ada <strong>perdarahan</strong> dan apakah korban tampak <strong>pucat, berkeringat dingin, atau lemah</strong>.</li>
+              <li>Jelaskan semua temuan kepada orang dewasa atau tenaga kesehatan.</li>
+            </ul>
+          </div>
+
+          <div class="card red anim d4">
+            <div class="card-title">🛑 Larangan Memindahkan Korban</div>
+            <p><strong>Jangan memaksa korban bergerak!</strong> Hindari menggerakkan bagian tubuh yang dicurigai mengalami <strong>cedera tulang belakang</strong> atau <strong>patah tulang</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>2. Pemeriksaan Fisik dan Riwayat</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5 ==================== -->
+    <section class="slide" data-title="2B. Tanda-Tanda Vital">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 2 • Pemeriksaan Fisik & Riwayat</span>
+          <h2>2B. Tanda-Tanda Vital (Data Bahan Ajar)</h2>
+          <p class="subtitle">Ukuran dasar kondisi tubuh: denyut nadi, frekuensi napas, suhu tubuh, dan tekanan darah.</p>
+        </div>
+        <span class="slide-num-pill">Slide 5 / 15</span>
+      </div>
+
+      <div style="margin: auto 0; display: flex; flex-direction: column; gap: 16px;">
+        <table class="vital-table anim d2">
+          <thead>
+            <tr>
+              <th>Kelompok Usia</th>
+              <th>Denyut Nadi (kali / menit)</th>
+              <th>Frekuensi Napas (kali / menit)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>👶 <strong>Bayi</strong></td>
+              <td>120 – 150 kali/menit</td>
+              <td>25 – 50 kali/menit</td>
+            </tr>
+            <tr>
+              <td>🧒 <strong>Anak</strong></td>
+              <td>80 – 150 kali/menit</td>
+              <td>15 – 30 kali/menit</td>
+            </tr>
+            <tr>
+              <td>🧑 <strong>Dewasa</strong></td>
+              <td>60 – 90 kali/menit</td>
+              <td>12 – 20 kali/menit</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card amber anim d3">
+          <div class="card-title">⚠️ Catatan Penting Penggunaan Angka Tanda Vital</div>
+          <p>Angka normal berbeda menurut <strong>usia, kondisi, aktivitas, dan cara pengukuran</strong>. Angka di atas adalah <strong>angka bahan ajar</strong>, bukan alat untuk mendiagnosis sendiri. Pengukuran dan penafsirannya sebaiknya dilakukan oleh <strong>orang terlatih</strong>.</p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>2. Pemeriksaan Fisik dan Riwayat</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6 ==================== -->
+    <section class="slide" data-title="2C. Riwayat KOMPAK & Pelaporan">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 2 • Pemeriksaan Fisik & Riwayat</span>
+          <h2>2C. Riwayat Penderita (KOMPAK) & Pelaporan</h2>
+          <p class="subtitle">Panduan wawancara singkat untuk menggali informasi penting dari penderita atau saksi.</p>
+        </div>
+        <span class="slide-num-pill">Slide 6 / 15</span>
+      </div>
+
+      <div class="split-60-40" style="margin: auto 0; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div class="kompak-row anim d1"><div class="kompak-letter">K</div><div><strong>Keluhan utama:</strong> <span style="color: var(--slate-700); font-size: 13.5px;">Apa yang dirasakan atau terjadi saat ini.</span></div></div>
+          <div class="kompak-row anim d2"><div class="kompak-letter">O</div><div><strong>Obat-obatan:</strong> <span style="color: var(--slate-700); font-size: 13.5px;">Obat yang sedang rutin atau baru diminum.</span></div></div>
+          <div class="kompak-row anim d3"><div class="kompak-letter">M</div><div><strong>Makanan/minuman terakhir:</strong> <span style="color: var(--slate-700); font-size: 13.5px;">Kapan terakhir makan atau minum.</span></div></div>
+          <div class="kompak-row anim d4"><div class="kompak-letter">P</div><div><strong>Penyakit:</strong> <span style="color: var(--slate-700); font-size: 13.5px;">Riwayat penyakit yang diketahui (misal asma/alergi berat).</span></div></div>
+          <div class="kompak-row anim d5"><div class="kompak-letter">A</div><div><strong>Alergi:</strong> <span style="color: var(--slate-700); font-size: 13.5px;">Alergi terhadap obat, makanan, atau benda tertentu.</span></div></div>
+          <div class="kompak-row anim d6"><div class="kompak-letter">K</div><div><strong>Kejadian:</strong> <span style="color: var(--slate-700); font-size: 13.5px;">Bagaimana urutan peristiwa cedera/sakit terjadi.</span></div></div>
+        </div>
+
+        <div class="card teal anim d3" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-title">📋 Pemeriksaan Berkala & Pelaporan</div>
+            <ul class="clean-list" style="margin-top: 8px;">
+              <li><strong>Amati kembali secara berkala:</strong> respons, jalan napas, pernapasan, denyut nadi (oleh orang terlatih), kondisi kulit, serta perubahan keluhan.</li>
+              <li><strong>Catat data untuk dilaporkan:</strong>
+                <br>• Umur / perkiraan umur & jenis kelamin
+                <br>• Keluhan utama & kondisi napas
+                <br>• Temuan fisik penting & riwayat <strong>KOMPAK</strong>
+                <br>• Tindakan awal yang sudah dilakukan & perubahan kondisi
+              </li>
+            </ul>
+          </div>
+          <div style="background: #CCFBF1; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--teal-dark);">
+            Catatan yang rapi sangat membantu guru & petugas medis saat serah terima!
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>2. Pemeriksaan Fisik dan Riwayat</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7 ==================== -->
+    <section class="slide" data-title="3A. Memahami Perdarahan">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge red">Bagian 3 • Memahami Perdarahan</span>
+          <h2>3A. Memahami Perdarahan: Pembuluh Darah & Lokasi</h2>
+          <p class="subtitle">Terjadi ketika pembuluh darah rusak sehingga darah keluar ke permukaan kulit atau ke dalam tubuh.</p>
+        </div>
+        <span class="slide-num-pill">Slide 7 / 15</span>
+      </div>
+
+      <div style="margin: auto 0; display: flex; flex-direction: column; gap: 14px;">
+        <div class="grid-3">
+          <div class="card red anim d2">
+            <div class="card-title">🔴 Arteri (Pembuluh Nadi)</div>
+            <p>Darah dapat keluar <strong>memancar mengikuti denyut</strong>; sering tampak berwarna <strong>merah terang</strong>.</p>
+          </div>
+          <div class="card anim d3">
+            <div class="card-title" style="color: #991B1B;">🩸 Vena (Pembuluh Balik)</div>
+            <p>Darah umumnya <strong>mengalir</strong> terus; sering tampak berwarna <strong>merah lebih gelap</strong>.</p>
+          </div>
+          <div class="card anim d4">
+            <div class="card-title" style="color: var(--teal-dark);">💧 Kapiler (Pembuluh Kecil)</div>
+            <p>Darah biasanya <strong>merembes</strong> perlahan dari permukaan luka gores atau lecet.</p>
+          </div>
+        </div>
+
+        <div class="card amber anim d4" style="padding: 10px 16px;">
+          <p><strong>⚠️ Peringatan:</strong> Warna saja tidak cukup untuk menentukan tingkat bahaya. Anggap perdarahan yang <strong>banyak, terus berlangsung, atau disertai lemas/pucat</strong> sebagai keadaan serius.</p>
+        </div>
+
+        <div class="grid-2 anim d5">
+          <div class="card">
+            <div class="card-title">1. Perdarahan Luar</div>
+            <p>Darah terlihat jelas keluar dari permukaan luka pada kulit.</p>
+          </div>
+          <div class="card red">
+            <div class="card-title">2. Perdarahan Dalam</div>
+            <p>Darah terkumpul di dalam tubuh dan tidak terlihat. <strong>Tanda:</strong> memar luas, nyeri/bengkak, pucat, lemah, pusing, atau tanda syok.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>3. Memahami Perdarahan</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 8 ==================== -->
+    <section class="slide" data-title="3B. Perlindungan Penolong & Tekan Langsung">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge red">Bagian 3 • Memahami Perdarahan</span>
+          <h2>3B. Perlindungan Penolong & Kendali Perdarahan Luar</h2>
+          <p class="subtitle">Utamakan perlindungan diri (APD) dan teknik tekan langsung yang aman.</p>
+        </div>
+        <span class="slide-num-pill">Slide 8 / 15</span>
+      </div>
+
+      <div class="split-40-60" style="margin: auto 0; align-items: stretch;">
+        <div class="card teal anim d2" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-title">🧤 Perlindungan Penolong (APD)</div>
+            <ul class="clean-list" style="margin-top: 8px;">
+              <li>Gunakan <strong>sarung tangan sekali pakai</strong> atau penghalang bersih bila tersedia.</li>
+              <li>Hindari kontak darah dengan <strong>mata, mulut, hidung, atau luka</strong> pada kulit penolong.</li>
+              <li>Setelah selesai, <strong>cuci tangan</strong> dengan sabun dan buang bahan tercemar dengan aman sesuai arahan guru.</li>
+            </ul>
+          </div>
+          <!-- Direct Pressure Vector Icon -->
+          <div style="background: #FFFFFF; border-radius: 12px; padding: 12px; text-align: center; border: 1px solid #99F6E4;">
+            <strong style="color: var(--teal-dark); font-size: 14px; display: block;">PRINSIP UTAMA:</strong>
+            <span style="font-size: 18px; font-weight: 800; color: var(--red);">KASA + TEKAN LANGSUNG</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="card anim d3">
+            <div class="card-title">🩹 Langkah Mengendalikan Perdarahan Luar</div>
+            <ul class="clean-list">
+              <li><strong>Panggil bantuan</strong> orang dewasa/layanan darurat bila perdarahan banyak atau tidak berhenti.</li>
+              <li>Jika aman, tutup luka dengan <strong>kasa/kain bersih</strong> dan <strong>tekan langsung dengan kuat serta terus-menerus</strong>.</li>
+              <li>Jika kain/kasa pertama tembus darah, <strong>jangan mengangkatnya</strong>; tambahkan bahan bersih di atasnya dan teruskan tekanan.</li>
+              <li><strong>Jangan menekan atau mencabut benda yang tertancap</strong>; tekan di sekitar benda dan stabilkan tanpa mendorongnya.</li>
+            </ul>
+          </div>
+
+          <div class="card red anim d4" style="padding: 12px 16px;">
+            <p style="font-size: 13px;"><strong>Catatan Keselamatan:</strong> Metode <em>elevasi, titik tekan, bidai, dan torniket</em> tidak diajarkan sebagai langkah mandiri di modul SMP ini karena memerlukan pelatihan khusus.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>3. Memahami Perdarahan</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 9 ==================== -->
+    <section class="slide" data-title="4A. Syok: Tanda Bahaya">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge red">Bagian 4 • Syok</span>
+          <h2>4A. Syok: Tanda Bahaya yang Perlu Dikenali</h2>
+          <p class="subtitle">Keadaan darurat ketika peredaran darah tidak mampu mengirim cukup oksigen dan zat gizi ke organ penting.</p>
+        </div>
+        <span class="slide-num-pill">Slide 9 / 15</span>
+      </div>
+
+      <div style="margin: auto 0; display: flex; flex-direction: column; gap: 14px;">
+        <div class="card teal anim d2" style="padding: 12px 18px;">
+          <p><strong>Penyebab Umum:</strong> Syok dapat terjadi akibat <strong>kehilangan banyak darah</strong> (perdarahan luar maupun dalam) atau <strong>kekurangan cairan berat</strong>.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card anim d2">
+            <div class="card-title">🫁 1. Perubahan Pernapasan</div>
+            <p>Napas tampak <strong>cepat atau dangkal</strong>.</p>
+          </div>
+          <div class="card anim d3">
+            <div class="card-title">🥶 2. Perubahan Kondisi Kulit</div>
+            <p>Kulit tampak <strong>pucat, terasa dingin, atau berkeringat dingin</strong>.</p>
+          </div>
+          <div class="card anim d4">
+            <div class="card-title">💓 3. Denyut Nadi</div>
+            <p>Nadi terasa <strong>cepat dan lemah</strong> (dinilai oleh orang terlatih).</p>
+          </div>
+          <div class="card anim d5">
+            <div class="card-title">😵 4. Keluhan & Perilaku</div>
+            <p>Penderita merasa <strong>lemas, pusing, haus, mual, gelisah, atau tampak bingung</strong>.</p>
+          </div>
+        </div>
+
+        <div class="card red anim d6" style="padding: 12px 18px;">
+          <p><strong>🚨 PENTING:</strong> Syok bisa memburuk dengan sangat cepat! Jangan menunggu semua tanda muncul sebelum meminta pertolongan darurat.</p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>4. Syok: Tanda Bahaya yang Perlu Dikenali</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10 ==================== -->
+    <section class="slide" data-title="4B. Penanganan Awal Syok">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge red">Bagian 4 • Syok</span>
+          <h2>4B. Tindakan Awal Syok: Baringkan, Hangatkan, Rujuk</h2>
+          <p class="subtitle">Langkah pertolongan awal yang aman sambil menunggu bantuan medis tiba.</p>
+        </div>
+        <span class="slide-num-pill">Slide 10 / 15</span>
+      </div>
+
+      <div class="split-40-60" style="margin: auto 0; align-items: center;">
+        <!-- Shock Position Illustration -->
+        <div class="card anim d2" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 22px; background: linear-gradient(180deg, #FFF1F2 0%, #FFFFFF 100%);">
+          <svg class="float-anim" width="100%" height="185" viewBox="0 0 300 180" fill="none">
+            <!-- Ground Mat -->
+            <rect x="20" y="138" width="260" height="10" rx="5" fill="#CBD5E1"/>
+            <!-- Casualty Lying Down -->
+            <circle cx="62" cy="116" r="20" fill="#FDBA74" stroke="#0F172A" stroke-width="3"/>
+            <!-- Warm Blanket -->
+            <path d="M84 104C84 98 89 94 95 94H232C242 94 250 102 250 112V136H84V104Z" fill="#0F766E"/>
+            <path d="M105 94V136M145 94V136M185 94V136M225 94V136" stroke="#14B8A6" stroke-width="2.5"/>
+            <text x="167" y="120" text-anchor="middle" font-size="13" font-weight="800" fill="#FFFFFF">SELIMUT HANGAT</text>
+          </svg>
+          <div style="text-align: center; margin-top: 8px;">
+            <strong style="color: var(--red); font-size: 14px;">WASPADAI SYOK</strong>
+            <p style="font-size: 12.5px;">Pucat • Dingin • Lemah • Napas Cepat</p>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <div class="card anim d2" style="padding: 11px 15px; display: flex; gap: 12px; align-items: flex-start;">
+            <span class="step-badge red">1</span>
+            <div><strong>Segera minta bantuan darurat</strong> dan jelaskan bahwa kamu mencurigai syok.</div>
+          </div>
+          <div class="card anim d3" style="padding: 11px 15px; display: flex; gap: 12px; align-items: flex-start;">
+            <span class="step-badge">2</span>
+            <div><strong>Baringkan pada posisi nyaman dan aman.</strong> Jangan memaksa mengangkat kaki; sesuaikan dengan cedera dan kenyamanan bernapas.</div>
+          </div>
+          <div class="card anim d4" style="padding: 11px 15px; display: flex; gap: 12px; align-items: flex-start;">
+            <span class="step-badge">3</span>
+            <div><strong>Jaga tubuh tetap hangat</strong> menggunakan selimut atau kain bersih.</div>
+          </div>
+          <div class="card anim d5" style="padding: 11px 15px; display: flex; gap: 12px; align-items: flex-start;">
+            <span class="step-badge">4</span>
+            <div><strong>Jika ada perdarahan luar,</strong> lakukan tekanan langsung pada luka bila aman.</div>
+          </div>
+          <div class="card red anim d6" style="padding: 11px 15px; display: flex; gap: 12px; align-items: flex-start;">
+            <span class="step-badge red">5</span>
+            <div><strong>Jangan beri makan atau minum.</strong> Pantau terus respons dan pernapasan sampai bantuan tiba.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>4. Syok: Tanda Bahaya yang Perlu Dikenali</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11 ==================== -->
+    <section class="slide" data-title="5A. Cedera Jaringan Lunak">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 5 • Cedera Jaringan Lunak & Perawatan Luka</span>
+          <h2>5A. Klasifikasi Cedera Jaringan Lunak</h2>
+          <p class="subtitle">Jaringan lunak meliputi kulit, otot, saraf, dan pembuluh darah — terbagi menjadi luka terbuka dan tertutup.</p>
+        </div>
+        <span class="slide-num-pill">Slide 11 / 15</span>
+      </div>
+
+      <div class="split-60-40" style="margin: auto 0; align-items: stretch;">
+        <!-- Luka Terbuka -->
+        <div class="card red anim d2" style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="card-title">🩹 Luka Terbuka (6 Jenis)</div>
+          <div class="grid-2" style="gap: 10px;">
+            <div class="card" style="padding: 10px 12px;">
+              <strong style="font-size: 13.5px; color: var(--slate-900);">1. Lecet</strong>
+              <p style="font-size: 12.5px;">Lapisan permukaan kulit tergores.</p>
+            </div>
+            <div class="card" style="padding: 10px 12px;">
+              <strong style="font-size: 13.5px; color: var(--slate-900);">2. Sayat / Iris</strong>
+              <p style="font-size: 12.5px;">Luka dengan tepi relatif teratur.</p>
+            </div>
+            <div class="card" style="padding: 10px 12px;">
+              <strong style="font-size: 13.5px; color: var(--slate-900);">3. Robek</strong>
+              <p style="font-size: 12.5px;">Kulit atau jaringan terkoyak tidak rata.</p>
+            </div>
+            <div class="card" style="padding: 10px 12px;">
+              <strong style="font-size: 13.5px; color: var(--slate-900);">4. Tusuk</strong>
+              <p style="font-size: 12.5px;">Luka dalam akibat benda runcing.</p>
+            </div>
+            <div class="card" style="padding: 10px 12px;">
+              <strong style="font-size: 13.5px; color: var(--slate-900);">5. Avulsi</strong>
+              <p style="font-size: 12.5px;">Sebagian jaringan kulit terkelupas/tercabik.</p>
+            </div>
+            <div class="card" style="padding: 10px 12px; border-color: var(--red);">
+              <strong style="font-size: 13.5px; color: var(--red);">6. Amputasi</strong>
+              <p style="font-size: 12.5px;">Bagian tubuh terputus; darurat segera!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Luka Tertutup -->
+        <div class="card teal anim d3" style="display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
+          <div class="card-title">🟣 Luka Tertutup (2 Jenis)</div>
+          <div class="card" style="padding: 14px;">
+            <strong style="font-size: 15px; color: var(--teal-dark);">1. Memar</strong>
+            <p style="margin-top: 4px;">Perubahan warna kulit (kebiruan/keunguan) akibat benturan dan perdarahan di bawah permukaan kulit.</p>
+          </div>
+          <div class="card" style="padding: 14px;">
+            <strong style="font-size: 15px; color: var(--teal-dark);">2. Cedera Himpitan / Remuk</strong>
+            <p style="margin-top: 4px;">Jaringan tubuh tertekan atau mengalami kerusakan akibat tekanan atau jepitan benda berat/kuat.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>5. Cedera Jaringan Lunak dan Perawatan Luka</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12 ==================== -->
+    <section class="slide" data-title="5B. Penutup Luka, Pembalut & Perawatan Awal">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 5 • Cedera Jaringan Lunak & Perawatan Luka</span>
+          <h2>5B. Penutup Luka, Pembalut & Perawatan Awal</h2>
+          <p class="subtitle">Mengenal fungsi penutup luka vs pembalut serta langkah perawatan awal yang aman.</p>
+        </div>
+        <span class="slide-num-pill">Slide 12 / 15</span>
+      </div>
+
+      <div style="margin: auto 0; display: flex; flex-direction: column; gap: 12px;">
+        <div class="grid-2 anim d2">
+          <div class="card teal" style="padding: 12px 16px;">
+            <div class="card-title">🩹 Penutup Luka</div>
+            <p>Bahan bersih/steril yang diletakkan langsung di atas luka untuk melindungi luka dan menyerap darah.</p>
+          </div>
+          <div class="card teal" style="padding: 12px 16px;">
+            <div class="card-title">🎗️ Pembalut</div>
+            <p>Bahan penahan penutup luka agar tetap di tempatnya: <strong>pembalut gulung, segitiga (mitella), tabung (tubuler), dan tekan</strong>.</p>
+          </div>
+        </div>
+
+        <div class="grid-4 anim d3">
+          <div class="card" style="padding: 12px;">
+            <strong style="color: var(--teal); font-size: 13.5px;">1. Luka Kecil</strong>
+            <p style="font-size: 12.5px; margin-top: 4px;">Cuci tangan, bilas air bersih mengalir, bersihkan sekitar luka, tutup kasa/plester bersih.</p>
+          </div>
+          <div class="card" style="padding: 12px;">
+            <strong style="color: var(--red); font-size: 13.5px;">2. Perdarahan</strong>
+            <p style="font-size: 12.5px; margin-top: 4px;">Tekan langsung dengan kasa/kain bersih. Luka besar/berat butuh bantuan medis.</p>
+          </div>
+          <div class="card" style="padding: 12px;">
+            <strong style="color: var(--teal); font-size: 13.5px;">3. Memar Ringan</strong>
+            <p style="font-size: 12.5px; margin-top: 4px;">Istirahatkan dan kompres dingin terbungkus kain (jangan tempel es langsung ke kulit).</p>
+          </div>
+          <div class="card" style="padding: 12px;">
+            <strong style="color: var(--amber); font-size: 13.5px;">4. Luka Tusuk</strong>
+            <p style="font-size: 12.5px; margin-top: 4px;">Benda masih menancap: <strong>jangan cabut!</strong> Stabilkan sekelilingnya dan minta bantuan medis.</p>
+          </div>
+        </div>
+
+        <div class="card red anim d4" style="padding: 10px 16px;">
+          <p><strong>🚫 Hindari:</strong> Mengoleskan bahan sembarangan pada luka, mengorek luka, atau mencoba memperbaiki cedera berat sendiri.</p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>5. Cedera Jaringan Lunak dan Perawatan Luka</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13 ==================== -->
+    <section class="slide" data-title="6A. Situasi Khusus: Mimisan">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge amber">Bagian 6 • Situasi Khusus</span>
+          <h2>6A. Situasi Khusus: Mimisan (Perdarahan Hidung)</h2>
+          <p class="subtitle">Penanganan awal mimisan yang tepat sesuai panduan keselamatan (NHS).</p>
+        </div>
+        <span class="slide-num-pill">Slide 13 / 15</span>
+      </div>
+
+      <div class="split-40-60" style="margin: auto 0; align-items: center;">
+        <!-- Nosebleed Posture Illustration -->
+        <div class="card teal anim d2" style="display: flex; flex-direction: column; align-items: center; padding: 20px; text-align: center;">
+          <svg class="float-anim" width="180" height="180" viewBox="0 0 180 180" fill="none">
+            <!-- Leaning Forward Head -->
+            <circle cx="96" cy="64" r="34" fill="#FDE68A" stroke="#0F172A" stroke-width="3"/>
+            <!-- Nose -->
+            <path d="M128 62L142 72L128 76" fill="#FDBA74" stroke="#0F172A" stroke-width="3" stroke-linejoin="round"/>
+            <!-- Pinching Hand -->
+            <circle cx="136" cy="74" r="10" fill="#0F766E"/>
+            <!-- Forward Leaning Torso -->
+            <path d="M84 98L64 162H112L104 98" fill="#14B8A6" stroke="#0F172A" stroke-width="3"/>
+            <!-- Forward Arrow -->
+            <path d="M126 115H156M156 115L146 107M156 115L146 123" stroke="#E11D48" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <strong style="color: var(--teal-dark); font-size: 15px; margin-top: 6px;">DUDUK & CONDONG KE DEPAN</strong>
+          <span style="font-size: 13px; color: var(--slate-700);">Jepit bagian lunak hidung <strong>10–15 menit</strong> tanpa dilepas</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <div class="card teal anim d3" style="padding: 12px 16px;">
+            <div class="card-title">✅ Langkah yang Benar</div>
+            <ul class="clean-list">
+              <li>Dudukkan korban dan minta ia <strong>sedikit condong ke depan</strong>.</li>
+              <li><strong>Jepit bagian lunak hidung</strong> tepat di bawah tulang hidung selama <strong>10–15 menit tanpa dilepas</strong> untuk mengecek.</li>
+              <li><strong>Bernapas melalui mulut</strong>; ludahkan darah yang masuk ke mulut, jangan ditelan.</li>
+            </ul>
+          </div>
+
+          <div class="card red anim d4" style="padding: 11px 16px;">
+            <div class="card-title">❌ Jangan Dilakukan</div>
+            <p>Jangan <strong>mendongakkan kepala</strong>, berbaring telentang, atau memasukkan tisu/benda jauh ke dalam hidung.</p>
+          </div>
+
+          <div class="card amber anim d5" style="padding: 11px 16px;">
+            <div class="card-title">🏥 Segera Cari Bantuan Medis Jika:</div>
+            <p>Perdarahan sangat banyak, terjadi setelah <strong>benturan kepala/wajah</strong>, korban merasa lemah/pusing, sulit bernapas, atau tidak berhenti setelah tekanan yang benar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>6. Situasi Khusus yang Perlu Diketahui</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14 ==================== -->
+    <section class="slide" data-title="6B. Benda Menancap & Luka Perut">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge red">Bagian 6 • Situasi Khusus Darurat</span>
+          <h2>6B. Benda Asing Menancap & Luka Terbuka pada Perut</h2>
+          <p class="subtitle">Kedua kondisi ini membutuhkan penanganan hati-hati agar tidak memperparah kerusakan jaringan.</p>
+        </div>
+        <span class="slide-num-pill">Slide 14 / 15</span>
+      </div>
+
+      <div class="grid-2" style="margin: auto 0; align-items: stretch;">
+        <div class="card teal anim d2" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-title" style="font-size: 17px;">📌 Benda Asing yang Menancap</div>
+            <ul class="clean-list" style="margin-top: 10px; gap: 10px;">
+              <li><strong>JANGAN mencabut atau mendorong</strong> benda yang menancap pada tubuh.</li>
+              <li><strong>Jaga agar benda tidak banyak bergerak:</strong> beri bantalan di sekeliling benda jika tersedia dan aman.</li>
+              <li><strong>Panggil orang dewasa dan layanan medis</strong> segera, sambil terus memantau kondisi korban.</li>
+            </ul>
+          </div>
+          <div style="background: #CCFBF1; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--teal-dark); margin-top: 12px;">
+            Mencabut benda tertancap dapat memicu perdarahan hebat seketika!
+          </div>
+        </div>
+
+        <div class="card red anim d3" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-title" style="font-size: 17px;">🚨 Luka Terbuka pada Perut</div>
+            <ul class="clean-list" style="margin-top: 10px; gap: 10px;">
+              <li>Ini termasuk <strong>cedera serius</strong>: segera panggil bantuan darurat.</li>
+              <li><strong>JANGAN menekan atau memasukkan kembali</strong> organ/jaringan yang keluar.</li>
+              <li><strong>Tutup longgar</strong> dengan kasa steril yang dibasahi larutan garam steril bila tersedia; tunggu arahan petugas.</li>
+              <li><strong>Jaga korban tetap hangat</strong> dan <strong>jangan beri makan atau minum</strong>.</li>
+            </ul>
+          </div>
+          <div style="background: #FFE4E6; padding: 10px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; color: #BE123C; margin-top: 12px;">
+            Fokus pada keamanan posisi, kehangatan tubuh, dan kedatangan ambulans.
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>6. Situasi Khusus yang Perlu Diketahui</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15 ==================== -->
+    <section class="slide" data-title="7. Kamus Istilah, 5 Langkah & Evaluasi">
+      <div class="slide-header anim d1">
+        <div>
+          <span class="badge">Bagian 7 • Rangkuman Akhir</span>
+          <h2>7. Kamus Singkat, 5 Langkah Utama & Pertanyaan Pemahaman</h2>
+        </div>
+        <span class="slide-num-pill">Slide 15 / 15</span>
+      </div>
+
+      <div class="grid-3" style="margin: auto 0; align-items: stretch; gap: 14px;">
+        <!-- Kamus Singkat -->
+        <div class="card teal anim d2" style="padding: 13px 15px;">
+          <div class="card-title" style="font-size: 14.5px;">📖 Kamus Singkat (12 Istilah)</div>
+          <div style="font-size: 11.5px; line-height: 1.45; color: var(--slate-700); display: flex; flex-direction: column; gap: 3px;">
+            <div><strong>• APD:</strong> Alat Pelindung Diri (misal sarung tangan).</div>
+            <div><strong>• Trauma:</strong> Cedera akibat benturan/jatuh/kejadian fisik.</div>
+            <div><strong>• Medis:</strong> Gangguan kesehatan non-cedera fisik.</div>
+            <div><strong>• Airway:</strong> Jalan napas (jalur udara masuk & keluar).</div>
+            <div><strong>• Arteri/Vena/Kapiler:</strong> Pembuluh nadi / balik / sangat kecil.</div>
+            <div><strong>• Sianosis:</strong> Bibir/kulit kebiruan karena kurang oksigen.</div>
+            <div><strong>• Oksigen (O₂):</strong> Gas tubuh; pemberian medis oleh terlatih.</div>
+            <div><strong>• Rujuk:</strong> Mengirim penderita ke fasilitas kesehatan.</div>
+            <div><strong>• Imobilisasi:</strong> Membatasi gerakan bagian yang cedera.</div>
+            <div><strong>• Oklusif:</strong> Kedap atau menutup rapat.</div>
+            <div><strong>• Mitella:</strong> Pembalut berbentuk segitiga.</div>
+            <div><strong>• Tanda vital:</strong> Nadi, napas, suhu, dan tekanan darah.</div>
+          </div>
+        </div>
+
+        <!-- 5 Langkah Utama -->
+        <div class="card amber anim d3" style="padding: 13px 15px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-title" style="font-size: 14.5px;">⭐ Ingat 5 Langkah Utama</div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; font-size: 13px;">
+              <div><strong>1.</strong> Pastikan lokasi aman.</div>
+              <div><strong>2.</strong> Panggil orang dewasa / bantuan.</div>
+              <div><strong>3.</strong> Kenali masalah yang mengancam nyawa.</div>
+              <div><strong>4.</strong> Berikan pertolongan sederhana yang aman dan sesuai kemampuan.</div>
+              <div><strong>5.</strong> Pantau dan sampaikan informasi dengan jelas.</div>
+            </div>
+          </div>
+          <div style="background: #FEF3C7; padding: 9px 10px; border-radius: 9px; font-size: 11.5px; color: #92400E;">
+            <strong>Referensi:</strong> Materi Penilaian, Perdarahan, Syok, Cedera Jaringan Lunak (SMP) & NHS Nosebleed (2026).
+          </div>
+        </div>
+
+        <!-- Pertanyaan Pemahaman -->
+        <div class="card red anim d4" style="padding: 13px 15px;">
+          <div class="card-title" style="font-size: 14.5px;">❓ Pertanyaan Pemahaman</div>
+          <ol style="padding-left: 18px; font-size: 12.5px; line-height: 1.55; color: var(--slate-700); display: flex; flex-direction: column; gap: 7px; margin-top: 6px;">
+            <li>Mengapa penolong harus memastikan lokasi aman sebelum mendekati korban?</li>
+            <li>Apa arti singkatan <strong>KOMPAK</strong>?</li>
+            <li>Apa perbedaan perdarahan luar dan perdarahan dalam?</li>
+            <li>Mengapa benda yang menancap tidak boleh dicabut?</li>
+            <li>Bagaimana posisi yang benar saat membantu orang mimisan?</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Gunakan simulasi & alat peraga saat praktik</span>
+        <span>Materi edukasi praktik harus didampingi guru/pelatih P3K</span>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- Bottom Navigation Bar -->
+<div class="controls-bar">
+  <button class="ctrl-btn" id="prevBtn" onclick="changeSlide(-1)">← Sebelumnya</button>
+  <button class="ctrl-btn" onclick="toggleOverview()" title="Lihat semua slide">☰ Daftar Slide</button>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <span class="counter-text" id="counterText">1 / 15</span>
+  <button class="ctrl-btn" id="nextBtn" onclick="changeSlide(1)">Berikutnya →</button>
+</div>
+
+<!-- Slide Overview Modal -->
+<div class="overview-modal" id="overviewModal" onclick="if(event.target===this) toggleOverview()">
+  <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: #fff;">
+    <h2 style="color: #fff; font-size: 22px;">Daftar 15 Slide Presentasi</h2>
+    <button class="ctrl-btn" onclick="toggleOverview()">✕ Tutup</button>
+  </div>
+  <div class="overview-grid" id="overviewGrid"></div>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const counterText = document.getElementById('counterText');
+  const progressFill = document.getElementById('progressFill');
+  const overviewModal = document.getElementById('overviewModal');
+  const overviewGrid = document.getElementById('overviewGrid');
+  let current = 0;
+
+  function buildOverview() {
+    overviewGrid.innerHTML = '';
+    slides.forEach((s, idx) => {
+      const item = document.createElement('div');
+      item.className = 'ov-item' + (idx === current ? ' current' : '');
+      item.innerHTML = `<span>SLIDE ${idx + 1}</span><strong>${s.dataset.title || 'Slide ' + (idx + 1)}</strong>`;
+      item.onclick = () => {
+        goToSlide(idx);
+        toggleOverview();
+      };
+      overviewGrid.appendChild(item);
+    });
+  }
+
+  function updateUI() {
+    slides.forEach((s, idx) => {
+      s.classList.remove('active', 'prev');
+      if (idx === current) {
+        s.classList.add('active');
+      } else if (idx < current) {
+        s.classList.add('prev');
+      }
+    });
+
+    counterText.textContent = `${current + 1} / ${slides.length}`;
+    progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+    buildOverview();
+  }
+
+  function changeSlide(dir) {
+    const next = current + dir;
+    if (next >= 0 && next < slides.length) {
+      current = next;
+      updateUI();
+    }
+  }
+
+  function goToSlide(idx) {
+    current = idx;
+    updateUI();
+  }
+
+  function toggleOverview() {
+    overviewModal.classList.toggle('open');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      changeSlide(1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      changeSlide(-1);
+    } else if (e.key === 'Escape' && overviewModal.classList.contains('open')) {
+      toggleOverview();
+    }
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+  });
+
+  updateUI();
+</script>
+</body>
+</html>
